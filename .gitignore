@@ -97,6 +97,11 @@ Thumbs.db
 *.key
 *.pem
 
+# ignore image files
+*.jpg
+*.png
+*.gif
+
 # -------------------------
 # BEGIN Whitelisted Files
 # -------------------------
