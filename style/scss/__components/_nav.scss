@@ -1,0 +1,24 @@
+.nav {
+  justify-content: space-between;
+  padding: ms(2) 0;
+
+  & li {
+    list-style: none;
+    display: inline-block;
+  }
+
+  &__link,
+  &__divider {
+    font-size: ms(0);
+    @include font(sans-serif, 600);
+    text-transform: uppercase;
+  }
+
+  &__breadcrumbs li {
+    padding-right: space(0.5);
+  }
+
+  &__user li {
+    padding-left: space(0.5);
+  }
+}

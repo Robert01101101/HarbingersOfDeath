@@ -1,0 +1,17 @@
+.layout {
+  margin: 0 space(5);
+
+  &--distant {
+    margin-top: ms(4);
+    margin-bottom: ms(4);
+  }
+
+  &--close {
+    margin-top: ms(1);
+    margin-bottom: ms(1);
+  }
+
+  &--flex {
+    display: flex;
+  }
+}

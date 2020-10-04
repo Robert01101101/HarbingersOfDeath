@@ -1,0 +1,93 @@
+// setup modular scale (this is for type sizes and vertical spacing).
+$modularscale: (
+  base: 1em,
+  ratio: $golden,
+);
+
+// set up horizontal spacing
+@function space($n) {
+  $spacing-increment: 1;
+
+  $space: $n * $spacing-increment;
+  @return $space * 1em;
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+}
+html {
+  background-image: url("../assets/images/gradient.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body {
+  font-size: 16px;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+code,
+del,
+dfn,
+em,
+img,
+q,
+dl,
+dt,
+dd,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+textarea,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  line-height: 24px;
+}
+
+// .background {
+//   background-image: url("../assets/images/gradient.png");
+//   height: 100%;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   position: fixed;
+//   left: 0px;
+//   top: 0px;
+// }

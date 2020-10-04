@@ -1,0 +1,10 @@
+.item {
+  box-sizing: border-box;
+  overflow: hidden;
+  border-top: 2px solid $white;
+  padding-top: ms(0);
+
+  &--primary {
+    border-top: 3px solid $white;
+  }
+}

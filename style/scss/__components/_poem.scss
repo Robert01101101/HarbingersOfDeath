@@ -1,0 +1,9 @@
+.peom {
+  &__text {
+    @include font(decorative, 400, italic);
+    font-size: ms(2);
+  }
+  &__author {
+    @include font(sans-serif, 500);
+  }
+}

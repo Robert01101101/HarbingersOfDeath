@@ -1,0 +1,31 @@
+.tile {
+  box-sizing: border-box;
+  border: 1px solid $white;
+  padding: ms(0) space(1);
+  margin-bottom: space(1);
+  //width: span(2, 6);
+
+  &__text {
+    font-size: ms(1);
+    line-height: 1.5;
+    @include font(serif, 500);
+  }
+
+  &__title {
+    @include font(sans-serif, 600);
+    display: inline;
+  }
+
+  &__panel {
+    box-sizing: border-box;
+    overflow: hidden;
+    border-top: 2px solid $white;
+    padding-top: ms(0);
+
+    flex-wrap: wrap;
+
+    &--primary {
+      border-top: 3px solid $white;
+    }
+  }
+}

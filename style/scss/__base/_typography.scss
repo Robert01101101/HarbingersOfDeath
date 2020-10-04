@@ -1,0 +1,101 @@
+// this is a helper to return a font stack and other font basics
+// serif / sans-serif / monospaced / decorative
+@mixin font($font-choice, $weight: 400, $style: "normal") {
+  $fonts: (
+    "serif": #{freight-big-pro,
+    serif},
+    "sans-serif": #{neue-haas-grotesk-display,
+    sans-serif},
+    "monospaced": #{calling-code,
+    courier,
+    monospace},
+    "decorative": #{granville,
+    serif},
+  );
+
+  $font: map-get($fonts, $font-choice);
+
+  font-family: $font;
+  font-weight: #{$weight};
+  font-style: #{$style};
+}
+
+body {
+  @include font(sans-serif, 500);
+  color: $white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+  font-feature-settings: "liga";
+  @include font(serif, 300);
+}
+h1 {
+  font-size: ms(4);
+}
+h2 {
+  font-size: ms(3);
+}
+
+.italics {
+  font-style: italic;
+}
+
+/* FONTS
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: italic;
+
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+  font-family: calling-code, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 300;
+  font-style: normal;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 300;
+  font-style: italic;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 400;
+  font-style: normal;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 400;
+  font-style: italic;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 500;
+  font-style: normal;
+
+  font-family: freight-big-pro, serif;
+  font-weight: 500;
+  font-style: italic;
+
+  font-family: granville, serif;
+  font-weight: 400;
+  font-style: italic;
+}
+*/

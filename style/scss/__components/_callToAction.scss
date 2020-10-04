@@ -1,0 +1,15 @@
+.callToAction {
+  font-size: ms(0);
+  display: inline-block;
+  @include font(sans-serif, 600);
+  margin-top: ms(-1);
+
+  &--large {
+    font-size: ms(1);
+    margin-top: ms(0);
+  }
+  &:after {
+    display: inline-block;
+    content: "  \2192";
+  }
+}

@@ -1,0 +1,47 @@
+// grid related scss
+// all grid related selectors are prefixed with "g-"
+
+// set this to be the number of columns and the margin size
+$columns: 9;
+$gutter: space(1);
+
+// returns a grid size (i.e. 3 of 9 columns == 33.33%)
+@function span($span, $totalColumns: $columns) {
+  $percentage: $span / $totalColumns;
+
+  $totalGutterWidth: 0; // total width of gutters (i.e. in a 9 column grid, there are 8 gutters, this does 8 * gutter size)
+  $spannedGutterWidth: 0; // total width of gutters in spanned area (i.e. if we span 3 columns, we also span two gutters, this does 2 * gutter size)
+
+  @if $totalColumns > 1 {
+    $totalGutterWidth: ($totalColumns - 1) * $gutter;
+  }
+
+  @if $span > 1 {
+    $spannedGutterWidth: ($span - 1) * $gutter;
+  }
+
+  // returns a calc that determines an exact column size (#math! wooo)
+  @return #{"calc("} + $percentage + #{" * (100% - "} + $totalGutterWidth + #{") + "} + $spannedGutterWidth + #{")"};
+}
+
+// (6/9)*(1173-(8*20))+(5*20)
+
+// creates selectors for grid spans (i.e. ".g-span1of9 {width: x%;}")
+@for $i from 1 through $columns {
+  @for $j from 1 through $i {
+    .g-span#{$j}of#{$i} {
+      width: span($j, $i);
+      margin-right: $gutter;
+    }
+  }
+}
+
+// removes right margin from last item in row
+.g-last {
+  margin-right: 0;
+}
+
+// sets container to flex
+.g-flex {
+  display: flex;
+}
