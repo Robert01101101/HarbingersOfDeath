@@ -19,7 +19,7 @@ class Aspect extends Taxonomy
     {
         $omens = array();
         foreach (OmenCollection::getOmens() as $omen) {
-            if ($omen->getFault()->getId() == $taxonomy->getId()) {
+            if ($omen->getAspect()->getId() == $taxonomy->getId()) {
                 $omens[] = $omen;
             }
         }

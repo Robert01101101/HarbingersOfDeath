@@ -134,7 +134,7 @@ class Omen
      * Creates the sentence with itallics span for omen tile
      */
     public function generateSemanticDeath(){
-        $formattedDeath = Tags::tag('span', strtolower($this->death->getTitle()), ['class' => 'italics']);
+       // $formattedDeath = Tags::tag('span', strtolower($this->death->getTitle()), ['class' => 'italics']);
 
         if ($this->death->getSlug() == "you"){
             $formattedDeath = Tags::tag('span', $this->death->getTitle(), ['class' => 'italics']);

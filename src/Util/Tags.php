@@ -9,7 +9,6 @@ namespace Util\HTML;
  */
 class Tags {
 
-
     public static function tag($tag, $text, $attributes = array()){
         return "<$tag" . (new self)->attributesToArray($attributes) . ">$text</$tag>";
     }

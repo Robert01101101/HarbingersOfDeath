@@ -78,24 +78,24 @@ $omens = new OmenCollection();
                 <form>
                     <div class="form__row">
                         <div class="form__cell">
-                        <label class="input__select" for="name">Name</label><br>
+                        <label class="input__label" for="name">Name</label><br>
                         <input class="input__text" type="text" id="name" name="name">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
-                        <label class="input__select" for="emailAddress">Email Address</label><br>
+                        <label class="input__label" for="emailAddress">Email Address</label><br>
                         <input class="input__text" type="text" id="emailAddress" name="emailAddress">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
-                        <label class="input__select" for="password">Password</label><br>
+                        <label class="input__label" for="password">Password</label><br>
                         <input class="input__text" type="password" id="password" name="password">
                         </div>
                     </div>
                     <fieldset class="form__row">
-                        <legend class="input__select">Date of Birth</legend>
+                        <legend class="input__label">Date of Birth</legend>
                         <div class="form__cell">
                             <label class="input__label input__label--small" for="birthday__day">Day</label><br>
                             <select name="birthday__day" id="birthday__day" class="input__select">
@@ -127,7 +127,7 @@ $omens = new OmenCollection();
                     </fieldset>
                     <div class="form__row">
                         <div class="form__cell">
-                        <label class="input__select" for="country">Country</label><br>
+                        <label class="input__label" for="country">Country</label><br>
                         <input class="input__text" type="text" id="country" name="country">
                         </div>
                     </div>
