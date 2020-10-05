@@ -79,6 +79,10 @@ body {
   color: white;
 }
 
+a, a:visited {
+  color: white;
+}
+
 h1,
 h2,
 h3,
@@ -478,10 +482,16 @@ h2 {
   font-style: normal;
   text-transform: uppercase;
 }
-.nav__breadcrumbs li {
+.nav__text {
+  font-size: 1em;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.nav__left li {
   padding-right: 0.5em;
 }
-.nav__user li {
+.nav__right li {
   padding-left: 0.5em;
 }
 

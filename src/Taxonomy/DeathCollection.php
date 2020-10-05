@@ -1,35 +1,39 @@
 <?php
 
 
-namespace Taxonomy\Fault;
+namespace Taxonomy\Death;
 
 use Entity\Omen\OmenCollection;
-use Taxonomy\Aspect\Aspect;
 use Taxonomy\TaxonomyCollection;
 
-class FaultCollection extends TaxonomyCollection
+class DeathCollection extends TaxonomyCollection
 {
 
-    private $faultArray = [
+    private $deathArray = [
+        [
+            "slug" => "close-friend",
+            "title" => "Close Friend"
+        ],
         [
             "slug" => "you",
             "title" => "You"
         ],
         [
-            "slug" => "god",
-            "title" => "God"
+            "slug" => "community-member",
+            "title" => "Community Member"
         ],
         [
-            "slug" => "the-public",
-            "title" => "The Public"
+            "slug" => "family-member",
+            "title" => "Family Member"
         ]
+
 
     ];
 
     public function __construct()
     {
-        foreach ($this->faultArray as $individualFault) {
-            $this->createTaxonomy($individualFault["slug"], $individualFault["title"]);
+        foreach ($this->deathArray as $individualDeath) {
+            $this->createTaxonomy($individualDeath["slug"], $individualDeath["title"]);
         }
     }
 
@@ -40,7 +44,7 @@ class FaultCollection extends TaxonomyCollection
      * Creates a new Taxonomony and adds it to the taxonomies array
      */
     public function createTaxonomy($slug, $title){
-        $this->taxonomies[] = (new Fault())
+        $this->taxonomies[] = (new Death())
             ->setId(count($this->taxonomies))
             ->setSlug($slug)
             ->setTitle($title);
@@ -48,14 +52,14 @@ class FaultCollection extends TaxonomyCollection
 
     /**
      * @param string $slug
-     * @return Fault
+     * @return Death
      *
-     * This returns a Fault object based on a slug passed to it
+     * This returns a Aspect object based on a slug passed to it
      *
      * TODO: error handling
      * TODO: move to parent class
      */
-    public static function getTaxonomyBySlug(string $slug): Fault
+    public static function getTaxonomyBySlug(string $slug): Death
     {
         foreach ((new self)->taxonomies as $taxonomy){
             if ($taxonomy->getSlug() == $slug) return $taxonomy;

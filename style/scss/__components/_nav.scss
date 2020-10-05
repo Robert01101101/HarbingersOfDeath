@@ -14,11 +14,16 @@
     text-transform: uppercase;
   }
 
-  &__breadcrumbs li {
+  &__text {
+    font-size: ms(0);
+    @include font(sans-serif, 600);
+  }
+
+  &__left li {
     padding-right: space(0.5);
   }
 
-  &__user li {
+  &__right li {
     padding-left: space(0.5);
   }
 }

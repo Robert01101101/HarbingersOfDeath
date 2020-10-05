@@ -4,14 +4,16 @@ namespace Entity\Omen;
 
 use Util\HTML\Tags;
 use Taxonomy\Fault\Fault;
+use Taxonomy\Aspect\Aspect;
+use Taxonomy\Death\Death;
 class Omen
 {
     protected $id;
     protected $slug;
     protected $title;
     protected Fault $fault;
-    protected $aspect;
-    protected $death;
+    protected Aspect $aspect;
+    protected Death $death;
 
     public function __construct()
     {
@@ -83,43 +85,43 @@ class Omen
      * @param Fault $fault
      * @return Omen
      */
-    public function setFault($fault)
+    public function setFault(Fault $fault)
     {
         $this->fault = $fault;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Aspect
      */
-    public function getAspect()
+    public function getAspect() : Aspect
     {
         return $this->aspect;
     }
 
     /**
-     * @param mixed $aspect
+     * @param Aspect $aspect
      * @return Omen
      */
-    public function setAspect($aspect)
+    public function setAspect(Aspect $aspect) : Omen
     {
         $this->aspect = $aspect;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Death
      */
-    public function getDeath()
+    public function getDeath() : Death
     {
         return $this->death;
     }
 
     /**
-     * @param mixed $death
+     * @param Death $death
      * @return Omen
      */
-    public function setDeath($death)
+    public function setDeath(Death $death) : Omen
     {
         $this->death = $death;
         return $this;
@@ -129,10 +131,20 @@ class Omen
      * @return string
      *
      * TODO: Move to a View/Template class.
+     * Creates the sentence with itallics span for omen tile
      */
     public function generateSemanticDeath(){
-        $formattedDeath = Tags::tag('span', $this->death, ['class' => 'italics']);
-        $semanticDeath = "A " . $formattedDeath . " will die";
+        $formattedDeath = Tags::tag('span', strtolower($this->death->getTitle()), ['class' => 'italics']);
+
+        if ($this->death->getSlug() == "you"){
+            $formattedDeath = Tags::tag('span', $this->death->getTitle(), ['class' => 'italics']);
+            $semanticDeath = $formattedDeath . " will die.";
+
+        } else {
+            $formattedDeath = Tags::tag('span', strtolower($this->death->getTitle()), ['class' => 'italics']);
+            $semanticDeath = "A " . $formattedDeath . " will die.";
+        }
+
         return $semanticDeath;
     }
 

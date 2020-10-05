@@ -3,6 +3,8 @@
 namespace Entity\Omen;
 
 use Entity\Omen\Omen;
+use Taxonomy\Aspect\AspectCollection;
+use Taxonomy\Death\DeathCollection;
 use Taxonomy\Fault\FaultCollection;
 
 class OmenCollection
@@ -50,20 +52,12 @@ class OmenCollection
             "aspect" => "death",
             "death" => "community-member"
         ],
-
         [
             "slug" => "hair-pin",
             "title" => "Has a hairpin fallen from your hair?",
             "fault" => "you",
             "aspect" => "domestic-life",
             "death" => "you"
-        ],
-        [
-            "slug" => "funeral-procession",
-            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
-            "fault" => "the-public",
-            "aspect" => "death",
-            "death" => "community-member"
         ],
         [
             "slug" => "funeral-procession",
@@ -90,9 +84,9 @@ class OmenCollection
             ->setId(count($this->omens))
             ->setSlug($slug)
             ->setTitle($title)
-            ->setFault(FaultCollection::getFaultBySlug($fault))
-            ->setAspect($aspect)
-            ->setDeath($death);
+            ->setFault(FaultCollection::getTaxonomyBySlug($fault))
+            ->setAspect(AspectCollection::getTaxonomyBySlug($aspect))
+            ->setDeath(DeathCollection::getTaxonomyBySlug($death));
     }
 
     /**

@@ -7,16 +7,25 @@ require "src/Entity/Omen.php";
 require "src/Entity/OmenCollection.php";
 
 require "src/Taxonomy/Taxonomy.php";
+require "src/Taxonomy/TaxonomyCollection.php";
 require "src/Taxonomy/Fault.php";
 require "src/Taxonomy/FaultCollection.php";
+require "src/Taxonomy/Death.php";
+require "src/Taxonomy/DeathCollection.php";
+require "src/Taxonomy/Aspect.php";
+require "src/Taxonomy/AspectCollection.php";
 
 require "src/Util/Tags.php";
 
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
 use Taxonomy\Fault\FaultCollection;
+use Taxonomy\Death\DeathCollection;
+use Taxonomy\Aspect\AspectCollection;
 
 $faults = new FaultCollection();
+$deaths = new DeathCollection();
+$aspects = new AspectCollection();
 
 $omens = new OmenCollection();
 
@@ -44,10 +53,10 @@ $omens = new OmenCollection();
 <div class="background"></div>
 <header>
     <nav class="nav layout g-flex">
-        <ul class="nav__breadcrumbs">
+        <ul class="nav__left">
             <li class="nav__link">Harbingers of Death</li>
         </ul>
-        <ul class="nav__user">
+        <ul class="nav__right">
             <li class="nav__link">Register</li>
             <li aria-hidden="true" class="nav__divider">||</li>
             <li class="nav__link">Login</li>
@@ -73,7 +82,6 @@ $omens = new OmenCollection();
 
             <?php foreach ($omens->getOmens() as $omen): ?>
                 <div data-js="tile" class="tile">
-
                     <span>
                         <span class="tile__text  tile__text--title"><?php echo $omen->getTitle() ?></span>
                         <span class="tile__text"><?php echo $omen->generateSemanticDeath() ?></span>
@@ -83,7 +91,43 @@ $omens = new OmenCollection();
         </div>
     </div>
 </section>
-<footer>
+<section>
+    <div class="layout layout--distant">
+        <div class="tile">
+            <h2>Find the harbinger of death.</h2>
+            <div>
+                <span class="tile__text tile__text--title">Who’s at fault?</span>
+                <?php foreach ($faults->getTaxonomies() as $fault): ?>
+                    <span class="tile__text">
+                <?php echo $fault->getTitle() ?>
+            </span>
+                <?php endforeach; ?>
+            </div>
+            <div>
+                <span class="tile__text tile__text--title">Who is dying?</span>
+                <?php foreach ($deaths->getTaxonomies() as $death): ?>
+                    <span class="tile__text">
+                <?php echo $death->getTitle() ?>
+            </span>
+                <?php endforeach; ?>
+            </div>
+            <div>
+                <span class="tile__text tile__text--title">Where is the dying happening?</span>
+                <?php foreach ($aspects->getTaxonomies() as $aspect): ?>
+                    <span class="tile__text">
+                <?php echo $aspect->getTitle() ?>
+            </span>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="nav layout">
+    <ul class="nav__left">
+        <li class="nav__text">Created by <a href="http://www.sfu.ca/~rmichels/imgs/thanksMsg.png">Robert Michels</a> & <a href="">Sam Barnett</a></li>
+        <li aria-hidden="true" class="nav__divider">||</li>
+        <li class="nav__text">Copyright © 2020. All rights reserved.</li>
+    </ul>
     <script src="scripts/script-min.js"></script>
 </footer>
 </body>
