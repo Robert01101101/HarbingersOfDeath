@@ -33,8 +33,8 @@ class FaultCollection
     }
 
     public function createFault($slug, $title){
-        $this->faults[] = (new Omen())
-            ->setId(count($this->omens))
+        $this->faults[] = (new Fault())
+            ->setId(count($this->faults))
             ->setSlug($slug)
             ->setTitle($title);
     }
@@ -45,5 +45,16 @@ class FaultCollection
     public function getFaults(): array
     {
         return $this->faults;
+    }
+
+    /**
+     * @param string $slug
+     * @return Fault
+     */
+    public static function getFaultBySlug(string $slug): Fault
+    {
+        foreach ((new self)->faults as $fault){
+            if ($fault->getSlug() == $slug) return $fault;
+        }
     }
 }

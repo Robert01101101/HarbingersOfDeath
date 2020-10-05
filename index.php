@@ -5,10 +5,15 @@
 // TODO: replace with composer ASAP, to autoload php files
 require "src/Entity/Omen.php";
 require "src/Entity/OmenCollection.php";
+require "src/Entity/Fault.php";
+require "src/Entity/FaultCollection.php";
 require "src/Util/Tags.php";
 
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
+use Entity\Fault\FaultCollection;
+
+$faults = new FaultCollection();
 
 $omens = new OmenCollection();
 

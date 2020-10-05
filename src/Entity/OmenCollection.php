@@ -3,6 +3,7 @@
 namespace Entity\Omen;
 
 use Entity\Omen\Omen;
+use Entity\Fault\FaultCollection;
 
 class OmenCollection
 {
@@ -28,7 +29,6 @@ class OmenCollection
     {
         foreach ($this->omenArray as $individualOmen) {
             $this->createOmen($individualOmen["slug"], $individualOmen["title"],$individualOmen["fault"],$individualOmen["aspect"],$individualOmen["death"]);
-
         }
     }
 
@@ -37,7 +37,7 @@ class OmenCollection
             ->setId(count($this->omens))
             ->setSlug($slug)
             ->setTitle($title)
-            ->setFault($fault)
+            ->setFault(FaultCollection::getFaultBySlug($fault))
             ->setAspect($aspect)
             ->setDeath($death);
     }

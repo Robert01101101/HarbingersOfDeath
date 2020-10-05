@@ -72,10 +72,12 @@ class Fault
     }
 
 
-    public function getOmensByFault(){
+    public function getOmensByFault(Fault $fault){
         $omens = array();
         foreach (OmenCollection::getOmens() as $omen){
-
+            if ($omen->getFault()->getId() == $fault->getId()){
+                $omens[] = $omen;
+            }
         }
         return $omens;
     }
