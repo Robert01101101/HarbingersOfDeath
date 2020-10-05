@@ -52,8 +52,6 @@ $omens = new OmenCollection();
 <body>
 
 <!--THE PAGE BACKRGOUND-->
-<div class="background"></div>
-
 <!--THE REGISTRATION/SIGNIN MODAL WINDOW-->
 <section data-js="modal" class="modal modal--register">
     <header>
@@ -66,7 +64,7 @@ $omens = new OmenCollection();
             <ul class="nav__right">
                 <li class="nav__link">Login</li>
                 <li aria-hidden="true" class="nav__divider">||</li>
-                <li class="nav__link"><a href="">Close</a></li>
+                <li class="nav__link"><a href="" data-js="buttonClose">Close</a></li>
             </ul>
         </nav>
     </header>
@@ -134,6 +132,7 @@ $omens = new OmenCollection();
                         <input class="input__text" type="text" id="country" name="country">
                         </div>
                     </div>
+                    <input type="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register">
                 </form>
             </div>
         </section>
@@ -142,87 +141,89 @@ $omens = new OmenCollection();
 </section>
 
 <!--THE WINDOW-->
-<header>
-    <nav class="nav layout g-flex">
-        <ul class="nav__left">
-            <li class="nav__link">Harbingers of Death</li>
-        </ul>
-        <ul class="nav__right">
-            <li class="nav__link"><a data-js="registerButton" href="#0">Register</a></li>
-            <li aria-hidden="true" class="nav__divider">||</li>
-            <li class="nav__link"><a href="">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<section class="hero">
-    <div class="layout layout--distant">
-        <h1>Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?</h1>
-        <span class="callToAction callToAction--large">Sign in to find out</span>
-    </div>
-</section>
-<section>
-    <div class="layout layout--distant g-flex">
-        <div class="tile__panel tile__panel--primary g-span3of9">
-            <h2>Common indicators of imminent death</h2>
-            <span class="callToAction">See more</span>
+<div data-js="content" class="content">
+    <header>
+        <nav class="nav layout g-flex">
+            <ul class="nav__left">
+                <li class="nav__link">Harbingers of Death</li>
+            </ul>
+            <ul class="nav__right">
+                <li class="nav__link"><a data-js="buttonRegister" href="#0">Register</a></li>
+                <li aria-hidden="true" class="nav__divider">||</li>
+                <li class="nav__link"><a href="">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="layout layout--distant">
+            <h1>Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?</h1>
+            <span class="callToAction callToAction--large">Sign in to find out</span>
         </div>
-        <div data-js="grid" class="tile__panel js-panel g-span6of9 g-last g-flex">
-            <div data-js="column" class="tile__panel__column g-span2of6"></div>
-            <div data-js="column" class="tile__panel__column g-span2of6"></div>
-            <div data-js="column" class="tile__panel__column g-span2of6 g-last"></div>
+    </section>
+    <section>
+        <div class="layout layout--distant g-flex">
+            <div class="tile__panel tile__panel--primary g-span3of9">
+                <h2>Common indicators of imminent death</h2>
+                <span class="callToAction">See more</span>
+            </div>
+            <div data-js="grid" class="tile__panel js-panel g-span6of9 g-last g-flex">
+                <div data-js="column" class="tile__panel__column g-span2of6"></div>
+                <div data-js="column" class="tile__panel__column g-span2of6"></div>
+                <div data-js="column" class="tile__panel__column g-span2of6 g-last"></div>
 
-            <?php foreach ($omens->getOmens() as $omen): ?>
-                <div data-js="tile" class="tile">
+                <?php foreach ($omens->getOmens() as $omen): ?>
+                    <div data-js="tile" class="tile">
                     <span>
                         <span class="tile__text  tile__text--title"><?php echo $omen->getTitle() ?></span>
                         <span class="tile__text"><?php echo $omen->generateSemanticDeath() ?></span>
                     </span>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="layout layout--distant">
-        <div class="tile">
-            <div class="tile__row">
-                <h2>Find the harbinger of death.</h2>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <ul class="tile__row">
-                <li class="tile__listItem tile__listItem--large tile__listItem--title">Who’s at fault?</li>
-                <?php foreach ($faults->getTaxonomies() as $fault): ?>
-                    <li class="tile__listItem tile__listItem--large">
-                <?php echo $fault->getTitle() ?>
-            </li>
-                <?php endforeach; ?>
-            </ul>
-            <ul class="tile__row">
-                <li class="tile__listItem tile__listItem--large tile__listItem--title">Who is dying?</li>
-                <?php foreach ($deaths->getTaxonomies() as $death): ?>
-                    <li class="tile__listItem tile__listItem--large">
-                <?php echo $death->getTitle() ?>
-            </li>
-                <?php endforeach; ?>
-            </ul>
-            <ul class="tile__row  tile__row--last">
-                <li class="tile__listItem tile__listItem--large tile__listItem--title">Where is the dying happening?</li>
-                <?php foreach ($aspects->getTaxonomies() as $aspect): ?>
-                    <li class="tile__listItem tile__listItem--large">
-                <?php echo $aspect->getTitle() ?>
-            </li>
-                <?php endforeach; ?>
-            </ul>
         </div>
-    </div>
-</section>
-<footer class="nav layout">
-    <ul class="nav__left">
-        <li class="nav__text">Created by <a href="http://www.sfu.ca/~rmichels/imgs/thanksMsg.png">Robert Michels</a> & <a href="">Sam Barnett</a></li>
-        <li aria-hidden="true" class="nav__divider">||</li>
-        <li class="nav__text">Copyright © 2020. All rights reserved.</li>
-    </ul>
-    <script src="scripts/script-min.js"></script>
-</footer>
+    </section>
+    <section>
+        <div class="layout layout--distant">
+            <div class="tile">
+                <div class="tile__row">
+                    <h2>Find the harbinger of death.</h2>
+                </div>
+                <ul class="tile__row">
+                    <li class="tile__listItem tile__listItem--large tile__listItem--title">Who’s at fault?</li>
+                    <?php foreach ($faults->getTaxonomies() as $fault): ?>
+                        <li class="tile__listItem tile__listItem--large">
+                            <?php echo $fault->getTitle() ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <ul class="tile__row">
+                    <li class="tile__listItem tile__listItem--large tile__listItem--title">Who is dying?</li>
+                    <?php foreach ($deaths->getTaxonomies() as $death): ?>
+                        <li class="tile__listItem tile__listItem--large">
+                            <?php echo $death->getTitle() ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <ul class="tile__row  tile__row--last">
+                    <li class="tile__listItem tile__listItem--large tile__listItem--title">Where is the dying happening?</li>
+                    <?php foreach ($aspects->getTaxonomies() as $aspect): ?>
+                        <li class="tile__listItem tile__listItem--large">
+                            <?php echo $aspect->getTitle() ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer class="nav layout">
+        <ul class="nav__left">
+            <li class="nav__text">Created by <a href="http://www.sfu.ca/~rmichels/imgs/thanksMsg.png">Robert Michels</a> & <a href="">Sam Barnett</a></li>
+            <li aria-hidden="true" class="nav__divider">||</li>
+            <li class="nav__text">Copyright © 2020. All rights reserved.</li>
+        </ul>
+        <script src="scripts/script-min.js"></script>
+    </footer>
+</div>
 </body>
 </html>
 

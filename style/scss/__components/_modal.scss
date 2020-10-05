@@ -1,22 +1,32 @@
-.modal {
+.modal,  {
+  z-index: 100;
   display: none;
   height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: auto;
+  opacity: 0;
+
+  transition: opacity 1s ease-out;
+
 
   background-color: $blackTrans;
-  backdrop-filter: blur(50%);
+
+  // This is meant to do some scroll bar jank magic
+  //padding-right: var(--js-scrollBarWidth);
 
 
-  &--open {
-    display: block;
-  }
+
 
   &__content {
     overflow-y: auto;
   }
+}
+.js-modal--open {
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-out;
 }

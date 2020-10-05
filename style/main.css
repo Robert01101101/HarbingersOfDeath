@@ -16,6 +16,22 @@ body {
   font-size: 16px;
 }
 
+body.js-fixed {
+  position: fixed;
+  top: var(--js-scrollPosY);
+}
+
+.content {
+  z-index: 0;
+  transition: filter 1s ease-out;
+  filter: blur(0px);
+}
+
+.content.js-blur {
+  filter: blur(20px);
+  transition: filter 1s ease-out;
+}
+
 html,
 body,
 div,
@@ -576,22 +592,27 @@ h2 {
 }
 
 .modal {
+  z-index: 100;
   display: none;
   height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: auto;
+  opacity: 0;
+  transition: opacity 1s ease-out;
   background-color: rgba(20, 20, 20, 0.7);
-  backdrop-filter: blur(50%);
-}
-.modal--open {
-  display: block;
 }
 .modal__content {
   overflow-y: auto;
+}
+
+.js-modal--open {
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-out;
 }
 
 .form__row {
