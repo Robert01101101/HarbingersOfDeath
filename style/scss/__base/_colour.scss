@@ -1,1 +1,5 @@
 $white: rgba(255, 255, 255, 1);
+$whiteTrans: transparentize($white, .3);
+
+$black: rgba(20, 20, 20, 1);
+$blackTrans: transparentize($black, .3);

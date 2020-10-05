@@ -12,6 +12,10 @@
     font-size: ms(0);
     @include font(sans-serif, 600);
     text-transform: uppercase;
+
+    &>a {
+      text-decoration: none;
+    }
   }
 
   &__text {
@@ -26,4 +30,8 @@
   &__right li {
     padding-left: space(0.5);
   }
+
+  //&--modal {
+  //  position: fixed;
+  //}
 }

@@ -1,0 +1,22 @@
+.modal {
+  display: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  background-color: $blackTrans;
+  backdrop-filter: blur(50%);
+
+
+  &--open {
+    display: block;
+  }
+
+  &__content {
+    overflow-y: auto;
+  }
+}

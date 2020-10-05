@@ -84,6 +84,9 @@ td {
   -webkit-font-smoothing: antialiased;
 }
 
+// Transition times (keep central and consistant)
+$transition__input: 1s;
+
 // .background {
 //   background-image: url("../assets/images/gradient.png");
 //   height: 100%;

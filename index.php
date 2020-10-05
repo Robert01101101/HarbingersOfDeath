@@ -50,16 +50,107 @@ $omens = new OmenCollection();
 </head>
 
 <body>
+
+<!--THE PAGE BACKRGOUND-->
 <div class="background"></div>
+
+<!--THE REGISTRATION/SIGNIN MODAL WINDOW-->
+<section data-js="modal" class="modal modal--register">
+    <header>
+        <nav class="nav nav--modal layout g-flex">
+            <ul class="nav__left">
+                <li class="nav__link">Harbingers of Death</li>
+                <li aria-hidden="true" class="nav__divider">//</li>
+                <li class="nav__link">Register</li>
+            </ul>
+            <ul class="nav__right">
+                <li class="nav__link">Login</li>
+                <li aria-hidden="true" class="nav__divider">||</li>
+                <li class="nav__link"><a href="">Close</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="modal__content">
+        <section class="hero">
+            <div class="layout layout--distant">
+                <h1>Let’s get you counting corpses as quickly as possible.</h1>
+            </div>
+        </section>
+        <section class="form">
+            <div class="layout layout--distant">
+                <form>
+                    <div class="form__row">
+                        <div class="form__cell">
+                        <label class="input__select" for="name">Name</label><br>
+                        <input class="input__text" type="text" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__cell">
+                        <label class="input__select" for="emailAddress">Email Address</label><br>
+                        <input class="input__text" type="text" id="emailAddress" name="emailAddress">
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__cell">
+                        <label class="input__select" for="password">Password</label><br>
+                        <input class="input__text" type="password" id="password" name="password">
+                        </div>
+                    </div>
+                    <fieldset class="form__row">
+                        <legend class="input__select">Date of Birth</legend>
+                        <div class="form__cell">
+                            <label class="input__label input__label--small" for="birthday__day">Day</label><br>
+                            <select name="birthday__day" id="birthday__day" class="input__select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="form__cell">
+                            <label class="input__label input__label--small" for="birthday__month">Day</label><br>
+                            <select name="birthday__month" id="birthday__month" class="input__select">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                            </select>
+                        </div>
+                        <div class="form__cell">
+                            <label class="input__label input__label--small" for="birthday__month">Day</label><br>
+                            <select name="birthday__year" id="birthday__year" class="input__select">
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                            </select>
+                        </div>
+
+                    </fieldset>
+                    <div class="form__row">
+                        <div class="form__cell">
+                        <label class="input__select" for="country">Country</label><br>
+                        <input class="input__text" type="text" id="country" name="country">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+</section>
+
+<!--THE WINDOW-->
 <header>
     <nav class="nav layout g-flex">
         <ul class="nav__left">
             <li class="nav__link">Harbingers of Death</li>
         </ul>
         <ul class="nav__right">
-            <li class="nav__link">Register</li>
+            <li class="nav__link"><a data-js="registerButton" href="#0">Register</a></li>
             <li aria-hidden="true" class="nav__divider">||</li>
-            <li class="nav__link">Login</li>
+            <li class="nav__link"><a href="">Login</a></li>
         </ul>
     </nav>
 </header>
@@ -94,31 +185,33 @@ $omens = new OmenCollection();
 <section>
     <div class="layout layout--distant">
         <div class="tile">
-            <h2>Find the harbinger of death.</h2>
-            <div>
-                <span class="tile__text tile__text--title">Who’s at fault?</span>
+            <div class="tile__row">
+                <h2>Find the harbinger of death.</h2>
+            </div>
+            <ul class="tile__row">
+                <li class="tile__listItem tile__listItem--large tile__listItem--title">Who’s at fault?</li>
                 <?php foreach ($faults->getTaxonomies() as $fault): ?>
-                    <span class="tile__text">
+                    <li class="tile__listItem tile__listItem--large">
                 <?php echo $fault->getTitle() ?>
-            </span>
+            </li>
                 <?php endforeach; ?>
-            </div>
-            <div>
-                <span class="tile__text tile__text--title">Who is dying?</span>
+            </ul>
+            <ul class="tile__row">
+                <li class="tile__listItem tile__listItem--large tile__listItem--title">Who is dying?</li>
                 <?php foreach ($deaths->getTaxonomies() as $death): ?>
-                    <span class="tile__text">
+                    <li class="tile__listItem tile__listItem--large">
                 <?php echo $death->getTitle() ?>
-            </span>
+            </li>
                 <?php endforeach; ?>
-            </div>
-            <div>
-                <span class="tile__text tile__text--title">Where is the dying happening?</span>
+            </ul>
+            <ul class="tile__row  tile__row--last">
+                <li class="tile__listItem tile__listItem--large tile__listItem--title">Where is the dying happening?</li>
                 <?php foreach ($aspects->getTaxonomies() as $aspect): ?>
-                    <span class="tile__text">
+                    <li class="tile__listItem tile__listItem--large">
                 <?php echo $aspect->getTitle() ?>
-            </span>
+            </li>
                 <?php endforeach; ?>
-            </div>
+            </ul>
         </div>
     </div>
 </section>

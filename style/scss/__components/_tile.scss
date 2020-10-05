@@ -15,9 +15,34 @@
       @include font(sans-serif, 600);
       display: inline;
     }
+
+    &--list {
+      @include font(sans-serif, 400);
+      display: inline;
+    }
   }
 
+  &__listItem {
+    font-feature-settings: "liga";
+    font-size: ms(0);
+    line-height: 1.5;
+    @include font(sans-serif, 400);
+    display: inline;
+    color: $whiteTrans;
 
+    padding-right: space(1);
+
+
+    &--title {
+      @include font(sans-serif, 600);
+      color: $white;
+
+    }
+
+    &--large {
+      font-size: ms(1);
+    }
+  }
 
   &__panel {
     box-sizing: border-box;
@@ -30,5 +55,21 @@
     &--primary {
       border-top: 3px solid $white;
     }
+  }
+
+  &__row {
+    margin-bottom: ms(0);
+    & > li {
+      list-style: none;
+      display: inline-block;
+    }
+
+    &--last{
+      margin-bottom: 0;
+    }
+  }
+
+  &__listItem {
+    padding-right: space(0.5);
   }
 }

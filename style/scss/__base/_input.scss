@@ -1,0 +1,37 @@
+.input {
+  &__text {
+    @include font('monospaced', 400);
+
+    background: none;
+    border: none;
+    outline: none;
+
+
+    transition: border-bottom-color $transition__input ease-out, color $transition__input ease-out;
+    color: $whiteTrans;
+    border-bottom: 2px solid $whiteTrans;
+
+    // TODO: make work so that when filled it is white
+    &:focus {
+      color: $white;
+      border-bottom: 2px solid $white;
+      transition: border-bottom-color $transition__input ease-out, color $transition__input ease-out;
+    }
+  }
+
+  // TODO: make look good (javascript, maybe?)
+  &__select {
+
+  }
+
+
+  &__label {
+    @include font('monospaced', 400);
+    font-size: ms(0);
+
+    &--small {
+      font-size: ms(-1);
+
+    }
+  }
+}
