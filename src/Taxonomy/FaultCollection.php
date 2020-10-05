@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Entity\Fault;
+namespace Taxonomy\Fault;
 
 use Entity\Omen\OmenCollection;
 
@@ -15,12 +15,12 @@ class FaultCollection
             "title" => "You"
         ],
         [
-            "slug" => "nature",
-            "title" => "Nature"
+            "slug" => "god",
+            "title" => "God"
         ],
         [
-            "slug" => "the-community",
-            "title" => "The Community"
+            "slug" => "the-public",
+            "title" => "The Public"
         ]
 
     ];
@@ -32,6 +32,12 @@ class FaultCollection
         }
     }
 
+    /**
+     * @param $slug
+     * @param $title
+     *
+     * Creates a new Fault and adds it to the faults array
+     */
     public function createFault($slug, $title){
         $this->faults[] = (new Fault())
             ->setId(count($this->faults))
@@ -50,6 +56,10 @@ class FaultCollection
     /**
      * @param string $slug
      * @return Fault
+     *
+     * This returns a Fault object based on a slug passed to it
+     *
+     * TODO: error handling
      */
     public static function getFaultBySlug(string $slug): Fault
     {

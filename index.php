@@ -5,13 +5,16 @@
 // TODO: replace with composer ASAP, to autoload php files
 require "src/Entity/Omen.php";
 require "src/Entity/OmenCollection.php";
-require "src/Entity/Fault.php";
-require "src/Entity/FaultCollection.php";
+
+require "src/Taxonomy/Taxonomy.php";
+require "src/Taxonomy/Fault.php";
+require "src/Taxonomy/FaultCollection.php";
+
 require "src/Util/Tags.php";
 
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
-use Entity\Fault\FaultCollection;
+use Taxonomy\Fault\FaultCollection;
 
 $faults = new FaultCollection();
 

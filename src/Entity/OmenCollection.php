@@ -3,7 +3,7 @@
 namespace Entity\Omen;
 
 use Entity\Omen\Omen;
-use Entity\Fault\FaultCollection;
+use Taxonomy\Fault\FaultCollection;
 
 class OmenCollection
 {
@@ -12,16 +12,69 @@ class OmenCollection
             "slug" => "cracked-bread",
             "title" => "Have you baked bread, that has cracks upon its top?",
             "fault" => "you",
-            "aspect" => "domestic life",
-            "death" => "close friend"
+            "aspect" => "domestic-life",
+            "death" => "close-friend"
         ],
         [
             "slug" => "ringing-ears",
             "title" => "Is there a ringing in your ears?",
             "fault" => "you",
-            "aspect" => "health",
+            "aspect" => "vitality",
             "death" => "you"
-        ]
+        ],
+        [
+            "slug" => "lighted-carptenters-shop",
+            "title" => "Has a light suddenly and unaccountably been seen in a carpenter’s shop?",
+            "fault" => "the-public",
+            "aspect" => "industry",
+            "death" => "community-member"
+        ],
+        [
+            "slug" => "umbrella",
+            "title" => "Have you opened an umbrella in your house?",
+            "fault" => "you",
+            "aspect" => "domestic-life",
+            "death" => "community-member"
+        ],
+        [
+            "slug" => "bell-ringing",
+            "title" => "Has a bell rung of its own accord?",
+            "fault" => "god",
+            "aspect" => "religion",
+            "death" => "community-member"
+        ],
+        [
+            "slug" => "funeral-procession",
+            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
+            "fault" => "the-public",
+            "aspect" => "death",
+            "death" => "community-member"
+        ],
+
+        [
+            "slug" => "hair-pin",
+            "title" => "Has a hairpin fallen from your hair?",
+            "fault" => "you",
+            "aspect" => "domestic-life",
+            "death" => "you"
+        ],
+        [
+            "slug" => "funeral-procession",
+            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
+            "fault" => "the-public",
+            "aspect" => "death",
+            "death" => "community-member"
+        ],
+        [
+            "slug" => "funeral-procession",
+            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
+            "fault" => "the-public",
+            "aspect" => "death",
+            "death" => "community-member"
+        ],
+
+
+
     ];
     private $omens = array();
 

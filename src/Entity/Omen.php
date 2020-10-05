@@ -3,7 +3,7 @@
 namespace Entity\Omen;
 
 use Util\HTML\Tags;
-use Entity\Fault\Fault;
+use Taxonomy\Fault\Fault;
 class Omen
 {
     protected $id;
