@@ -51,7 +51,6 @@ $omens = new OmenCollection();
 
 <body>
 
-<!--THE PAGE BACKRGOUND-->
 <!--THE REGISTRATION/SIGNIN MODAL WINDOW-->
 <section data-js="modal" class="modal modal--register">
     <header>
@@ -140,7 +139,7 @@ $omens = new OmenCollection();
 
 </section>
 
-<!--THE WINDOW-->
+<!--THE HOMEPAGE WINDOW-->
 <div data-js="content" class="content">
     <header>
         <nav class="nav layout g-flex">
