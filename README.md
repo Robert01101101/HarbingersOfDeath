@@ -1,6 +1,6 @@
 # 352
 
-# Todo List
+## Todo List
 - Get register form to create file
 - javascript for random image placement
 - make modal sexy (or decide that model window is bad UI)
