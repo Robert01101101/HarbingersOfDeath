@@ -1,15 +1,16 @@
 <?php
 
+// TODO: look into implementing something like this: https://www.sitepoint.com/flexible-view-manipulation-1/
+
 // TODO: replace with composer ASAP, to autoload php files
 require "src/Entity/Omen.php";
-require "src/Data/OmenArray.php";
+require "src/Entity/OmenCollection.php";
+require "src/Util/Tags.php";
 
 use Entity\Omen\Omen;
-use Data\Omens\OmenArray;
+use Entity\Omen\OmenCollection;
 
-$omens = new OmenArray();
-
-var_dump($omens->getOmens());
+$omens = new OmenCollection();
 
 ?>
 
@@ -62,36 +63,15 @@ var_dump($omens->getOmens());
             <div data-js="column" class="tile__panel__column g-span2of6"></div>
             <div data-js="column" class="tile__panel__column g-span2of6 g-last"></div>
 
-            <div data-js="tile" class="tile">
-            <span class="tile__text">
-              <h4 class="tile__title">Have you baked bread, that has cracks upon its top?</h4>
-              A <span class="italics">close friend</span> will die.
-            </span>
-            </div>
-            <div data-js="tile" class="tile">
-            <span class="tile__text">
-              <h4 class="tile__title">Is there a ringing in your ears?</h4>
-              <span class="italics">You</span> will die.
-            </span>
-            </div>
-            <div data-js="tile" class="tile">
-            <span class="tile__text">
-              <h4 class="tile__title">Has a light suddenly and unaccountably been seen in a carpenter’s shop?</h4>
-              A <span class="italics">member of the community</span> will die.
-            </span>
-            </div>
-            <div data-js="tile" class="tile">
-            <span class="tile__text">
-              <h4 class="tile__title">Have you opened an umbrella in your house?</h4>
-              A <span class="italics">family member</span> will die.
-            </span>
-            </div>
-            <div data-js="tile" class="tile">
-            <span class="tile__text">
-              <h4 class="tile__title">Has a bell rung of its own accord?</h4>
-              A <span class="italics">member of the community</span> will die.
-            </span>
-            </div>
+            <?php foreach ($omens->getOmens() as $omen): ?>
+                <div data-js="tile" class="tile">
+
+                    <span>
+                        <span class="tile__text  tile__text--title"><?php echo $omen->getTitle() ?></span>
+                        <span class="tile__text"><?php echo $omen->generateSemanticDeath() ?></span>
+                    </span>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

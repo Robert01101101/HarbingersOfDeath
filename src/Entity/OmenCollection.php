@@ -1,9 +1,10 @@
 <?php
 
-namespace Data\Omens;
+namespace Entity\Omen;
 
 use Entity\Omen\Omen;
-class OmenArray
+
+class OmenCollection
 {
     private $omenArray = [
         [
@@ -25,15 +26,20 @@ class OmenArray
 
     public function __construct()
     {
-        foreach ($this->omenArray as $index => $individualOmen) {
-            $this->omens[$index] = (new Omen())
-                ->setId($index)
-                ->setSlug($individualOmen["slug"])
-                ->setTitle($individualOmen["title"])
-                ->setFault($individualOmen["fault"])
-                ->setAspect($individualOmen["aspect"])
-                ->setDeath($individualOmen["death"]);
+        foreach ($this->omenArray as $individualOmen) {
+            $this->createOmen($individualOmen["slug"], $individualOmen["title"],$individualOmen["fault"],$individualOmen["aspect"],$individualOmen["death"]);
+
         }
+    }
+
+    public function createOmen($slug, $title, $fault, $aspect, $death){
+        $this->omens[] = (new Omen())
+            ->setId(count($this->omens))
+            ->setSlug($slug)
+            ->setTitle($title)
+            ->setFault($fault)
+            ->setAspect($aspect)
+            ->setDeath($death);
     }
 
     /**

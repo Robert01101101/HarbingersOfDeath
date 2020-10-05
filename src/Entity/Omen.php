@@ -3,12 +3,13 @@
 namespace Entity\Omen;
 
 use Util\HTML\Tags;
+use Entity\Fault\Fault;
 class Omen
 {
     protected $id;
     protected $slug;
     protected $title;
-    protected $fault;
+    protected Fault $fault;
     protected $aspect;
     protected $death;
 
@@ -71,7 +72,7 @@ class Omen
     }
 
     /**
-     * @return mixed
+     * @return Fault
      */
     public function getFault()
     {
@@ -79,7 +80,7 @@ class Omen
     }
 
     /**
-     * @param mixed $fault
+     * @param Fault $fault
      * @return Omen
      */
     public function setFault($fault)
@@ -131,7 +132,7 @@ class Omen
      */
     public function generateSemanticDeath(){
         $formattedDeath = Tags::tag('span', $this->death, ['class' => 'italics']);
-        $semanticDeath = "A " . $formattedDeath . "will die";
+        $semanticDeath = "A " . $formattedDeath . " will die";
         return $semanticDeath;
     }
 

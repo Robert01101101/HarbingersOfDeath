@@ -11,7 +11,7 @@ class Tags {
 
 
     public static function tag($tag, $text, $attributes = array()){
-        return "<$tag" . attributesToArray($attributes) . ">$text</$tag>";
+        return "<$tag" . (new self)->attributesToArray($attributes) . ">$text</$tag>";
     }
 
     private function attributesToArray($attributes = array()){
