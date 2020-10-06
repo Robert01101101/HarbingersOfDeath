@@ -17,17 +17,29 @@ require "src/Taxonomy/AspectCollection.php";
 
 require "src/Util/Tags.php";
 
+require "src/Route/Route.php";
+
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
 use Taxonomy\Fault\FaultCollection;
 use Taxonomy\Death\DeathCollection;
 use Taxonomy\Aspect\AspectCollection;
 
+use Route\Route;
+
 $faults = new FaultCollection();
 $deaths = new DeathCollection();
 $aspects = new AspectCollection();
 
 $omens = new OmenCollection();
+
+// Add the first route
+Route::add('/user/([0-9]*)/edit', function($id) {
+    echo 'Edit user with id '.$id.'<br>';
+}, 'get');
+
+// Run the router
+Route::run('/');
 
 ?>
 

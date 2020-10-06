@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let buttonClose = document.querySelector('[data-js="buttonClose"]');
 
 
+    // TODO: make closing modal more user friendly (i.e. esc key)
+
     buttonRegister.addEventListener('click', function ( event){
         // adds "js-modal--open" class to model container to open model
         modal.classList.add("js-modal--open");
