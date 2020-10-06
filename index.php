@@ -99,9 +99,12 @@ $omens = new OmenCollection();
                         <div class="form__cell">
                             <label class="input__label input__label--small" for="birthday__day">Day</label><br>
                             <select name="birthday__day" id="birthday__day" class="input__select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                <?php 
+                                    //TODO: create function w/ appropriate params if loops keep coming up
+                                    for ($x = 0; $x <= 30; $x++) {
+                                        echo '<option value="'.$x.'">'.$x.'</option>'."\n";
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="form__cell">
@@ -110,17 +113,26 @@ $omens = new OmenCollection();
                                 <option value="1">January</option>
                                 <option value="2">February</option>
                                 <option value="3">March</option>
+                                <option value="1">April</option>
+                                <option value="2">May</option>
+                                <option value="3">June</option>
+                                <option value="1">July</option>
+                                <option value="2">August</option>
+                                <option value="3">September</option>
+                                <option value="1">October</option>
+                                <option value="2">November</option>
+                                <option value="3">December</option>
                             </select>
                         </div>
                         <div class="form__cell">
                             <label class="input__label input__label--small" for="birthday__month">Day</label><br>
                             <select name="birthday__year" id="birthday__year" class="input__select">
-                                <option value="1990">1990</option>
-                                <option value="1991">1991</option>
-                                <option value="1992">1992</option>
-                                <option value="1993">1993</option>
-                                <option value="1994">1994</option>
-                                <option value="1995">1995</option>
+                                <?php 
+                                    //TODO: create function w/ appropriate params if loops keep coming up
+                                    for ($x = 1920; $x <= 2020; $x++) {
+                                        echo '<option value="'.$x.'">'.$x.'</option>'."\n";
+                                    }
+                                ?>
                             </select>
                         </div>
 
@@ -223,6 +235,11 @@ $omens = new OmenCollection();
         <script src="scripts/script-min.js"></script>
     </footer>
 </div>
+
+<!-- JS LOADING -->
+<!-- TODO: ensure only relevant scripts loaded -->
+<script src="scripts/form.js"></script>
+
 </body>
 </html>
 
