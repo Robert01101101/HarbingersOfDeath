@@ -136,6 +136,36 @@ $omens = new OmenCollection();
                             </select>
                         </div>
 
+                        <!------------------------------------------------------- TESTING ---------------------------------------------------->
+                        <div class="card">
+                          <p class="inst"><span style="color: red">TEST: </span>Try to select an option with whatever tool you are using (e.g. mouse, touch, keyboard, etc...)<p>
+                              <div class="select">
+                                <div class="selectWrapper">
+                                  <select class="selectNative js-selectNative" aria-labelledby="jobLabel">
+                                    <option value="sel" disabled="" selected="">Month</span>
+                                    <option value="ds">January</option>
+                                    <option value="fe">February</option>
+                                    <option value="be">March</option>
+                                    <option value="qa">June</option>
+                                    <option value="un">July</option>
+                                  </select>
+
+                                  <!-- Hide the custom select from AT (e.g. SR) using aria-hidden -->
+                                  <div class="selectCustom js-selectCustom" aria-hidden="true">
+                                    <div class="selectCustom-trigger">Month</div>
+                                    <div class="selectCustom-options">
+                                      <div class="selectCustom-option" data-value="ds">January</div>
+                                      <div class="selectCustom-option" data-value="fe">February</div>
+                                      <div class="selectCustom-option" data-value="be">March</div>
+                                      <div class="selectCustom-option" data-value="qa">June</div>
+                                      <div class="selectCustom-option" data-value="un">July</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <!------------------------------------------ END OF TESTING -------------------------------------------------------->
+
                     </fieldset>
                     <div class="form__row">
                         <div class="form__cell">
@@ -239,6 +269,7 @@ $omens = new OmenCollection();
 <!-- JS LOADING -->
 <!-- TODO: ensure only relevant scripts loaded -->
 <script src="scripts/form.js"></script>
+<script src="scripts/dropdown.js"></script>
 
 </body>
 </html>

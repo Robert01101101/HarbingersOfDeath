@@ -19,9 +19,14 @@
       border-bottom: 2px solid $white;
       transition: border-bottom-color $transition__input ease-out, color $transition__input ease-out;
     }
+
+    //With help from: https://stackoverflow.com/questions/2338102/override-browser-form-filling-and-input-highlighting-with-html-css
+    &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus {
+      -webkit-text-fill-color: $whiteTrans;
+      -webkit-box-shadow: 0 0 0 50px rgba(0,0,0,0.7) inset;/*your box-shadow*/
+    }
   }
 
-  // TODO: make look good (javascript, maybe?)
   &__select {
   }
 
@@ -30,15 +35,19 @@
     @include font('monospaced', 400);
     font-size: ms(0);
 
-    position: absolute;
-    top: 1.5rem;
-    transition: .5s;
-    left: .4rem;
-    cursor: text;
+    
 
     &--small {
       font-size: ms(-1);
 
+    }
+
+    &--floating {
+      position: absolute;
+      top: 1.5rem;
+      transition: .5s;
+      left: .4rem;
+      cursor: text;
     }
 
     &--selected {
