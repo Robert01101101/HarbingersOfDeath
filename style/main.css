@@ -688,7 +688,7 @@ h2 {
   border: none;
 }
 .form .selectNative {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }
 .form .selectNative:not(:focus) {
