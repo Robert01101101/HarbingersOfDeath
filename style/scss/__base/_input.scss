@@ -34,6 +34,7 @@
     top: 1.5rem;
     transition: .5s;
     left: .4rem;
+    cursor: text;
 
     &--small {
       font-size: ms(-1);
@@ -41,6 +42,7 @@
     }
 
     &--selected {
+      cursor: default;
       top: 0rem;
       left: 0rem;
       font-size: ms(-1);

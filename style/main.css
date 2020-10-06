@@ -436,11 +436,13 @@ h2 {
   top: 1.5rem;
   transition: 0.5s;
   left: 0.4rem;
+  cursor: text;
 }
 .input__label--small {
   font-size: 0.6180339845em;
 }
 .input__label--selected {
+  cursor: default;
   top: 0rem;
   left: 0rem;
   font-size: 0.6180339845em;
