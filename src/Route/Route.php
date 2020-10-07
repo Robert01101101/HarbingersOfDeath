@@ -12,6 +12,8 @@ namespace Route;
  * - https://medium.com/the-andela-way/how-to-build-a-basic-server-side-routing-system-in-php-e52e613cf241
  * - https://github.com/steampixel/simplePHPRouter
  * - https://kevinsmith.io/modern-php-without-a-framework
+ * - https://steampixel.de/wirklich-einfache-php-templates-so-leicht-trennst-du-dein-html-vom-code-mit-eigenen-views/
+ *
  */
 class Route
 {
@@ -48,6 +50,7 @@ class Route
         // Parse current URL
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 
+
         // The path
         $path = '/';
 
@@ -68,7 +71,7 @@ class Route
         // Get current request method (i.e. POST / GET)
         $method = $_SERVER['REQUEST_METHOD'];
 
-        var_dump($parsed_url);
+       // var_dump($parsed_url);
 
         // A path match has been found (i.e. '/omens' == '/omens')
         $path_match_found = false;
@@ -97,8 +100,17 @@ class Route
                     // The first element of the array is the full string. Remove it.
                     array_shift($matches);
 
+                    $arguments = $matches;
 
-                    call_user_func_array($route['function'], $matches);
+                    if ($route['query'] == true){
+                        $queryArray = [];
+                        parse_str(parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY), $queryArray);
+                        $arguments[] = $queryArray;
+                    }
+
+
+
+                    call_user_func_array($route['function'], $arguments);
 
                     $route_match_found = true;
 

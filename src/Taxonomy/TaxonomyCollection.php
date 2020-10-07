@@ -15,9 +15,7 @@ abstract class TaxonomyCollection
 
     /**
      * @return array
+     * // work out how to use/workaround "(new self)" in abstract class
      */
-    public function getTaxonomies(): array
-    {
-        return $this->taxonomies;
-    }
+    public abstract static function getTaxonomies(): array;
 }

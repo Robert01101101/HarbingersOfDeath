@@ -61,4 +61,9 @@ class FaultCollection extends TaxonomyCollection
             if ($taxonomy->getSlug() == $slug) return $taxonomy;
         }
     }
+
+    public static function getTaxonomies(): array
+    {
+        return (new self)->taxonomies;
+    }
 }

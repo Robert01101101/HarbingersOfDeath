@@ -92,9 +92,9 @@ class OmenCollection
     /**
      * @return array
      */
-    public function getOmens()
+    public static function getOmens()
     {
-        return $this->omens;
+        return (new self)->omens;
     }
 
 

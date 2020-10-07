@@ -99,6 +99,28 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/scripts/dropdown.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/scripts/dropdown-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/scripts/form.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/scripts/form-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/scripts/script-min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -225,6 +247,14 @@
 		"oAP": "/src/Taxonomy/TaxonomyCollection.php",
 		"oF": 0
 		},
+	"/src/Util/SelectInputs.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Util/SelectInputs.php",
+		"oF": 0
+		},
 	"/src/Util/Tags.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -232,6 +262,32 @@
 		"oA": 0,
 		"oAP": "/src/Util/Tags.php",
 		"oF": 0
+		},
+	"/src/View/Page.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/View/Page.php",
+		"oF": 0
+		},
+	"/src/View/Partial.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/View/Partial.php",
+		"oF": 0
+		},
+	"/style/main-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/style/main-min-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"/style/main.css": {
 		"aP": 1,
@@ -242,6 +298,14 @@
 		"oAP": "/style/main-min.css",
 		"oF": 0,
 		"oS": 3
+		},
+	"/style/prepros.config": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/style/prepros.config",
+		"oF": 0
 		},
 	"/style/scss/__base/_base.scss": {
 		"aP": 0,
@@ -580,6 +644,54 @@
 		"oF": 2,
 		"oS": 0,
 		"sct": 0
+		},
+	"/template/layouts/layout.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/layouts/layout.php",
+		"oF": 0
+		},
+	"/template/pages/home.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/pages/home.php",
+		"oF": 0
+		},
+	"/template/partials/header.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/header.php",
+		"oF": 0
+		},
+	"/template/partials/modal/register.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/modal/register.php",
+		"oF": 0
+		},
+	"/template/partials/nav.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/nav.php",
+		"oF": 0
+		},
+	"/template/partials/omens.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/omens.php",
+		"oF": 0
 		}
 	},
 "hooks": [
