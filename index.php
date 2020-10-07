@@ -77,7 +77,7 @@ $omens = new OmenCollection();
         </section>
         <section class="form">
             <div class="layout layout--distant">
-                <form>
+                <form method="post">
                     <div class="form__row">
                         <div class="form__cell">
                         <label class="input__label" for="name">Name</label><br>
@@ -110,7 +110,7 @@ $omens = new OmenCollection();
                         <input class="input__text" type="text" id="country" name="country">
                         </div>
                     </div>
-                    <input type="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register">
+                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register">
                 </form>
             </div>
         </section>
@@ -210,6 +210,22 @@ $omens = new OmenCollection();
 
 </body>
 </html>
+
+<!-- PROCESS FORM DATA -->
+<?php
+    if(isset($_POST['submit']))
+    {
+        $data="Name: ".$_POST['name'];
+        $data.="\nEmailAddress: ".$_POST['emailAddress'];
+        $data.="\nPassword: ".$_POST['password'];
+        $data.="\nDOB: d:".$_POST['birthday__day'].", m:".$_POST['birthday__month'].", y:".$_POST['birthday__year'];
+        $data.="\nCountry: ".$_POST['country'];
+        $fp = fopen('data.txt', 'w');
+        fwrite($fp, $data);
+        fclose($fp);
+    }
+?>
+
 
 <!-- SNIPPETS
 

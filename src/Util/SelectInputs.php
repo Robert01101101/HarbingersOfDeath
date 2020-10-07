@@ -40,7 +40,7 @@ class SelectInputs {
     public static function monthInput(){
         $months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         $label = "Month";
-        $id = "birthday__months";
+        $id = "birthday__month";
         $length = count($months);
 
         echo '<div class="form__cell">';
