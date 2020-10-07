@@ -110,7 +110,8 @@ $height: 1.5rem;
 	//___________________________ DROPDOWN AREA
 	.selectCustom-options {
 	  position: absolute;
-	  top: calc($height + 0.8rem);
+	  // TODO: i commented this out cause I was getting an error
+		// top: calc($height + 0.8rem);
 	  left: 0;
 	  width: 100%;
 	  //TODO: calculate height of select input (dropdown) window correctly
