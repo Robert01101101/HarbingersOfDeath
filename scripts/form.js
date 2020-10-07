@@ -1,6 +1,8 @@
 const labelMod = "input__label--selected";
 const labelModFloating = "input__label--floating"
 
+//For floating labels: User clicks on text input and label floats up.
+
 //Each class contains a label & a text input. The input listens for user inputs and styles the label.
 //________________________________________________________________ Pair Class
 var Pair = function(label, input) {

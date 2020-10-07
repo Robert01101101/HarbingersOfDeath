@@ -45,7 +45,7 @@
     &--floating {
       position: absolute;
       top: 1.5rem;
-      transition: .5s;
+      transition: $transition__label;
       left: .4rem;
       cursor: text;
     }
@@ -55,7 +55,7 @@
       top: 0rem;
       left: 0rem;
       font-size: ms(-1);
-      color: $whiteTrans
+      color: $white;
     }
   }
 }

@@ -453,7 +453,7 @@ h2 {
   top: 0rem;
   left: 0rem;
   font-size: 0.6180339845em;
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
 }
 
 .layout {
@@ -635,13 +635,21 @@ h2 {
   transition: opacity 1s ease-out;
 }
 
+div.birthdate {
+  display: flex;
+  justify-content: flex-start;
+}
+div.birthdate > div:not(:first-of-type) {
+  margin-left: 1rem;
+}
+
 .form {
   /* Add the focus states too, They matter, always! */
 }
 .form__row {
   display: flex;
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 .form .selectNative,
 .form .selectCustom {
@@ -703,6 +711,7 @@ h2 {
   border: none;
   cursor: pointer;
   border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  transition: 0.5s ease-out;
 }
 .form .selectCustom-trigger::after {
   content: "▾";

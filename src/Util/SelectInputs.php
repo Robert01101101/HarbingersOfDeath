@@ -8,6 +8,8 @@ namespace Util\HTML;
  * Creates SelectInputs and adds them to the page
  * Note by Robert: Feel free to improve on, using a bunch of echo commands seems wrong but I had to get it done fast.
  * TODO: Update days based on month selected, or do validation at the very least.
+ *
+ * Inspired by: https://css-tricks.com/striking-a-balance-between-native-and-custom-select-elements/
  */
 class SelectInputs {
 
@@ -38,7 +40,7 @@ class SelectInputs {
     public static function monthInput(){
         $months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         $label = "Month";
-        $id = "birthday__months";
+        $id = "birthday__month";
         $length = count($months);
 
         echo '<div class="form__cell">';

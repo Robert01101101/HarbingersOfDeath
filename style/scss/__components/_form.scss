@@ -1,14 +1,24 @@
 $width: 10rem;
 $height: 1.5rem;
 
+div.birthdate {
+    //background-color: red;
+    display: flex;
+    justify-content: flex-start;
+
+    > div:not(:first-of-type) {
+    	margin-left: 1rem;
+    }
+}
+
 .form {
   &__row {
     display: flex;
     position: relative;
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
   }
 
-  //_______________________ TESTING CUSTOM FORM DROPDOWN ______________________
+  //_____________________ CUSTOM FORM DROPDOWN _________________________
   // Both native and custom selects must have the same width/height.
 	.selectNative,
 	.selectCustom {
@@ -93,6 +103,7 @@ $height: 1.5rem;
 	  border: none;
 	  cursor: pointer;
 	  border-bottom: 2px solid $whiteTrans;
+	  transition: $transition__label ease-out;
 	}
 
 	.selectCustom-trigger::after {
@@ -115,6 +126,7 @@ $height: 1.5rem;
 	  left: 0;
 	  width: 100%;
 	  //TODO: calculate height of select input (dropdown) window correctly
+	  //TODO: Place above instead below when needed
 	  max-height: 15rem;
 	  overflow-y: scroll;
 	  border: 1px solid #6f6f6f;
