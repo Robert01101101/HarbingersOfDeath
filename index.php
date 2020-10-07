@@ -45,22 +45,14 @@ $omens = new OmenCollection();
 
 // Add the individual omen route
 Route::add('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
-    echo "the individual omen route";
-
-    var_dump($slug);
-
-//    OmenCollection::getOmenBySlug($slug);
+    $omen = OmenCollection::getOmenBySlug($slug);
+    Page::build('omen', ["omen" => $omen]);
 }, 'get');
 
 // Add omen list route
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::add('/omen', function($query) {
-    echo "omen list route";
-    var_dump($query);
-//    var_dump($slug);
-//    var_dump($query);
-//    echo "SLUG: " . $slug;
-//    OmenCollection::getOmenBySlug($slug);
+    echo "You're on the omen list page";
 }, 'get', true);
 
 Route::add('/', function (){

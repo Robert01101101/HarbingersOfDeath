@@ -6,11 +6,19 @@ namespace View;
 // TODO: make sure that $partialName isn't overridden by extract
 class Partial
 {
-    public static function build($partialName, $arguements = []){
+    public static function build($partialName, $arguments = []){
 
-        if (is_array($arguements)){
-            extract($arguements);
+        if (is_array($arguments)){
+            extract($arguments);
         }
-        require('template/partials/' . $partialName . '.php');
+
+        // TODO: proper error detection
+        $partialPath = 'template/partials/' . $partialName . '.php';
+        if (isset($partialPath) && file_exists($partialPath)) {
+            require($partialPath);
+        } else {
+            echo "Partial: " . $partialPath . " not found";
+        }
+
     }
 }

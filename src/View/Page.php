@@ -3,19 +3,22 @@
 
 namespace View;
 
+// TODO: make sure that $pageName isn't overridden by extract
 
 class Page
 {
     public static function build($pageName, $arguments = []){
-        extract($arguments);
+
 
         if (is_array($arguments)) extract($arguments);
 
-        $pagePath = 'templates/pages/' . $pageName . 'php';
-        if (file_exists($pagePath)) require($pagePath);
-
-       // require ('template/pages/' . $page . '.php');
-        require('template/layouts/layout.php');
+        // TODO: proper error detection
+        $pagePath = 'template/pages/' . $pageName . '.php';
+        if (isset($pagePath) && file_exists($pagePath)) {
+            require($pagePath);
+        } else {
+            echo "Template: " . $pagePath . " not found";
+        }
 
     }
 

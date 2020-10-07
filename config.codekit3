@@ -50,6 +50,14 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/data.txt": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/data.txt",
+		"oF": 0
+		},
 	"/imgTest.jpg": {
 		"ft": 16384,
 		"iS": 51572,
@@ -645,14 +653,6 @@
 		"oS": 0,
 		"sct": 0
 		},
-	"/template/layouts/layout.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/template/layouts/layout.php",
-		"oF": 0
-		},
 	"/template/pages/home.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -661,12 +661,44 @@
 		"oAP": "/template/pages/home.php",
 		"oF": 0
 		},
-	"/template/partials/header.php": {
+	"/template/pages/omen.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/template/partials/header.php",
+		"oAP": "/template/pages/omen.php",
+		"oF": 0
+		},
+	"/template/partials/footer.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/footer.php",
+		"oF": 0
+		},
+	"/template/partials/hero.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/hero.php",
+		"oF": 0
+		},
+	"/template/partials/layout/footer.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/layout/footer.php",
+		"oF": 0
+		},
+	"/template/partials/layout/header.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/layout/header.php",
 		"oF": 0
 		},
 	"/template/partials/modal/register.php": {
@@ -691,6 +723,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/partials/omens.php",
+		"oF": 0
+		},
+	"/template/partials/taxonomyTile.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/taxonomyTile.php",
 		"oF": 0
 		}
 	},
