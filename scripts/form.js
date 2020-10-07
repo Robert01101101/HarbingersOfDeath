@@ -1,11 +1,14 @@
-
 const labelMod = "input__label--selected";
+const labelModFloating = "input__label--floating"
 
 //Each class contains a label & a text input. The input listens for user inputs and styles the label.
 //________________________________________________________________ Pair Class
 var Pair = function(label, input) {
 	this.label = label;
 	this.input = input;
+
+	//add floating modifier
+	if (!this.label.classList.contains(labelModFloating)) this.label.classList.add(labelModFloating);
 
 	this.input.addEventListener('input', (event) => {
 	  this.label.classList.add("input__label--selected");

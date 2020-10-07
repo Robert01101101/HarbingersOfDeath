@@ -1,7 +1,155 @@
+$width: 10rem;
+$height: 1.5rem;
+
 .form {
   &__row {
     display: flex;
     position: relative;
     margin-bottom: .5rem;
   }
+
+  //_______________________ TESTING CUSTOM FORM DROPDOWN ______________________
+  // Both native and custom selects must have the same width/height.
+	.selectNative,
+	.selectCustom {
+	  position: relative;
+	  width: 10rem;
+	  height: 1.5rem;
+	  font-family: calling-code, courier, monospace;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	// Make sure the custom select does not mess with the layout
+	.selectCustom {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  display: none;
+	}
+
+	// This media query detects devices where the primary
+	// input mechanism can hover over elements. (e.g. computers with a mouse)
+	@media (hover: hover) {
+	  // Since we are using a mouse, it's safe to show the custom select.
+	  .selectCustom {
+	    display: block;
+	  }
+
+	  // In a computer using keyboard? Then let's hide back the custom select
+	  // while the native one is focused:
+	  .selectNative:focus + .selectCustom {
+	    display: none;
+	  }
+	}
+
+	/* Add the focus states too, They matter, always! */
+	.selectNative:focus,
+	.selectCustom.isActive .selectCustom-trigger {
+	  outline: none;
+	  box-shadow: white 0 0 0 2px;
+	}
+
+	//
+	// Rest of the styles to create the custom select.
+	// Just make sure the native and the custom have a similar "box" (the trigger).
+	//
+
+	.select {
+	  position: relative;
+	}
+
+	.selectLabel {
+	  display: block;
+	  font-size: 1rem;
+	  margin-bottom: 0.4rem;
+	}
+
+	.selectWrapper {
+	  position: relative;
+	}
+
+	.selectNative,
+	.selectCustom-trigger {
+	  font-size: 1rem;
+	  border: none;
+	}
+
+	.selectNative {
+	  background-color: rgba(white,0);
+	  color: white;
+
+	  &:not(:focus) {
+		position: relative !important;
+		top: -9999px !important;
+		left: -9999px !important;
+	  }
+	}
+
+	.selectCustom-trigger {
+	  position: relative;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0,0,0,0);
+	  border: none;
+	  cursor: pointer;
+	  border-bottom: 2px solid $whiteTrans;
+	}
+
+	.selectCustom-trigger::after {
+	  content: "▾";
+	  position: absolute;
+	  top: 0;
+	  line-height: $height;
+	  right: 0.6rem;
+	}
+
+	.selectCustom-trigger:hover {
+	  background-color: rgb(white,0.2);
+	}
+
+	//___________________________ DROPDOWN AREA
+	.selectCustom-options {
+	  position: absolute;
+	  top: calc($height + 0.8rem);
+	  left: 0;
+	  width: 100%;
+	  border: 1px solid #6f6f6f;
+	  background-color: #fff;
+	  box-shadow: 0 0 4px #e9e1f8;
+	  z-index: 1;
+	  padding: 0;
+	  display: none;
+	  color: black;
+	}
+
+	.selectCustom.isActive .selectCustom-options {
+	  display: block;
+	}
+
+	.selectCustom-option {
+	  position: relative;
+	  padding: 0.2rem;
+	  padding-left: 2.5rem;
+	}
+
+	.selectCustom-option.isHover {
+	  background-color: #865bd7; // contrast AA
+	  color: white;
+	}
+
+	.selectCustom-option:not(:last-of-type)::after {
+	  content: "";
+	  position: absolute;
+	  bottom: 0;
+	  left: 0;
+	  width: 100%;
+	  border-bottom: 1px solid #d3d3d3;
+	}
+
+	.selectCustom-option.isActive::before {
+	  content: "✓";
+	  position: absolute;
+	  left: 0.8rem;
+	}
 }
