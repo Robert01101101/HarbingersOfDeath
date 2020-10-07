@@ -18,6 +18,7 @@ require "src/Taxonomy/Aspect.php";
 require "src/Taxonomy/AspectCollection.php";
 
 require "src/Util/Tags.php";
+require "src/Util/SelectInputs.php";
 
 require "src/Route/Route.php";
 
@@ -26,6 +27,7 @@ use Entity\Omen\OmenCollection;
 use Taxonomy\Fault\FaultCollection;
 use Taxonomy\Death\DeathCollection;
 use Taxonomy\Aspect\AspectCollection;
+use Util\HTML\SelectInputs;
 
 use Route\Route;
 
@@ -115,76 +117,9 @@ Route::run('/');
                     </div>
                     <fieldset class="form__row">
                         <legend class="input__label">Date of Birth</legend>
-                        <div class="form__cell">
-                            <label class="input__label input__label--small" for="birthday__day">Day</label><br>
-                            <select name="birthday__day" id="birthday__day" class="input__select">
-                                <?php 
-                                    //TODO: create function w/ appropriate params if loops keep coming up
-                                    for ($x = 0; $x <= 30; $x++) {
-                                        echo '<option value="'.$x.'">'.$x.'</option>'."\n";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form__cell">
-                            <label class="input__label input__label--small" for="birthday__month">Day</label><br>
-                            <select name="birthday__month" id="birthday__month" class="input__select">
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="1">April</option>
-                                <option value="2">May</option>
-                                <option value="3">June</option>
-                                <option value="1">July</option>
-                                <option value="2">August</option>
-                                <option value="3">September</option>
-                                <option value="1">October</option>
-                                <option value="2">November</option>
-                                <option value="3">December</option>
-                            </select>
-                        </div>
-                        <div class="form__cell">
-                            <label class="input__label input__label--small" for="birthday__month">Day</label><br>
-                            <select name="birthday__year" id="birthday__year" class="input__select">
-                                <?php 
-                                    //TODO: create function w/ appropriate params if loops keep coming up
-                                    for ($x = 1920; $x <= 2020; $x++) {
-                                        echo '<option value="'.$x.'">'.$x.'</option>'."\n";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-
-                        <!------------------------------------------------------- TESTING ---------------------------------------------------->
-                        <div class="card">
-                          <p class="inst"><span style="color: red">TEST: </span>Try to select an option with whatever tool you are using (e.g. mouse, touch, keyboard, etc...)<p>
-                              <div class="select">
-                                <div class="selectWrapper">
-                                  <select class="selectNative js-selectNative" aria-labelledby="jobLabel">
-                                    <option value="sel" disabled="" selected="">Month</span>
-                                    <option value="ds">January</option>
-                                    <option value="fe">February</option>
-                                    <option value="be">March</option>
-                                    <option value="qa">June</option>
-                                    <option value="un">July</option>
-                                  </select>
-
-                                  <!-- Hide the custom select from AT (e.g. SR) using aria-hidden -->
-                                  <div class="selectCustom js-selectCustom" aria-hidden="true">
-                                    <div class="selectCustom-trigger">Month</div>
-                                    <div class="selectCustom-options">
-                                      <div class="selectCustom-option" data-value="ds">January</div>
-                                      <div class="selectCustom-option" data-value="fe">February</div>
-                                      <div class="selectCustom-option" data-value="be">March</div>
-                                      <div class="selectCustom-option" data-value="qa">June</div>
-                                      <div class="selectCustom-option" data-value="un">July</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-                        <!------------------------------------------ END OF TESTING -------------------------------------------------------->
-
+                        <?php SelectInputs::numberInput(1,31,"Day", "birthday__day"); ?>
+                        <?php SelectInputs::monthInput(); ?>
+                        <?php SelectInputs::numberInput(1920,2020,"Year", "birthday__year"); ?>
                     </fieldset>
                     <div class="form__row">
                         <div class="form__cell">

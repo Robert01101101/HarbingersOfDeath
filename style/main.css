@@ -685,10 +685,9 @@ h2 {
 .form .selectNative,
 .form .selectCustom-trigger {
   font-size: 1rem;
-  border: none;
 }
 .form .selectNative {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }
 .form .selectNative:not(:focus) {
@@ -720,13 +719,16 @@ h2 {
   top: calc($height + 0.8rem);
   left: 0;
   width: 100%;
+  max-height: 15rem;
+  overflow-y: scroll;
   border: 1px solid #6f6f6f;
-  background-color: #fff;
+  background-color: #333;
   box-shadow: 0 0 4px #e9e1f8;
   z-index: 1;
   padding: 0;
   display: none;
-  color: black;
+  color: white;
+  cursor: default;
 }
 .form .selectCustom.isActive .selectCustom-options {
   display: block;
@@ -737,7 +739,7 @@ h2 {
   padding-left: 2.5rem;
 }
 .form .selectCustom-option.isHover {
-  background-color: #865bd7;
+  background-color: #1e90ff;
   color: white;
 }
 .form .selectCustom-option:not(:last-of-type)::after {
