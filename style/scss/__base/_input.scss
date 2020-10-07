@@ -11,6 +11,8 @@
     color: $whiteTrans;
     border-bottom: 2px solid $whiteTrans;
 
+    padding-bottom: .5rem;
+
     // TODO: make work so that when filled it is white
     &:focus {
       color: $white;
@@ -28,9 +30,21 @@
     @include font('monospaced', 400);
     font-size: ms(0);
 
+    position: absolute;
+    top: 1.5rem;
+    transition: .5s;
+    left: .4rem;
+
     &--small {
       font-size: ms(-1);
 
+    }
+
+    &--selected {
+      top: 0rem;
+      left: 0rem;
+      font-size: ms(-1);
+      color: $whiteTrans
     }
   }
 }
