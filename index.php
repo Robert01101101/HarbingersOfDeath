@@ -97,10 +97,12 @@ $omens = new OmenCollection();
                         </div>
                     </div>
                     <fieldset class="form__row">
-                        <legend class="input__label">Date of Birth</legend>
-                        <?php SelectInputs::numberInput(1,31,"Day", "birthday__day"); ?>
-                        <?php SelectInputs::monthInput(); ?>
-                        <?php SelectInputs::numberInput(1920,2020,"Year", "birthday__year"); ?>
+                        <legend class="input__label--small">Date of Birth</legend>
+                        <div class="birthdate">
+                            <?php SelectInputs::numberInput(1,31,"Day", "birthday__day"); ?>
+                            <?php SelectInputs::monthInput(); ?>
+                            <?php SelectInputs::numberInput(1920,2020,"Year", "birthday__year"); ?>
+                        </div>
                     </fieldset>
                     <div class="form__row">
                         <div class="form__cell">
