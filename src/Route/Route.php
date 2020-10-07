@@ -4,88 +4,111 @@
 namespace Route;
 
 
+/**
+ * Class Route
+ * @package Route
+ *
+ * Inspired by the following tutorials/projects:
+ * - https://medium.com/the-andela-way/how-to-build-a-basic-server-side-routing-system-in-php-e52e613cf241
+ * - https://github.com/steampixel/simplePHPRouter
+ * - https://kevinsmith.io/modern-php-without-a-framework
+ */
 class Route
 {
 
-    private static $routes = Array();
+    private static $routes = array();
 
 
     /**
      * Function used to add a new route
-     * @param string $expression Route string or expression
+     * @param string $expression Route string or regex (i.e. '/omen/' or '/omen/([a-z0-9]+(?:-[a-z0-9]+)*)')
      * @param callable $function Function to call if route with allowed method is found
-     * @param string|array $method Either a string of allowed method or an array with string values
+     * @param string $method A string of the allowed method (i.e. POST, GET, DELETE)
+     * @param bool $query Sends the query data to the function as an array
      */
-    public static function add(string $expression, callable $function, $method = 'get'){
+    public static function add(string $expression, callable $function, $method = 'get', $query = TRUE)
+    {
         self::$routes[] = [
             'expression' => $expression,
             'function' => $function,
-            'method' => $method
+            'method' => $method,
+            'query' => $query
         ];
     }
 
-    public static function run() {
+    /**
+     * Function checks current URL against list of routes
+     * if it finds a match, calls the function from the route,
+     * with any variables in the URL.
+     * The variable in the URL are compared with the parameter
+     * defined in the route.
+     */
+    public static function run()
+    {
         // Parse current URL
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 
-        // the path
+        // The path
         $path = '/';
 
-        //var_dump($parsed_url);
+        // var_dump($parsed_url['path']);
 
-        // If there is a path available
+        // If there is a path
         if (isset($parsed_url['path'])) {
 
             // If the path is not equal to the base path (including a trailing slash)
-            if('/' != $parsed_url['path']) {
-                // Cut the trailing slash away because it does not matters
+            if ('/' != $parsed_url['path']) {
+                // Remove slash from end
                 $path = rtrim($parsed_url['path'], '/');
             } else {
                 $path = $parsed_url['path'];
             }
         }
 
-        // Get current request method
+        // Get current request method (i.e. POST / GET)
         $method = $_SERVER['REQUEST_METHOD'];
 
+        var_dump($parsed_url);
+
+        // A path match has been found (i.e. '/omens' == '/omens')
         $path_match_found = false;
 
+        // A route match has been found
         $route_match_found = false;
 
         foreach (self::$routes as $route) {
 
-            // If the method matches check the path
+            // Set up expression to be ready for regex (preg_match)
+            $route['expression'] = '^' . $route['expression'] . '$';
 
+            // Check path against expression...i.e. 'does the URL match the expression?'
+            if (preg_match('#' . $route['expression'] . '#' . 'i', $path, $matches)) {
 
-            // Add 'find string start' automatically
-            $route['expression'] = '^'.$route['expression'];
-
-            // Add 'find string end' automatically
-            $route['expression'] = $route['expression'].'$';
-
-            // Check path match
-            if (preg_match('#'.$route['expression'].'#'.'i', $path, $matches)) {
+                // a path match has been found!
                 $path_match_found = true;
 
-                // Cast allowed method to array if it's not one already, then run through all methods
-                foreach ((array)$route['method'] as $allowedMethod) {
-                    // Check method match
-                    if (strtolower($method) == strtolower($allowedMethod)) {
-                        array_shift($matches); // Always remove first element. This contains the whole string
+                // cast methods to array so that it can go into a foreach loop
+                $allowedMethod = $route['method'];
 
 
-                        call_user_func_array($route['function'], $matches);
+                // Check if method from URL matches method from Route (i.e. get == get)
+                if (strtolower($method) == strtolower($allowedMethod)) {
 
-                        $route_match_found = true;
+                    // The first element of the array is the full string. Remove it.
+                    array_shift($matches);
 
-                        // Do not check other routes
-                        break;
-                    }
+
+                    call_user_func_array($route['function'], $matches);
+
+                    $route_match_found = true;
+
+                    // Do not check other routes
+                    break;
                 }
             }
 
             // Break the loop if the first found route is a match
-            if($route_match_found){
+            if ($route_match_found) {
                 break;
             }
 

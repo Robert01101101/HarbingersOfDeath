@@ -88,14 +88,6 @@
 		"rFN": 0,
 		"uCM": 0
 		},
-	"/register.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/register.php",
-		"oF": 0
-		},
 	"/scripts/__vendor/colcade.js": {
 		"bF": 0,
 		"ft": 64,
@@ -143,6 +135,22 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/src/Entity/OmenCollection.php",
+		"oF": 0
+		},
+	"/src/Request/IRequest.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Request/IRequest.php",
+		"oF": 0
+		},
+	"/src/Request/Request.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Request/Request.php",
 		"oF": 0
 		},
 	"/src/Route/Route.php": {

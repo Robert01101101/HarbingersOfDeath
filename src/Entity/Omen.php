@@ -148,4 +148,5 @@ class Omen
         return $semanticDeath;
     }
 
+
 }

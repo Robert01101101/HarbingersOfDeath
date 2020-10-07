@@ -98,5 +98,13 @@ class OmenCollection
     }
 
 
+    public static function getOmenBySlug(string $slug) : Omen
+    {
+        foreach ((new self)->omens as $omen){
+            if ($omen->getSlug() == $slug) return $omen;
+        }
+    }
+
+
 }
 

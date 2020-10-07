@@ -3,6 +3,8 @@
 // TODO: look into implementing something like this: https://www.sitepoint.com/flexible-view-manipulation-1/
 
 // TODO: replace with composer ASAP, to autoload php files
+
+
 require "src/Entity/Omen.php";
 require "src/Entity/OmenCollection.php";
 
@@ -36,6 +38,11 @@ $omens = new OmenCollection();
 // Add the first route
 Route::add('/user/([0-9]*)/edit', function($id) {
     echo 'Edit user with id '.$id.'<br>';
+}, 'get');
+
+Route::add('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
+    echo "SLUG: " . $slug;
+    OmenCollection::getOmenBySlug($slug);
 }, 'get');
 
 // Run the router
