@@ -1,17 +1,17 @@
 .input {
   &__text {
     @include font('monospaced', 400);
+    width: 100%;
 
     background: none;
     border: none;
     outline: none;
 
-
     transition: border-bottom-color $transition__input ease-out, color $transition__input ease-out;
     color: $whiteTrans;
     border-bottom: 2px solid $whiteTrans;
 
-    padding-bottom: .5rem;
+    padding: 0 0 .5rem 0;
 
     // TODO: make work so that when filled it is white
     &:focus {

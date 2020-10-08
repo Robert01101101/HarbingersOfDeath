@@ -9,15 +9,18 @@ use View\Partial;
 
 <?= Partial::build('layout/header'); ?>
 
-<!--THE REGISTRATION/SIGNIN MODAL WINDOW-->
+<!--THE REGISTRATION MODAL WINDOW-->
 <?= Partial::build('modal/register'); ?>
+
+<!--THE LOGIN MODAL WINDOW-->
+
 
 <!--THE HOMEPAGE WINDOW-->
 <?= Partial::build('nav') ?>
 
 
 <?= Partial::build("hero", [
-        "heroText" => "Are you going to die? Have you kicked your mother\'s bucket? Are your friends on the way out?",
+        "heroText" => "Are you going to die? Have you kicked your mother&#39;s bucket? Are your friends on the way out?",
         "callToActionText" => "Sign in to find out",
         "large" => "true"
 ]); ?>

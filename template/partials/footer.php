@@ -13,6 +13,8 @@
     <!-- JS LOADING -->
     <!-- TODO: ensure only relevant scripts loaded -->
     <script src="scripts/script-min.js"></script>
+    <!-- TODO: replace temporary fix "login.js" with script-min.js (add listener for buttonLogin) -->
+    <script src="scripts/login.js"></script>
     <script src="scripts/form.js"></script>
     <script src="scripts/dropdown.js"></script>
 </footer>

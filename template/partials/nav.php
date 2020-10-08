@@ -8,7 +8,8 @@
         <ul class="nav__right">
             <li class="nav__link"><a data-js="buttonRegister" href="#0">Register</a></li>
             <li aria-hidden="true" class="nav__divider">||</li>
-            <li class="nav__link"><a href="">Login</a></li>
+            <!-- TODO: confirm whether the #0 is correct? -->
+            <li class="nav__link"><a data-js="buttonLogin" href="#0">Login</a></li>
         </ul>
     </nav>
 </header>

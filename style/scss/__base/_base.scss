@@ -40,7 +40,9 @@ body.js-fixed {
 
 }
 .content.js-blur {
-  filter: blur(20px);
+  //TEMPORARILY DISABLED TO FIX BUG (Idk how to fix in php :( 
+  // Problem: previously the modal was outside of the content div. Now it inside of it, being blurred with it)
+  filter: blur(0px);//(20px);
   transition: filter 1s ease-out;
 
 }

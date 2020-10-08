@@ -28,7 +28,7 @@ body.js-fixed {
 }
 
 .content.js-blur {
-  filter: blur(20px);
+  filter: blur(0px);
   transition: filter 1s ease-out;
 }
 
@@ -414,13 +414,14 @@ h2 {
   font-family: calling-code, courier, monospace;
   font-weight: 400;
   font-style: normal;
+  width: 100%;
   background: none;
   border: none;
   outline: none;
   transition: border-bottom-color 1s ease-out, color 1s ease-out;
   color: rgba(255, 255, 255, 0.7);
   border-bottom: 2px solid rgba(255, 255, 255, 0.7);
-  padding-bottom: 0.5rem;
+  padding: 0 0 0.5rem 0;
 }
 .input__text:focus {
   color: white;
@@ -646,15 +647,23 @@ div.birthdate > div:not(:first-of-type) {
 .form {
   /* Add the focus states too, They matter, always! */
 }
+.form form {
+  width: 33%;
+  float: right;
+  margin-right: 20%;
+}
 .form__row {
   display: flex;
   position: relative;
   margin-bottom: 0.8rem;
 }
+.form__cell {
+  width: 100%;
+}
 .form .selectNative,
 .form .selectCustom {
   position: relative;
-  width: 10rem;
+  width: 100%;
   height: 1.5rem;
   font-family: calling-code, courier, monospace;
   font-weight: 400;
