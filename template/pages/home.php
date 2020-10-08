@@ -13,7 +13,7 @@ use View\Partial;
 <?= Partial::build('modal/register'); ?>
 
 <!--THE LOGIN MODAL WINDOW-->
-
+<?= Partial::build('modal/login'); ?>
 
 <!--THE HOMEPAGE WINDOW-->
 <?= Partial::build('nav') ?>

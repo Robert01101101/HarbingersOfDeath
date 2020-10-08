@@ -38,7 +38,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="password" id="password" name="password">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register">
+                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Sign In &rarr;">
                 </form>
             </div>
         </section>

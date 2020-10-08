@@ -433,6 +433,19 @@ h2 {
   -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.7) inset;
   /*your box-shadow*/
 }
+.input__submit {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.618034em;
+  float: right;
+  margin-top: 1rem;
+}
 .input__label {
   font-family: calling-code, courier, monospace;
   font-weight: 400;

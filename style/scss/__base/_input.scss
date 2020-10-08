@@ -30,6 +30,18 @@
   &__select {
   }
 
+  &__submit {
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    @include font("sans-serif", 700, "normal");
+    font-size: ms(1);
+    float: right;
+    margin-top: 1rem;
+  }
+
 
   &__label {
     @include font('monospaced', 400);

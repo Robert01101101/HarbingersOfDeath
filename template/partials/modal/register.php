@@ -58,7 +58,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="text" id="country" name="country">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register">
+                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register &rarr;">
                 </form>
             </div>
         </section>
