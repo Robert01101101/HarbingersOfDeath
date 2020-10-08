@@ -31,16 +31,12 @@ use View\Partial;
                 <h2>Common indicators of imminent death</h2>
                 <span class="callToAction">See more</span>
             </div>
-            <div data-js="grid" class="tile__panel js-panel g-span6of9 g-last g-flex">
-                <div data-js="column" class="tile__panel__column g-span2of6"></div>
-                <div data-js="column" class="tile__panel__column g-span2of6"></div>
-                <div data-js="column" class="tile__panel__column g-span2of6 g-last"></div>
 
-                <?= Partial::build('omens'); ?>
+            <?= Partial::build('omenGrid'); ?>
 
-            </div>
         </div>
     </section>
+
     <?= Partial::build('taxonomyTile'); ?>
 
     <?= Partial::build('footer'); ?>
