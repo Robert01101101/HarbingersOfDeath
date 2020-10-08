@@ -29,13 +29,13 @@ use Util\HTML\SelectInputs;
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="emailAddress">Email Address</label><br>
-                            <input class="input__text" type="text" id="emailAddress" name="emailAddress">
+                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress-l">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password" name="password">
+                            <input class="input__text" type="password" id="password-l" name="password-l">
                         </div>
                     </div>
                     <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Sign In &rarr;">
@@ -48,20 +48,7 @@ use Util\HTML\SelectInputs;
 
 
 <?php
-//________________________________________________________ REGISTER - Process form data & save ______________________________________//
-/*if(isset($_POST['submit']))
-{
-    $data="Name: ".$_POST['name'];
-    $data.="\nEmailAddress: ".$_POST['emailAddress'];
-    $data.="\nPassword: ".$_POST['password'];
-    $data.="\nDOB: d:".$_POST['birthday__day'].", m:".$_POST['birthday__month'].", y:".$_POST['birthday__year'];
-    $data.="\nCountry: ".$_POST['country'];
-    $fp = fopen('data.txt', 'r');
-
-    fclose($fp);
-}*/
-
-//________________________________________________________ LOGIN - Process form data & read ______________________________________//
+//________________________________________________________ LOGIN - Process form data & save ______________________________________//
 // source: http://www.justin-cook.com/2006/03/31/php-parse-a-string-between-two-strings/
 //returns the value of each key (by checking for the string between key & newline)
 function get_string_between($string, $start, $end){
@@ -74,7 +61,21 @@ function get_string_between($string, $start, $end){
 }
 
 $fullstring = file_get_contents("data.txt");
-$readName = get_string_between($fullstring, "EmailAddress: ", "\n");
+$readMail = get_string_between($fullstring, "EmailAddress: ", "\n");
 $readPW = get_string_between($fullstring, "Password: ", "\n");
 
+
+if(isset($_POST['submit']))
+{
+    $userMail = $_POST['emailAddress-l'];
+    $userPW = $_POST['password-l'];    
+    fclose($fp);
+
+    if ($readMail == $userMail && $readPW == $userPW){
+        //Login
+        //TODO: Load Homepage
+    } else {
+        //Wrong Credentials
+    }
+}
 ?>
