@@ -26,14 +26,16 @@ $omen = $arguments["omen"];
 
 
 
-<article itemscope itemtype="http://schema.org/CreativeWork" class="poem">
+<article itemscope itemtype="http://schema.org/CreativeWork" class="poem g-margin2of9 g-span4of9">
   <p class="poem__body">
-    Yessir, <br>
-    yessir, <br>
-    three bags full
+    morning Mass&mdash;<br>
+    through the open door<br>
+    the smell of new-baked bread
   </p>
   <footer class="poem__author">
-    &mdash;<cite itemprop="author">Tory Guilfroy</cite>
+    &mdash;<cite itemprop="author">John McDonald</cite>
+  </footer>
+</article>
     
 
 

@@ -1,9 +1,15 @@
-.peom {
-  &__text {
+.poem {
+  &__body {
     @include font(decorative, 400, italic);
     font-size: ms(2);
+    line-height: 1;
   }
   &__author {
     @include font(sans-serif, 500);
+    cite {
+    	font-style: normal;
+    	margin-left: .5rem;
+    }
+    
   }
 }

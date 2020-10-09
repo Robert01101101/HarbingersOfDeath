@@ -36,6 +36,15 @@ $gutter: space(1);
   }
 }
 
+// creates selectors for grid left margins (i.e. ".g-margin1of9 {width: x%;}")
+@for $i from 1 through $columns {
+  @for $j from 1 through $i {
+    .g-margin#{$j}of#{$i} {
+      margin-left: span($j, $i);
+    }
+  }
+}
+
 // removes right margin from last item in row
 .g-last {
   margin-right: 0;
