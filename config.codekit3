@@ -129,6 +129,17 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/scripts/login.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/scripts/login-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/scripts/script-min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -165,22 +176,6 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/src/Entity/OmenCollection.php",
-		"oF": 0
-		},
-	"/src/Request/IRequest.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/src/Request/IRequest.php",
-		"oF": 0
-		},
-	"/src/Request/Request.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/src/Request/Request.php",
 		"oF": 0
 		},
 	"/src/Route/Route.php": {
@@ -255,6 +250,14 @@
 		"oAP": "/src/Taxonomy/TaxonomyCollection.php",
 		"oF": 0
 		},
+	"/src/User/User.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/User/User.php",
+		"oF": 0
+		},
 	"/src/Util/SelectInputs.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -269,6 +272,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/src/Util/Tags.php",
+		"oF": 0
+		},
+	"/src/Util/TextParser.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Util/TextParser.php",
 		"oF": 0
 		},
 	"/src/View/Page.php": {
@@ -701,6 +712,14 @@
 		"oAP": "/template/partials/layout/header.php",
 		"oF": 0
 		},
+	"/template/partials/modal/login.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/modal/login.php",
+		"oF": 0
+		},
 	"/template/partials/modal/register.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -715,6 +734,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/partials/nav.php",
+		"oF": 0
+		},
+	"/template/partials/omenGrid.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/omenGrid.php",
 		"oF": 0
 		},
 	"/template/partials/omens.php": {
