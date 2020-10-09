@@ -1,3 +1,10 @@
 .hero {
-  padding: ms(5) 0;
+  //padding: ms(5) 0;
+
+  &--omen h1 {
+  	.omenTitle {
+  		@include font("sans-serif", 400);
+  	}
+  }
+  	
 }
