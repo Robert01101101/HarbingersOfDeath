@@ -41,5 +41,3 @@ use View\Partial;
 
     <?= Partial::build('footer'); ?>
 </div>
-
-

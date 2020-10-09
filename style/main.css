@@ -976,3 +976,13 @@ div.birthdate > div:not(:first-of-type) {
   font-weight: 400;
   font-style: normal;
 }
+
+.omenImg {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-mask-image: linear-gradient(to top, transparent 40%, rgba(0, 0, 0, 0.7) 90%);
+  mask-image: linear-gradient(to top, transparent 40%, rgba(0, 0, 0, 0.7) 90%);
+}
