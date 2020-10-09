@@ -2,6 +2,7 @@
 use Taxonomy\Aspect\AspectCollection;
 use Taxonomy\Death\DeathCollection;
 use Taxonomy\Fault\FaultCollection;
+
 ?>
 
 <section>

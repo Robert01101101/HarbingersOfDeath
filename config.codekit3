@@ -39,6 +39,17 @@
 		"oAP": "/build/.idea",
 		"oF": 0
 		},
+	"/assets/images/bread.jpg": {
+		"ft": 16384,
+		"iS": 109359,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/bread.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"/assets/images/gradient.png": {
 		"ft": 32768,
 		"iS": 661795,
@@ -161,6 +172,14 @@
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
+		},
+	"/src/Data/PageData.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Data/PageData.php",
+		"oF": 0
 		},
 	"/src/Entity/Omen.php": {
 		"cB": 0,
@@ -482,6 +501,19 @@
 		"oS": 0,
 		"sct": 0
 		},
+	"/style/scss/__components/_omenImg.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/style/scss/__components/_omenImg.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 0
+		},
 	"/style/scss/__components/_poem.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -672,6 +704,14 @@
 		"oAP": "/template/pages/home.php",
 		"oF": 0
 		},
+	"/template/pages/omen-list.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/pages/omen-list.php",
+		"oF": 0
+		},
 	"/template/pages/omen.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -742,6 +782,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/partials/omenGrid.php",
+		"oF": 0
+		},
+	"/template/partials/omenHero.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/omenHero.php",
 		"oF": 0
 		},
 	"/template/partials/omens.php": {
