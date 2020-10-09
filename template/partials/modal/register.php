@@ -65,19 +65,3 @@ use Util\HTML\SelectInputs;
     </div>
 
 </section>
-
-
-<?php
-//________________________________________________________ REGISTER - Process form data & save ______________________________________//
-if(isset($_POST['submit']))
-{
-    $data="Name: ".$_POST['name'];
-    $data.="\nEmailAddress: ".$_POST['emailAddress'];
-    $data.="\nPassword: ".$_POST['password'];
-    $data.="\nDOB: d:".$_POST['birthday__day'].", m:".$_POST['birthday__month'].", y:".$_POST['birthday__year'];
-    $data.="\nCountry: ".$_POST['country'];
-    $fp = fopen('data.txt', 'w');
-    fwrite($fp, $data);
-    fclose($fp);
-}
-?>

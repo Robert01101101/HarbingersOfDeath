@@ -2,7 +2,7 @@
 use Util\HTML\SelectInputs;
 ?>
 
-<section data-js="modal-l" class="modal modal--register">
+<section data-js="modal-l" class="modal modal--login">
     <header>
         <nav class="nav nav--modal layout g-flex">
             <ul class="nav__left">
@@ -11,7 +11,7 @@ use Util\HTML\SelectInputs;
                 <li class="nav__link">Login</li>
             </ul>
             <ul class="nav__right">
-                <li class="nav__link">Register</li>
+                <li class="nav__link">Login</li>
                 <li aria-hidden="true" class="nav__divider">||</li>
                 <li class="nav__link"><a href="" data-js="buttonClose-l">Close</a></li>
             </ul>
@@ -38,7 +38,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="password" id="password-l" name="password-l">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Sign In &rarr;">
+                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitLoginForm" value="Sign In &rarr;">
                 </form>
             </div>
         </section>
@@ -67,15 +67,19 @@ $readPW = get_string_between($fullstring, "Password: ", "\n");
 
 if(isset($_POST['submit']))
 {
-    $userMail = $_POST['emailAddress-l'];
-    $userPW = $_POST['password-l'];    
-    fclose($fp);
+    if (isset($_POST['emailAddress-l']) && isset($_POST['password-l'])){
+        $userMail = $_POST['emailAddress-l'];
+        $userPW = $_POST['password-l'];
 
-    if ($readMail == $userMail && $readPW == $userPW){
-        //Login
-        //TODO: Load Homepage
-    } else {
-        //Wrong Credentials
+        // TODO: fix?
+        //fclose($fp);
+
+        if ($readMail == $userMail && $readPW == $userPW){
+            //Login
+            //TODO: Load Homepage
+        } else {
+            //Wrong Credentials
+        }
     }
 }
 ?>

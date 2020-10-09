@@ -17,6 +17,8 @@ require "src/Taxonomy/DeathCollection.php";
 require "src/Taxonomy/Aspect.php";
 require "src/Taxonomy/AspectCollection.php";
 
+require "src/User/User.php";
+
 require "src/Util/Tags.php";
 require "src/Util/SelectInputs.php";
 
@@ -31,6 +33,7 @@ use Taxonomy\Fault\FaultCollection;
 use Taxonomy\Death\DeathCollection;
 use Taxonomy\Aspect\AspectCollection;
 
+use User\User;
 
 use Route\Route;
 use View\Page;
@@ -58,6 +61,26 @@ Route::add('/omen', function($query) {
 Route::add('/', function (){
     Page::build('home');
 });
+
+Route::add('/', function (){
+
+    if(isset($_POST['submit'])) {
+        var_dump($_POST);
+        $user = (new User())
+            ->setName($_POST['name'])
+            ->setEmailAddress($_POST['emailAddress'])
+            ->setPassword($_POST['password'])
+            ->setBirthdayDay($_POST['birthday__day'])
+            ->setBirthdayMonth($_POST['birthday__month'])
+            ->setBirthdayYear($_POST['birthday__year'])
+            ->setCountry($_POST['country']);
+        $user->writeToFile();
+
+        echo "Name: " . $_POST['name'];
+    }
+    Page::build('home');
+
+}, 'post');
 
 // Run the router
 Route::run('/');
