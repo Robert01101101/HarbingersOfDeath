@@ -20,9 +20,18 @@ $gutter: space(1);
     $spannedGutterWidth: ($span - 1) * $gutter;
   }
 
+  $calc: 0;
+  @if $spannedGutterWidth == 0{
+    $calc: #{"calc("} + $percentage + #{" * (100% - "} + $totalGutterWidth + #{") + "} + #{")"};
+
+  } @else {
+    $calc: #{"calc("} + $percentage + #{" * (100% - "} + $totalGutterWidth + #{") + "} + $spannedGutterWidth + #{")"};
+  }
+
   // returns a calc that determines an exact column size (#math! wooo)
-  @return #{"calc("} + $percentage + #{" * (100% - "} + $totalGutterWidth + #{") + "} + $spannedGutterWidth + #{")"};
+  @return $calc;
 }
+
 
 // (6/9)*(1173-(8*20))+(5*20)
 

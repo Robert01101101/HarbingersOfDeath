@@ -2,7 +2,7 @@
 use Util\HTML\SelectInputs;
 ?>
 
-<section data-js="modal-l" class="modal modal--register">
+<section data-js="modal-l" class="modal modal--login">
     <header>
         <nav class="nav nav--modal layout g-flex">
             <ul class="nav__left">
@@ -11,7 +11,7 @@ use Util\HTML\SelectInputs;
                 <li class="nav__link">Login</li>
             </ul>
             <ul class="nav__right">
-                <li class="nav__link">Register</li>
+                <li class="nav__link">Login</li>
                 <li aria-hidden="true" class="nav__divider">||</li>
                 <li class="nav__link"><a href="" data-js="buttonClose-l">Close</a></li>
             </ul>
@@ -29,16 +29,18 @@ use Util\HTML\SelectInputs;
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="emailAddress">Email Address</label><br>
-                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress-l">
+<!--                            I removed the 'L' because I made the forms
+                                different by changing the name of the submit button-->
+                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password-l" name="password-l">
+                            <input class="input__text" type="password" id="password-l" name="password">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Sign In &rarr;">
+                    <input type="submit" name="submit_login" class="input__submit" data-js="buttonSubmitLoginForm" value="Sign In &rarr;">
                 </form>
             </div>
         </section>
@@ -46,36 +48,3 @@ use Util\HTML\SelectInputs;
 
 </section>
 
-
-<?php
-//________________________________________________________ LOGIN - Process form data & save ______________________________________//
-// source: http://www.justin-cook.com/2006/03/31/php-parse-a-string-between-two-strings/
-//returns the value of each key (by checking for the string between key & newline)
-function get_string_between($string, $start, $end){
-    $string = " ".$string;
-    $ini = strpos($string,$start);
-    if ($ini == 0) return "";
-    $ini += strlen($start);   
-    $len = strpos($string,$end,$ini) - $ini;
-    return substr($string,$ini,$len);
-}
-
-$fullstring = file_get_contents("data.txt");
-$readMail = get_string_between($fullstring, "EmailAddress: ", "\n");
-$readPW = get_string_between($fullstring, "Password: ", "\n");
-
-
-if(isset($_POST['submit']))
-{
-    $userMail = $_POST['emailAddress-l'];
-    $userPW = $_POST['password-l'];    
-    fclose($fp);
-
-    if ($readMail == $userMail && $readPW == $userPW){
-        //Login
-        //TODO: Load Homepage
-    } else {
-        //Wrong Credentials
-    }
-}
-?>
