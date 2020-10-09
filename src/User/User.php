@@ -143,14 +143,14 @@ class User
     public function writeToFile($filePath){
         $data = "";
         if (isset($this->name)){ ($data .= "Name: " . $this->name); };
-        if (isset($this->emailAddress)){ ($data .= "\nEmailAddress: " . $this->emailAddress); };
-        if (isset($this->password)){ ($data .= "\nPassword: " . $this->password); };
+        if (isset($this->emailAddress)){ ($data .= PHP_EOL . "emailAddress: " . $this->emailAddress); };
+        if (isset($this->password)){ ($data .= PHP_EOL . "Password: " . $this->password); };
         
-        if (isset($this->birthdayDay)){ ($data .= "\nBirthday: " . $this->birthdayDay); };
+        if (isset($this->birthdayDay)){ ($data .= PHP_EOL . "Birthday: " . $this->birthdayDay); };
         if (isset($this->birthdayMonth)){ ($data .= ", " . $this->birthdayMonth); };
         if (isset($this->birthdayYear)){ ($data .= ", " . $this->birthdayYear); };
 
-        if (isset($this->country)){ ($data .= "\nPassword: " . $this->country); };
+        if (isset($this->country)){ ($data .= PHP_EOL . "Password: " . $this->country); };
 
         $fp = fopen($filePath, 'w');
         fwrite($fp, $data);

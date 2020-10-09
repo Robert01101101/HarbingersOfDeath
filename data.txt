@@ -1,5 +1,5 @@
-Name: Thirsty Toenails
-EmailAddress: lkdjf
-Password: ldsjfa
-Birthday: 2, February, 1921
-Password: dlafskj
+Name: Name
+EmailAddress: email
+Password: password
+Birthday: 3, February, 1922
+Password: Country

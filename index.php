@@ -70,7 +70,6 @@ Route::add('/', function (){
 // Handles register and login form submissions
 Route::add('/', function (){
     // TODO: move data processing to it's own place
-
     // if Register Form has  been submitted
     // create new User object and write it to a text file
     if(isset($_POST['submit_register'])) {
@@ -90,6 +89,7 @@ Route::add('/', function (){
     // compare it against the post values
     if (isset($_POST['submit_login'])){
         $user = User::buildFromFile('data.txt');
+        var_dump($_POST, $user);
         if(
             (isset($_POST['emailAddress']) && isset($_POST['password'])) &&
             ($_POST['emailAddress'] == $user->getEmailAddress() && $_POST['password'] == $user->getPassword())

@@ -10,4 +10,8 @@ class PageData
     private string $slug;
     private string $absoluteURL;
     private ?object $object;
+
+    public static function buildPageFromOmen(){
+
+    }
 }
