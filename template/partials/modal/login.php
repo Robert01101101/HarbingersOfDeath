@@ -29,16 +29,18 @@ use Util\HTML\SelectInputs;
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="emailAddress">Email Address</label><br>
-                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress-l">
+<!--                            I removed the 'L' because I made the forms
+                                different by changing the name of the submit button-->
+                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password-l" name="password-l">
+                            <input class="input__text" type="password" id="password-l" name="password">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitLoginForm" value="Sign In &rarr;">
+                    <input type="submit" name="submit_login" class="input__submit" data-js="buttonSubmitLoginForm" value="Sign In &rarr;">
                 </form>
             </div>
         </section>
@@ -46,40 +48,3 @@ use Util\HTML\SelectInputs;
 
 </section>
 
-
-<?php
-//________________________________________________________ LOGIN - Process form data & save ______________________________________//
-// source: http://www.justin-cook.com/2006/03/31/php-parse-a-string-between-two-strings/
-//returns the value of each key (by checking for the string between key & newline)
-function get_string_between($string, $start, $end){
-    $string = " ".$string;
-    $ini = strpos($string,$start);
-    if ($ini == 0) return "";
-    $ini += strlen($start);   
-    $len = strpos($string,$end,$ini) - $ini;
-    return substr($string,$ini,$len);
-}
-
-$fullstring = file_get_contents("data.txt");
-$readMail = get_string_between($fullstring, "EmailAddress: ", "\n");
-$readPW = get_string_between($fullstring, "Password: ", "\n");
-
-
-if(isset($_POST['submit']))
-{
-    if (isset($_POST['emailAddress-l']) && isset($_POST['password-l'])){
-        $userMail = $_POST['emailAddress-l'];
-        $userPW = $_POST['password-l'];
-
-        // TODO: fix?
-        //fclose($fp);
-
-        if ($readMail == $userMail && $readPW == $userPW){
-            //Login
-            //TODO: Load Homepage
-        } else {
-            //Wrong Credentials
-        }
-    }
-}
-?>

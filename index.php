@@ -21,6 +21,7 @@ require "src/User/User.php";
 
 require "src/Util/Tags.php";
 require "src/Util/SelectInputs.php";
+require "src/Util/TextParser.php";
 
 require "src/Route/Route.php";
 
@@ -46,6 +47,9 @@ $aspects = new AspectCollection();
 $omens = new OmenCollection();
 
 
+session_start();
+
+
 // Add the individual omen route
 Route::add('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
@@ -60,12 +64,16 @@ Route::add('/omen', function($query) {
 
 Route::add('/', function (){
     Page::build('home');
+
 });
 
+// Handles register and login form submissions
 Route::add('/', function (){
+    // TODO: move data processing to it's own place
 
-    if(isset($_POST['submit'])) {
-        var_dump($_POST);
+    // if Register Form has  been submitted
+    // create new User object and write it to a text file
+    if(isset($_POST['submit_register'])) {
         $user = (new User())
             ->setName($_POST['name'])
             ->setEmailAddress($_POST['emailAddress'])
@@ -73,13 +81,26 @@ Route::add('/', function (){
             ->setBirthdayDay($_POST['birthday__day'])
             ->setBirthdayMonth($_POST['birthday__month'])
             ->setBirthdayYear($_POST['birthday__year'])
-            ->setCountry($_POST['country']);
-        $user->writeToFile();
-
-        echo "Name: " . $_POST['name'];
+            ->setCountry($_POST['country'])
+            ->writeToFile('data.txt');
     }
-    Page::build('home');
 
+    // if Login Form is submitted
+    // create new User object from the text file and
+    // compare it against the post values
+    if (isset($_POST['submit_login'])){
+        $user = User::buildFromFile('data.txt');
+        if(
+            (isset($_POST['emailAddress']) && isset($_POST['password'])) &&
+            ($_POST['emailAddress'] == $user->getEmailAddress() && $_POST['password'] == $user->getPassword())
+        ){
+            $_SESSION['user'] = $user;
+        } else {
+            unset($_SERVER['user']);
+        }
+    }
+
+    Page::build('home');
 }, 'post');
 
 // Run the router

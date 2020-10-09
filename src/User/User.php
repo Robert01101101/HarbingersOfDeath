@@ -4,6 +4,8 @@
 namespace User;
 
 
+use Util\TextParser\TextParser;
+
 class User
 {
     private string $name, $emailAddress, $password, $birthdayDay, $birthdayMonth, $birthdayYear, $country;
@@ -138,10 +140,10 @@ class User
         return $this;
     }
 
-    public function writeToFile(){
+    public function writeToFile($filePath){
         $data = "";
         if (isset($this->name)){ ($data .= "Name: " . $this->name); };
-        if (isset($this->emailAddress)){ ($data .= "\nName: " . $this->emailAddress); };
+        if (isset($this->emailAddress)){ ($data .= "\nEmailAddress: " . $this->emailAddress); };
         if (isset($this->password)){ ($data .= "\nPassword: " . $this->password); };
         
         if (isset($this->birthdayDay)){ ($data .= "\nBirthday: " . $this->birthdayDay); };
@@ -150,8 +152,30 @@ class User
 
         if (isset($this->country)){ ($data .= "\nPassword: " . $this->country); };
 
-        $fp = fopen('data.txt', 'w');
+        $fp = fopen($filePath, 'w');
         fwrite($fp, $data);
         fclose($fp);
+    }
+
+    // TODO: consider this method.. OOB doesn't feel like this belongs here
+    public static function buildFromFile($filePath) : self
+    {
+        // gobble full text file
+        $fullString = file_get_contents("data.txt");
+
+        // Error handling if it is empty
+        if ($fullString === FALSE){
+            // TODO: error handling
+        }
+
+        // find the required values within the file
+        $name = TextParser::get_string_between($fullString, "Name: ", PHP_EOL);
+        $emailAddress = TextParser::get_string_between($fullString, "emailAddress: ", PHP_EOL);
+        $password = TextParser::get_string_between($fullString, "Password: ", PHP_EOL);
+
+        // TODO: Birthday & Country.. but doesn't really matter right now.
+
+        // make new user
+        return (new self)->setName($name)->setPassword($password)->setEmailAddress($emailAddress);
     }
 }

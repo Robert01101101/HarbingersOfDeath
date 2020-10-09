@@ -25,7 +25,7 @@ use Util\HTML\SelectInputs;
         </section>
         <section class="form">
             <div class="layout layout--distant">
-                <form method="post">
+                <form action="/form/register" method="post">
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="name">Name</label><br>
@@ -41,7 +41,7 @@ use Util\HTML\SelectInputs;
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password" name="password">
+                            <input class="input__text" type="password" id="password" name="password" autocomplete="new-password">
                         </div>
                     </div>
                     <fieldset class="form__row">
@@ -58,7 +58,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="text" id="country" name="country">
                         </div>
                     </div>
-                    <input type="submit" name="submit" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register &rarr;">
+                    <input type="submit" name="submit_register" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register &rarr;">
                 </form>
             </div>
         </section>
