@@ -1,8 +1,8 @@
 <?php
 
-use Taxonomy\Aspect\AspectCollection;
-use Taxonomy\Death\DeathCollection;
-use Taxonomy\Fault\FaultCollection;
+use Taxonomy\Taxonomy\AspectTaxonomy;
+use Taxonomy\Death\DeathTaxonomy;
+use Taxonomy\Fault\FaultTaxonomy;
 use View\Partial;
 
 // THIS IS THE OMEN OBJECT YOU NEED

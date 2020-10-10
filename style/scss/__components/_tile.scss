@@ -5,6 +5,14 @@
   margin-bottom: space(1);
   //width: span(2, 6);
 
+  &--large .tile__listItem{
+    font-size: ms(1);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
   &__text {
     font-feature-settings: "liga";
     font-size: ms(1);
@@ -29,19 +37,22 @@
     @include font(sans-serif, 400);
     display: inline;
     color: $whiteTrans;
-
+    text-decoration: underline;
     padding-right: space(1);
 
 
     &--title {
       @include font(sans-serif, 600);
       color: $white;
+      text-decoration: none;
+    }
+
+    &--active{
+      color: $white;
+      @include font(sans-serif, 700);
 
     }
 
-    &--large {
-      font-size: ms(1);
-    }
   }
 
   &__panel {

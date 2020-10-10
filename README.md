@@ -11,6 +11,7 @@
 - result filtering (in progress)
 - omen page (in progress)
 
+
 ## Citations
 - bread:
 - https://upload.wikimedia.org/wikipedia/commons/c/c2/Evaristo_Baschenis_-_Boy_with_a_Basket_of_Bread_-_WGA1404.jpg
@@ -28,3 +29,13 @@
 - https://miro.medium.com/max/400/0*jPRW4s8shRVkLnAl.Jpeg 
 - death6:
 - https://onartandaesthetics.files.wordpress.com/2016/10/danse_macabrebernt_notke_-e1477246104907.jpg
+
+### Sam's image citations
+
+- _A Meat Stall with the Holy Family Giving Alms_
+[Pieter Aertsen (1551)](https://artsandculture.google.com/asset/fgF8j5tB3UFgAg)
+- _Jacob Cornelisz. van Oostsanen Painting a Portrait of His Wife_
+[Dirck Jacobsz (1550)](https://artsandculture.google.com/asset/jgE2Yeq0DL_FyA)
+- _The Cook_
+[Pieter Aertsen (1559)](https://artsandculture.google.com/asset/RgHLWesYw_GlOQ)
+

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Taxonomy\Aspect;
+namespace Taxonomy;
 
 use Entity\Omen\OmenCollection;
-use Taxonomy\Taxonomy;
+use Taxonomy\Term;
 
 
-class Aspect extends Taxonomy
+class Aspect extends Term
 {
 
     public function __construct()
@@ -15,15 +15,25 @@ class Aspect extends Taxonomy
         return $this;
     }
 
-    public function getOmensByTaxonomy($taxonomy)
+    public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
-        $omens = array();
-        foreach (OmenCollection::getOmens() as $omen) {
-            if ($omen->getAspect()->getId() == $taxonomy->getId()) {
-                $omens[] = $omen;
+
+        if (!is_null($omensCollection)){
+            $omensCollection = new OmenCollection();
+        }
+
+        $omens = $omensCollection->getOmenList();
+
+        $filteredOmens = [];
+
+        foreach ($omens as $omen) {
+            if ($omen->getAspect()->getSlug() == $this->slug) {
+                $filteredOmens[] = $omen;
             }
         }
-        return $omens;
+
+        $omensCollection->setOmens($filteredOmens);
+        return $omensCollection;
     }
 
 

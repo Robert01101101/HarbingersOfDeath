@@ -3,9 +3,9 @@
 namespace Entity\Omen;
 
 use Util\HTML\Tags;
-use Taxonomy\Fault\Fault;
-use Taxonomy\Aspect\Aspect;
-use Taxonomy\Death\Death;
+use Taxonomy\Fault;
+use Taxonomy\Aspect;
+use Taxonomy\Death;
 class Omen
 {
     protected $id;
@@ -14,6 +14,7 @@ class Omen
     protected Fault $fault;
     protected Aspect $aspect;
     protected Death $death;
+    private string $path;
 
     public function __construct()
     {
@@ -52,8 +53,20 @@ class Omen
     public function setSlug($slug)
     {
         $this->slug = $slug;
+        // TODO: ENSURE the slug & PATH are set
+        // TODO: make this more precise
+        $this->path = '/omen/' . $this->slug;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
 
     /**
      * @return mixed

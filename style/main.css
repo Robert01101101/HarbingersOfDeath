@@ -698,6 +698,12 @@ h2 {
   padding: 1em 1em;
   margin-bottom: 1em;
 }
+.tile--large .tile__listItem {
+  font-size: 1.618034em;
+}
+.tile a {
+  text-decoration: none;
+}
 .tile__text {
   font-feature-settings: "liga";
   font-size: 1.618034em;
@@ -727,6 +733,7 @@ h2 {
   font-style: normal;
   display: inline;
   color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
   padding-right: 1em;
 }
 .tile__listItem--title {
@@ -734,9 +741,13 @@ h2 {
   font-weight: 600;
   font-style: normal;
   color: white;
+  text-decoration: none;
 }
-.tile__listItem--large {
-  font-size: 1.618034em;
+.tile__listItem--active {
+  color: white;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 .tile__panel {
   box-sizing: border-box;
