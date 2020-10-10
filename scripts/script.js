@@ -9,7 +9,15 @@ let colcade = new Colcade(grid, {
 
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    /*************************************
+     *
+     *          MODAL MANAGEMENT
+     *
+     *************************************/
+
     // Open modal on click
 
     let modal = document.querySelector('[data-js="modal"]');
@@ -65,6 +73,82 @@ document.addEventListener('DOMContentLoaded', function() {
 
         event.preventDefault();
     });
+
+    /*************************************
+     *
+     *          TAXONOMY MANAGEMENT
+     *
+     *  references: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+     *************************************/
+
+
+    // Gets the URL Parameters
+    let urlParams = {};
+    (window.onpopstate = function () {
+        let match,
+            pl = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) {
+                return decodeURIComponent(s.replace(pl, " "));
+            },
+            query = window.location.search.substring(1);
+
+        while (match = search.exec(query)) {
+            if (decode(match[1]) in urlParams) {
+                if (!Array.isArray(urlParams[decode(match[1])])) {
+                    urlParams[decode(match[1])] = [urlParams[decode(match[1])]];
+                }
+                urlParams[decode(match[1])].push(decode(match[2]));
+            } else {
+                urlParams[decode(match[1])] = decode(match[2]);
+            }
+        }
+    })();
+
+
+
+    let omenList = document.querySelector('[data-js="filtered-omen-list"]')
+
+    console.log(urlParams);
+    let deathTerms = document.querySelectorAll('[data-js-term-death]');
+
+    deathTerms.forEach(term => {
+        term.addEventListener('click', event => {
+            urlParams["death"] = term.getAttribute('data-js-term-death');
+
+
+
+            var esc = encodeURIComponent;
+            var query = Object.keys(urlParams)
+                .map(k => esc(k) + '=' + esc(urlParams[k]))
+                .join('&');
+
+            if(omenList == null){
+                window.location.href.replace("/omen/?" + query);
+            } else {
+
+                let xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        omenList.innerHTML = this.responseText;
+                        colcade.destroy()
+                        let grid = document.querySelector('[data-js="grid"]');
+                        colcade = new Colcade(grid, {
+                            columns: '[data-js="column"]',
+                            items: '[data-js="tile"]'
+                        });
+                    }
+                };
+
+                xmlhttp.open("GET", "/omen/ajax/?" + query, true);
+                xmlhttp.send();
+            }
+
+
+
+        })
+    })
+
 
 });
 

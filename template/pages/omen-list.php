@@ -23,11 +23,11 @@ use View\Partial;
     "heroText" => "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?"
 ]); ?>
 
-<?= Partial::build('taxonomyTile', ["taxonomies" => $taxonomies, "large" => FALSE]); ?>
+<?= Partial::build('taxonomyTile', ["taxonomies" => $taxonomies]); ?>
 
 <section>
-    <div class="layout layout--distant g-flex">
-        <?= Partial::build('omenGrid', ["omenCollection" => $omens, "columns" => 4]); ?>
+    <div data-js="filtered-omen-list" class="layout layout--distant g-flex">
+        <?= Partial::build('omenGrid', ["omenCollection" => $omens, "columns" => 4, "oilPaintings" => TRUE]); ?>
     </div>
 </section>
 

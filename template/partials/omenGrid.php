@@ -2,9 +2,12 @@
 
 use View\Partial;
 
+// do we spice this with oil paintings?
+$oilPaintings  = (isset($oilPaintings) && $oilPaintings === TRUE) ? $oilPaintings : FALSE;
+
+
 // if columns don't exist, set it to 3
 $columns  = (isset($columns) && !is_null($columns)) ? $columns : 3;
-
 
 // this assumes omen columns will always span two columns of the grid
 ?>

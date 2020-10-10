@@ -55,6 +55,50 @@ $omens = new OmenCollection();
 session_start();
 
 /*************************************************
+ **  AJAX OMEN LIST ROUTE
+ *  TODO: refractor so code isn't duplicated
+ *
+ *************************************************/
+// Add omen list route
+// TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
+Route::get('/omen/ajax', function($query) {
+    $taxonomies = [];
+
+    // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
+    foreach ($query as $taxonomy => $term){
+        switch ($taxonomy){
+            case "aspect":
+                if(!isset($taxonomies["aspect"]))  $taxonomies["aspect"] = new AspectTaxonomy();
+                $taxonomies["aspect"]->addTerm(AspectTaxonomy::getTermBySlug($term));
+
+                break;
+
+            case "death":
+                if(!isset($taxonomies["death"]))  $taxonomies["death"] = new DeathTaxonomy();
+                $taxonomies["death"]->addTerm(DeathTaxonomy::getTermBySlug($term));
+
+                break;
+            case "fault":
+                if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
+                $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));
+                break;
+        }
+    }
+
+    $omensCollection = new OmenCollection();
+
+    foreach ($taxonomies as $taxonomy){
+        foreach ($taxonomy->getTerms() as $key => $tag){
+            $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
+            $omensCollection = $tempOmensCollection;
+        }
+    }
+
+
+    Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
+}, true);
+
+/*************************************************
  **  INDIVIDUAL OMEN ROUTE
  *************************************************/
 // Add the individual omen route
@@ -96,7 +140,7 @@ Route::get('/omen', function($query) {
     $omensCollection = new OmenCollection();
 
     foreach ($taxonomies as $taxonomy){
-        foreach ($taxonomy as $key => $tag){
+        foreach ($taxonomy->getTerms() as $key => $tag){
             $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
             $omensCollection = $tempOmensCollection;
         }
@@ -154,6 +198,9 @@ Route::post('/', function (){
 
     Page::build('home');
 });
+
+
+
 
 // Run the router
 Route::run('/');

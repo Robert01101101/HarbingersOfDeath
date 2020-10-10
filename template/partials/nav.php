@@ -6,18 +6,21 @@ if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
     $user = $_SESSION['user'];
 };
 
+//$heroText  = (isset($breadcrumb)) ? htmlspecialchars($heroText) : "Is it time to die?";
+
 ?>
 
 <div data-js="content" class="content">
 <header>
     <nav class="nav layout g-flex">
         <ul class="nav__left">
-            <li class="nav__link">Harbingers of Death</li>
+            <li class="nav__link"><a href="/">Harbingers of Death</a></li>
+
+            <li aria-hidden="true" class="nav__divider">//</li>
         </ul>
         <ul class="nav__right">
-
             <?php if (isset($user)): ?>
-            <li class="nav__text">Oi, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>, it's time to die, yah cunt!</li>
+            <li class="nav__text">Oi, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>, it's time to die!</li>
             <?php else: ?>
             <li class="nav__link"><a data-js="buttonRegister" href="#0">Register</a></li>
             <li aria-hidden="true" class="nav__divider">||</li>

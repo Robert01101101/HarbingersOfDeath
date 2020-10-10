@@ -38,4 +38,8 @@
 [Dirck Jacobsz (1550)](https://artsandculture.google.com/asset/jgE2Yeq0DL_FyA)
 - _The Cook_
 [Pieter Aertsen (1559)](https://artsandculture.google.com/asset/RgHLWesYw_GlOQ)
-
+- _The Blind Leading The Blind_
+[Pieter Bruegel (1568)](https://en.wikipedia.org/wiki/Pieter_Bruegel_the_Elder#/media/File:%D0%9F%D1%80%D0%B8%D1%82%D1%87%D0%B0_%D0%BE_%D1%81%D0%BB%D0%B5%D0%BF%D1%8B%D1%85.jpeg)
+- _St Jerome Meditating_ 
+[Caravaggio (1605)](https://artsandculture.google.com/asset/st-jerome-meditating-michelangelo-merisi-da-caravaggio/jwFgPh4OaRn1VQ)
+- 

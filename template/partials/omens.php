@@ -6,6 +6,7 @@ use Entity\Omen\Omen;
 
 $omens = null;
 
+
 if(
         isset($omenCollection) &&
         !is_null($omenCollection) &&
@@ -15,7 +16,6 @@ if(
     $omens = OmenCollection::getNewOmenList();
 }
 
-//var_dump($omens);
 
 ?>
 

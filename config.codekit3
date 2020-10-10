@@ -39,12 +39,100 @@
 		"oAP": "/build/.idea",
 		"oF": 0
 		},
+	"/assets/images/a-meat-stall-with-the-holy-family-giving-alms.jpg": {
+		"ft": 16384,
+		"iS": 9141759,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/a-meat-stall-with-the-holy-family-giving-alms.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"/assets/images/bread.jpg": {
 		"ft": 16384,
 		"iS": 109359,
 		"jF": 0,
 		"oA": 0,
 		"oAP": "/assets/images/bread.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death1.jpg": {
+		"ft": 16384,
+		"iS": 197255,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death2.jpg": {
+		"ft": 16384,
+		"iS": 38605,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death3.jpg": {
+		"ft": 16384,
+		"iS": 93268,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death3.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death4.jpg": {
+		"ft": 16384,
+		"iS": 49271,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death4.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death5.jpg": {
+		"ft": 16384,
+		"iS": 119330,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death5.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death6.jpg": {
+		"ft": 16384,
+		"iS": 67792,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death6.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/death7.jpg": {
+		"ft": 16384,
+		"iS": 215820,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/death7.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
@@ -59,6 +147,61 @@
 		"oIPL": 0,
 		"opt": 0,
 		"oT": 1,
+		"q": 100
+		},
+	"/assets/images/jacob-cornelisz-van-oostsanen-painting-a-portrait-of-his-wife.jpg": {
+		"ft": 16384,
+		"iS": 5139604,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/jacob-cornelisz-van-oostsanen-painting-a-portrait-of-his-wife.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"/assets/images/st-jerome-meditating.jpg": {
+		"ft": 16384,
+		"iS": 4401474,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/st-jerome-meditating.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"/assets/images/the-blind-leading-the-blind.jpeg": {
+		"ft": 16384,
+		"iS": 2082904,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/the-blind-leading-the-blind.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/the-blind-leading-the-blind.jpg": {
+		"ft": 16384,
+		"iS": 654856,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/the-blind-leading-the-blind.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/the-cook.jpg": {
+		"ft": 16384,
+		"iS": 4685999,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/the-cook.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
 		"q": 100
 		},
 	"/data.txt": {
@@ -144,6 +287,17 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/scripts/form-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/scripts/imagePlacement.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/scripts/imagePlacement-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -710,6 +864,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/pages/home.php",
+		"oF": 0
+		},
+	"/template/pages/js-omen-list.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/pages/js-omen-list.php",
 		"oF": 0
 		},
 	"/template/pages/omen-list.php": {
