@@ -115,7 +115,6 @@ Route::get('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen', function($query) {
     $taxonomies = [];
-
     // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
     foreach ($query as $taxonomy => $term){
         switch ($taxonomy){

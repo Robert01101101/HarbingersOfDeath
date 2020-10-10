@@ -67,8 +67,6 @@ class Route
         // Parse current URL
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 
-        $basepath = "rmichels";
-
 
         // The path
         $path = '/';
@@ -79,7 +77,7 @@ class Route
         if (isset($parsed_url['path'])) {
 
             // If the path is not equal to the base path (including a trailing slash)
-                if ($basepath.'/' != $parsed_url['path']) {
+                if ('/' != $parsed_url['path']) {
                 // Remove slash from end
                 $path = rtrim($parsed_url['path'], '/');
             } else {
@@ -101,8 +99,7 @@ class Route
 
         foreach (self::$routes as $route) {
 
-            // add the basepath
-            $route['expression'] = '('.$basepath.')'.$route['expression'];
+
 
             // Set up expression to be ready for regex (preg_match)
             $route['expression'] = '^' . $route['expression'] . '$';
@@ -120,8 +117,6 @@ class Route
                 // Check if method from URL matches method from Route (i.e. get == get)
                 if (strtolower($method) == strtolower($allowedMethod)) {
 
-                    // The first element of the array is the full string. Remove it.
-                    array_shift($matches);
 
                     // remove the basepath
                     array_shift($matches);
