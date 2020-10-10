@@ -10,3 +10,21 @@
 
 - result filtering (in progress)
 - omen page (in progress)
+
+## Citations
+- bread:
+- https://upload.wikimedia.org/wikipedia/commons/c/c2/Evaristo_Baschenis_-_Boy_with_a_Basket_of_Bread_-_WGA1404.jpg
+- death1
+- https://upload.wikimedia.org/wikipedia/commons/c/c5/Michelangelo_Caravaggio_069.jpg
+- death2:
+- https://media.npr.org/assets/img/2019/11/21/gettyimages-113492902_wide-f1a5fbee7e96ba1d3864dfa1666e402d80bf6cca-s600-c85.jpg
+- death3:
+- http://www.artita.ru/dat/b/badalocchio/1.jpg
+- death4:
+- https://i.guim.co.uk/img/media/07a38e2b62ca5f1ff0c70417c4511d3bf6268e14/0_1069_2385_1430/master/2385.jpg?width=620&quality=85&auto=format&fit=max&s=608f3a22700c15da4b69c22c9edb9dc7
+- death5:
+- https://mediad.publicbroadcasting.net/p/shared/npr/styles/x_large/nprshared/201805/358642190.jpg
+- death7:
+- https://miro.medium.com/max/400/0*jPRW4s8shRVkLnAl.Jpeg 
+- death6:
+- https://onartandaesthetics.files.wordpress.com/2016/10/danse_macabrebernt_notke_-e1477246104907.jpg

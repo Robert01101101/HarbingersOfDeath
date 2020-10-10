@@ -17,4 +17,5 @@
     <script src="/scripts/login.js"></script>
     <script src="/scripts/form.js"></script>
     <script src="/scripts/dropdown.js"></script>
+    <script src="/scripts/imagePlacement.js"></script>
 </footer>

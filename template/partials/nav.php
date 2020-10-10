@@ -7,6 +7,8 @@ if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
 };
 
 ?>
+
+<div data-js="content" class="content">
 <header>
     <nav class="nav layout g-flex">
         <ul class="nav__left">

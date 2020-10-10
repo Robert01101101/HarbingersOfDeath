@@ -89,7 +89,7 @@ Route::add('/', function (){
     // compare it against the post values
     if (isset($_POST['submit_login'])){
         $user = User::buildFromFile('data.txt');
-        var_dump($_POST, $user);
+        //var_dump($_POST, $user);
         if(
             (isset($_POST['emailAddress']) && isset($_POST['password'])) &&
             ($_POST['emailAddress'] == $user->getEmailAddress() && $_POST['password'] == $user->getPassword())

@@ -2,7 +2,7 @@
 use Util\HTML\SelectInputs;
 ?>
 
-<section data-js="modal-l" class="modal modal--login">
+<section data-js="modal-l" class="modal modal--login" id="modal--login">
     <header>
         <nav class="nav nav--modal layout g-flex">
             <ul class="nav__left">

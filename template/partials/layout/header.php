@@ -20,4 +20,3 @@
     <link rel="stylesheet" href="../../../style/main.css"/>
 </head>
 <body>
-<div data-js="content" class="content">

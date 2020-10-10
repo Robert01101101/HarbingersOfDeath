@@ -18,11 +18,30 @@
   // This is meant to do some scroll bar jank magic
   //padding-right: var(--js-scrollBarWidth);
 
-
-
-
   &__content {
     overflow-y: auto;
+  }
+
+  * {
+    //To ensure images are behind the remainder of content
+    z-index: 100;
+    position: relative;
+  }
+
+  .bgImages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+
+    img {
+      max-width: 33%;
+      filter:brightness(60%);
+    }
   }
 }
 .js-modal--open {
