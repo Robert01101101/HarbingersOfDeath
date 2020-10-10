@@ -11,8 +11,8 @@ use Util\HTML\SelectInputs;
                 <li class="nav__link">Login</li>
             </ul>
             <ul class="nav__right">
-                <li class="nav__link">Login</li>
-                <li aria-hidden="true" class="nav__divider">||</li>
+                <!-- <li class="nav__link">Login</li> -->
+                <!-- <li aria-hidden="true" class="nav__divider">||</li> -->
                 <li class="nav__link"><a href="" data-js="buttonClose-l">Close</a></li>
             </ul>
         </nav>
