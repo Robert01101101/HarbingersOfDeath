@@ -11,8 +11,8 @@ use Util\HTML\SelectInputs;
                 <li class="nav__link">Register</li>
             </ul>
             <ul class="nav__right">
-                <li class="nav__link">Login</li>
-                <li aria-hidden="true" class="nav__divider">||</li>
+                <!-- <li class="nav__link">Login</li> -->
+                <!-- <li aria-hidden="true" class="nav__divider">||</li> -->
                 <li class="nav__link"><a href="" data-js="buttonClose">Close</a></li>
             </ul>
         </nav>
@@ -25,23 +25,23 @@ use Util\HTML\SelectInputs;
         </section>
         <section class="form">
             <div class="layout layout--distant">
-                <form method="post">
+                <form method="post" id="form_register">
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="name">Name</label><br>
-                            <input class="input__text" type="text" id="name" name="name">
+                            <input class="input__text" type="text" id="name" name="name" required>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="emailAddress">Email Address</label><br>
-                            <input class="input__text" type="text" id="emailAddress" name="emailAddress">
+                            <input class="input__text" type="text" id="emailAddress" name="emailAddress" required>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password" name="password" autocomplete="new-password">
+                            <input class="input__text" type="password" id="password" name="password" autocomplete="new-password" required>
                         </div>
                     </div>
                     <fieldset class="form__row">
@@ -55,10 +55,10 @@ use Util\HTML\SelectInputs;
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="country">Country</label><br>
-                            <input class="input__text" type="text" id="country" name="country">
+                            <input class="input__text" type="text" id="country" name="country" required>
                         </div>
                     </div>
-                    <input type="submit" name="submit_register" class="input__submit" data-js="buttonSubmitRegisterForm" value="Register &rarr;">
+                    <input type="submit" id="submit_register" name="submit_register" class="input__submit input__submit--disabled" data-js="buttonSubmitRegisterForm" value="Register &rarr;" disabled >
                 </form>
             </div>
         </section>
