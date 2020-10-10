@@ -14,8 +14,8 @@ var Pair = function(label, input) {
 
 	this.input.addEventListener('input', (event) => {
 	  this.label.classList.add("input__label--selected");
-	  console.log("Focus on: " + this.input.id + ", with label: " + this.label.innerHTML);
-	  console.log("text:" + event.target.value);
+	  //console.log("Focus on: " + this.input.id + ", with label: " + this.label.innerHTML);
+	  //console.log("text:" + event.target.value);
 
 	  //Change label style on input
 	  if (event.target.value === ""){
@@ -42,3 +42,4 @@ for (let i = 0; i < cells.length; i++) {
 		new Pair(labels[0], inputs[0]);
 	}
 }
+

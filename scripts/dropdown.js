@@ -22,6 +22,7 @@ console.log(itemCount);
 for(var i = 0; i < itemCount; i++) {
   console.log(i);
 
+  const num = i;
   const elSelectNative = document.getElementsByClassName("js-selectNative")[i];
   const elSelectCustom = document.getElementsByClassName("js-selectCustom")[i];
   const elSelectCustomBox = elSelectCustom.children[0];
@@ -138,6 +139,8 @@ for(var i = 0; i < itemCount; i++) {
 
       if (value) {
         elSelectNative.value = value;
+        fieldsComplete[4+num] = true; 
+        updateButton(); 
         updateCustomSelectChecked(value, option.textContent);
       }
       closeSelectCustom();
@@ -166,6 +169,8 @@ for(var i = 0; i < itemCount; i++) {
 
       // Sync native select to have the same value
       elSelectNative.value = value;
+      fieldsComplete[4+num] = true; 
+      updateButton(); 
       updateCustomSelectChecked(value, e.target.textContent);
       closeSelectCustom();
     });
@@ -177,4 +182,42 @@ for(var i = 0; i < itemCount; i++) {
     // TODO: Toggle these event listeners based on selectCustom visibility
   });
 
+}
+
+
+//__________________________________________ DISABLE SUBMIT ON REGISTER UNTIL ALL FIELDS COMPLETE - REALLY MESSY CODE IM SORRY
+var inputs = document.forms["form_register"].getElementsByTagName("input");
+var selects = document.forms["form_register"].getElementsByTagName("select");
+var submitBtn = document.getElementById("submit_register");
+
+var fieldsComplete = [];
+var fields = 7;     
+for (let i = 0; i < fields; i++) {
+  fieldsComplete.push(false);
+}
+
+console.log(inputs);
+console.log(selects);
+
+inputs[0].addEventListener("input", (e) => { fieldsComplete[0] = !(e.target.value === ""); updateButton(); });
+inputs[1].addEventListener("input", (e) => { fieldsComplete[1] = !(e.target.value === ""); updateButton(); });
+inputs[2].addEventListener("input", (e) => { fieldsComplete[2] = !(e.target.value === ""); updateButton(); });
+inputs[3].addEventListener("input", (e) => { fieldsComplete[3] = !(e.target.value === ""); updateButton(); });
+
+function updateButton() {
+  let allFieldsComplete = true;
+  for (let i = 0; i < fields; i++) {
+    if (!fieldsComplete[i]) allFieldsComplete = false;
+  }
+  if (allFieldsComplete){
+    if (submitBtn.classList.contains("input__submit--disabled")) {
+      submitBtn.classList.remove("input__submit--disabled");
+      submitBtn.disabled = false;
+    }
+  } else {
+    if (!submitBtn.classList.contains("input__submit--disabled")) {
+      submitBtn.classList.add("input__submit--disabled");
+      submitBtn.disabled = true;
+    }
+  }
 }
