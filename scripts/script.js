@@ -9,6 +9,20 @@ let colcade = new Colcade(grid, {
 
 
 
+// source: https://stackoverflow.com/questions/346021/how-do-i-remove-objects-from-a-javascript-associative-array/9973592#9973592
+Object.prototype.removeItem = function (key) {
+    if (!this.hasOwnProperty(key))
+        return
+    if (isNaN(parseInt(key)) || !(this instanceof Array))
+        delete this[key]
+    else
+        this.splice(key, 1)
+};
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -18,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
      *
      *************************************/
 
-    // Open modal on click
+        // Open modal on click
 
     let modal = document.querySelector('[data-js="modal"]');
     let body = document.body;
@@ -53,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // stops click from doing anything
         event.preventDefault();
 
-       // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
+        // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
     });
 
     buttonClose.addEventListener('click', function ( event){
@@ -83,8 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
      *  https://stackoverflow.com/questions/316781/how-to-build-query-string-with-javascript
      *************************************/
 
+        // document.querySelectorAll(["data-js="tag-link"])
 
-    // Gets the URL Parameters
+
+        // Gets the URL Parameters
     let urlParams = {};
     (window.onpopstate = function () {
         let match,
@@ -112,131 +128,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let omenList = document.querySelector('[data-js="filtered-omen-list"]')
 
-    let deathTerms = document.querySelectorAll('[data-js-term-death]');
-    deathTerms.forEach(term => {
-        term.addEventListener('click', event => {
-            urlParams["death"] = term.getAttribute('data-js-term-death');
+    terms("aspect");
+    terms("death");
+    terms("fault");
 
-            deathTerms.forEach(tempTerm => {
-                if (tempTerm.classList.contains("tile__listItem--active")){
-                    tempTerm.classList.remove("tile__listItem--active")
+    function terms(taxonomy) {
+        let terms = document.querySelectorAll('[data-js-term-' + taxonomy + ']');
+        terms.forEach(term => {
+            term.addEventListener('click', event => {
+
+                event.preventDefault();
+
+                let termSlug = term.getAttribute('data-js-term-' + taxonomy);
+
+                if (urlParams[taxonomy] === termSlug) {
+                    urlParams.removeItem(taxonomy);
+                    term.classList.remove("tile__listItem--active");
+                } else {
+                    urlParams[taxonomy] = termSlug;
+                    terms.forEach(tempTerm => {
+                        if (tempTerm.classList.contains("tile__listItem--active")) {
+                            tempTerm.classList.remove("tile__listItem--active")
+                        }
+                    })
+                    term.classList.add("tile__listItem--active");
                 }
-            })
-            term.classList.add("tile__listItem--active");
 
-            var esc = encodeURIComponent;
-            var query = Object.keys(urlParams)
-                .map(k => esc(k) + '=' + esc(urlParams[k]))
-                .join('&');
+                window.console.log(urlParams);
 
-            if(omenList == null){
-                window.location.href = "/omen/?" + query;
-            } else {
+                let esc = encodeURIComponent;
+                let query = Object.keys(urlParams)
+                    .map(k => esc(k) + '=' + esc(urlParams[k]))
+                    .join('&');
 
-                let xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
 
-                        omenList.innerHTML = this.responseText;
-                        colcade.destroy()
-                        let grid = document.querySelector('[data-js="grid"]');
-                        colcade = new Colcade(grid, {
-                            columns: '[data-js="column"]',
-                            items: '[data-js="tile"]'
-                        });
-                    }
-                };
 
-                xmlhttp.open("GET", "/omen/ajax/?" + query, true);
-                xmlhttp.send();
-            }
+                if (omenList == null) {
+                    window.location.href = "/omen/?" + query;
+                } else {
 
-        })
-    })
+                    let xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
 
-    let aspectTerms = document.querySelectorAll('[data-js-term-aspect]');
-    aspectTerms.forEach(term => {
-        term.addEventListener('click', event => {
-            urlParams["aspect"] = term.getAttribute('data-js-term-aspect');
+                            omenList.innerHTML = this.responseText;
+                            colcade.destroy()
+                            let grid = document.querySelector('[data-js="grid"]');
+                            colcade = new Colcade(grid, {
+                                columns: '[data-js="column"]',
+                                items: '[data-js="tile"]'
+                            });
+                        }
+                    };
 
-            aspectTerms.forEach(tempTerm => {
-                if (tempTerm.classList.contains("tile__listItem--active")){
-                    tempTerm.classList.remove("tile__listItem--active")
+                    xmlhttp.open("GET", "/omen/ajax/?" + query, true);
+                    xmlhttp.send();
                 }
+
             })
-            term.classList.add("tile__listItem--active");
-
-            var esc = encodeURIComponent;
-            var query = Object.keys(urlParams)
-                .map(k => esc(k) + '=' + esc(urlParams[k]))
-                .join('&');
-
-            if(omenList == null){
-                window.location.href = "/omen/?" + query;
-            } else {
-
-                let xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-
-                        omenList.innerHTML = this.responseText;
-                        colcade.destroy()
-                        let grid = document.querySelector('[data-js="grid"]');
-                        colcade = new Colcade(grid, {
-                            columns: '[data-js="column"]',
-                            items: '[data-js="tile"]'
-                        });
-                    }
-                };
-
-                xmlhttp.open("GET", "/omen/ajax/?" + query, true);
-                xmlhttp.send();
-            }
-
         })
-    })
-
-    let faultTerms = document.querySelectorAll('[data-js-term-fault]');
-    faultTerms.forEach(term => {
-        term.addEventListener('click', event => {
-            urlParams["fault"] = term.getAttribute('data-js-term-fault');
-
-            faultTerms.forEach(tempTerm => {
-                if (tempTerm.classList.contains("tile__listItem--active")){
-                    tempTerm.classList.remove("tile__listItem--active")
-                }
-            })
-            term.classList.add("tile__listItem--active");
-
-            var esc = encodeURIComponent;
-            var query = Object.keys(urlParams)
-                .map(k => esc(k) + '=' + esc(urlParams[k]))
-                .join('&');
-
-            if(omenList == null){
-                window.location.href = "/omen/?" + query;
-            } else {
-
-                let xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState === 4 && this.status === 200) {
-
-                        omenList.innerHTML = this.responseText;
-                        colcade.destroy()
-                        let grid = document.querySelector('[data-js="grid"]');
-                        colcade = new Colcade(grid, {
-                            columns: '[data-js="column"]',
-                            items: '[data-js="tile"]'
-                        });
-                    }
-                };
-
-                xmlhttp.open("GET", "/omen/ajax/?" + query, true);
-                xmlhttp.send();
-            }
-
-        })
-    })
+    }
 
 
 });
