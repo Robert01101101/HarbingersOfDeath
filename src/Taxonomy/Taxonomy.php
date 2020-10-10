@@ -4,67 +4,47 @@
 namespace Taxonomy;
 
 
-use Entity\Omen\OmenCollection;
+use Taxonomy\Term;
 
 abstract class Taxonomy
 {
-    protected $id;
-    protected $title;
-    protected $slug;
+
+    protected array $termArray;
+
+    protected array $terms = array();
+
 
     /**
-     * @param mixed $title
-     * @return Taxonomy
+     * @param \Taxonomy\Term $taxonomy
+     * @return $this
+     *
+     * TODO: ERROR HANDLING
      */
-    public function setTitle($title)
-    {
-        $this->title = $title;
+    public function addTerm(Term $taxonomy){
+        //if(is_a($taxonomy, 'Taxonomy/Taxonomy')){
+            $this->terms[] = $taxonomy;
+       // }
         return $this;
     }
 
-    public abstract function getOmensByTaxonomy($taxonomy);
+    public abstract function createTerm($slug, $title);
 
-    /**
-     * @return mixed
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+    public static abstract function getTermBySlug(string $slug);
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $slug
-     * @return Taxonomy
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
+    protected function loadArray(){
+        foreach ($this->termArray as $individualTaxonomy) {
+            $this->createTerm($individualTaxonomy["slug"], $individualTaxonomy["title"]);
+        }
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return array
+     * // work out how to use/workaround "(new self)" in abstract class
      */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
+    public abstract static function getAllTerms(): array;
 
-    /**
-     * @param mixed $id
-     * @return Taxonomy
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
+    public function getTerms(){
+        return $this->terms;
     }
 }

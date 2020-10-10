@@ -3,7 +3,8 @@
 use View\Partial;
 
 // if columns don't exist, set it to 3
-$columns  = (isset($arguments["columns"])) ? $arguments["columns"] : 3;
+$columns  = (isset($columns) && !is_null($columns)) ? $columns : 3;
+
 
 // this assumes omen columns will always span two columns of the grid
 ?>
@@ -23,6 +24,14 @@ $columns  = (isset($arguments["columns"])) ? $arguments["columns"] : 3;
 
     <?php endfor; ?>
 
+    <?php if(isset($omenCollection)): ?>
+
+    <?= Partial::build('omens', ["omenCollection" => $omenCollection]); ?>
+
+    <?php else: ?>
+
     <?= Partial::build('omens'); ?>
+
+    <?php endif; ?>
 
 </div>

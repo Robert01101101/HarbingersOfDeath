@@ -10,3 +10,15 @@
 
 - result filtering (in progress)
 - omen page (in progress)
+
+
+
+---
+### Sam's image citations
+
+- _A Meat Stall with the Holy Family Giving Alms_
+[Pieter Aertsen (1551)](https://artsandculture.google.com/asset/fgF8j5tB3UFgAg)
+- _Jacob Cornelisz. van Oostsanen Painting a Portrait of His Wife_
+[Dirck Jacobsz (1550)](https://artsandculture.google.com/asset/jgE2Yeq0DL_FyA)
+- _The Cook_
+[Pieter Aertsen (1559)](https://artsandculture.google.com/asset/RgHLWesYw_GlOQ)

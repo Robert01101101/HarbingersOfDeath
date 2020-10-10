@@ -8,14 +8,14 @@
 require "src/Entity/Omen.php";
 require "src/Entity/OmenCollection.php";
 
+require "src/Taxonomy/Term.php";
 require "src/Taxonomy/Taxonomy.php";
-require "src/Taxonomy/TaxonomyCollection.php";
 require "src/Taxonomy/Fault.php";
-require "src/Taxonomy/FaultCollection.php";
+require "src/Taxonomy/FaultTaxonomy.php";
 require "src/Taxonomy/Death.php";
-require "src/Taxonomy/DeathCollection.php";
+require "src/Taxonomy/DeathTaxonomy.php";
 require "src/Taxonomy/Aspect.php";
-require "src/Taxonomy/AspectCollection.php";
+require "src/Taxonomy/AspectTaxonomy.php";
 
 require "src/User/User.php";
 
@@ -30,9 +30,13 @@ require "src/View/Partial.php";
 
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
-use Taxonomy\Fault\FaultCollection;
-use Taxonomy\Death\DeathCollection;
-use Taxonomy\Aspect\AspectCollection;
+use Taxonomy\FaultTaxonomy;
+use Taxonomy\DeathTaxonomy;
+use Taxonomy\AspectTaxonomy;
+
+use Taxonomy\Fault;
+use Taxonomy\Death;
+use Taxonomy\Aspect;
 
 use User\User;
 
@@ -40,35 +44,82 @@ use Route\Route;
 use View\Page;
 use View\Partial;
 
-$faults = new FaultCollection();
-$deaths = new DeathCollection();
-$aspects = new AspectCollection();
+//$faults = new FaultTaxonomy();
+//$deaths = new DeathTaxonomy();
+//$aspects = new AspectTaxonomy();
 
 $omens = new OmenCollection();
 
 
+// start session so that we can store logged in cookie
 session_start();
 
-
+/*************************************************
+ **  INDIVIDUAL OMEN ROUTE
+ *************************************************/
 // Add the individual omen route
-Route::add('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
+Route::get('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
     Page::build('omen', ["omen" => $omen]);
-}, 'get');
-
-// Add omen list route
-// TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
-Route::add('/omen', function($query) {
-    echo "You're on the omen list page";
-}, 'get', true);
-
-Route::add('/', function (){
-    Page::build('home');
-
 });
 
+
+/*************************************************
+ **  OMEN LIST ROUTE
+ *************************************************/
+// Add omen list route
+// TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
+Route::get('/omen', function($query) {
+    $taxonomies = [];
+
+    // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
+    foreach ($query as $taxonomy => $term){
+        switch ($taxonomy){
+            case "aspect":
+                if(!isset($taxonomies["aspect"]))  $taxonomies["aspect"] = new AspectTaxonomy();
+                $taxonomies["aspect"]->addTerm(AspectTaxonomy::getTermBySlug($term));
+
+                break;
+
+            case "death":
+                if(!isset($taxonomies["death"]))  $taxonomies["death"] = new DeathTaxonomy();
+                $taxonomies["death"]->addTerm(DeathTaxonomy::getTermBySlug($term));
+
+                break;
+            case "fault":
+                if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
+                $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));
+                break;
+        }
+    }
+
+    $omensCollection = new OmenCollection();
+
+    foreach ($taxonomies as $taxonomy){
+        foreach ($taxonomy as $key => $tag){
+            $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
+            $omensCollection = $tempOmensCollection;
+        }
+    }
+
+
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
+}, true);
+
+
+/*************************************************
+**  HOMEPAGE ROUTE
+ *************************************************/
+Route::get('/', function (){
+    Page::build('home');
+});
+
+
+/*************************************************
+ **  HOMEPAGE FORM SUBMISSION ROUTE
+ *************************************************/
 // Handles register and login form submissions
-Route::add('/', function (){
+Route::post('/', function (){
     // TODO: move data processing to it's own place
     // if Register Form has  been submitted
     // create new User object and write it to a text file
@@ -89,7 +140,6 @@ Route::add('/', function (){
     // compare it against the post values
     if (isset($_POST['submit_login'])){
         $user = User::buildFromFile('data.txt');
-        var_dump($_POST, $user);
         if(
             (isset($_POST['emailAddress']) && isset($_POST['password'])) &&
             ($_POST['emailAddress'] == $user->getEmailAddress() && $_POST['password'] == $user->getPassword())
@@ -101,7 +151,7 @@ Route::add('/', function (){
     }
 
     Page::build('home');
-}, 'post');
+});
 
 // Run the router
 Route::run('/');

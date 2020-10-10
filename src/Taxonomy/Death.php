@@ -1,13 +1,14 @@
 <?php
 
 
-namespace Taxonomy\Death;
+namespace Taxonomy;
 
+use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
-use Taxonomy\Taxonomy;
+use Taxonomy\Term;
 
 
-class Death extends Taxonomy
+class Death extends Term
 {
 
     public function __construct()
@@ -15,15 +16,25 @@ class Death extends Taxonomy
         return $this;
     }
 
-    public function getOmensByTaxonomy($taxonomy)
+    public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
-        $omens = array();
-        foreach (OmenCollection::getOmens() as $omen) {
-            if ($omen->getFault()->getId() == $taxonomy->getId()) {
-                $omens[] = $omen;
+
+        if (!isset($omensCollection) && (is_null($omensCollection) || !is_a($omensCollection, 'Entity\Omen\OmenCollection'))){
+            $omensCollection = new OmenCollection();
+        }
+
+        $omens = $omensCollection->getOmenList();
+
+        $filteredOmens = [];
+
+        foreach ($omens as $omen) {
+            if ($omen->getDeath()->getSlug() == $this->slug) {
+                $filteredOmens[] = $omen;
             }
         }
-        return $omens;
+
+        $omensCollection->setOmens($filteredOmens);
+        return $omensCollection;
     }
 
 

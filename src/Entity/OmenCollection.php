@@ -3,9 +3,9 @@
 namespace Entity\Omen;
 
 use Entity\Omen\Omen;
-use Taxonomy\Aspect\AspectCollection;
-use Taxonomy\Death\DeathCollection;
-use Taxonomy\Fault\FaultCollection;
+use Taxonomy\AspectTaxonomy;
+use Taxonomy\DeathTaxonomy;
+use Taxonomy\FaultTaxonomy;
 
 class OmenCollection
 {
@@ -65,11 +65,9 @@ class OmenCollection
             "fault" => "the-public",
             "aspect" => "death",
             "death" => "community-member"
-        ],
-
-
-
+        ]
     ];
+
     private $omens = array();
 
     public function __construct()
@@ -79,22 +77,36 @@ class OmenCollection
         }
     }
 
+
+
     public function createOmen($slug, $title, $fault, $aspect, $death){
         $this->omens[] = (new Omen())
             ->setId(count($this->omens))
             ->setSlug($slug)
             ->setTitle($title)
-            ->setFault(FaultCollection::getTaxonomyBySlug($fault))
-            ->setAspect(AspectCollection::getTaxonomyBySlug($aspect))
-            ->setDeath(DeathCollection::getTaxonomyBySlug($death));
+            ->setFault(FaultTaxonomy::getTermBySlug($fault))
+            ->setAspect(AspectTaxonomy::getTermBySlug($aspect))
+            ->setDeath(DeathTaxonomy::getTermBySlug($death));
     }
 
     /**
      * @return array
      */
-    public static function getOmens()
+    public static function getNewOmenList()
     {
         return (new self)->omens;
+    }
+
+    public function getOmenList() : array
+    {
+        return $this->omens;
+    }
+
+
+    public function setOmens(array $omens) : self
+    {
+        $this->omens = $omens;
+        return $this;
     }
 
 

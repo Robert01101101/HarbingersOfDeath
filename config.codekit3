@@ -88,6 +88,14 @@
 		"oAP": "/index.php",
 		"oF": 0
 		},
+	"/README.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/README.html",
+		"oF": 0
+		},
 	"/README.md": {
 		"cB": 0,
 		"cS": 0,
@@ -213,12 +221,12 @@
 		"oAP": "/src/Taxonomy/Aspect.php",
 		"oF": 0
 		},
-	"/src/Taxonomy/AspectCollection.php": {
+	"/src/Taxonomy/AspectTaxonomy.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/src/Taxonomy/AspectCollection.php",
+		"oAP": "/src/Taxonomy/AspectTaxonomy.php",
 		"oF": 0
 		},
 	"/src/Taxonomy/Death.php": {
@@ -229,12 +237,12 @@
 		"oAP": "/src/Taxonomy/Death.php",
 		"oF": 0
 		},
-	"/src/Taxonomy/DeathCollection.php": {
+	"/src/Taxonomy/DeathTaxonomy.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/src/Taxonomy/DeathCollection.php",
+		"oAP": "/src/Taxonomy/DeathTaxonomy.php",
 		"oF": 0
 		},
 	"/src/Taxonomy/Fault.php": {
@@ -245,12 +253,12 @@
 		"oAP": "/src/Taxonomy/Fault.php",
 		"oF": 0
 		},
-	"/src/Taxonomy/FaultCollection.php": {
+	"/src/Taxonomy/FaultTaxonomy.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/src/Taxonomy/FaultCollection.php",
+		"oAP": "/src/Taxonomy/FaultTaxonomy.php",
 		"oF": 0
 		},
 	"/src/Taxonomy/Taxonomy.php": {
@@ -261,12 +269,12 @@
 		"oAP": "/src/Taxonomy/Taxonomy.php",
 		"oF": 0
 		},
-	"/src/Taxonomy/TaxonomyCollection.php": {
+	"/src/Taxonomy/Term.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/src/Taxonomy/TaxonomyCollection.php",
+		"oAP": "/src/Taxonomy/Term.php",
 		"oF": 0
 		},
 	"/src/User/User.php": {

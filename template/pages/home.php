@@ -1,8 +1,8 @@
 <?php
 
-use Taxonomy\Aspect\AspectCollection;
-use Taxonomy\Death\DeathCollection;
-use Taxonomy\Fault\FaultCollection;
+use Taxonomy\Taxonomy\AspectTaxonomy;
+use Taxonomy\Death\DeathTaxonomy;
+use Taxonomy\Fault\FaultTaxonomy;
 use View\Partial;
 
 ?>
@@ -20,7 +20,7 @@ use View\Partial;
 
 
 <?= Partial::build("hero", [
-        "heroText" => "Are you going to die? Have you kicked your mother&#39;s bucket? Are your friends on the way out?",
+        "heroText" => "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?",
         "callToActionText" => "Sign in to find out",
         "large" => "true"
 ]); ?>

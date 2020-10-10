@@ -22,18 +22,33 @@ class Route
 
 
     /**
-     * Function used to add a new route
+     * Function used to add a new POST route
      * @param string $expression Route string or regex (i.e. '/omen/' or '/omen/([a-z0-9]+(?:-[a-z0-9]+)*)')
      * @param callable $function Function to call if route with allowed method is found
-     * @param string $method A string of the allowed method (i.e. POST, GET, DELETE)
      * @param bool $query Sends the query data to the function as an array
      */
-    public static function add(string $expression, callable $function, $method = 'get', $query = TRUE)
+    public static function post(string $expression, callable $function, $query = TRUE)
     {
         self::$routes[] = [
             'expression' => $expression,
             'function' => $function,
-            'method' => $method,
+            'method' => 'post',
+            'query' => $query
+        ];
+    }
+
+    /**
+     * Function used to add a new GET route
+     * @param string $expression Route string or regex (i.e. '/omen/' or '/omen/([a-z0-9]+(?:-[a-z0-9]+)*)')
+     * @param callable $function Function to call if route with allowed method is found
+     * @param bool $query Sends the query data to the function as an array
+     */
+    public static function get(string $expression, callable $function, $query = TRUE)
+    {
+        self::$routes[] = [
+            'expression' => $expression,
+            'function' => $function,
+            'method' => 'get',
             'query' => $query
         ];
     }
