@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
     let omenList = document.querySelector('[data-js="filtered-omen-list"]')
 
     let deathTerms = document.querySelectorAll('[data-js-term-death]');
@@ -135,8 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 let xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
-                        console.log(this);
-                        console.log(this.responseText);
 
                         omenList.innerHTML = this.responseText;
                         colcade.destroy()
@@ -179,8 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 let xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
-                        console.log(this);
-                        console.log(this.responseText);
 
                         omenList.innerHTML = this.responseText;
                         colcade.destroy()
@@ -223,8 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 let xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
-                        console.log(this);
-                        console.log(this.responseText);
 
                         omenList.innerHTML = this.responseText;
                         colcade.destroy()

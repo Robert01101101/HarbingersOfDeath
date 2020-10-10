@@ -60,13 +60,13 @@ if(isset($taxonomies) && is_array($taxonomies)) {
             <ul class="tile__row">
                 <li class="tile__listItem tile__listItem--title">Who’s at fault?</li>
                 <?php foreach ($faults->getTerms() as $term): ?>
-                    <li data-js-term-fault="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><?= $term->getTitle() ?></li>
+                    <li data-js-term-fault="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a href="#0"><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
             <ul class="tile__row">
                 <li class="tile__listItem tile__listItem--title">Who is dying?</li>
                 <?php foreach ($deaths->getTerms() as $term): ?>
-                    <li data-js-term-death="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><?= $term->getTitle() ?></li>
+                    <li data-js-term-death="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a href="#0"><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
             <ul class="tile__row  tile__row--last">
@@ -74,7 +74,7 @@ if(isset($taxonomies) && is_array($taxonomies)) {
                     happening?
                 </li>
                 <?php foreach ($aspects->getTerms() as $term): ?>
-                    <li data-js-term-aspect="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><?= $term->getTitle() ?></li>
+                    <li data-js-term-aspect="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a href="#0"><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

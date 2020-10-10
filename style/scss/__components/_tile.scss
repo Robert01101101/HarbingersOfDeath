@@ -39,7 +39,16 @@
     color: $whiteTrans;
     text-decoration: underline;
     padding-right: space(1);
+    transition: color 0.5s ease-out;
 
+    a {
+      transition: color 0.5s ease-out;
+    }
+    a:hover{
+      color: rgba(255,255,255,.5);
+      transition: color 0.5s ease-out;
+
+    }
 
     &--title {
       @include font(sans-serif, 600);
@@ -48,6 +57,9 @@
     }
 
     &--active{
+      a {
+        transition: color 0.5s ease-out;
+      }
       color: $white;
       @include font(sans-serif, 700);
 

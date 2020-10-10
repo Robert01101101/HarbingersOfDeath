@@ -735,6 +735,14 @@ h2 {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: underline;
   padding-right: 1em;
+  transition: color 0.5s ease-out;
+}
+.tile__listItem a {
+  transition: color 0.5s ease-out;
+}
+.tile__listItem a:hover {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.5s ease-out;
 }
 .tile__listItem--title {
   font-family: neue-haas-grotesk-display, sans-serif;
@@ -748,6 +756,9 @@ h2 {
   font-family: neue-haas-grotesk-display, sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+.tile__listItem--active a {
+  transition: color 0.5s ease-out;
 }
 .tile__panel {
   box-sizing: border-box;
