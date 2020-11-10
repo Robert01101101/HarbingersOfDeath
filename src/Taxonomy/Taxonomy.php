@@ -13,6 +13,12 @@ abstract class Taxonomy
 
     protected array $terms = array();
 
+    protected PDO $connection;
+
+    public function __construct()
+    {
+        // TODO: set up PDO connection
+    }
 
     /**
      * @param \Taxonomy\Term $taxonomy
@@ -44,7 +50,6 @@ abstract class Taxonomy
      */
     public abstract static function getAllTerms(): array;
 
-    public function getTerms(){
-        return $this->terms;
-    }
+    public abstract function getTerms() : array;
+
 }

@@ -154,14 +154,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     term.classList.add("tile__listItem--active");
                 }
 
-                window.console.log(urlParams);
+
+                for (const [taxonomy, term] of Object.entries(urlParams)){
+                    let liLinkTaxonomy = document.createElement('li');
+                    liLinkTaxonomy.setAttribute('class', 'nav__link');
+                    let textTaxonomy = document.createTextNode(taxonomy);
+                    liLinkTaxonomy.appendChild(textTaxonomy);
+
+                    let navLeft = document.querySelector('[data-js="breadcrumbs"]');
+                    navLeft.appendChild(liLinkTaxonomy);
+
+                }
+
+
+
+
 
                 let esc = encodeURIComponent;
                 let query = Object.keys(urlParams)
                     .map(k => esc(k) + '=' + esc(urlParams[k]))
                     .join('&');
 
-
+                console.log(query);
 
                 if (omenList == null) {
                     window.location.href = "/omen/?" + query;
@@ -184,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     xmlhttp.open("GET", "/omen/ajax/?" + query, true);
                     xmlhttp.send();
                 }
-
             })
         })
     }

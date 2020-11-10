@@ -14,12 +14,17 @@ class Omen
     protected Fault $fault;
     protected Aspect $aspect;
     protected Death $death;
+    protected string $imagePath;
     private string $path;
 
-    public function __construct()
+    public function __construct($slug, $title)
     {
+        $this->$slug = $slug;
+        $this->$title = $title;
         return $this;
     }
+
+
 
     /**
      * @return mixed

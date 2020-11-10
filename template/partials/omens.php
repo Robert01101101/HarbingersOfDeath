@@ -11,9 +11,9 @@ if(
         isset($omenCollection) &&
         !is_null($omenCollection) &&
         is_a($omenCollection,'Entity\Omen\OmenCollection')){
-    $omens = $omenCollection->getOmenList();
+    $omens = $omenCollection->getOmens();
 } else {
-    $omens = OmenCollection::getNewOmenList();
+    $omens = OmenCollection::findAllOmens();
 }
 
 

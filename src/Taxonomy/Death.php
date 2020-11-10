@@ -23,7 +23,7 @@ class Death extends Term
             $omensCollection = new OmenCollection();
         }
 
-        $omens = $omensCollection->getOmenList();
+        $omens = $omensCollection->getOmens();
 
         $filteredOmens = [];
 

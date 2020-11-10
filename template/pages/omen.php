@@ -5,8 +5,7 @@ use Taxonomy\Death\DeathTaxonomy;
 use Taxonomy\Fault\FaultTaxonomy;
 use View\Partial;
 
-// THIS IS THE OMEN OBJECT YOU NEED
-$omen = $arguments["omen"];
+// TODO: 404 error handling
 ?>
 
 <?= Partial::build('layout/header'); ?>
@@ -18,7 +17,7 @@ $omen = $arguments["omen"];
 <?= Partial::build('modal/login'); ?>
 
 <!--THE HOMEPAGE WINDOW-->
-<?= Partial::build('nav') ?>
+<?= Partial::build('nav', ["breadcrumb" => $omen->getTitle()]) ?>
 
 <img src="/assets/images/bread.jpg" class="omenImg">
 

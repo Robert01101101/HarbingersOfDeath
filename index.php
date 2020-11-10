@@ -56,7 +56,7 @@ session_start();
 
 /*************************************************
  **  AJAX OMEN LIST ROUTE
- *  TODO: refractor so code isn't duplicated
+ *  TODO: refactor so code isn't duplicated
  *
  *************************************************/
 // Add omen list route
@@ -70,22 +70,25 @@ Route::get('/omen/ajax', function($query) {
             case "aspect":
                 if(!isset($taxonomies["aspect"]))  $taxonomies["aspect"] = new AspectTaxonomy();
                 $taxonomies["aspect"]->addTerm(AspectTaxonomy::getTermBySlug($term));
-
                 break;
 
             case "death":
                 if(!isset($taxonomies["death"]))  $taxonomies["death"] = new DeathTaxonomy();
                 $taxonomies["death"]->addTerm(DeathTaxonomy::getTermBySlug($term));
-
                 break;
+
             case "fault":
                 if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
                 $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));
                 break;
+
         }
     }
 
+
     $omensCollection = new OmenCollection();
+
+    var_dump();
 
     foreach ($taxonomies as $taxonomy){
         foreach ($taxonomy->getTerms() as $key => $tag){
@@ -121,14 +124,13 @@ Route::get('/omen', function($query) {
             case "aspect":
                 if(!isset($taxonomies["aspect"]))  $taxonomies["aspect"] = new AspectTaxonomy();
                 $taxonomies["aspect"]->addTerm(AspectTaxonomy::getTermBySlug($term));
-
                 break;
 
             case "death":
                 if(!isset($taxonomies["death"]))  $taxonomies["death"] = new DeathTaxonomy();
                 $taxonomies["death"]->addTerm(DeathTaxonomy::getTermBySlug($term));
-
                 break;
+
             case "fault":
                 if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
                 $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));

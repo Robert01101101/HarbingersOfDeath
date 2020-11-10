@@ -23,7 +23,8 @@ class Fault extends Term
             $omensCollection = new OmenCollection();
         }
 
-        $omens = $omensCollection->getOmenList();
+        $omens = $omensCollection->getOmens();
+//        var_dump($omens);
 
         $filteredOmens = [];
 
@@ -34,8 +35,10 @@ class Fault extends Term
         }
 
         $omensCollection->setOmens($filteredOmens);
+
+        var_dump($omensCollection);
+
         return $omensCollection;
     }
-
 
 }

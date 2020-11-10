@@ -11,49 +11,24 @@ use Taxonomy\Term;
 class FaultTaxonomy extends Taxonomy
 {
 
-
-    public function __construct(bool $loadTermArray = FALSE)
-    {
-        /*
-        *   THIS IS THE TEMPORARY DATA AS AN ARRAY
-        *   AND IT IS LOADED INTO THE COLLECTION
-        */
-        $this->termArray = [
-            [
-                "slug" => "you",
-                "title" => "You"
-            ],
-            [
-                "slug" => "god",
-                "title" => "God"
-            ],
-            [
-                "slug" => "the-public",
-                "title" => "The Public"
-            ]
-
-        ];
-
-        if ($loadTermArray === TRUE){
-            $this->loadArray();
-        }
-    }
-
-
-
-
-
     /**
      * @param $slug
      * @param $title
      *
      * Creates a new Taxonomony and adds it to the taxonomies array
      */
-    public function createTerm($slug, $title){
-        $this->terms[] = (new Fault())
+    public function createTerm($slug, $title):  Death
+    {
+        retun (new Fault())
             ->setId(count($this->terms))
             ->setSlug($slug)
             ->setTitle($title);
+    }
+
+    public function addTerm(Fault $fault) : array
+    {
+        $this->terms[] = $fault;
+        return $this->terms;
     }
 
     /**
@@ -74,10 +49,19 @@ class FaultTaxonomy extends Taxonomy
 
     public static function getAllTerms(): array
     {
-        return (new self)->loadArray()->terms;
+        //TODO: database query
+        // should use "(new self)" which will call the constructor
+        // (which sets up the db connection)
+        // don't forget to close the database connection "$this->connection = null"
+        // return an array of Term objects
     }
-//    public function getTaxonomies(): array
-//    {
-//        return $this->loadArray()->taxonomies;
-//    }
+
+    public function getTerms(): array
+    {
+        //TODO: database query
+        // don't forget to close the database connection "$this->connection = null"
+        // return an array of Term objects
+    }
+
+
 }

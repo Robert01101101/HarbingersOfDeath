@@ -10,49 +10,24 @@ use Taxonomy\Term;
 class DeathTaxonomy extends Taxonomy
 {
 
-
-
-    public function __construct(bool $loadTermArray = FALSE)
-    {
-        /*
-        *   THIS IS THE TEMPORARY DATA AS AN ARRAY
-        *   AND IT IS LOADED INTO THE COLLECTION
-        */
-        $this->termArray = [
-            [
-                "slug" => "close-friend",
-                "title" => "Close Friend"
-            ],
-            [
-                "slug" => "you",
-                "title" => "You"
-            ],
-            [
-                "slug" => "community-member",
-                "title" => "Community Member"
-            ],
-            [
-                "slug" => "family-member",
-                "title" => "Family Member"
-            ]
-        ];
-        if ($loadTermArray === TRUE){
-            $this->loadArray();
-        }
-    }
-
-
     /**
      * @param $slug
      * @param $title
      *
      * Creates a new Taxonomony and adds it to the taxonomies array
      */
-    public function createTerm($slug, $title){
-        $this->terms[] = (new Death())
+    public function createTerm($slug, $title) : Death
+    {
+        return (new Death())
             ->setId(count($this->terms))
             ->setSlug($slug)
             ->setTitle($title);
+    }
+
+    public function addTerm(Death $death) : array
+    {
+        $this->terms[] = $death;
+        return $this->terms;
     }
 
     /**
@@ -73,6 +48,17 @@ class DeathTaxonomy extends Taxonomy
 
     public static function getAllTerms(): array
     {
-        return (new self)->loadArray()->terms;
+        //TODO: database query
+        // should use "(new self)" which will call the constructor
+        // (which sets up the db connection)
+        // don't forget to close the database connection "$this->connection = null"
+        // return an array of Term objects
+    }
+
+    public function getTerms(): array
+    {
+        //TODO: database query
+        // don't forget to close the database connection "$this->connection = null"
+        // return an array of Term objects
     }
 }

@@ -6,17 +6,19 @@ if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
     $user = $_SESSION['user'];
 };
 
-//$heroText  = (isset($breadcrumb)) ? htmlspecialchars($heroText) : "Is it time to die?";
+$breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
 
 ?>
 
 <div data-js="content" class="content">
 <header>
     <nav class="nav layout g-flex">
-        <ul class="nav__left">
+        <ul data-js="breadcrumbs" class="nav__left">
             <li class="nav__link"><a href="/">Harbingers of Death</a></li>
-
+            <?php if(!is_null($breadcrumb)): ?>
             <li aria-hidden="true" class="nav__divider">//</li>
+            <li class="nav__link"><?= $breadcrumb?></li>
+            <?php endif; ?>
         </ul>
         <ul class="nav__right">
             <?php if (isset($user)): ?>
