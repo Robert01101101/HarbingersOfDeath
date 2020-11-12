@@ -71,11 +71,41 @@ class OmenCollection
 
     private $omens = array();
 
-    private PDO $connection;
+    protected $connection;
+
+    //Connection Variables
+    const DBHOST = "localhost";
+    const DBUSER = "root";
+    const DBPASS = "";
+    const DBNAME = "robert_michels";
+
+    //Table Names
+    const T_ADDRESS = "address";
+    const T_ASPECT = "aspect";
+    const T_DEATH = "death";
+    const T_FAULT = "fault";
+    const T_OMEN = "omen";
+    const T_USER = "user";
+    const T_USER_OMEN = "user_omen";
+
+    //Column Names
+    const C_SLUG = "slug";
 
     public function __construct()
     {
-        // TODO: set up PDO connection
+        // Set up MySQLi connection
+        // Code for connection is from Lab.
+        // 1. Create a database connection
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) {
+        // if connection failed, skip the rest of PHP code, and print an error
+        die("Database connection failed: " . 
+             mysqli_connect_error() . 
+             " (" . mysqli_connect_errno() . ")"
+        );
+        }
     }
 
 
@@ -135,6 +165,7 @@ class OmenCollection
     public static function findAllOmens()
     {
         //TODO: database query
+        //SQL query
         // should use "(new self)" which will call the constructor
         // (which sets up the db connection)
         // don't forget to close the database connection "$this->connection = null"
@@ -150,6 +181,7 @@ class OmenCollection
     public static function findOmensByFilter(Fault $fault, Aspect $aspect, Death $death)
     {
         //TODO: database query
+        //SQL query
         // should use "(new self)" which will call the constructor
         // (which sets up the db connection)
         // don't forget to close the database connection "$this->connection = null"
@@ -171,14 +203,51 @@ class OmenCollection
      */
     public static function findOmenBySlug(string $slug) : Omen
     {
-        //TODO: this should be a query
+        //TODO: database query
+        //SQL query
         // should use "(new self)" which will call the constructor
         // (which sets up the db connection)
         // don't forget to close the database connection "$this->connection = null"
         // needs to do an inner join with the taxonomies
         // and then build them as objects
         // return a single Omen object (Error handling to make sure the result returned is a single item)
+        // 2. Perform database query
+        $query = "SELECT * ";
 
+        $query .= "FROM ".self::T_OMEN." WHERE ".self::C_SLUG." = '".$slug."';";
+
+        $result = mysqli_query($connection, $query);
+
+        // 3. Use returned data
+        //Print querie
+        //echo $query;
+        //prepare array
+        $output = new Omen();
+
+        
+        //Print rows
+        while($row = mysqli_fetch_array($result))
+        {
+            $title = $row[2];
+            $image_path = $row[3];
+            $aspect = $row[4];
+            $death = $row[5];
+            $fault = $row[6];
+            $output = (new Omen($slug, $title))
+            ->setFault($fault)
+            ->setAspect($aspect)
+            ->setDeath($death);
+        }
+
+
+
+        // 4. Release returned data
+        mysqli_free_result($result);
+  
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        return $output;
     }
 
 
