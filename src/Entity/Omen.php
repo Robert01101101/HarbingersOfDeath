@@ -22,6 +22,7 @@ class Omen
         $this->$slug = $slug;
         $this->$title = $title;
         return $this;
+        //TODO: fix - the params aren't working for some reason (in OmenCollection/getOmenBySlug())
     }
 
 

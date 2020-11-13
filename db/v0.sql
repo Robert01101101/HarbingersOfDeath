@@ -59,8 +59,8 @@ CREATE TABLE `user_omen` (
 CREATE TABLE `omen` (
     `omen_id` int(10)  NOT NULL ,
     `slug` varchar(50)  NOT NULL ,
-    `title` varchar(50)  NOT NULL ,
-    `image_path` varchar(50)  NOT NULL ,
+    `title` varchar(512)  NOT NULL ,
+    `image_path` varchar(256)  NOT NULL ,
     `aspect_id` int(10)  NOT NULL ,
     `death_id` int(10)  NOT NULL ,
     `fault_id` int(10)  NOT NULL ,
@@ -142,6 +142,9 @@ insert  into `fault`(`term_id`,`slug`,`title`) values (0,'you','You'),(1,'god','
 UNLOCK TABLES;
 LOCK TABLES `omen` WRITE;
 
-insert  into `omen`(`omen_id`,`slug`,`title`,`image_path`,`aspect_id`,`death_id`,`fault_id`) values (00,'cracked-bread','Have you baked bread, that has cracks upon its top?','/assets/images/bread.jpg',0,0,0);
+insert  into `omen`(`omen_id`,`slug`,`title`,`image_path`,`aspect_id`,`death_id`,`fault_id`) values 
+(00,'cracked-bread','Have you baked bread, that has cracks upon its top?','/assets/images/bread.jpg',0,0,0),
+(01,'ringing-ears','Is there a ringing in your ears?','/assets/images/bread.jpg',1,1,0),
+(02,'lighted-carptenters-shop','Has a light suddenly and unaccountably been seen in a carpenter’s shop?','/assets/images/bread.jpg',2,2,2);
 
 UNLOCK TABLES;

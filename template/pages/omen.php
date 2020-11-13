@@ -3,6 +3,7 @@
 use Taxonomy\Taxonomy\AspectTaxonomy;
 use Taxonomy\Death\DeathTaxonomy;
 use Taxonomy\Fault\FaultTaxonomy;
+use Entity\Omen;
 use View\Partial;
 
 // TODO: 404 error handling
@@ -30,7 +31,7 @@ use View\Partial;
   <p class="poem__body">
     morning Mass&mdash;<br>
     through the open door<br>
-    the smell of new-baked bread
+    the smell of new-baked bread<br>
   </p>
   <footer class="poem__author">
     &mdash;<cite itemprop="author">John McDonald</cite>

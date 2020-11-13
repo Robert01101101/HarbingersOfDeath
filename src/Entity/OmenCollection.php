@@ -3,7 +3,9 @@
 namespace Entity\Omen;
 
 use Entity\Omen\Omen;
+use Taxonomy\Aspect;
 use Taxonomy\AspectTaxonomy;
+use Taxonomy\Death;
 use Taxonomy\DeathTaxonomy;
 use Taxonomy\Fault;
 use Taxonomy\FaultTaxonomy;
@@ -89,7 +91,14 @@ class OmenCollection
     const T_USER_OMEN = "user_omen";
 
     //Column Names
+    const C_ID = "omen_id";
     const C_SLUG = "slug";
+    const C_TITLE = "title";
+    const C_IMAGE = "image_path";
+    const C_ASPECT = "aspect_id";
+    const C_DEATH = "death_id";
+    const C_FAULT = "fault_id";
+    const C_TERM = "term_id";
 
     public function __construct()
     {
@@ -201,9 +210,23 @@ class OmenCollection
     /**
      * @return Omen
      */
-    public static function findOmenBySlug(string $slug) : Omen
+    public static function getOmenBySlug(string $slug) : Omen
     {
-        //TODO: database query
+        //TODO: use constructor
+        // Set up MySQLi connection
+        // Code for connection is from Lab.
+        // 1. Create a database connection
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) {
+        // if connection failed, skip the rest of PHP code, and print an error
+        die("Database connection failed: " . 
+             mysqli_connect_error() . 
+             " (" . mysqli_connect_errno() . ")"
+        );
+        }
+
         //SQL query
         // should use "(new self)" which will call the constructor
         // (which sets up the db connection)
@@ -212,31 +235,94 @@ class OmenCollection
         // and then build them as objects
         // return a single Omen object (Error handling to make sure the result returned is a single item)
         // 2. Perform database query
-        $query = "SELECT * ";
 
-        $query .= "FROM ".self::T_OMEN." WHERE ".self::C_SLUG." = '".$slug."';";
+        //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
+        $query = "SELECT * FROM ";
+        //Join omen with aspect
+        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        //Join result with death
+        $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
+        //Join result with fault
+        $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+        //Filter result by omen slug
+        $query .= " WHERE ".self::T_OMEN.".".self::C_SLUG." = '".$slug."';";
+
+        //DEBUG
+        //echo $query;
 
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-        //Print querie
-        //echo $query;
-        //prepare array
-        $output = new Omen();
 
-        
+        //prepare output
+        $output;
+
         //Print rows
         while($row = mysqli_fetch_array($result))
         {
-            $title = $row[2];
-            $image_path = $row[3];
-            $aspect = $row[4];
-            $death = $row[5];
-            $fault = $row[6];
-            $output = (new Omen($slug, $title))
-            ->setFault($fault)
-            ->setAspect($aspect)
-            ->setDeath($death);
+            //echo print_r($row);
+            
+            //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
+            $omen_id = $row[0];
+            $omen_slug = $row[1];
+            $omen_title = $row[2];
+            $omen_image = $row[3];
+
+            $aspect_id = $row[7];
+            $aspect_slug = $row[8];
+            $aspect_title = $row[9];
+
+            $death_id = $row[10];
+            $death_slug = $row[11];
+            $death_title = $row[12];
+
+            $fault_id = $row[13];
+            $fault_slug = $row[14];
+            $fault_title = $row[15];
+            
+            /*
+            //DEBUG
+            echo "<br>Omen ID: ".$omen_id;
+            echo "<br>Omen Slug: ".$omen_slug;
+            echo "<br>Omen Title: ".$omen_title;
+            echo "<br>Omen Image: ".$omen_image;
+
+            echo "<br>Aspect ID: ".$aspect_id;
+            echo "<br>Aspect Slug: ".$aspect_slug;
+            echo "<br>Aspect Title: ".$aspect_title;
+
+            echo "<br>Death ID: ".$death_id;
+            echo "<br>Death Slug: ".$death_slug;
+            echo "<br>Death Title: ".$death_title;
+
+            echo "<br>Fault ID: ".$fault_id;
+            echo "<br>Fault Slug: ".$fault_slug;
+            echo "<br>Fault Title: ".$fault_title;
+            */
+
+            //TODO: Set omen image path
+            //TODO: Set poem
+            $omenAspect = (new Aspect())
+            ->setId($aspect_id)
+            ->setSlug($aspect_slug)
+            ->setTitle($aspect_title);
+
+            $omenDeath = (new Death())
+            ->setId($death_id)
+            ->setSlug($death_slug)
+            ->setTitle($death_title);
+
+            $omenFault = (new Fault())
+            ->setId($fault_id)
+            ->setSlug($fault_slug)
+            ->setTitle($fault_title);
+
+            $output = (new Omen($omen_slug, $omen_title))
+            ->setFault($omenFault)
+            ->setAspect($omenAspect)
+            ->setDeath($omenDeath)
+            ->setTitle($omen_title)
+            ->setSlug($omen_slug);
         }
 
 
@@ -249,9 +335,6 @@ class OmenCollection
 
         return $output;
     }
-
-
-
 
 }
 
