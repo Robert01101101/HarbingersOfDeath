@@ -321,13 +321,7 @@ class OmenCollection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
 
         // Test if connection succeeded
-        if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         //SQL query
         // should use "(new self)" which will call the constructor

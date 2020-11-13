@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `fault`;
 -- two dots ('..' - without quotes).
 
 CREATE TABLE `user` (
-    `user_id` int(10)  NOT NULL ,
+    `user_id` int(10)  NOT NULL AUTO_INCREMENT,
     `user_name` varchar(50)  NOT NULL ,
     `password` varchar(50)  NOT NULL ,
     `created_at` timestamp  NOT NULL ,
@@ -39,7 +39,7 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `address` (
-    `address_id` int(10)  NOT NULL ,
+    `address_id` int(10)  NOT NULL AUTO_INCREMENT,
     `country` varchar(50)  NOT NULL ,
     `province` varchar(50)  NOT NULL ,
     `city` varchar(50)  NOT NULL ,
