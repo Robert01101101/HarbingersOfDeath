@@ -4,6 +4,7 @@ use Util\HTML\Tags;
 
 if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
     $user = $_SESSION['user'];
+    echo "USER IS LOGGED IN BUT THE CODE DOES NOT WORK YET";
 };
 
 $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;

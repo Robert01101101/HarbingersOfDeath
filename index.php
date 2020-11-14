@@ -181,12 +181,12 @@ Route::get('/', function (){
 // Handles register and login form submissions
 Route::post('/', function (){
     // TODO: move data processing to it's own place
-    // REGISTER
+    ////////////////////////////////// REGISTER
     if(isset($_POST['submit_register'])) {
         $user = (new User())
             ->setName($_POST['name'])
             ->setEmailAddress($_POST['emailAddress'])
-            ->setPassword($_POST['password'])
+            ->setPassword(sha1($_POST['password']))
             ->setBirthdayDay($_POST['birthday__day'])
             ->setBirthdayMonth($_POST['birthday__month'])
             ->setBirthdayYear($_POST['birthday__year'])
@@ -194,7 +194,8 @@ Route::post('/', function (){
             ->writeToDB();
     }
 
-    // LOGIN
+    ////////////////////////////////// LOGIN
+    
     // create new User object from the text file and
     // compare it against the post values
     if (isset($_POST['submit_login'])){
@@ -229,7 +230,9 @@ Route::post('/', function (){
             if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
             //2. Query
-            $query = "SELECT * FROM `user` WHERE user.email_address = '".$formEmail."' AND user.password = '".$formPassword."'";
+             
+            $query = "SELECT * FROM `user` WHERE user.email_address = '".$formEmail."' AND user.password = '".sha1($formPassword)."'";
+            //echo $query;
 
             $result = mysqli_query($connection, $query);
             //TODO: build user for session
