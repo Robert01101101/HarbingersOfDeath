@@ -25,7 +25,7 @@ class DeathTaxonomy extends Taxonomy
     }
 
     //TODO: @Sam - confirm whether this change is okay. Original code is commented out
-    public function addTerm(Term $aspect): array//Death $death) : array
+    public function addTerm(Term $death): array//Death $death) : array
     {
         $this->terms[] = $death;
         return $this->terms;
@@ -42,9 +42,43 @@ class DeathTaxonomy extends Taxonomy
      */
     public static function getTermBySlug(string $slug): Death
     {
+        /*
         foreach ((new self)->loadArray()->terms as $taxonomy){
             if ($taxonomy->getSlug() == $slug) return $taxonomy;
+        }*/
+
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        // 2. Perform database query
+        $query = "SELECT * ";
+        $query .= 'FROM '.self::T_DEATH;
+        //Filter result by slug
+        $query .= " WHERE ".self::T_DEATH.".".self::C_SLUG." = '".$slug."';";
+
+        $result = mysqli_query($connection, $query);
+
+        // 3. Use returned data
+        $output;
+        while($row = mysqli_fetch_array($result))
+        {
+            //print_r($row);
+
+            $output = (new Death())
+            ->setId($row[0])
+            ->setSlug($row[1])
+            ->setTitle($row[2]);
         }
+
+        // 4. Release returned data
+        mysqli_free_result($result);
+  
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        return $output;
     }
 
     public static function getAllTerms(): array
@@ -66,13 +100,7 @@ class DeathTaxonomy extends Taxonomy
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
 
         // Test if connection succeeded
-        if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         // 2. Perform database query
         $query = "SELECT * ";

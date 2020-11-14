@@ -31,6 +31,7 @@ abstract class Taxonomy
     const T_USER_OMEN = "user_omen";
 
     //Column Names
+    const C_SLUG = "slug";
     /*
     private $colOrderNum = "orderNumber";
     private $colOrderDate = "orderDate";

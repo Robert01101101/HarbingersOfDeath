@@ -289,24 +289,83 @@ class OmenCollection
     /**
      * @return array
      */
-    public static function findOmensByFilter(Fault $fault, Aspect $aspect, Death $death)
+    public static function findOmensByFilter(array $search) : OmenCollection //(Fault $fault, Aspect $aspect, Death $death) : array
     {
         //TODO: database query
         //SQL query
+
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
+        $query = "SELECT * FROM ";
+        //Join omen with aspect
+        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        //Join result with death
+        $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
+        //Join result with fault
+        $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+
+
         // should use "(new self)" which will call the constructor
         // (which sets up the db connection)
         // don't forget to close the database connection "$this->connection = null"
         // return an array of Omen object
+        // TODO: update so it works for multiple values
 
-        if(isset($fault) && !is_null($fault)){
+        $searchKeys = array_keys($search);
+        $i = 0;
 
+        foreach ($searchKeys as $key) {
+            $value = $search[$key];
+
+            if ($i < 1) {
+                $query .= " WHERE ";
+            } else {
+                $query .= " AND ";
+            }
+
+            if(strcmp($key, "fault") == 0){
+                //Filter result by fault
+                $query .= self::T_FAULT.".".self::C_SLUG." = '".$value."'";
+            }
+            if(strcmp($key, "aspect") == 0){
+                //Filter result by aspect
+                $query .= self::T_ASPECT.".".self::C_SLUG." = '".$value."'";
+            }
+            if(strcmp($key, "death") == 0){
+                //Filter result by death
+                $query .= self::T_DEATH.".".self::C_SLUG." = '".$value."'";
+            }
+
+            $i++;
         }
-        if(isset($aspect) && !is_null($aspect)){
+        $query .= ";";
 
-        }
-        if(isset($death) && !is_null($death)){
+        //original if statement: if(isset($death) && !is_null($death)){  }
 
+        //echo $query;
+
+        $result = mysqli_query($connection, $query);
+
+        //prepare omensCollection
+        $omensCollection = new OmenCollection();
+
+        //Print rows
+        while($row = mysqli_fetch_array($result))
+        {
+            //echo print_r($row);
+            $omensCollection->addOmen(self::buildOmenFromData($row));
         }
+
+        // 4. Release returned data
+        mysqli_free_result($result);
+  
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        return $omensCollection;
+
     }
 
     /**
@@ -357,77 +416,80 @@ class OmenCollection
         while($row = mysqli_fetch_array($result))
         {
             //echo print_r($row);
-            
-            //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
-            $omen_id = $row[0];
-            $omen_slug = $row[1];
-            $omen_title = $row[2];
-            $omen_image = $row[3];
-
-            $aspect_id = $row[7];
-            $aspect_slug = $row[8];
-            $aspect_title = $row[9];
-
-            $death_id = $row[10];
-            $death_slug = $row[11];
-            $death_title = $row[12];
-
-            $fault_id = $row[13];
-            $fault_slug = $row[14];
-            $fault_title = $row[15];
-            
-            /*
-            //DEBUG
-            echo "<br>Omen ID: ".$omen_id;
-            echo "<br>Omen Slug: ".$omen_slug;
-            echo "<br>Omen Title: ".$omen_title;
-            echo "<br>Omen Image: ".$omen_image;
-
-            echo "<br>Aspect ID: ".$aspect_id;
-            echo "<br>Aspect Slug: ".$aspect_slug;
-            echo "<br>Aspect Title: ".$aspect_title;
-
-            echo "<br>Death ID: ".$death_id;
-            echo "<br>Death Slug: ".$death_slug;
-            echo "<br>Death Title: ".$death_title;
-
-            echo "<br>Fault ID: ".$fault_id;
-            echo "<br>Fault Slug: ".$fault_slug;
-            echo "<br>Fault Title: ".$fault_title;
-            */
-
-            //TODO: Set omen image path
-            //TODO: Set poem
-            $omenAspect = (new Aspect())
-            ->setId($aspect_id)
-            ->setSlug($aspect_slug)
-            ->setTitle($aspect_title);
-
-            $omenDeath = (new Death())
-            ->setId($death_id)
-            ->setSlug($death_slug)
-            ->setTitle($death_title);
-
-            $omenFault = (new Fault())
-            ->setId($fault_id)
-            ->setSlug($fault_slug)
-            ->setTitle($fault_title);
-
-            $output = (new Omen($omen_slug, $omen_title))
-            ->setFault($omenFault)
-            ->setAspect($omenAspect)
-            ->setDeath($omenDeath)
-            ->setTitle($omen_title)
-            ->setSlug($omen_slug);
+            $output = self::buildOmenFromData($row);
         }
-
-
 
         // 4. Release returned data
         mysqli_free_result($result);
   
         // 5. Close database connection
         mysqli_close($connection);
+
+        return $output;
+    }
+
+    private static function buildOmenFromData(array $row) : Omen {
+        //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
+        $omen_id = $row[0];
+        $omen_slug = $row[1];
+        $omen_title = $row[2];
+        $omen_image = $row[3];
+
+        $aspect_id = $row[7];
+        $aspect_slug = $row[8];
+        $aspect_title = $row[9];
+
+        $death_id = $row[10];
+        $death_slug = $row[11];
+        $death_title = $row[12];
+
+        $fault_id = $row[13];
+        $fault_slug = $row[14];
+        $fault_title = $row[15];
+        
+        /*
+        //DEBUG
+        echo "<br>Omen ID: ".$omen_id;
+        echo "<br>Omen Slug: ".$omen_slug;
+        echo "<br>Omen Title: ".$omen_title;
+        echo "<br>Omen Image: ".$omen_image;
+
+        echo "<br>Aspect ID: ".$aspect_id;
+        echo "<br>Aspect Slug: ".$aspect_slug;
+        echo "<br>Aspect Title: ".$aspect_title;
+
+        echo "<br>Death ID: ".$death_id;
+        echo "<br>Death Slug: ".$death_slug;
+        echo "<br>Death Title: ".$death_title;
+
+        echo "<br>Fault ID: ".$fault_id;
+        echo "<br>Fault Slug: ".$fault_slug;
+        echo "<br>Fault Title: ".$fault_title;
+        */
+
+        //TODO: Set omen image path
+        //TODO: Set poem
+        $omenAspect = (new Aspect())
+        ->setId($aspect_id)
+        ->setSlug($aspect_slug)
+        ->setTitle($aspect_title);
+
+        $omenDeath = (new Death())
+        ->setId($death_id)
+        ->setSlug($death_slug)
+        ->setTitle($death_title);
+
+        $omenFault = (new Fault())
+        ->setId($fault_id)
+        ->setSlug($fault_slug)
+        ->setTitle($fault_title);
+
+        $output = (new Omen($omen_slug, $omen_title))
+        ->setFault($omenFault)
+        ->setAspect($omenAspect)
+        ->setDeath($omenDeath)
+        ->setTitle($omen_title)
+        ->setSlug($omen_slug);
 
         return $output;
     }

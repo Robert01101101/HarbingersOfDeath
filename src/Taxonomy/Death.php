@@ -18,6 +18,7 @@ class Death extends Term
 
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
+        echo "filterOmensByTaxonomy - Death<br>";
 
         if (!isset($omensCollection) && (is_null($omensCollection) || !is_a($omensCollection, 'Entity\Omen\OmenCollection'))){
             $omensCollection = new OmenCollection();

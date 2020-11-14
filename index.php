@@ -62,6 +62,8 @@ session_start();
 // Add omen list route
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen/ajax', function($query) {
+    //print_r($query);
+
     $taxonomies = [];
 
     // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
@@ -86,17 +88,18 @@ Route::get('/omen/ajax', function($query) {
     }
 
 
-    $omensCollection = new OmenCollection();
+    //var_dump();
 
-    var_dump();
-
+    /*
     foreach ($taxonomies as $taxonomy){
         foreach ($taxonomy->getTerms() as $key => $tag){
             $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
             $omensCollection = $tempOmensCollection;
         }
     }
+    */
 
+    $omensCollection = OmenCollection::findOmensByFilter($query);
 
     Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
 }, true);
@@ -137,16 +140,28 @@ Route::get('/omen', function($query) {
                 break;
         }
     }
-
+    /*
     $omensCollection = new OmenCollection();
-
+    $debugCount = 0;
     foreach ($taxonomies as $taxonomy){
+        $debugCount++;
+        echo $debugCount;
+        echo "<br>";
+        print_r($taxonomy->getTerms());
         foreach ($taxonomy->getTerms() as $key => $tag){
             $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
             $omensCollection = $tempOmensCollection;
         }
     }
+    var_dump($taxonomies);
+    echo "<br>";
+    echo "<br>";
+    print_r($taxonomies);
+    echo "<br>";
+    echo "_____________________________________________________________________<br>";
+    */
 
+    $omensCollection = OmenCollection::findOmensByFilter($query);
 
     Page::build('omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
 }, true);

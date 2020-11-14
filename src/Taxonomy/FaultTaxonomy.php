@@ -26,7 +26,7 @@ class FaultTaxonomy extends Taxonomy
     }
 
     //TODO: @Sam - confirm whether this change is okay. Original code is commented out
-    public function addTerm(Term $aspect): array//Fault $fault) : array
+    public function addTerm(Term $fault): array//Fault $fault) : array
     {
         $this->terms[] = $fault;
         return $this->terms;
@@ -43,9 +43,19 @@ class FaultTaxonomy extends Taxonomy
      */
     public static function getTermBySlug(string $slug): Fault
     {
+        /*
         foreach ((new self)->loadArray()->terms as $taxonomy){
             if ($taxonomy->getSlug() == $slug) return $taxonomy;
-        }
+        }*/
+
+
+
+        $output = (new Fault())
+            ->setId(0)
+            ->setSlug("you")
+            ->setTitle("You");
+
+        return $output;
     }
 
     public static function getAllTerms(): array
@@ -67,13 +77,7 @@ class FaultTaxonomy extends Taxonomy
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
 
         // Test if connection succeeded
-        if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         // 2. Perform database query
         $query = "SELECT * ";
@@ -83,7 +87,7 @@ class FaultTaxonomy extends Taxonomy
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-        //Print querie
+        //Print query
         //echo $query;
         //prepare array
         $output = array();
@@ -114,11 +118,13 @@ class FaultTaxonomy extends Taxonomy
     public function getTerms(): array
     {
         //TODO: database query
+        //TODO: This should be different from getAllTerms
         //SQL query
         // don't forget to close the database connection "$this->connection = null"
         // return an array of Term objects
 
         return self::getAllTerms();
+        //return self::$terms;
     }
 
 

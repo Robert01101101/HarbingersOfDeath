@@ -17,6 +17,7 @@ class Aspect extends Term
 
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
+        echo "filterOmensByTaxonomy - Aspect<br>";
 
         if (!is_null($omensCollection)){
             $omensCollection = new OmenCollection();
