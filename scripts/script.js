@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	let modalRegister = document.querySelector('[data-js-modal="register"]');
 	
 	// modal buttons 
-    let buttonRegister = document.querySelector('[data-js-model="register"]');
-	let buttonLogin = document.querySelector('[data-js-model="login"]');
+    let buttonRegister = document.querySelector('[data-js-modal="registerButton"]');
+	let buttonLogin = document.querySelector('[data-js-modal="loginButton"]');
     let buttonClose = document.querySelector('[data-js-modal="close"]');
 
 
