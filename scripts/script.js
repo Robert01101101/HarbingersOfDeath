@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// modal buttons 
     let buttonRegister = document.querySelector('[data-js-model="register"]');
-	let buttonRegister = document.querySelector('[data-js-model="login"]');
+	let buttonLogin = document.querySelector('[data-js-model="login"]');
     let buttonClose = document.querySelector('[data-js-modal="close"]');
 
 
