@@ -195,68 +195,53 @@ Route::post('/', function (){
     }
 
     ////////////////////////////////// LOGIN
-    
     // create new User object from the text file and
     // compare it against the post values
     if (isset($_POST['submit_login'])){
         
-        $user = User::buildFromFile('data.txt');
-        //var_dump($_POST, $user);
-
-        if(
-            (isset($_POST['emailAddress']) && isset($_POST['password'])) &&
-            ($_POST['emailAddress'] == $user->getEmailAddress() && $_POST['password'] == $user->getPassword())
-        ){
-            $_SESSION['user'] = $user;
-        } else {
-            unset($_SERVER['user']);
-        }
-
-
-
-        //ADD BETTER SECURITY
         $formEmail = $_POST['emailAddress'];
         $formPassword = $_POST['password'];
 
         if (isset($formEmail) && isset($formPassword)){
-            // 1. Set up MySQLi connection
-            $DBHOST = "localhost";
-            $DBUSER = "root";
-            $DBPASS = "";
-            $DBNAME = "robert_michels";
-            $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+            $user = User::authenticateUser($formEmail, $formPassword);
 
-            // Test if connection succeeded
-            if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-            //2. Query
-             
-            $query = "SELECT * FROM `user` WHERE user.email_address = '".$formEmail."' AND user.password = '".sha1($formPassword)."'";
-            //echo $query;
-
-            $result = mysqli_query($connection, $query);
-            //TODO: build user for session
-
-            //prepare output
-            $output;
-
-            //TODO: Do stuff once logged in
-            if($result->num_rows == 1){
-                echo "Successful Login";
+            if(isset($user)){
+                //echo "Successful Login";
+                $_SESSION['user'] = $user;
             } else {
-                echo "Login Failed";
+                //echo "Login Failed - try again with correct credentials";
+                unset($_SERVER['user']);
             }
-
-            // 4. Release returned data
-            mysqli_free_result($result);
-    
-            // 5. Close database connection
-            mysqli_close($connection);
+        } else {
+            //echo "please fill all fields";
         }
     }
 
     Page::build('home');
 });
+
+
+/*************************************************
+ **  OMEN FORM SUBMISSION ROUTE
+ *************************************************/
+// Handles omen submissions
+Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
+    $omen = OmenCollection::getOmenBySlug($slug);
+
+    ////////////////////////////////// OMEN
+    if (isset($_POST['submit_user_omen'])){
+          //echo "user added omen";
+          $user = $_SESSION['user']; 
+          //echo get_class($user);
+          //echo $user->get
+
+          $user->addOmenToUser($omen);
+    }
+
+    
+    Page::build('omen', ["omen" => $omen]);
+});
+
 
 
 

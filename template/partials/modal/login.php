@@ -25,7 +25,7 @@ use Util\HTML\SelectInputs;
         </section>
         <section class="form">
             <div class="layout layout--distant">
-                <form method="post">
+                <form method="post" action="/">
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="emailAddress">Email Address</label><br>

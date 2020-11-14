@@ -28,6 +28,18 @@ use View\Partial;
 ]); ?>
 
 <article itemscope itemtype="http://schema.org/CreativeWork" class="poem g-margin2of9 g-span4of9">
+
+  <!-- TODO: Swap for Sam's updated design -->
+  <?php if(isset($_SESSION['user'])) : ?>
+    <form method="post">
+      <input type="submit" name="submit_user_omen" value="THIS TOTALLY APPLIES TO ME, I WILL DIE!!! &rarr;">
+    </form>
+    <br>
+  <?php endif; ?>
+
+  
+  
+
   <p class="poem__body">
     morning Mass&mdash;<br>
     through the open door<br>
@@ -55,3 +67,4 @@ use View\Partial;
 
   <?= Partial::build('footer'); ?>
 </div>
+

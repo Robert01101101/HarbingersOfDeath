@@ -489,7 +489,8 @@ class OmenCollection
         ->setAspect($omenAspect)
         ->setDeath($omenDeath)
         ->setTitle($omen_title)
-        ->setSlug($omen_slug);
+        ->setSlug($omen_slug)
+        ->setId($omen_id);
 
         return $output;
     }
