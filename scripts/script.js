@@ -202,11 +202,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
 
-                for (const [taxonomy, term] of Object.entries(urlParams)){
+				// remove existing breadcrumbs
+				const removeElements = (elements) => elements.forEach(element => element.remove());
+				removeElements( document.querySelectorAll("[data-js-breadcrumb]") );
+
+				// add new breadcrumbs
+                for (const [taxonomy, term] of Object.entries(urlParams)){			
                     let liLinkTaxonomy = document.createElement('li');
                     liLinkTaxonomy.setAttribute('class', 'nav__link');
-					// liLinkTaxonomy.setAttribute();
-                    let textTaxonomy = document.createTextNode(taxonomy);
+					liLinkTaxonomy.setAttribute('data-js-breadcrumb', 'taxonomy');
+                    let textTaxonomy = document.createTextNode("[ " + taxonomy + " : " + term + " ]");
                     liLinkTaxonomy.appendChild(textTaxonomy);
 
                     let navLeft = document.querySelector('[data-js="breadcrumbs"]');
