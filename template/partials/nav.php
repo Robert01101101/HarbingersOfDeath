@@ -24,10 +24,10 @@ $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
             <?php if (isset($user)): ?>
             <li class="nav__text">Oi, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>, it's time to die!</li>
             <?php else: ?>
-            <li class="nav__link"><a data-js="buttonRegister" href="#0">Register</a></li>
+            <li class="nav__link"><a data-js-modal="register" href="#0">Register</a></li>
             <li aria-hidden="true" class="nav__divider">||</li>
             <!-- TODO: confirm whether the #0 is correct? -->
-            <li class="nav__link"><a data-js="buttonLogin" href="#0">Login</a></li>
+            <li class="nav__link"><a data-js-modal="login" href="#0">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>
