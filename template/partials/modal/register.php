@@ -2,7 +2,7 @@
 use Util\HTML\SelectInputs;
 ?>
 
-<section data-js="modal" class="modal modal--register" id="modal--register">
+<section data-js-modal="register" class="modal modal--register" id="modal--register">
     <header>
         <nav class="nav nav--modal layout g-flex">
             <ul class="nav__left">
@@ -13,7 +13,7 @@ use Util\HTML\SelectInputs;
             <ul class="nav__right">
                 <!-- <li class="nav__link">Login</li> -->
                 <!-- <li aria-hidden="true" class="nav__divider">||</li> -->
-                <li class="nav__link"><a href="" data-js="buttonClose">Close</a></li>
+                <li class="nav__link"><a href="" data-js-modal="close">Close</a></li>
             </ul>
         </nav>
     </header>
@@ -58,7 +58,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="text" id="country" name="country" required>
                         </div>
                     </div>
-                    <input type="submit" id="submit_register" name="submit_register" class="input__submit input__submit--disabled" data-js="buttonSubmitRegisterForm" value="Register &rarr;" disabled >
+                    <input type="submit" id="submit_register" name="submit_register" class="input__submit input__submit--disabled" data-js-="buttonSubmitRegisterForm" value="Register &rarr;" disabled >
                 </form>
             </div>
         </section>

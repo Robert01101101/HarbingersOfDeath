@@ -2,7 +2,7 @@
 use Util\HTML\SelectInputs;
 ?>
 
-<section data-js="modal-l" class="modal modal--login" id="modal--login">
+<section data-js-modal="login" class="modal modal--login" id="modal--login">
     <header>
         <nav class="nav nav--modal layout g-flex">
             <ul class="nav__left">
@@ -13,7 +13,7 @@ use Util\HTML\SelectInputs;
             <ul class="nav__right">
                 <!-- <li class="nav__link">Login</li> -->
                 <!-- <li aria-hidden="true" class="nav__divider">||</li> -->
-                <li class="nav__link"><a href="" data-js="buttonClose-l">Close</a></li>
+                <li class="nav__link"><a href="" data-js-modal="close">Close</a></li>
             </ul>
         </nav>
     </header>
