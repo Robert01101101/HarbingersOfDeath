@@ -139,33 +139,37 @@ document.addEventListener('DOMContentLoaded', function() {
 	    });
 	}
 	
-	if (typeof(submitLogin) != 'undefined' && submitLogin != null){
-		submitLogin.addEventListener('click', function (event){
+	var paramsLogin = null;
+	var urlLogin = '';
+	if (typeof(formLogin) != 'undefined' && formLogin != null){
+		formLogin.addEventListener('click', function (event){
 			
 			event.preventDefault();
 			
 			
 			let xmlhttp = new XMLHttpRequest();
-			let url = '/login/ajax/';
+			
+			urlLogin = '/login/ajax/';
+			paramsLogin = new FormData(formLogin);
+			
+			
+			xmlhttp.open("POST", urlLogin);
+			
+			// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+			xmlhttp.send(paramsLogin);
+			
+			
+			
+			// xmlhttp.onreadystatechange = function () {
+            //     if (this.readyState === 4 && this.status === 200) {
 
-			
-			let params = new FormData(formLogin);
-			
-			xmlhttp.open("POST", url);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send(params);
-			
-			
-			
-			xmlhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-
-                    responseLogin.innerHTML = this.responseText;
+            //         responseLogin.innerHTML = this.responseText;
                     
-                } else {
-					responseLogin.innerHTML = "ajax error";
-                }
-            };
+            //     } else {
+			// 		responseLogin.innerHTML = "ajax error";
+            //     }
+            // };
 			
 	    });
 	}

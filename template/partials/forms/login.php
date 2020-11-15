@@ -18,8 +18,7 @@ use Util\HTML\SelectInputs;
                     <input class="input__text" type="password" id="password-l" name="password">
                 </div>
             </div>
-            
+            <input type="submit" name="submit_login" class="input__submit" data-js-modal="loginSubmitButton" value="Sign In &rarr;">
         </form>
-		<a href=""class="input__submit" data-js-modal="loginSubmitButton">Sign In &rarr;</a>
     </div>
 </section>
