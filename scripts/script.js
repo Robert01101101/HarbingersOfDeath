@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var paramsLogin = null;
 	var urlLogin = '';
 	if (typeof(formLogin) != 'undefined' && formLogin != null){
-		formLogin.addEventListener('click', function (event){
+		formLogin.addEventListener('submit', function (event){
 			
 			event.preventDefault();
 			
@@ -160,6 +160,27 @@ document.addEventListener('DOMContentLoaded', function() {
 			xmlhttp.send(paramsLogin);
 			
 			
+			xhr.onloadend = function (response) {
+				if (response.target.status === 0) {
+		
+					// Failed XmlHttpRequest should be considered an undefined error.
+					
+					console.log = form.dataset.formError;
+					console.log("000");
+		
+				} else if (response.target.status === 400) {
+		
+					// Bad Request
+					formStatus.className += ' alert-danger';
+					console.log("400");
+		
+				} else if (response.target.status === 200) {
+		
+					console.log("200");
+		
+				}
+	        };
+			
 			
 			// xmlhttp.onreadystatechange = function () {
             //     if (this.readyState === 4 && this.status === 200) {
@@ -171,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             //     }
             // };
 			
-	    });
+	    }, false);
 	}
 
     /*************************************
