@@ -149,23 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			let url = '/login/ajax/';
 
 			
-			//Filtering all of the fields on the form
-		    var params = [].filter.call(formLogin.elements, function(el) {
-		        //Allow only elements that don't have the 'checked' property
-		        //Or those who have it, and it's checked for them.
-		        return typeof(el.checked) === 'undefined' || el.checked;
-		        //Practically, filter out checkboxes/radios which aren't checekd.
-		    })
-		    .filter(function(el) { return !!el.name; }) //Nameless elements die.
-		    .filter(function(el) { return el.disabled; }) //Disabled elements die.
-		    .map(function(el) {
-		        //Map each field into a name=value string, make sure to properly escape!
-		        return encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value);
-		    }).join('&'); //Then join all the strings by &
+			let params = new FormData(formLogin);
 			
 			xmlhttp.open("POST", url);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send(params);
+			
+			
 			
 			xmlhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -176,8 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					responseLogin.innerHTML = "ajax error";
                 }
             };
-			
-			
 			
 	    });
 	}
