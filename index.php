@@ -179,7 +179,7 @@ Route::get('/', function (){
  **  REGISTER FORM SUBMISSION ROUTE
  *************************************************/
 // Handles register and login form submissions
-Route::post('/register/ajax', function (){
+Route::post('/register', function (){
     // TODO: move data processing to it's own place
     ////////////////////////////////// REGISTER
     if(isset($_POST['submit_register'])) {
@@ -201,7 +201,7 @@ Route::post('/register/ajax', function (){
  **  LOGIN FORM SUBMISSION ROUTE
  *************************************************/
 // Handles register and login form submissions
-Route::post('/login/ajax', function (){
+Route::post('/login', function (){
 
 	
 	
@@ -219,13 +219,18 @@ Route::post('/login/ajax', function (){
             if(isset($user)){
                 //echo "Successful Login";
                 $_SESSION['user'] = $user;
-				Page::build('js-formSuccess', ["user" => $user]);
+				
+				$responseMessage = "You've successfully signed in!";
+				Page::build('home', ["success" => $responseMessage]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
+				$responseMessage = "If Trump can get elected to public office, you can remember your username and password.  Please use the correct credentials.";
+				Page::build('home', ["error" => $responseMessage]);
                 unset($_SERVER['user']);
             }
         } else {
-            //echo "please fill all fields";
+            $responseMessage = "You're going to have to try harder.  Please fill in all the fields.";
+			Page::build('home', ["error" => $responseMessage]);
         }
     }
 

@@ -47,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	let buttonLogin = document.querySelector('[data-js-modal="loginButton"]');
     let buttonClose = document.querySelector('[data-js-modal="close"]');
 
+	let formLogin = document.querySelector('[data-js-modal="loginForm"]');
+	
+	let submitLogin = document.querySelector('[data-js-modal="loginSubmitButton"]');
+	
+	let responseLogin = document.querySelector('[data-js-modal="loginResponse"]');
 
     // TODO: make closing modal more user friendly (i.e. esc key)
 	if (typeof(buttonRegister) != 'undefined' && buttonRegister != null){
@@ -133,7 +138,62 @@ document.addEventListener('DOMContentLoaded', function() {
 	        event.preventDefault();
 	    });
 	}
-    
+	
+	// var paramsLogin = null;
+	// var urlLogin = '';
+	// if (typeof(formLogin) != 'undefined' && formLogin != null){
+	// 	formLogin.addEventListener('submit', function (event){
+			
+	// 		event.preventDefault();
+			
+			
+	// 		let xmlhttp = new XMLHttpRequest();
+			
+	// 		urlLogin = '/login/ajax/';
+	// 		paramsLogin = new FormData(formLogin);
+			
+			
+	// 		xmlhttp.open("POST", urlLogin);
+			
+	// 		// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+	// 		xmlhttp.send(paramsLogin);
+			
+			
+	// 		xhr.onloadend = function (response) {
+	// 			if (response.target.status === 0) {
+		
+	// 				// Failed XmlHttpRequest should be considered an undefined error.
+					
+	// 				console.log = form.dataset.formError;
+	// 				console.log("000");
+		
+	// 			} else if (response.target.status === 400) {
+		
+	// 				// Bad Request
+	// 				formStatus.className += ' alert-danger';
+	// 				console.log("400");
+		
+	// 			} else if (response.target.status === 200) {
+		
+	// 				console.log("200");
+		
+	// 			}
+	//         };
+			
+			
+	// 		// xmlhttp.onreadystatechange = function () {
+    //         //     if (this.readyState === 4 && this.status === 200) {
+
+    //         //         responseLogin.innerHTML = this.responseText;
+                    
+    //         //     } else {
+	// 		// 		responseLogin.innerHTML = "ajax error";
+    //         //     }
+    //         // };
+			
+	//     }, false);
+	//}
 
     /*************************************
      *

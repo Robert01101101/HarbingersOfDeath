@@ -1,7 +1,4 @@
 <?php 
 
 ?>
-<?= "partial test" ?>
-<div class="success">
-	<?php var_dump($user); ?>
-</div>
+<span class="success"><?= $success ?></span>
