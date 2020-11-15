@@ -219,13 +219,18 @@ Route::post('/login/ajax', function (){
             if(isset($user)){
                 //echo "Successful Login";
                 $_SESSION['user'] = $user;
-				Page::build('js-formSuccess', ["user" => $user]);
+				
+				$responseMessage = "You've successfully signed in!"
+				Page::build('js-formResponse', ["success" => $responseMessage]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
+				$responseMessage = "If Trump can get elected to oublic officd, you can remember your username and password.  Please use the correct credentials."
+				Page::build('js-formResponse', ["error" => $responseMessage]);
                 unset($_SERVER['user']);
             }
         } else {
-            //echo "please fill all fields";
+            $responseMessage = "You're going to have to try harder.  Please fill in all the fields."
+				Page::build('js-formResponse', ["error" => $responseMessage]);
         }
     }
 
