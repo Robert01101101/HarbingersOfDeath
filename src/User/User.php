@@ -344,6 +344,27 @@ class User
         mysqli_close($connection);
     }
 
+    public function removeOmenFromUser(Omen $omen) {
+        // 1. Set up MySQLi connection
+        $DBHOST = "localhost";
+        $DBUSER = "root";
+        $DBPASS = "";
+        $DBNAME = "robert_michels";
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        //Ensure association doesn't exist already (refer to user authentication)
+        //Ensure user omen exists
+        $query = "DELETE FROM `user_omen` WHERE user_omen.user_id = '".$this->id."' AND user_omen.omen_id = '".$omen->getId()."';";
+        $result = mysqli_query($connection, $query);
+
+        //echo $query;
+
+        // 5. Close database connection
+        mysqli_close($connection);
+    }
+
     public function getUserOmens() : OmenCollection
     {
         // 1. Set up MySQLi connection

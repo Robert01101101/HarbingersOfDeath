@@ -236,6 +236,9 @@ Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
           //echo $user->get
 
           $user->addOmenToUser($omen);
+    } else if (isset($_POST['submit_user_omen_remove'])) {
+        $user = $_SESSION['user']; 
+        $user->removeOmenFromUser($omen);
     }
 
     
