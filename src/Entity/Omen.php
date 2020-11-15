@@ -17,6 +17,8 @@ class Omen
     protected Death $death;
     private string $path;
     private string $poem;
+    private string $poemAuthor;
+    private string $statement;
 
     public function __construct($slug, $title)
     {
@@ -180,6 +182,42 @@ class Omen
     public function setPoem($poem)
     {
         $this->poem = $poem;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPoemAuthor() : string
+    {
+        return $this->poemAuthor;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setPoemAuthor($poemAuthor)
+    {
+        $this->poemAuthor = $poemAuthor;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatement() : string
+    {
+        return $this->statement;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setStatement($statement)
+    {
+        $this->statement = $statement;
         return $this;
     }
     

@@ -511,7 +511,9 @@ class OmenCollection
         ->setSlug($omen_slug)
         ->setId($omen_id)
         ->setImage($omen_image_path)
-        ->setPoem($omen_poem);
+        ->setPoem($omen_poem)
+        ->setPoemAuthor($omen_poem_author)
+        ->setStatement($omen_statement);
 
         return $output;
     }

@@ -7,6 +7,7 @@ $userExperiencedOmen;
 $addOmenString = "I have experienced this omen &rarr;";
 $nameString = "submit_user_omen";
 $style = "";
+$omenTitle = $arguments["title"];
 
 if ($userLoggedIn){
     //Check if user experienced this omen
@@ -25,6 +26,7 @@ if ($userLoggedIn){
         $addOmenString = "I have not experienced this omen &rarr;";
         $nameString = "submit_user_omen_remove";
         $style = "input__submit--destructive";
+        $omenTitle = $arguments["statement"];
     } 
 }
 

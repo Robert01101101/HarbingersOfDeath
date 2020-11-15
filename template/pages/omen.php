@@ -24,6 +24,7 @@ use View\Partial;
 
 <?= Partial::build("omenHero", [
     "title" => $omen->getTitle(),
+    "statement" => $omen->getStatement(),
     "death" => $omen->generateSemanticDeath(),
     "slug" => $omen->getId()
 ]); ?>
@@ -36,7 +37,7 @@ use View\Partial;
     ?>
   </p>
   <footer class="poem__author">
-    &mdash;<cite itemprop="author">John McDonald</cite>
+    &mdash;<cite itemprop="author"><?php echo $omen->getPoemAuthor() ?></cite>
   </footer>
 </article>
 
