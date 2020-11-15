@@ -226,7 +226,7 @@ Route::post('/login/ajax/', function (){
         }
     }
 
-    echo Partial::build('forms/success', ["user" => $user]);
+    Page::build('js-formSuccess', ["user" => $user]);
 });
 
 
