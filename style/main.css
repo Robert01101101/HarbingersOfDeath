@@ -3,6 +3,8 @@ html,
 body {
   min-height: 100%;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -25,6 +27,8 @@ body.js-fixed {
   z-index: 0;
   transition: filter 1s ease-out;
   filter: blur(0px);
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
 }
 
 .content.js-blur {
@@ -1034,4 +1038,6 @@ div.birthdate > div:not(:first-of-type) {
   z-index: -1;
   -webkit-mask-image: linear-gradient(to top, transparent 40%, rgba(0, 0, 0, 0.7) 90%);
   mask-image: linear-gradient(to top, transparent 40%, rgba(0, 0, 0, 0.7) 90%);
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
 }

@@ -16,6 +16,8 @@ html,
 body {
   min-height: 100%;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 html {
   background-image: url('../assets/images/gradient.png');
@@ -37,6 +39,8 @@ body.js-fixed {
   z-index: 0;
   transition: filter 1s ease-out;
   filter: blur(0px);
+  overflow-y: hidden !important; // hide vertical
+	overflow-x: hidden !important; // hide horizontal
 
 }
 .content.js-blur {

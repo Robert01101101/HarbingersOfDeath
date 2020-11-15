@@ -449,7 +449,8 @@ class OmenCollection
         $omen_slug = $row[1];
         $omen_title = $row[2];
         $omen_statement = $row[3];
-        $omen_image_path = "/assets/images/".$omen_slug.".jpg";
+        $omen_image_path = "/assets/images/omens/".$omen_slug.".jpg";
+        if (!file_exists($_SERVER["DOCUMENT_ROOT"].$omen_image_path)) $omen_image_path = "/assets/images/omens/out-of-season-bloom.jpg";
         $omen_image_author = $row[4];
         $omen_poem = $row[5];
         $omen_poem_author = $row[6];
