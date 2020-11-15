@@ -23,27 +23,7 @@ use Util\HTML\SelectInputs;
                 <h1>Quick! Let's get you back to counting your corpses</h1>
             </div>
         </section>
-        <section class="form">
-            <div class="layout layout--distant">
-                <form method="post" action="/">
-                    <div class="form__row">
-                        <div class="form__cell">
-                            <label class="input__label" for="emailAddress">Email Address</label><br>
-<!--                            I removed the 'L' because I made the forms
-                                different by changing the name of the submit button-->
-                            <input class="input__text" type="text" id="emailAddress-l" name="emailAddress">
-                        </div>
-                    </div>
-                    <div class="form__row">
-                        <div class="form__cell">
-                            <label class="input__label" for="password">Password</label><br>
-                            <input class="input__text" type="password" id="password-l" name="password">
-                        </div>
-                    </div>
-                    <input type="submit" name="submit_login" class="input__submit" data-js="buttonSubmitLoginForm" value="Sign In &rarr;">
-                </form>
-            </div>
-        </section>
+		<?= Partial::build('forms/login') ?>
     </div>
 
 </section>

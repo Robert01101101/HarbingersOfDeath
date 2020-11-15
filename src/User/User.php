@@ -292,6 +292,8 @@ class User
             //echo print_r($row);  //<-- print names of all fields
 
             $output = (new self)->setPassword($formPassword)->setEmailAddress($formEmail)->setName($row["full_name"])->setID($row["user_id"]);
+        } else {
+			
         }
 
         // 4. Release returned data
