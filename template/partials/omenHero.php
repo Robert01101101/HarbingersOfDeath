@@ -34,7 +34,7 @@ if ($userLoggedIn){
 
 <section class="hero--omen">
     <div class="layout layout--distant">
-        <h1><span class="omenTitle"><?= $arguments["title"] ?></span><?= $arguments["death"] ?></h1>
+        <h1><span class="omenTitle"><?= $omenTitle ?></span><?= $arguments["death"] ?></h1>
 
         <?php if(isset($_SESSION['user'])) : ?>
             <form method="post">

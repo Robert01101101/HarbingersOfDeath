@@ -5,7 +5,7 @@ use Entity\Omen\Omen;
 
 
 $omens = null;
-
+$statement = (isset($statement)) ? TRUE : FALSE;
 
 if(
         isset($omenCollection) &&
@@ -36,7 +36,7 @@ if(
     ?>
     <div <?= $dataTaxonomyString ?> data-js="tile" class="tile">
         <a href="<?= $omen->getPath(); ?>">
-                <span class="tile__text  tile__text--title"><?php echo $omen->getTitle() ?></span>
+                <span class="tile__text  tile__text--title"><?php echo $statement ? $omen->getTitle() : $omen->getStatement(); ?></span>
                 <span class="tile__text"><?php echo $omen->generateSemanticDeath() ?></span>
         </a>
     </div>

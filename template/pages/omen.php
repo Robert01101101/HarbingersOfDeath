@@ -20,7 +20,7 @@ use View\Partial;
 <!--THE HOMEPAGE WINDOW-->
 <?= Partial::build('nav', ["breadcrumb" => $omen->getTitle()]) ?>
 
-<img src="<?php echo $omen->getImage() ?>" class="omenImg">
+<img src="<?php echo $omen->getImage() ?>" class="omenImg" alt="test" title="test">
 
 <?= Partial::build("omenHero", [
     "title" => $omen->getTitle(),
