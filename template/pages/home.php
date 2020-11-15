@@ -8,6 +8,9 @@ use View\Partial;
 $userLoggedIn = isset($_SESSION['user']);
 if ($userLoggedIn) $user = $_SESSION['user'];
 
+
+
+
 ?>
 
 <?= Partial::build('layout/header'); ?>
@@ -29,6 +32,17 @@ if ($userLoggedIn) $user = $_SESSION['user'];
     ]); ?>
  <?php endif; ?>
 
+
+<?php if (isset($success) && !is_null($success)): ?>
+
+	<span class="success"><?= $success ?></span>
+
+<?php elseif (isset($error) && !is_null($error)): ?>
+	
+	<span class="error"><?= $error ?></span>
+		
+<?php endif; ?>
+ 
     <section>
         <div class="layout layout--distant g-flex">
             <div class="tile__panel tile__panel--primary g-span3of9">

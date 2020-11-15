@@ -139,60 +139,60 @@ document.addEventListener('DOMContentLoaded', function() {
 	    });
 	}
 	
-	var paramsLogin = null;
-	var urlLogin = '';
-	if (typeof(formLogin) != 'undefined' && formLogin != null){
-		formLogin.addEventListener('submit', function (event){
+	// var paramsLogin = null;
+	// var urlLogin = '';
+	// if (typeof(formLogin) != 'undefined' && formLogin != null){
+	// 	formLogin.addEventListener('submit', function (event){
 			
-			event.preventDefault();
-			
-			
-			let xmlhttp = new XMLHttpRequest();
-			
-			urlLogin = '/login/ajax/';
-			paramsLogin = new FormData(formLogin);
+	// 		event.preventDefault();
 			
 			
-			xmlhttp.open("POST", urlLogin);
+	// 		let xmlhttp = new XMLHttpRequest();
 			
-			// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// 		urlLogin = '/login/ajax/';
+	// 		paramsLogin = new FormData(formLogin);
 			
-			xmlhttp.send(paramsLogin);
+			
+	// 		xmlhttp.open("POST", urlLogin);
+			
+	// 		// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+	// 		xmlhttp.send(paramsLogin);
 			
 			
-			xhr.onloadend = function (response) {
-				if (response.target.status === 0) {
+	// 		xhr.onloadend = function (response) {
+	// 			if (response.target.status === 0) {
 		
-					// Failed XmlHttpRequest should be considered an undefined error.
+	// 				// Failed XmlHttpRequest should be considered an undefined error.
 					
-					console.log = form.dataset.formError;
-					console.log("000");
+	// 				console.log = form.dataset.formError;
+	// 				console.log("000");
 		
-				} else if (response.target.status === 400) {
+	// 			} else if (response.target.status === 400) {
 		
-					// Bad Request
-					formStatus.className += ' alert-danger';
-					console.log("400");
+	// 				// Bad Request
+	// 				formStatus.className += ' alert-danger';
+	// 				console.log("400");
 		
-				} else if (response.target.status === 200) {
+	// 			} else if (response.target.status === 200) {
 		
-					console.log("200");
+	// 				console.log("200");
 		
-				}
-	        };
+	// 			}
+	//         };
 			
 			
-			// xmlhttp.onreadystatechange = function () {
-            //     if (this.readyState === 4 && this.status === 200) {
+	// 		// xmlhttp.onreadystatechange = function () {
+    //         //     if (this.readyState === 4 && this.status === 200) {
 
-            //         responseLogin.innerHTML = this.responseText;
+    //         //         responseLogin.innerHTML = this.responseText;
                     
-            //     } else {
-			// 		responseLogin.innerHTML = "ajax error";
-            //     }
-            // };
+    //         //     } else {
+	// 		// 		responseLogin.innerHTML = "ajax error";
+    //         //     }
+    //         // };
 			
-	    }, false);
+	//     }, false);
 	}
 
     /*************************************
