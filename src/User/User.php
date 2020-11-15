@@ -216,8 +216,8 @@ class User
             //TODO: Lock & Unlock tables (caused error message, only if performed thru PHP. Locking & Unlocking works fine if queries launched from PHPAdmin)
             //Address
             //$query = "LOCK TABLES `address` WRITE; ";
-            $query = "insert into `address`(`country`,`province`,`city`,`postal_code`,`street_address`,`street_address_2`) values ";
-            $query .= "('".$this->country."', 'testProvince', 'testCity', 'testPC', 'testAddress', 'testAddress2'); ";
+            //$query = "insert into `address`(`country`,`province`,`city`,`postal_code`,`street_address`,`street_address_2`) values ";
+            //$query .= "('".$this->country."', 'testProvince', 'testCity', 'testPC', 'testAddress', 'testAddress2'); ";
             //$query .= "UNLOCK TABLES;";
 
             if (mysqli_query($connection, $query)) {
@@ -228,8 +228,13 @@ class User
 
             //User
             //$query = "LOCK TABLES `user` WRITE; ";
-            $query = "insert  into `user`(`user_name`,`password`,`created_at`,`phone_number`,`address_id`,`full_name`,`email_address`,`image_path`) values ";
-            $query .= "('testUsername', '".$this->password."', ".time().", 0123456789, ".$connection->insert_id.", '".$this->name."', '".$this->emailAddress."', 'testImage'); ";
+            //format date
+            $date = "".$this->birthdayYear.$this->birthdayMonth.$this->birthdayDay;
+            
+            $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
+            
+            $query = "insert  into `user`(`password`,`created_at`,`full_name`,`email_address`,`date_of_birth`,`image_path`) values ";
+            $query .= "('".$this->password."', ".time().", '".$this->name."', '".$this->emailAddress."', ".$date.", 'testImage'); ";
             //$query .= "UNLOCK TABLES;";
         }
         
