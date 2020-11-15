@@ -513,7 +513,8 @@ class OmenCollection
         ->setImage($omen_image_path)
         ->setPoem($omen_poem)
         ->setPoemAuthor($omen_poem_author)
-        ->setStatement($omen_statement);
+        ->setStatement($omen_statement)
+        ->setImageAuthor($omen_image_author);
 
         return $output;
     }

@@ -19,6 +19,7 @@ class Omen
     private string $poem;
     private string $poemAuthor;
     private string $statement;
+    private string $imageAuthor;
 
     public function __construct($slug, $title)
     {
@@ -164,6 +165,24 @@ class Omen
     public function setImage($imagePath)
     {
         $this->imagePath = $imagePath;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageAuthor() : string
+    {
+        return $this->imageAuthor;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setImageAuthor($imageAuthor)
+    {
+        $this->imageAuthor = $imageAuthor;
         return $this;
     }
 
