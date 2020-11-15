@@ -47,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	let buttonLogin = document.querySelector('[data-js-modal="loginButton"]');
     let buttonClose = document.querySelector('[data-js-modal="close"]');
 
+	let formLogin = document.querySelector('[data-js-modal="loginForm"]');
+	
+	let submitLogin = document.querySelector('[data-js-modal="loginSubmitButton"]');
+	
+	let responseLogin = document.querySelector('[data-js-modal="loginResponse"]');
 
     // TODO: make closing modal more user friendly (i.e. esc key)
 	if (typeof(buttonRegister) != 'undefined' && buttonRegister != null){
@@ -133,7 +138,61 @@ document.addEventListener('DOMContentLoaded', function() {
 	        event.preventDefault();
 	    });
 	}
-    
+	
+	if (typeof(submitLogin) != 'undefined' && submitLogin != null){
+		submitLogin.addEventListener('click', function (event){
+			
+			event.preventDefault();
+			
+			function callback(xhr){
+				
+			}
+			
+			/**
+			 * Takes a form node and sends it over AJAX.
+			 * @param {HTMLFormElement} form - Form node to send
+			 * @param {function} callback - Function to handle onload. 
+			 *                              this variable will be bound correctly.
+			 */
+			
+			function ajaxPost (form, callback) {
+			    var url = form.action,
+			        xhr = new XMLHttpRequest();
+			
+			    //This is a bit tricky, [].fn.call(form.elements, ...) allows us to call .fn
+			    //on the form's elements, even though it's not an array. Effectively
+			    //Filtering all of the fields on the form
+			    var params = [].filter.call(form.elements, function(el) {
+			        //Allow only elements that don't have the 'checked' property
+			        //Or those who have it, and it's checked for them.
+			        return typeof(el.checked) === 'undefined' || el.checked;
+			        //Practically, filter out checkboxes/radios which aren't checekd.
+			    })
+			    .filter(function(el) { return !!el.name; }) //Nameless elements die.
+			    .filter(function(el) { return el.disabled; }) //Disabled elements die.
+			    .map(function(el) {
+			        //Map each field into a name=value string, make sure to properly escape!
+			        return encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value);
+			    }).join('&'); //Then join all the strings by &
+			
+			    xhr.open("POST", url);
+			    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+			    //.bind ensures that this inside of the function is the XHR object.
+			    xhr.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+
+                            responseLogin.innerHTML = this.responseText;
+                            
+                        }
+                    };
+			
+			    //All preperations are clear, send the request!
+			    xhr.send(params);
+			}
+			
+	    });
+	}
 
     /*************************************
      *

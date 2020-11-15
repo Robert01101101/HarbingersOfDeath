@@ -4,7 +4,8 @@ use Util\HTML\SelectInputs;
 
 <section class="form">
     <div class="layout layout--distant">
-        <form method="post" action="/login/ajax/">
+		<div class="response" data-js-modal="loginResponse"></div>
+        <form method="post" action="/login/ajax/" data-js-modal="loginForm">
             <div class="form__row">
                 <div class="form__cell">
                     <label class="input__label" for="emailAddress">Email Address</label><br>
