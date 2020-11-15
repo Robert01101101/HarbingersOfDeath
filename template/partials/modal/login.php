@@ -1,5 +1,5 @@
 <?php
-use Util\HTML\SelectInputs;
+use View\Partial;
 ?>
 
 <section data-js-modal="login" class="modal modal--login" id="modal--login">
@@ -23,7 +23,7 @@ use Util\HTML\SelectInputs;
                 <h1>Quick! Let's get you back to counting your corpses</h1>
             </div>
         </section>
-		<?= Partial::build('forms/login') ?>
+		<?= Partial::build('forms/login'); ?>
     </div>
 
 </section>

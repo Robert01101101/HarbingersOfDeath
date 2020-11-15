@@ -1,3 +1,7 @@
+<?php
+use Util\HTML\SelectInputs;
+?>
+
 <section class="form">
     <div class="layout layout--distant">
         <form method="post" action="/login/ajax/">
