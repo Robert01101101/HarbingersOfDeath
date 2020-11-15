@@ -179,7 +179,7 @@ Route::get('/', function (){
  **  REGISTER FORM SUBMISSION ROUTE
  *************************************************/
 // Handles register and login form submissions
-Route::post('/register/ajax/', function (){
+Route::post('/register/ajax', function (){
     // TODO: move data processing to it's own place
     ////////////////////////////////// REGISTER
     if(isset($_POST['submit_register'])) {
@@ -201,8 +201,10 @@ Route::post('/register/ajax/', function (){
  **  LOGIN FORM SUBMISSION ROUTE
  *************************************************/
 // Handles register and login form submissions
-Route::post('/login/ajax/', function (){
+Route::post('/login/ajax', function (){
 
+	
+	Page::build('js-formSuccess', ["user" => "user"]);
     ////////////////////////////////// LOGIN
     // create new User object from the text file and
     // compare it against the post values
@@ -217,6 +219,7 @@ Route::post('/login/ajax/', function (){
             if(isset($user)){
                 //echo "Successful Login";
                 $_SESSION['user'] = $user;
+				//Page::build('js-formSuccess', ["user" => $user]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
                 unset($_SERVER['user']);
@@ -226,7 +229,7 @@ Route::post('/login/ajax/', function (){
         }
     }
 
-    Page::build('js-formSuccess', ["user" => $user]);
+    
 });
 
 
