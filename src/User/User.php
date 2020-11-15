@@ -212,7 +212,7 @@ class User
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result)>0){
             //User already exists
-            $response = "USER ALREADY EXISTS";
+            return $response = "USER ALREADY EXISTS";
         } else {
             //User doesn't exist yet -> add entry
             // 2. Write to DB
@@ -242,7 +242,7 @@ class User
         }
         
         if (mysqli_query($connection, $query)) {
-            $response = "You've created your account successfully";
+            if (strcmp($response, "") === 0) $response = "You've created your account successfully";
         } else {
             $response = "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
         }
