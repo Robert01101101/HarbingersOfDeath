@@ -193,7 +193,7 @@ Route::post('/register', function (){
             ->setCountry($_POST['country'])
             ->writeToDB();
     }
-	Page::build('home', ["response" => $responseMessage]);
+	Page::build('home', ["response" => $user]);
 });
 
 	
