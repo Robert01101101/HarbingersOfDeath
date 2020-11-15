@@ -144,9 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			event.preventDefault();
 			
-			function callback(xhr){
-				
-			}
+			ajaxPost(formLogin);
 			
 			/**
 			 * Takes a form node and sends it over AJAX.
@@ -155,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			 *                              this variable will be bound correctly.
 			 */
 			
-			function ajaxPost (form, callback) {
+			function ajaxPost (form) {
 			    var url = form.action,
 			        xhr = new XMLHttpRequest();
 			
