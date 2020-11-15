@@ -193,7 +193,7 @@ Route::post('/register', function (){
             ->setCountry($_POST['country'])
             ->writeToDB();
     }
-	Page::build('home');
+	Page::build('home', ["response" => $user]);
 });
 
 	
@@ -221,16 +221,16 @@ Route::post('/login', function (){
                 $_SESSION['user'] = $user;
 				
 				$responseMessage = "You've successfully signed in!";
-				Page::build('home', ["success" => $responseMessage]);
+				Page::build('home', ["response" => $responseMessage]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
 				$responseMessage = "If Trump can get elected to public office, you can remember your username and password.  Please use the correct credentials.";
-				Page::build('home', ["error" => $responseMessage]);
+				Page::build('home', ["response" => $responseMessage]);
                 unset($_SERVER['user']);
             }
         } else {
             $responseMessage = "You're going to have to try harder.  Please fill in all the fields.";
-			Page::build('home', ["error" => $responseMessage]);
+			Page::build('home', ["response" => $responseMessage]);
         }
     }
 
