@@ -2,6 +2,19 @@
 
 use View\Partial;
 
+//Get omens for members
+$userLoggedIn = isset($_SESSION['user']);
+$user; 
+$omenCollection;
+$home = (isset($home)) ? TRUE : FALSE;
+
+if ($userLoggedIn && $home){
+    $user = $_SESSION['user'];
+    $omenCollection = $user->getUserOmens();
+
+    //echo print_r(get_object_vars($omenCollection));
+}
+
 // do we spice this with oil paintings?
 $oilPaintings  = (isset($oilPaintings) && $oilPaintings === TRUE) ? $oilPaintings : FALSE;
 
@@ -29,7 +42,8 @@ $columns  = (isset($columns) && !is_null($columns)) ? $columns : 3;
 
     <?php if(isset($omenCollection)): ?>
 
-    <?= Partial::build('omens', ["omenCollection" => $omenCollection]); ?>
+    <?= Partial::build('omens', ["omenCollection" => $omenCollection]); 
+     //echo "OmenCollection is set"; ?>
 
     <?php else: ?>
 

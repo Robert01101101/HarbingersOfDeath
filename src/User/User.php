@@ -6,6 +6,7 @@ namespace User;
 
 use Util\TextParser\TextParser;
 use Entity\Omen\Omen;
+use Entity\Omen\OmenCollection;
 
 class User
 {
@@ -310,32 +311,70 @@ class User
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-
         //Ensure association doesn't exist already (refer to user authentication)
-
-        // 2. Write to DB
-        //TODO: Verify user doesn't already exist
-        //TODO: Lock & Unlock tables (caused error message, only if performed thru PHP. Locking & Unlocking works fine if queries launched from PHPAdmin)
-        //Address
-        //$query = "LOCK TABLES `address` WRITE; ";
-        $query = "insert into `user_omen`(`user_id`,`omen_id`) values ";
-        $query .= "('".$this->id."', '".$omen->getId()."'); ";
-        //$query .= "UNLOCK TABLES;";
-
-        if (mysqli_query($connection, $query)) {
-            //echo "New record created successfully<br>";
+        //Ensure user doesn't exist already
+        $query = "SELECT * FROM `user_omen` WHERE user_omen.user_id = '".$this->id."' AND user_omen.omen_id = '".$omen->getId()."';";
+        $result = mysqli_query($connection, $query);
+        if (mysqli_num_rows($result)>0){
+            //Omen already exists
+            //echo "OMEN ALREADY EXISTS";
         } else {
-            echo "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
+            // 2. Write to DB
+            //TODO: Lock & Unlock tables (caused error message, only if performed thru PHP. Locking & Unlocking works fine if queries launched from PHPAdmin)
+            //Address
+            //$query = "LOCK TABLES `address` WRITE; ";
+            $query = "insert into `user_omen`(`user_id`,`omen_id`) values ";
+            $query .= "('".$this->id."', '".$omen->getId()."'); ";
+            //$query .= "UNLOCK TABLES;";
+
+            if (mysqli_query($connection, $query)) {
+                //echo "New record created successfully<br>";
+            } else {
+                echo "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
+            }
+
+            //User
+            //$query = "LOCK TABLES `user` WRITE; ";
+            $query = "insert  into `user`(`user_name`,`password`,`created_at`,`phone_number`,`address_id`,`full_name`,`email_address`,`image_path`) values ";
+            $query .= "('testUsername', '".$this->password."', ".time().", 0123456789, ".$connection->insert_id.", '".$this->name."', '".$this->emailAddress."', 'testImage'); ";
+            //$query .= "UNLOCK TABLES;";
         }
-
-        //User
-        //$query = "LOCK TABLES `user` WRITE; ";
-        $query = "insert  into `user`(`user_name`,`password`,`created_at`,`phone_number`,`address_id`,`full_name`,`email_address`,`image_path`) values ";
-        $query .= "('testUsername', '".$this->password."', ".time().", 0123456789, ".$connection->insert_id.", '".$this->name."', '".$this->emailAddress."', 'testImage'); ";
-        //$query .= "UNLOCK TABLES;";
-
-
+        
         // 5. Close database connection
         mysqli_close($connection);
+    }
+
+    public function getUserOmens() : OmenCollection
+    {
+        // 1. Set up MySQLi connection
+        $DBHOST = "localhost";
+        $DBUSER = "root";
+        $DBPASS = "";
+        $DBNAME = "robert_michels";
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        //Ensure association doesn't exist already (refer to user authentication)
+        //Ensure user doesn't exist already
+        $query = "SELECT * FROM `user_omen` WHERE user_omen.user_id = '".$this->id."';";
+        $result = mysqli_query($connection, $query);
+
+        //prepare omensCollection
+        $omensCollection = new OmenCollection();
+
+        //row by row
+        while($row = mysqli_fetch_array($result))
+        {
+            //echo print_r($row);
+            $omensCollection->addOmen(OmenCollection::getOmenById($row["omen_id"]));
+        }
+        
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        //echo $query;
+
+        return $omensCollection;
     }
 }

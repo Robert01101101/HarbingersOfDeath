@@ -428,7 +428,67 @@ class OmenCollection
         return $output;
     }
 
-    private static function buildOmenFromData(array $row) : Omen {
+    /**
+     * @return Omen
+     */
+    public static function getOmenById(int $id) : Omen
+    {
+        //TODO: use constructor
+        // Set up MySQLi connection
+        // Code for connection is from Lab.
+        // 1. Create a database connection
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        //SQL query
+        // should use "(new self)" which will call the constructor
+        // (which sets up the db connection)
+        // don't forget to close the database connection "$this->connection = null"
+        // needs to do an inner join with the taxonomies
+        // and then build them as objects
+        // return a single Omen object (Error handling to make sure the result returned is a single item)
+        // 2. Perform database query
+
+        //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
+        $query = "SELECT * FROM ";
+        //Join omen with aspect
+        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        //Join result with death
+        $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
+        //Join result with fault
+        $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+        //Filter result by omen slug
+        $query .= " WHERE ".self::T_OMEN.".".self::C_ID." = '".$id."';";
+
+        //DEBUG
+        //echo $query;
+
+        $result = mysqli_query($connection, $query);
+
+        // 3. Use returned data
+
+        //prepare output
+        $output;
+
+        //Print rows
+        while($row = mysqli_fetch_array($result))
+        {
+            //echo print_r($row);
+            $output = self::buildOmenFromData($row);
+        }
+
+        // 4. Release returned data
+        mysqli_free_result($result);
+  
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        return $output;
+    }
+
+    public static function buildOmenFromData(array $row) : Omen {
         //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
         $omen_id = $row[0];
         $omen_slug = $row[1];
