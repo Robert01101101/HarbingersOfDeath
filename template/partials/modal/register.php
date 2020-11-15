@@ -25,7 +25,7 @@ use Util\HTML\SelectInputs;
         </section>
         <section class="form">
             <div class="layout layout--distant">
-                <form method="post" id="form_register" action="/">
+                <form method="post" id="form_register" action="/register/ajax/">
                     <div class="form__row">
                         <div class="form__cell">
                             <label class="input__label" for="name">Name</label><br>
