@@ -204,7 +204,7 @@ Route::post('/register/ajax', function (){
 Route::post('/login/ajax', function (){
 
 	
-	Page::build('js-formSuccess', ["user" => "user"]);
+	
     ////////////////////////////////// LOGIN
     // create new User object from the text file and
     // compare it against the post values
@@ -219,7 +219,7 @@ Route::post('/login/ajax', function (){
             if(isset($user)){
                 //echo "Successful Login";
                 $_SESSION['user'] = $user;
-				//Page::build('js-formSuccess', ["user" => $user]);
+				Page::build('js-formSuccess', ["user" => $user]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
                 unset($_SERVER['user']);
