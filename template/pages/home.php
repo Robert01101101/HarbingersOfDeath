@@ -33,13 +33,9 @@ if ($userLoggedIn) $user = $_SESSION['user'];
  <?php endif; ?>
 
 
-<?php if (isset($success) && !is_null($success)): ?>
+<?php if (isset($response) && !is_null($response)): ?>
 
-	<span class="success"><?= $success ?></span>
-
-<?php elseif (isset($error) && !is_null($error)): ?>
-	
-	<span class="error"><?= $error ?></span>
+	<span class="response"><?= $response ?></span>
 		
 <?php endif; ?>
  

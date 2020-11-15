@@ -196,7 +196,10 @@ class User
         fclose($fp);
     }*/
 
-    public function writeToDB(){
+    public function writeToDB(): string
+	{
+		$response = "";
+		
         // Set up MySQLi connection
         // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
@@ -209,7 +212,7 @@ class User
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result)>0){
             //User already exists
-            echo "USER ALREADY EXISTS";
+            $response = "USER ALREADY EXISTS";
         } else {
             //User doesn't exist yet -> add entry
             // 2. Write to DB
@@ -223,7 +226,7 @@ class User
             if (mysqli_query($connection, $query)) {
                 //echo "New record created successfully<br>";
             } else {
-                echo "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
+                $response = "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
             }
 
             //User
@@ -239,13 +242,15 @@ class User
         }
         
         if (mysqli_query($connection, $query)) {
-            //echo "New record created successfully";
+            $response = "You've created your account successfully";
         } else {
-            echo "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
+            $response = "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
         }
   
         // 5. Close database connection
         mysqli_close($connection);
+		
+		return $response;
     }
 
     // Deprecated
