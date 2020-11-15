@@ -11,11 +11,12 @@ class Omen
     protected $id;
     protected $slug;
     protected $title;
+    protected $imagePath;
     protected Fault $fault;
     protected Aspect $aspect;
     protected Death $death;
-    protected string $imagePath;
     private string $path;
+    private string $poem;
 
     public function __construct($slug, $title)
     {
@@ -145,6 +146,43 @@ class Omen
         $this->death = $death;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImage() : string
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setImage($imagePath)
+    {
+        $this->imagePath = $imagePath;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPoem() : string
+    {
+        return $this->poem;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setPoem($poem)
+    {
+        $this->poem = $poem;
+        return $this;
+    }
+    
 
     /**
      * @return string

@@ -227,52 +227,7 @@ class OmenCollection
         //Print rows
         while($row = mysqli_fetch_array($result))
         {
-            //echo print_r($row);
-            
-            //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
-            $omen_id = $row[0];
-            $omen_slug = $row[1];
-            $omen_title = $row[2];
-            $omen_image = $row[3];
-
-            $aspect_id = $row[7];
-            $aspect_slug = $row[8];
-            $aspect_title = $row[9];
-
-            $death_id = $row[10];
-            $death_slug = $row[11];
-            $death_title = $row[12];
-
-            $fault_id = $row[13];
-            $fault_slug = $row[14];
-            $fault_title = $row[15];
-            
-
-            //TODO: Set omen image path
-            //TODO: Set poem
-            $omenAspect = (new Aspect())
-            ->setId($aspect_id)
-            ->setSlug($aspect_slug)
-            ->setTitle($aspect_title);
-
-            $omenDeath = (new Death())
-            ->setId($death_id)
-            ->setSlug($death_slug)
-            ->setTitle($death_title);
-
-            $omenFault = (new Fault())
-            ->setId($fault_id)
-            ->setSlug($fault_slug)
-            ->setTitle($fault_title);
-
-            $item = (new Omen($omen_slug, $omen_title))
-            ->setFault($omenFault)
-            ->setAspect($omenAspect)
-            ->setDeath($omenDeath)
-            ->setTitle($omen_title)
-            ->setSlug($omen_slug);
-
-            array_push($output, $item);
+            array_push($output, self::buildOmenFromData($row));
         }
 
 
@@ -493,19 +448,23 @@ class OmenCollection
         $omen_id = $row[0];
         $omen_slug = $row[1];
         $omen_title = $row[2];
-        $omen_image = $row[3];
+        $omen_statement = $row[3];
+        $omen_image_path = "/assets/images/".$omen_slug.".jpg";
+        $omen_image_author = $row[4];
+        $omen_poem = $row[5];
+        $omen_poem_author = $row[6];
 
-        $aspect_id = $row[7];
-        $aspect_slug = $row[8];
-        $aspect_title = $row[9];
+        $aspect_id = $row[10];
+        $aspect_slug = $row[11];
+        $aspect_title = $row[12];
 
-        $death_id = $row[10];
-        $death_slug = $row[11];
-        $death_title = $row[12];
+        $death_id = $row[13];
+        $death_slug = $row[14];
+        $death_title = $row[15];
 
-        $fault_id = $row[13];
-        $fault_slug = $row[14];
-        $fault_title = $row[15];
+        $fault_id = $row[16];
+        $fault_slug = $row[17];
+        $fault_title = $row[18];
         
         /*
         //DEBUG
@@ -550,7 +509,9 @@ class OmenCollection
         ->setDeath($omenDeath)
         ->setTitle($omen_title)
         ->setSlug($omen_slug)
-        ->setId($omen_id);
+        ->setId($omen_id)
+        ->setImage($omen_image_path)
+        ->setPoem($omen_poem);
 
         return $output;
     }

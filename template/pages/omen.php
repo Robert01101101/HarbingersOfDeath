@@ -20,7 +20,7 @@ use View\Partial;
 <!--THE HOMEPAGE WINDOW-->
 <?= Partial::build('nav', ["breadcrumb" => $omen->getTitle()]) ?>
 
-<img src="/assets/images/bread.jpg" class="omenImg">
+<img src="<?php echo $omen->getImage() ?>" class="omenImg">
 
 <?= Partial::build("omenHero", [
     "title" => $omen->getTitle(),
@@ -31,9 +31,9 @@ use View\Partial;
 <article itemscope itemtype="http://schema.org/CreativeWork" class="poem g-margin4of9 g-span4of9">
 
   <p class="poem__body">
-    morning Mass&mdash;<br>
-    through the open door<br>
-    the smell of new-baked bread<br>
+    <?php
+      echo str_replace('/',"<br>", $omen->getPoem());
+    ?>
   </p>
   <footer class="poem__author">
     &mdash;<cite itemprop="author">John McDonald</cite>

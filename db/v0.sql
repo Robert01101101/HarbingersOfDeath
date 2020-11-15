@@ -25,29 +25,14 @@ DROP TABLE IF EXISTS `fault`;
 
 CREATE TABLE `user` (
     `user_id` int(10)  NOT NULL AUTO_INCREMENT,
-    `user_name` varchar(255)  NOT NULL ,
     `password` varchar(255)  NOT NULL ,
     `created_at` timestamp  NOT NULL ,
-    `phone_number` varchar(255)  NOT NULL ,
-    `address_id` int(10)  NOT NULL ,
     `full_name` varchar(255)  NOT NULL ,
     `email_address` varchar(255)  NOT NULL ,
+    `date_of_birth` date  NOT NULL ,
     `image_path` varchar(255)  NULL ,
     PRIMARY KEY (
         `user_id`
-    )
-);
-
-CREATE TABLE `address` (
-    `address_id` int(10)  NOT NULL AUTO_INCREMENT,
-    `country` varchar(50)  NOT NULL ,
-    `province` varchar(50)  NOT NULL ,
-    `city` varchar(50)  NOT NULL ,
-    `postal_code` varchar(50)  NOT NULL ,
-    `street_address` varchar(50)  NOT NULL ,
-    `street_address_2` varchar(50)  NOT NULL ,
-    PRIMARY KEY (
-        `address_id`
     )
 );
 
@@ -57,10 +42,13 @@ CREATE TABLE `user_omen` (
 );
 
 CREATE TABLE `omen` (
-    `omen_id` int(10)  NOT NULL ,
+    `omen_id` int(10)  NOT NULL AUTO_INCREMENT,
     `slug` varchar(50)  NOT NULL ,
     `title` varchar(512)  NOT NULL ,
-    `image_path` varchar(256)  NOT NULL ,
+    `statement` varchar(512)  NOT NULL ,
+    `image_author` varchar(255)  NOT NULL ,
+    `poem` varchar(512)  NOT NULL ,
+    `poem_author` varchar(255)  NOT NULL ,
     `aspect_id` int(10)  NOT NULL ,
     `death_id` int(10)  NOT NULL ,
     `fault_id` int(10)  NOT NULL ,
@@ -96,9 +84,6 @@ CREATE TABLE `fault` (
     )
 );
 
-ALTER TABLE `user` ADD CONSTRAINT `fk_user_address_id` FOREIGN KEY(`address_id`)
-REFERENCES `address` (`address_id`);
-
 ALTER TABLE `user_omen` ADD CONSTRAINT `fk_user_omen_user_id` FOREIGN KEY(`user_id`)
 REFERENCES `user` (`user_id`);
 
@@ -114,8 +99,7 @@ REFERENCES `death` (`term_id`);
 ALTER TABLE `omen` ADD CONSTRAINT `fk_omen_fault_id` FOREIGN KEY(`fault_id`)
 REFERENCES `fault` (`term_id`);
 
-CREATE INDEX `idx_user_user_name`
-ON `user` (`user_name`);
+
 
 
 
@@ -140,11 +124,11 @@ LOCK TABLES `fault` WRITE;
 insert  into `fault`(`term_id`,`slug`,`title`) values (0,'you','You'),(1,'god','God'),(2,'the-public','The Public');
 
 UNLOCK TABLES;
-LOCK TABLES `omen` WRITE;
-
-insert  into `omen`(`omen_id`,`slug`,`title`,`image_path`,`aspect_id`,`death_id`,`fault_id`) values 
-(00,'cracked-bread','Have you baked bread, that has cracks upon its top?','/assets/images/bread.jpg',0,0,0),
-(01,'ringing-ears','Is there a ringing in your ears?','/assets/images/bread.jpg',1,1,0),
-(02,'lighted-carptenters-shop','Has a light suddenly and unaccountably been seen in a carpenter’s shop?','/assets/images/bread.jpg',2,2,2);
-
-UNLOCK TABLES;
+--  LOCK TABLES `omen` WRITE;
+--  
+--  insert  into `omen`(`omen_id`,`slug`,`title`,`image_path`,`aspect_id`,`death_id`,`fault_id`) values 
+--  (00,'cracked-bread','Have you baked bread, that has cracks upon its top?','/assets/images/bread.jpg',0,0,0),
+--  (01,'ringing-ears','Is there a ringing in your ears?','/assets/images/bread.jpg',1,1,0),
+--  (02,'lighted-carptenters-shop','Has a light suddenly and unaccountably been seen in a carpenter’s shop?','/assets/images/bread.jpg',2,2,2);
+--  
+--  UNLOCK TABLES;
