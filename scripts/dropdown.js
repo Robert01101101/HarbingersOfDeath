@@ -226,35 +226,37 @@ function updateButton() {
 
 
 //__________________________________________ DISABLE SUBMIT ON LOGIN UNTIL ALL FIELDS COMPLETE - REALLY MESSY CODE IM SORRY
-var inputs = document.forms["form_login"].getElementsByTagName("input");
-var submitBtn = document.getElementById("submit_login");
+function login(){
+  var inputs = document.forms["form_login"].getElementsByTagName("input");
+  var submitBtn = document.getElementById("submit_login");
 
-var fieldsComplete = [];
-var fields = 2;     
-for (let i = 0; i < fields; i++) {
-  fieldsComplete.push(false);
-}
-
-console.log(inputs);
-console.log(selects);
-
-inputs[0].addEventListener("input", (e) => { fieldsComplete[0] = !(e.target.value === ""); updateButton(); });
-inputs[1].addEventListener("input", (e) => { fieldsComplete[1] = !(e.target.value === ""); updateButton(); });
-
-function updateButton() {
-  let allFieldsComplete = true;
+  var fieldsComplete = [];
+  var fields = 2;     
   for (let i = 0; i < fields; i++) {
-    if (!fieldsComplete[i]) allFieldsComplete = false;
+    fieldsComplete.push(false);
   }
-  if (allFieldsComplete){
-    if (submitBtn.classList.contains("input__submit--disabled")) {
-      submitBtn.classList.remove("input__submit--disabled");
-      submitBtn.disabled = false;
+
+
+  inputs[0].addEventListener("input", (e) => { fieldsComplete[0] = !(e.target.value === ""); updateButton(); });
+  inputs[1].addEventListener("input", (e) => { fieldsComplete[1] = !(e.target.value === ""); updateButton(); });
+
+  function updateButton() {
+    let allFieldsComplete = true;
+    for (let i = 0; i < fields; i++) {
+      if (!fieldsComplete[i]) allFieldsComplete = false;
     }
-  } else {
-    if (!submitBtn.classList.contains("input__submit--disabled")) {
-      submitBtn.classList.add("input__submit--disabled");
-      submitBtn.disabled = true;
+    if (allFieldsComplete){
+      if (submitBtn.classList.contains("input__submit--disabled")) {
+        submitBtn.classList.remove("input__submit--disabled");
+        submitBtn.disabled = false;
+      }
+    } else {
+      if (!submitBtn.classList.contains("input__submit--disabled")) {
+        submitBtn.classList.add("input__submit--disabled");
+        submitBtn.disabled = true;
+      }
     }
   }
+
 }
+login();
