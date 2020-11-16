@@ -10,13 +10,26 @@ $omenCollection;
 $home = (isset($home)) ? TRUE : FALSE;
 
 if ($userLoggedIn && $home){
+    //User omen collection
     $user = $_SESSION['user'];
     $omenCollection = $user->getUserOmens();
+    $omenCollection->setStatements($omenCollection);
 
     //echo print_r(get_object_vars($omenCollection));
 } else if (!$userLoggedIn && $home){
+    //Visitor omen collection
     $omenCollection = OmenCollection::FindSomeOmens();
+} else if ($userLoggedIn && !$home){
+    if(isset($omenCollection)){
+        //Get user omens so that we can set the title to statement on only those omens
+        $user = $_SESSION['user'];
+        $tmp = new OmenCollection();
+        $tmp->setOmens($omenCollection);
+        $omenCollection = $tmp;
+        $omenCollection->setStatements($user->getUserOmens());
+    }
 }
+
 
 // do we spice this with oil paintings?
 $oilPaintings  = (isset($oilPaintings) && $oilPaintings === TRUE) ? $oilPaintings : FALSE;

@@ -20,6 +20,7 @@ class Omen
     private string $poemAuthor;
     private string $statement;
     private string $imageAuthor;
+    private bool $experience = false;
 
     public function __construct($slug, $title)
     {
@@ -237,6 +238,24 @@ class Omen
     public function setStatement($statement)
     {
         $this->statement = $statement;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserExperience() : bool
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Omen
+     */
+    public function setUserExperience($experience)
+    {
+        $this->experience = $experience;
         return $this;
     }
     

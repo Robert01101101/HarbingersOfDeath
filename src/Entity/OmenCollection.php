@@ -100,6 +100,21 @@ class OmenCollection
         return $this;
     }
 
+    public function setStatements(OmenCollection $userOmens) : self
+    {
+        $theseOmens = $this->omens;
+        $userOmens = $userOmens->getOmens();
+        foreach ($userOmens as $uo) {
+            foreach ($theseOmens as $to) {
+                if ($to->getID() == $uo->getID()) $to->setUserExperience(TRUE);
+            }
+        }
+
+        $output = new OmenCollection();
+        $output->setOmens($theseOmens);
+        return $output;
+    }
+
 
     /*
      * MAYBE USE seperate function for the database calls
@@ -453,6 +468,8 @@ class OmenCollection
 
         return $output;
     }
+
+
 
 }
 
