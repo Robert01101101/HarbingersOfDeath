@@ -10,7 +10,6 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 
 
 
-
 ?>
 
 <?= Partial::build('layout/header'); ?>

@@ -239,6 +239,21 @@ Route::post('/login', function (){
 
 
 /*************************************************
+ **  LOGOUT FORM SUBMISSION ROUTE
+ *************************************************/
+// Log user out
+Route::post('/logout', function (){
+    ////////////////////////////////// LOGOUT
+    if(isset($_POST['submit_logout'])) {
+        unset($_SESSION);
+        session_destroy();
+    }
+    Page::build('home');
+    //echo "logout";
+});
+
+
+/*************************************************
  **  OMEN FORM SUBMISSION ROUTE
  *************************************************/
 // Handles omen submissions

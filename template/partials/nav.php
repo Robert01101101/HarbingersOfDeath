@@ -22,13 +22,16 @@ $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
             <?php endif; ?>
         </ul>
         <ul class="nav__right">
-            <?php if (isset($user)): ?>
-            <li class="nav__text">Oi, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>, it's time to die!</li>
-            <?php else: ?>
-            <li class="nav__link"><a data-js-modal="registerButton" href="#0">Register</a></li>
-            <li aria-hidden="true" class="nav__divider">||</li>
-            <!-- TODO: confirm whether the #0 is correct? -->
-            <li class="nav__link"><a data-js-modal="loginButton" href="#0">Login</a></li>
+            <?php if (isset($user)): //MEMBERS ?>
+                <li class="nav__text">Still alive, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>? Let's change that.</li>
+                <li aria-hidden="true" class="nav__divider">||</li>
+                <li class="nav__link"><form method="post" action="/logout/"><input type="submit" name="submit_logout" class="input__logout" value="Logout"></form></li>
+                
+            <?php else:               //VISITORS?>
+                <li class="nav__link"><a data-js-modal="registerButton" href="#0">Register</a></li>
+                <li aria-hidden="true" class="nav__divider">||</li>
+                <!-- TODO: confirm whether the #0 is correct? -->
+                <li class="nav__link"><a data-js-modal="loginButton" href="#0">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>

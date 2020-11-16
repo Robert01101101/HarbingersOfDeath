@@ -642,6 +642,22 @@ h2 {
 .input__submit--destructive {
   color: #FAA;
 }
+.input__logout {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1em;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
 .input__label {
   font-family: calling-code, courier, monospace;
   font-weight: 400;

@@ -57,6 +57,19 @@
     }
   }
 
+  &__logout {
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    @include font("sans-serif", 700, "normal");
+    font-size: ms(0);
+    @include font(sans-serif, 600);
+    text-transform: uppercase;
+    transition: .5s;
+  }
+
 
   &__label {
     @include font('monospaced', 400);
