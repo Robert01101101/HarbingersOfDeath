@@ -23,7 +23,7 @@ abstract class Term
         return $this;
     }
 
-    public abstract function filterOmensByTaxonomy(?OmenCollection $omens);
+    //public abstract function filterOmensByTaxonomy(?OmenCollection $omens);
 
     /**
      * @return mixed

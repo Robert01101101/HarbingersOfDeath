@@ -3,7 +3,7 @@
 
 <footer class="nav layout">
     <ul class="nav__left">
-        <li class="nav__text">Created by <a href="http://www.sfu.ca/~rmichels/imgs/thanksMsg.png">Robert Michels</a>
+        <li class="nav__text">Created by <a target="_blank" href="https://www.rmichels.com">Robert Michels</a>
             & <a href="">Sam Barnett</a></li>
         <li aria-hidden="true" class="nav__divider">||</li>
         <li class="nav__text">Copyright © 2020. All rights reserved.</li>

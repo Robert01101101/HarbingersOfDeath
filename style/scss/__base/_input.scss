@@ -27,8 +27,6 @@
     }
   }
 
-  &__select {
-  }
 
   &__submit {
     background-color: transparent;
@@ -70,11 +68,25 @@
     transition: .5s;
   }
 
+  &__seeMore {
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    @include font("sans-serif", 700, "normal");
+    font-size: ms(0);
+    @include font(sans-serif, 600);
+    transition: .5s;
+    margin: 0;
+    padding: 0;
+  }
+
 
   &__label {
     @include font('monospaced', 400);
     font-size: ms(0);
-
+    user-select: none; 
     
 
     &--small {

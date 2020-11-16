@@ -1,6 +1,7 @@
 <?php
 
 use View\Partial;
+use Entity\Omen\OmenCollection;
 
 //Get omens for members
 $userLoggedIn = isset($_SESSION['user']);
@@ -13,6 +14,8 @@ if ($userLoggedIn && $home){
     $omenCollection = $user->getUserOmens();
 
     //echo print_r(get_object_vars($omenCollection));
+} else if (!$userLoggedIn && $home){
+    $omenCollection = OmenCollection::FindSomeOmens();
 }
 
 // do we spice this with oil paintings?
@@ -47,7 +50,7 @@ $columns  = (isset($columns) && !is_null($columns)) ? $columns : 3;
 
     <?php else: ?>
 
-    <?= Partial::build('omens'); ?>
+    <?= Partial::build('omens', ["omenCollection" => OmenCollection::FindSomeOmens()]);  ?>
 
     <?php endif; ?>
 

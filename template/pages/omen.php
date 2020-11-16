@@ -4,9 +4,15 @@ use Taxonomy\Taxonomy\AspectTaxonomy;
 use Taxonomy\Death\DeathTaxonomy;
 use Taxonomy\Fault\FaultTaxonomy;
 use Entity\Omen;
+use Entity\Omen\OmenCollection;
 use View\Partial;
 
 // TODO: 404 error handling
+
+//Provide similar omens (same fault)
+$filter = array("fault"=>$omen->getFault()->getSlug());
+$omens = OmenCollection::findOmensByFilter($filter);
+
 ?>
 
 <?= Partial::build('layout/header'); ?>
@@ -46,11 +52,11 @@ use View\Partial;
   <section>
       <div class="layout layout--distant g-flex">
           <div class="tile__panel tile__panel--primary g-span3of9">
-              <h2>Other ways you can kill people</h2>
+              <h2>Other ways <?php echo strtolower($omen->getFault()->getTitle()) ?> can kill people</h2>
               <span class="callToAction">See more</span>
           </div>
 
-          <?= Partial::build('omenGrid'); ?>
+          <?= Partial::build('omenGrid', ["omenCollection" => $omens]); ?>
 
       </div>
   </section>

@@ -98,7 +98,7 @@ Route::get('/omen/ajax', function($query) {
         }
     }
     */
-
+    
     $omensCollection = OmenCollection::findOmensByFilter($query);
 
     Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
@@ -168,6 +168,19 @@ Route::get('/omen', function($query) {
 
 
 /*************************************************
+ **  ALL OMENS LIST ROUTE
+ *************************************************/
+Route::post('/seeMore', function (){
+    ////////////////////////////////// SEE ALL
+    $taxonomies = [];
+    $omensCollection = OmenCollection::findAllOmens();
+
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
+    //echo "logout";
+});
+
+
+/*************************************************
 **  HOMEPAGE ROUTE
  *************************************************/
 Route::get('/', function (){
@@ -224,7 +237,7 @@ Route::post('/login', function (){
 				Page::build('home', ["response" => $responseMessage]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
-				$responseMessage = "If Trump can get elected to public office, you can remember your username and password.  Please use the correct credentials.";
+				$responseMessage = "Wrong password. Please try again.";
 				Page::build('home', ["response" => $responseMessage]);
                 unset($_SERVER['user']);
             }
@@ -251,6 +264,7 @@ Route::post('/logout', function (){
     Page::build('home');
     //echo "logout";
 });
+
 
 
 /*************************************************

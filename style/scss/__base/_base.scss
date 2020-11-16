@@ -24,10 +24,12 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 
 body {
   font-size: 16px;
+  
 }
 
 // stop the body from scrolling when modal is opening
@@ -41,7 +43,7 @@ body.js-fixed {
   filter: blur(0px);
   overflow-y: hidden !important; // hide vertical
 	overflow-x: hidden !important; // hide horizontal
-
+  
 }
 .content.js-blur {
   filter: blur(20px);

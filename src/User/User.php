@@ -212,7 +212,7 @@ class User
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result)>0){
             //User already exists
-            return $response = "USER ALREADY EXISTS";
+            return $response = "User already exists. Please sign in.";
         } else {
             //User doesn't exist yet -> add entry
             // 2. Write to DB

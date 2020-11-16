@@ -12,7 +12,7 @@ $callToActionText = (isset($callToActionText)) ? htmlspecialchars($callToActionT
 <!--        NO CTA IF NO VARIABLE IS PASSED             -->
 <!--        BIG CTA TEXT IF VARIABLE TRUE IS PASSED     -->
         <?php if(!is_null($callToActionText)): ?>
-        <span class="callToAction <?php if($large == true) echo "callToAction--large" ?>"> <?= $callToActionText; ?></span>
+        <a data-js-modal="buttonLoginAlt" href="#0"><span class="callToAction <?php if($large == true) echo "callToAction--large" ?>"> <?= $callToActionText; ?></span></a>
         <?php endif; ?>
     </div>
 </section>

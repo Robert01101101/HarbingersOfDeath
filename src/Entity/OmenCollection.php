@@ -244,10 +244,86 @@ class OmenCollection
     /**
      * @return array
      */
+    public static function findSomeOmens() : OmenCollection
+    {
+        //TODO: database query
+        //SQL query
+        // should use "(new self)" which will call the constructor
+        // (which sets up the db connection)
+        // don't forget to close the database connection "$this->connection = null"
+        // return an array of Omen object
+
+
+        //return (new self)->omens;
+
+
+
+
+        //TODO: use constructor
+        // Set up MySQLi connection
+        // Code for connection is from Lab.
+        // 1. Create a database connection
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) {
+        // if connection failed, skip the rest of PHP code, and print an error
+        die("Database connection failed: " . 
+             mysqli_connect_error() . 
+             " (" . mysqli_connect_errno() . ")"
+        );
+        }
+
+        //SQL query
+        // 2. Perform database query
+
+        //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
+        $query = "SELECT * FROM ";
+        //Join omen with aspect
+        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        //Join result with death
+        $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
+        //Join result with fault
+        $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+        //Pick a number of random records ***
+        $query .= " ORDER BY RAND() LIMIT 6;";
+
+        //DEBUG
+        //echo $query;
+
+        
+        $result = mysqli_query($connection, $query);
+
+        // 3. Use returned data
+
+        //prepare output
+        $omensCollection = new OmenCollection();
+
+        //Print rows
+        while($row = mysqli_fetch_array($result))
+        {
+            $omensCollection->addOmen(self::buildOmenFromData($row));
+        }
+
+
+
+        // 4. Release returned data
+        mysqli_free_result($result);
+  
+        // 5. Close database connection
+        mysqli_close($connection);
+
+        return $omensCollection;
+    }
+
+    /**
+     * @return array
+     */
     public static function findOmensByFilter(array $search) : OmenCollection //(Fault $fault, Aspect $aspect, Death $death) : array
     {
         //TODO: database query
         //SQL query
+        //echo print_r($search);
 
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
@@ -450,7 +526,7 @@ class OmenCollection
         $omen_title = $row[2];
         $omen_statement = $row[3];
         $omen_image_path = "/assets/images/omens/".$omen_slug.".jpg";
-        if (!file_exists($_SERVER["DOCUMENT_ROOT"].$omen_image_path)) $omen_image_path = "/assets/images/omens/out-of-season-bloom.jpg";
+        if (!file_exists($_SERVER["DOCUMENT_ROOT"].$omen_image_path)) $omen_image_path = "/assets/images/omens/default.jpg";
         $omen_image_author = $row[4];
         $omen_poem = $row[5];
         $omen_poem_author = $row[6];

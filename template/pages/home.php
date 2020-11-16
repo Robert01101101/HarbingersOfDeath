@@ -34,7 +34,7 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 
 <?php if (isset($response) && !is_null($response)): ?>
 
-	<span class="response"><?= $response ?></span>
+	<div class="response"><span><?= $response ?></span></div>
 		
 <?php endif; ?>
  
@@ -50,7 +50,7 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 
                 
 
-                <span class="callToAction">See more</span>
+                <span class="callToAction"><form method="post" action="/seeMore/"><input type="submit" name="submit_seeMore" class="input__seeMore" value="See more"></form></span>
             </div>
 
             <?= Partial::build('omenGrid', ["home" => "true"]); ?>

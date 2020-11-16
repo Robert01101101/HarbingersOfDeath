@@ -18,6 +18,7 @@ class Fault extends Term
 
 
 
+    /*
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
         echo ">>_______________________________>><br>";
@@ -54,6 +55,6 @@ class Fault extends Term
         }
         echo "<<_______________________________<<<br>";
         return $omensCollection;
-    }
+    }*/
 
 }

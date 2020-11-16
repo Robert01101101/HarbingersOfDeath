@@ -16,6 +16,7 @@ class Death extends Term
         return $this;
     }
 
+    /*
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
         echo "filterOmensByTaxonomy - Death<br>";
@@ -36,7 +37,7 @@ class Death extends Term
 
         $omensCollection->setOmens($filteredOmens);
         return $omensCollection;
-    }
+    }*/
 
 
 }

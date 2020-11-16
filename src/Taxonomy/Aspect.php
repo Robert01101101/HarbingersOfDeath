@@ -15,6 +15,7 @@ class Aspect extends Term
         return $this;
     }
 
+    /*
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
         echo "filterOmensByTaxonomy - Aspect<br>";
@@ -35,7 +36,7 @@ class Aspect extends Term
 
         $omensCollection->setOmens($filteredOmens);
         return $omensCollection;
-    }
+    }*/
 
 
 }
