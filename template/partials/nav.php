@@ -25,7 +25,7 @@ $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
             <?php if (isset($user)): //MEMBERS ?>
                 <li class="nav__text">Still alive, <?= Tags::tag('span', $user->getName(), ['class' => 'italics']); ?>? Let's change that.</li>
                 <li aria-hidden="true" class="nav__divider">||</li>
-                <li class="nav__link"><form method="post" action="/logout/"><input type="submit" name="submit_logout" class="input__logout" value="Logout"></form></li>
+                <li class="nav__link"><form method="get" action="?logout=true"><input type="submit" name="submit_logout" class="input__logout" value="Logout"></form></li>
                 
             <?php else:               //VISITORS?>
                 <li class="nav__link"><a data-js-modal="registerButton" href="#0">Register</a></li>

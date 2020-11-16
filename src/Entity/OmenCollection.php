@@ -12,65 +12,6 @@ use Taxonomy\FaultTaxonomy;
 
 class OmenCollection
 {
-//    private $omenArray = [
-//        [
-//            "slug" => "cracked-bread",
-//            "title" => "Have you baked bread, that has cracks upon its top?",
-//            "fault" => "you",
-//            "aspect" => "domestic-life",
-//            "death" => "close-friend"
-//        ],
-//        [
-//            "slug" => "ringing-ears",
-//            "title" => "Is there a ringing in your ears?",
-//            "fault" => "you",
-//            "aspect" => "vitality",
-//            "death" => "you"
-//        ],
-//        [
-//            "slug" => "lighted-carptenters-shop",
-//            "title" => "Has a light suddenly and unaccountably been seen in a carpenter’s shop?",
-//            "fault" => "the-public",
-//            "aspect" => "industry",
-//            "death" => "community-member"
-//        ],
-//        [
-//            "slug" => "umbrella",
-//            "title" => "Have you opened an umbrella in your house?",
-//            "fault" => "you",
-//            "aspect" => "domestic-life",
-//            "death" => "community-member"
-//        ],
-//        [
-//            "slug" => "bell-ringing",
-//            "title" => "Has a bell rung of its own accord?",
-//            "fault" => "god",
-//            "aspect" => "religion",
-//            "death" => "community-member"
-//        ],
-//        [
-//            "slug" => "funeral-procession",
-//            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
-//            "fault" => "the-public",
-//            "aspect" => "death",
-//            "death" => "community-member"
-//        ],
-//        [
-//            "slug" => "hair-pin",
-//            "title" => "Has a hairpin fallen from your hair?",
-//            "fault" => "you",
-//            "aspect" => "domestic-life",
-//            "death" => "you"
-//        ],
-//        [
-//            "slug" => "funeral-procession",
-//            "title" => "Did anyone arrive at the funeral, after the procession had begun?",
-//            "fault" => "the-public",
-//            "aspect" => "death",
-//            "death" => "community-member"
-//        ]
-//    ];
-
     private $omens = array();
 
     protected $connection;
@@ -102,6 +43,8 @@ class OmenCollection
 
     public function __construct()
     {
+        //Not in use because I couldn't refer to the connection variable initialized here (due to lack of PHP wizardry)
+        /*
         // Set up MySQLi connection
         // Code for connection is from Lab.
         // 1. Create a database connection
@@ -114,7 +57,7 @@ class OmenCollection
              mysqli_connect_error() . 
              " (" . mysqli_connect_errno() . ")"
         );
-        }
+        }*/
     }
 
 
@@ -173,37 +116,15 @@ class OmenCollection
      */
     public static function findAllOmens()
     {
-        //TODO: database query
-        //SQL query
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // return an array of Omen object
-
-
-        //return (new self)->omens;
-
-
-
-
         //TODO: use constructor
         // Set up MySQLi connection
         // Code for connection is from Lab.
         // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
-        if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         //SQL query
         // 2. Perform database query
-
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
         //Join omen with aspect
@@ -216,11 +137,9 @@ class OmenCollection
         //DEBUG
         //echo $query;
 
-        
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-
         //prepare output
         $output = array();
 
@@ -229,15 +148,10 @@ class OmenCollection
         {
             array_push($output, self::buildOmenFromData($row));
         }
-
-
-
         // 4. Release returned data
         mysqli_free_result($result);
-  
         // 5. Close database connection
         mysqli_close($connection);
-
         return $output;
     }
 
@@ -246,37 +160,16 @@ class OmenCollection
      */
     public static function findSomeOmens() : OmenCollection
     {
-        //TODO: database query
         //SQL query
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // return an array of Omen object
-
-
-        //return (new self)->omens;
-
-
-
-
         //TODO: use constructor
         // Set up MySQLi connection
         // Code for connection is from Lab.
         // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
-        if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         //SQL query
         // 2. Perform database query
-
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
         //Join omen with aspect
@@ -290,29 +183,21 @@ class OmenCollection
 
         //DEBUG
         //echo $query;
-
         
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-
         //prepare output
         $omensCollection = new OmenCollection();
-
         //Print rows
         while($row = mysqli_fetch_array($result))
         {
             $omensCollection->addOmen(self::buildOmenFromData($row));
         }
-
-
-
         // 4. Release returned data
         mysqli_free_result($result);
-  
         // 5. Close database connection
         mysqli_close($connection);
-
         return $omensCollection;
     }
 
@@ -324,7 +209,6 @@ class OmenCollection
         //TODO: database query
         //SQL query
         //echo print_r($search);
-
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -355,7 +239,6 @@ class OmenCollection
             } else {
                 $query .= " AND ";
             }
-
             if(strcmp($key, "fault") == 0){
                 //Filter result by fault
                 $query .= self::T_FAULT.".".self::C_SLUG." = '".$value."'";
@@ -378,23 +261,18 @@ class OmenCollection
         //echo $query;
 
         $result = mysqli_query($connection, $query);
-
         //prepare omensCollection
         $omensCollection = new OmenCollection();
-
         //Print rows
         while($row = mysqli_fetch_array($result))
         {
             //echo print_r($row);
             $omensCollection->addOmen(self::buildOmenFromData($row));
         }
-
         // 4. Release returned data
         mysqli_free_result($result);
-  
         // 5. Close database connection
         mysqli_close($connection);
-
         return $omensCollection;
 
     }
@@ -452,10 +330,8 @@ class OmenCollection
 
         // 4. Release returned data
         mysqli_free_result($result);
-  
         // 5. Close database connection
         mysqli_close($connection);
-
         return $output;
     }
 
@@ -499,7 +375,6 @@ class OmenCollection
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-
         //prepare output
         $output;
 
@@ -512,13 +387,18 @@ class OmenCollection
 
         // 4. Release returned data
         mysqli_free_result($result);
-  
         // 5. Close database connection
         mysqli_close($connection);
-
         return $output;
     }
 
+    /**
+     * Creates new Omen based on parameters and adds it to this OmenCollection
+     *
+     * @param $row (from the database)
+     * 
+     * @return $Omen
+     */
     public static function buildOmenFromData(array $row) : Omen {
         //TODO: ensure all columns have a unique name so that we can use associative values instead of column nums
         $omen_id = $row[0];
@@ -543,28 +423,6 @@ class OmenCollection
         $fault_slug = $row[17];
         $fault_title = $row[18];
         
-        /*
-        //DEBUG
-        echo "<br>Omen ID: ".$omen_id;
-        echo "<br>Omen Slug: ".$omen_slug;
-        echo "<br>Omen Title: ".$omen_title;
-        echo "<br>Omen Image: ".$omen_image;
-
-        echo "<br>Aspect ID: ".$aspect_id;
-        echo "<br>Aspect Slug: ".$aspect_slug;
-        echo "<br>Aspect Title: ".$aspect_title;
-
-        echo "<br>Death ID: ".$death_id;
-        echo "<br>Death Slug: ".$death_slug;
-        echo "<br>Death Title: ".$death_title;
-
-        echo "<br>Fault ID: ".$fault_id;
-        echo "<br>Fault Slug: ".$fault_slug;
-        echo "<br>Fault Title: ".$fault_title;
-        */
-
-        //TODO: Set omen image path
-        //TODO: Set poem
         $omenAspect = (new Aspect())
         ->setId($aspect_id)
         ->setSlug($aspect_slug)

@@ -210,8 +210,10 @@ div.response {
 	span {
 		display: inline-block;
 		text-align: center;
-		background-color: rgba(black,.8);
-		padding: 5rem;
+		background-color: rgba(black,.9);
+		border: 2px solid white;
+		padding: 3rem;
+		@include font(sans-serif, 600);
 	}
 }
 

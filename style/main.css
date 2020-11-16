@@ -1087,8 +1087,12 @@ div.response {
 div.response span {
   display: inline-block;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 5rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 2px solid white;
+  padding: 3rem;
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @keyframes response {

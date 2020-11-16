@@ -183,7 +183,12 @@ Route::post('/seeMore', function (){
 /*************************************************
 **  HOMEPAGE ROUTE
  *************************************************/
-Route::get('/', function (){
+Route::get('/', function ($query){
+    //echo print_r($query);
+    if (isset($query["submit_logout"])) {
+        unset($_SESSION);
+        session_destroy();
+    }
     Page::build('home');
 });
 
@@ -248,21 +253,6 @@ Route::post('/login', function (){
     }
 
     
-});
-
-
-/*************************************************
- **  LOGOUT FORM SUBMISSION ROUTE
- *************************************************/
-// Log user out
-Route::post('/logout', function (){
-    ////////////////////////////////// LOGOUT
-    if(isset($_POST['submit_logout'])) {
-        unset($_SESSION);
-        session_destroy();
-    }
-    Page::build('home');
-    //echo "logout";
 });
 
 
