@@ -24,6 +24,7 @@ if ($userLoggedIn && $home){
         //Get user omens so that we can set the title to statement on only those omens
         $user = $_SESSION['user'];
         $tmp = new OmenCollection();
+        if (!is_array($omenCollection)) $omenCollection = $omenCollection->getOmens();
         $tmp->setOmens($omenCollection);
         $omenCollection = $tmp;
         $omenCollection->setStatements($user->getUserOmens());
