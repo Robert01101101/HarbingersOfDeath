@@ -23,7 +23,7 @@ if ($userLoggedIn){
 
     if (mysqli_num_rows($result)>0){
         //user has added omen already
-        $addOmenString = "I have not experienced this omen &rarr;";
+        $addOmenString = "I have not experienced this omen &larr;";
         $nameString = "submit_user_omen_remove";
         $style = "input__submit--destructive";
         $omenTitle = $arguments["statement"];

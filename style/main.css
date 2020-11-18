@@ -894,7 +894,7 @@ h2 {
   top: 0;
   width: 100%;
   overflow-y: auto;
-  overflow-x: auto;
+  overflow-x: hidden;
   opacity: 0;
   transition: opacity 1s ease-out;
   background-color: rgba(20, 20, 20, 0.7);
@@ -1034,7 +1034,7 @@ div.birthdate > div:not(:first-of-type) {
   max-height: 12rem;
   overflow-y: scroll;
   border: 1px solid #6f6f6f;
-  background-color: #333;
+  background-color: #2b2b2b;
   box-shadow: 0 0 4px #e9e1f8;
   z-index: 110;
   padding: 0;
@@ -1048,7 +1048,7 @@ div.birthdate > div:not(:first-of-type) {
 .form .selectCustom-option {
   position: relative;
   padding: 0.2rem;
-  padding-left: 2.5rem;
+  padding-left: 1.8rem;
 }
 .form .selectCustom-option.isHover {
   background-color: #1e90ff;
@@ -1063,9 +1063,10 @@ div.birthdate > div:not(:first-of-type) {
   border-bottom: 1px solid #d3d3d3;
 }
 .form .selectCustom-option.isActive::before {
-  content: "✓";
+  content: "→";
   position: absolute;
-  left: 0.8rem;
+  bottom: 0.3rem;
+  left: 0.6rem;
 }
 
 div.response {

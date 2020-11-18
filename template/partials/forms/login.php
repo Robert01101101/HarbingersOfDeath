@@ -8,13 +8,13 @@ use Util\HTML\SelectInputs;
         <form method="post" action="/login/" data-js-modal="loginForm"  id="form_login">
             <div class="form__row">
                 <div class="form__cell">
-                    <label class="input__label" for="emailAddress">Email Address</label><br>
+                    <label class="input__label" for="emailAddress-l">Email Address</label><br>
                     <input class="input__text" type="text" id="emailAddress-l" name="emailAddress">
                 </div>
             </div>
             <div class="form__row">
                 <div class="form__cell">
-                    <label class="input__label" for="password">Password</label><br>
+                    <label class="input__label" for="password-l">Password</label><br>
                     <input class="input__text" type="password" id="password-l" name="password">
                 </div>
             </div>

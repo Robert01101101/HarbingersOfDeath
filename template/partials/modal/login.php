@@ -13,7 +13,7 @@ use View\Partial;
             <ul class="nav__right">
                 <!-- <li class="nav__link">Login</li> -->
                 <!-- <li aria-hidden="true" class="nav__divider">||</li> -->
-                <li class="nav__link"><a href="" data-js-modal="close">Close</a></li>
+                <li class="nav__link"><a href="" data-js-modal="closeLogin">Close</a></li>
             </ul>
         </nav>
     </header>

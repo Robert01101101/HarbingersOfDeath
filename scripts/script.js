@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let buttonRegister = document.querySelector('[data-js-modal="registerButton"]');
     let buttonLogin = document.querySelector('[data-js-modal="loginButton"]');
     let buttonLoginAlt = document.querySelector('[data-js-modal="buttonLoginAlt"]');
-    let buttonClose = document.querySelector('[data-js-modal="close"]');
+	let buttonClose = document.querySelector('[data-js-modal="close"]');
+	let buttonCloseLogin = document.querySelector('[data-js-modal="closeLogin"]');
 
 	let formLogin = document.querySelector('[data-js-modal="loginForm"]');
 	
@@ -145,6 +146,33 @@ document.addEventListener('DOMContentLoaded', function() {
     
 	if (typeof(buttonClose) != 'undefined' && buttonClose != null){
 		buttonClose.addEventListener('click', function ( event){
+	        // gets current scroll position from CSS variable in body and parses it to an int and making it positive
+	        const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
+	
+	        // removes "js-modal--open" class from model container to close model
+			if(modalLogin.classList.contains("js-modal--open")){
+				modalLogin.classList.remove("js-modal--open");
+			}
+			if(modalRegister.classList.contains("js-modal--open")){
+				modalRegister.classList.remove("js-modal--open");
+			}
+	        
+	
+	        // removes "js-fixed" class from body (this prevents scrolling)
+	        body.classList.remove("js-fixed");
+	
+	        // removes "js-blurred" class from body (this makes things blurry)
+	        content.classList.remove("js-blur");
+	
+	        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+	
+	        event.preventDefault();
+	    });
+	}
+
+	//quick bug fix where login close button would just refresh the page, causing lack of fade out
+	if (typeof(buttonCloseLogin) != 'undefined' && buttonCloseLogin != null){
+		buttonCloseLogin.addEventListener('click', function ( event){
 	        // gets current scroll position from CSS variable in body and parses it to an int and making it positive
 	        const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
 	

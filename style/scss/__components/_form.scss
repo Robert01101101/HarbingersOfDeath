@@ -100,6 +100,7 @@ div.birthdate {
 	.selectNative,
 	.selectCustom-trigger {
 	  font-size: 1rem;
+	  
 	}
 
 	.selectNative {
@@ -148,7 +149,7 @@ div.birthdate {
 	  max-height: 12rem;
 	  overflow-y: scroll;
 	  border: 1px solid #6f6f6f;
-	  background-color: #333;
+	  background-color: #2b2b2b;
 	  box-shadow: 0 0 4px #e9e1f8;
 	  z-index: 110;
 	  padding: 0;
@@ -164,7 +165,7 @@ div.birthdate {
 	.selectCustom-option {
 	  position: relative;
 	  padding: 0.2rem;
-	  padding-left: 2.5rem;
+	  padding-left: 1.8rem;
 	}
 
 	.selectCustom-option.isHover {
@@ -182,9 +183,10 @@ div.birthdate {
 	}
 
 	.selectCustom-option.isActive::before {
-	  content: "✓";
+	  content: "→";
 	  position: absolute;
-	  left: 0.8rem;
+	  bottom: .3rem;
+	  left: 0.6rem;
 	}
 }
 

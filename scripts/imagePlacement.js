@@ -1,15 +1,58 @@
 //Define image array
 var random_images_array = new Array();
-var loadedImages = new Array();
+var loadedImagesLogin = new Array();
+var loadedImagesRegister = new Array();
 var totalDeathImgs = 6;
-var portraitCount = 0;
+var portraitCountLogin = 0;
+var portraitCountRegister = 0;
 
 for (let i = 0; i < totalDeathImgs; i++) {
   random_images_array.push("death" + (i+1) + ".jpg");
 }
 
+//Pick 2-3 images
+var totalPicksLogin = Math.floor(Math.random() * 2)+2;
+var totalPicksRegister = Math.floor(Math.random() * 2)+2;
+getRandomImage(random_images_array, totalPicksLogin, document.getElementById("modal--login"), true);
+getRandomImage(random_images_array, totalPicksRegister, document.getElementById("modal--register"), false);
+
+//Check for viewport size
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+console.log(vh);
+
+
+class LayoutImage {
+	constructor(image, aspect, width, height) {
+	  this.image = image;
+	  this.aspect = aspect;
+	  this.width = width;
+	  this.height = height;
+	}
+	
+	get info() {
+	  return this.infoString();
+	}
+	infoString() {
+	  return "Image: " + this.image + ", Aspect: " + this.aspect + ", Width: " + this.width  + ", Height: " + this.height;
+	}
+	image(){
+		return this.image;
+	}
+	aspect(){
+		return this.aspect;
+	}
+	width(){
+		return this.width;
+	}
+	height(){
+		return this.height;
+	}
+  }
+
+
 //Pick random images & add to page
-function getRandomImage(imgAr, count, doc, path) {
+function getRandomImage(imgAr, count, doc, loginCall) {
 	//Create wrapper div
 	const newDiv = document.createElement("div"); 
 	newDiv.classList.add("bgImages");
@@ -20,7 +63,7 @@ function getRandomImage(imgAr, count, doc, path) {
 
 	//pick random image
 	for (let i = 0; i < count; i++) {
-	  	path = path || '/assets/images/'; // default path here
+	  	path = '/assets/images/'; // default path here
 	    var num = Math.floor( Math.random() * imagesClone.length );
 
 	    //Pick image & remove from cloned array to prevent double picks
@@ -45,12 +88,14 @@ function getRandomImage(imgAr, count, doc, path) {
 				//portrait image
 				img.style.left = 0;
 				img.style.bottom = 0;
-				portraitCount++;
+				if (loginCall) portraitCountLogin++; else portraitCountRegister++;
 
 				//deal with very tall images -> limit height to half of viewport
 				if (imgHeight > vh/2) {
 					let newWidth = imgWidth-((imgHeight-vh/2)/imgHeight)*imgWidth;
 					img.style.maxWidth = newWidth + "px";
+					imgWidth = newWidth;
+					imgHeight = vh/2;
 					console.log("shrunk " + img.src + " from height " + imgHeight + " to new height " + vh/2);
 				}
 			} else {
@@ -59,123 +104,87 @@ function getRandomImage(imgAr, count, doc, path) {
 				img.style.top = 0;
 			}
 			
-			loadedImages.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
-			if (loadedImages.length == totalPicks) imageLayout();
+			
+			if (loginCall) {
+				loadedImagesLogin.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+				if (loadedImagesLogin.length == totalPicksLogin) imageLayout(loginCall);
+			} else {
+				loadedImagesRegister.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+				if (loadedImagesRegister.length == totalPicksRegister) imageLayout(loginCall);
+			}
 		}		
 	} 
 }
 
-//Pick 2-3 images
-var totalPicks = Math.floor(Math.random() * 2)+2;
-getRandomImage(random_images_array, totalPicks, document.getElementById("modal--login"));
-getRandomImage(random_images_array, totalPicks, document.getElementById("modal--register"));
-
-//Check for viewport size
-const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-console.log(vh);
-
-
-class LayoutImage {
-  constructor(image, aspect, width, height) {
-    this.image = image;
-    this.aspect = aspect;
-    this.width = width;
-    this.height = height;
-  }
-  
-  get info() {
-    return this.infoString();
-  }
-  infoString() {
-    return "Image: " + this.image + ", Aspect: " + this.aspect + ", Width: " + this.width  + ", Height: " + this.height;
-  }
-  image(){
-  	return this.image;
-  }
-  aspect(){
-  	return this.aspect;
-  }
-  width(){
-  	return this.width;
-  }
-  height(){
-  	return this.height;
-  }
-}
 
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 //Set layout of images once all have completed loading
-function imageLayout(){
-	//console.log(portraitCount);
-	var ticker = 0;
+function imageLayout(loginCall){
+	if (loginCall){
+		portraitCount = portraitCountLogin;
+		totalPicks = totalPicksLogin;
+		loadedImages = loadedImagesLogin;
+	} else {
+		portraitCount = portraitCountRegister;
+		totalPicks = totalPicksRegister;
+		loadedImages = loadedImagesRegister;
+	}
+	
+	console.log("PortraitCount: " + portraitCount);
+	console.log("Total Images: " + totalPicks);
+	console.log(loginCall);
 
 	for (let i = 0; i < loadedImages.length; i++) {
 		let curImg = loadedImages[i];
-		//console.log(curImg.info);
+		console.log(curImg.info);
+		if (totalPicks === 2) {
+			///////2 images total -> one along top, between center & right corner. Another along left edge.
+			//console.log("2 Img Layout");
 
-		
-		if (portraitCount === 1){
-			//portrait in btm left with landscape along top edge
-			if (curImg.aspect>1){
-				if (totalPicks === 3) {
-					//2 landscape
-					if (ticker === 0){
-						curImg.image.style.left = randomIntFromInterval(vw*.6, vw*.667) + "px";
-					} else {
-						curImg.image.style.left = randomIntFromInterval(0, vw*.2) + "px";
-					}
-					ticker++;
-				} else {
-					//1 landscape
-					curImg.image.style.left = randomIntFromInterval(0, vw*.667) + "px";
-				}
-				
-			}
-		} else {
-			//Not exactly 1 portrait
-			if (portraitCount === 0) {
-				//No portrait
-				if (ticker === 0){
-					curImg.image.style.left = randomIntFromInterval(.2, vw*.667) + "px";
-				} else {
-					curImg.image.style.top = "auto";
-					curImg.image.style.bottom = randomIntFromInterval(.2, vh*.667) + "px";
-				}
-				ticker++;
+			if (i === 0){
+				//Top
+				curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
+				curImg.image.style.top = 0;
+				if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
 			} else {
-				//multiple portraits
-				if(portraitCount === 2) {
-					if (ticker === 0) {
-						curImg.image.style.left = 0;
-						curImg.image.style.bottom = 0;
-					} else {
-						curImg.image.style.top = 0;
-						curImg.image.style.bottom = "auto";
-						curImg.image.style.left = randomIntFromInterval(0, vw*.667) + "px";
-					}
-					ticker++;
-				} else {
-					if (ticker === 0) {
-						curImg.image.style.top = 0;
-						curImg.image.style.bottom = "auto";
-						curImg.image.style.left = 0;
-					} else if (ticker === 1) {
-						curImg.image.style.top = "auto";
-						curImg.image.style.bottom = 0;
-						curImg.image.style.left = randomIntFromInterval(0, vw*.33) + "px";
-					} else {
-						curImg.image.style.top = 0;
-						curImg.image.style.bottom = "auto";
-						curImg.image.style.left = randomIntFromInterval(vw*.6, vw*.7) + "px";
-					}
-					ticker++;
-				}
+				//Left
+				curImg.image.style.top = randomIntFromInterval(0, vh-curImg.height) + "px";
+				curImg.image.style.bottom = "auto";
+			}
+
+			
+		} else {
+			///////3 images total -> one along top, between center & right corner. Another along left edge, up to 60% down. Another along the bottom edge, up to 40% right.
+			if (i === 0){
+				//Top
+				curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
+				curImg.image.style.top = 0;
+				if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
+			} else if (i === 1) {
+				//Left
+				var top = vw*.4-curImg.height;
+				if (top < 0) top = 0;
+				curImg.image.style.top = randomIntFromInterval(0, top) + "px";
+				curImg.image.style.bottom = "auto";
+			} else {
+				//Bottom
+				var left = vw*.4-curImg.width;
+				if (left < 0) left = 0;
+				curImg.image.style.left = randomIntFromInterval(0, left) + "px";
+				curImg.image.style.top = "auto";
+				curImg.image.style.bottom = 0;
 			}
 		}
+		
+
 
 	}
+}
+
+function verticalShrink(img){
+	let newWidth = img.width-((img.height-vh*.4)/img.height)*img.width;
+	img.style.maxWidth = newWidth + "px";
 }
