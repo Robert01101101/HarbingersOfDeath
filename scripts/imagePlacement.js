@@ -165,7 +165,7 @@ function imageLayout(loginCall){
 				if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
 			} else if (i === 1) {
 				//Left
-				var top = vw*.4-curImg.height;
+				var top = vh*.4-curImg.height;
 				if (top < 0) top = 0;
 				curImg.image.style.top = randomIntFromInterval(0, top) + "px";
 				curImg.image.style.bottom = "auto";
