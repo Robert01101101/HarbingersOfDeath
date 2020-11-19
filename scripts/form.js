@@ -46,45 +46,6 @@ for (let i = 0; i < cells.length; i++) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_____________________________________________________________ FLOATING LABEL DROPDOWNS  __________________________________________________________
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//For floating labels: User clicks on text input and label floats up.
-
-//Each class contains a label & a text input. The input listens for user inputs and styles the label.
-//________________________________________________________________ Pair Class
-/*
-var DropPair = function(label, input) {
-	this.label = label;
-	this.select = select;
-
-	//add floating modifier
-  if (!this.label.classList.contains(labelModFloating)) this.label.classList.add(labelModFloating);
-
-  this.select.addEventListener('input', dropdownSet);
-  
-};
-
-function dropdownSet() {
-  this.label.classList.add("input__label--selected");
-}
-
-//Find all cells
-var cells = [...document.querySelectorAll(".form__cell")];
-
-//Create pair classes for each cell that contains exactly one label & one input
-for (let i = 0; i < cells.length; i++) {
-	
-	let cell = cells[i];
-	let labels = [...cell.querySelectorAll(".input__label")];
-	let selects = [...cell.querySelectorAll(".select")];
-
-	if (labels.length === 1 && selects.length === 1){
-		new DropPair(labels[0], selects[0]);
-	}
-}
-*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //__________________________________________ DISABLE SUBMIT ON REGISTER UNTIL ALL FIELDS COMPLETE  _______________________________________________
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var inputs = document.forms["form_register"].getElementsByTagName("input");
@@ -278,15 +239,14 @@ for(var i = 0; i < itemCount; i++) {
     if (!elLabel.classList.contains("input__label--selected"))elLabel.classList.add("input__label--selected");
     if (elSelectCustomTrigger.classList.contains("selectCustom-trigger--inactive")) elSelectCustomTrigger.classList.remove("selectCustom-trigger--inactive");
     dobLabel.classList.add("input__label--selected");
+    fieldsComplete[4+num] = true;
+    updateButton();
   }
 
   function updateCustomSelectChecked(value, text) {
     const prevValue = optionChecked;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    console.log("value assigned");
-    echoFunction();
-    //dropdownSet();
     floatUpLabel();
 
     const elPrevOption = elSelectCustomOpts.querySelector(
@@ -336,7 +296,7 @@ for(var i = 0; i < itemCount; i++) {
 
       if (value) {
         elSelectNative.value = value;
-        fieldsComplete[4+num] = true; 
+        fieldsComplete[4+num] = true;  //Custom Code
         updateButton(); 
         updateCustomSelectChecked(value, option.textContent);
       }
