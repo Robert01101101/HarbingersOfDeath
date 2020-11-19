@@ -113,11 +113,13 @@ function updateButton() {
   if (allFieldsComplete){
     if (submitBtn.classList.contains("input__submit--disabled")) {
       submitBtn.classList.remove("input__submit--disabled");
+      submitBtn.removeAttribute("title");
       submitBtn.disabled = false;
     }
   } else {
     if (!submitBtn.classList.contains("input__submit--disabled")) {
       submitBtn.classList.add("input__submit--disabled");
+      submitBtn.setAttribute('title', "Complete all fields to register");
       submitBtn.disabled = true;
     }
   }
@@ -150,11 +152,13 @@ function login(){
     if (allFieldsComplete){
       if (submitBtn.classList.contains("input__submit--disabled")) {
         submitBtn.classList.remove("input__submit--disabled");
+        submitBtn.removeAttribute("title");
         submitBtn.disabled = false;
       }
     } else {
       if (!submitBtn.classList.contains("input__submit--disabled")) {
         submitBtn.classList.add("input__submit--disabled");
+        submitBtn.setAttribute('title', "Complete all fields to sign in");
         submitBtn.disabled = true;
       }
     }

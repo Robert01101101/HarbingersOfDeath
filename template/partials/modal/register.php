@@ -58,7 +58,7 @@ use Util\HTML\SelectInputs;
                             <input class="input__text" type="text" id="country" name="country" required>
                         </div>
                     </div>
-                    <input type="submit" id="submit_register" name="submit_register" class="input__submit input__submit--disabled" data-js-="buttonSubmitRegisterForm" value="Register &rarr;" disabled >
+                    <input type="submit" id="submit_register" name="submit_register" class="input__submit input__submit--disabled" data-js-="buttonSubmitRegisterForm" value="Register &rarr;" title="Complete all fields to register" disabled >
                 </form>
             </div>
         </section>

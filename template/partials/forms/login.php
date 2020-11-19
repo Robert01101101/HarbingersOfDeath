@@ -18,7 +18,7 @@ use Util\HTML\SelectInputs;
                     <input class="input__text" type="password" id="password-l" name="password">
                 </div>
             </div>
-            <input type="submit" name="submit_login" class="input__submit input__submit--disabled" data-js-modal="loginSubmitButton" value="Sign In &rarr;" id="submit_login" disabled>
+            <input type="submit" name="submit_login" class="input__submit input__submit--disabled" data-js-modal="loginSubmitButton" value="Sign In &rarr;" id="submit_login"  title="Complete all fields to sign in" disabled>
         </form>
     </div>
 </section>
