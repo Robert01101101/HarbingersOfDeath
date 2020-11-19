@@ -1,3 +1,6 @@
+//Loads & places images in the background of the login / register modals. Images are loaded randomly and placed semi-randomly.
+//There is an attempt to achieve an aesthetically pleasing composition, but at random, so that it has a unique look every time.
+
 //Define image array
 var random_images_array = new Array();
 var loadedImagesLogin = new Array();
@@ -21,7 +24,7 @@ const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 console.log(vh);
 
-
+//Define Image class for easier access to certain properties, such as aspect ratio
 class LayoutImage {
 	constructor(image, aspect, width, height) {
 	  this.image = image;

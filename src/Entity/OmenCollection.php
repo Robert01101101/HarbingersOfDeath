@@ -116,21 +116,12 @@ class OmenCollection
     }
 
 
-    /*
-     * MAYBE USE seperate function for the database calls
-     * I don't know yet if I will need the same methods
-     * in a non-static form.. so to avoid duplication of code
-     * it might be good of it to be a wrapper
-     *
-     * <3
-     */
-
-
     /**
      * @return array
      */
     public static function findAllOmens()
     {
+        //SQL query
         //TODO: use constructor
         // Set up MySQLi connection
         // Code for connection is from Lab.
@@ -138,7 +129,6 @@ class OmenCollection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        //SQL query
         // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
@@ -183,7 +173,6 @@ class OmenCollection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        //SQL query
         // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
@@ -221,12 +210,15 @@ class OmenCollection
      */
     public static function findOmensByFilter(array $search) : OmenCollection //(Fault $fault, Aspect $aspect, Death $death) : array
     {
-        //TODO: database query
         //SQL query
-        //echo print_r($search);
+        //TODO: use constructor
+        // Set up MySQLi connection
+        // Code for connection is from Lab.
+        // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
+        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
         //Join omen with aspect
@@ -236,12 +228,7 @@ class OmenCollection
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
 
-
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // return an array of Omen object
-        // TODO: update so it works for multiple values
+        // TODO: update so it works for multiple values (update: not required since that's handled by Ajax?)
 
         $searchKeys = array_keys($search);
         $i = 0;
@@ -297,24 +284,15 @@ class OmenCollection
      */
     public static function getOmenBySlug(string $slug) : Omen
     {
+        //SQL query
         //TODO: use constructor
         // Set up MySQLi connection
         // Code for connection is from Lab.
         // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        //SQL query
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // needs to do an inner join with the taxonomies
-        // and then build them as objects
-        // return a single Omen object (Error handling to make sure the result returned is a single item)
         // 2. Perform database query
-
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
         //Join omen with aspect
@@ -332,7 +310,6 @@ class OmenCollection
         $result = mysqli_query($connection, $query);
 
         // 3. Use returned data
-
         //prepare output
         $output;
 
@@ -355,6 +332,7 @@ class OmenCollection
      */
     public static function getOmenById(int $id) : Omen
     {
+        //SQL query
         //TODO: use constructor
         // Set up MySQLi connection
         // Code for connection is from Lab.
@@ -364,15 +342,7 @@ class OmenCollection
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        //SQL query
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // needs to do an inner join with the taxonomies
-        // and then build them as objects
-        // return a single Omen object (Error handling to make sure the result returned is a single item)
         // 2. Perform database query
-
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
         $query = "SELECT * FROM ";
         //Join omen with aspect
@@ -408,7 +378,7 @@ class OmenCollection
     }
 
     /**
-     * Creates new Omen based on parameters and adds it to this OmenCollection
+     * Creates new Omen based on SQL data row
      *
      * @param $row (from the database)
      * 

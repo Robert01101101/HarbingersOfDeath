@@ -1,3 +1,5 @@
+//Show / Hide Login module
+
 // uses: https://github.com/desandro/colcade
 
 function localScope() {

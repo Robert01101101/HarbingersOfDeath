@@ -16,7 +16,7 @@ class Death extends Term
         return $this;
     }
 
-    /*
+    /* Deprecated (pre-Database) <---------------------------------------------
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
         echo "filterOmensByTaxonomy - Death<br>";

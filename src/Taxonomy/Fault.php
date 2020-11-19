@@ -18,7 +18,7 @@ class Fault extends Term
 
 
 
-    /*
+    /* Deprecated (pre-Database) <---------------------------------------------
     public function filterOmensByTaxonomy(?OmenCollection $omensCollection)
     {
         echo ">>_______________________________>><br>";

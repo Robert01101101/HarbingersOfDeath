@@ -1,3 +1,5 @@
+// MANAGE MODALS, AJAX
+
 // uses: https://github.com/desandro/colcade
 
 let grid = document.querySelector('[data-js="grid"]');

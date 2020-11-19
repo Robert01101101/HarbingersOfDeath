@@ -32,21 +32,14 @@ abstract class Taxonomy
 
     //Column Names
     const C_SLUG = "slug";
-    /*
-    private $colOrderNum = "orderNumber";
-    private $colOrderDate = "orderDate";
-    private $colShippedDate = "shippedDate";
-    private $colProductName = "productName";
-    private $colProductDescription = "productDescription";
-    private $colQuantityOrdered = "quantityOrdered";
-    private $colPriceEach = "priceEach";
-    private $colProductCode = "productCode";*/
 
     public function __construct()
     {
+        // Not in use because I couldn't refer to the connection variable initialized here (due to lack of PHP wizardry)
         // Set up MySQLi connection
         // Code for connection is from Lab.
         // 1. Create a database connection
+        /*
         $dbhost = "localhost";
         $dbuser = "root";
         $dbpass = "";
@@ -60,11 +53,7 @@ abstract class Taxonomy
              mysqli_connect_error() . 
              " (" . mysqli_connect_errno() . ")"
         );
-        }
-
-
-
-
+        }*/
     }
 
     /**

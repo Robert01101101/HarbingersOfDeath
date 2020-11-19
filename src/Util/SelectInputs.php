@@ -16,23 +16,37 @@ class SelectInputs {
     
 
     //Create a dropdown with number values (specify start, end, label of the dropdown & ID for Aria)
-    public static function numberInput($start, $end, $label, $id){
+    public static function numberInput($start, $end, $label, $id, $reverse){
         echo '<div class="form__cell">';
             echo '<label id="'.$id.'_Label" class="input__label input__label--small" for="'.$id.'">'.$label.'</label><br>';
             echo '<div class="select">';
                 echo '<div class="selectWrapper">';
                     echo '<select id="'.$id.'" name="'.$id.'" class="selectNative js-selectNative" aria-labelledby="'.$id.'_Label" required>';
                         echo '<option value="sel" disabled="" selected="selected">'.$label.'</span>';
-                        for ($x = $start; $x <= $end; $x++) {
-                            echo '<option value="'.$x.'">'.$x.'</option>'."\n";
+                        if (!$reverse){
+                            for ($x = $start; $x <= $end; $x++) {
+                                echo '<option value="'.$x.'">'.$x.'</option>'."\n";
+                            }
+                        } else {
+                            for ($x = $end; $x >= $start; $x--) {
+                                echo '<option value="'.$x.'">'.$x.'</option>'."\n";
+                            }
                         }
+                        
                     echo '</select>';
                     echo '<div class="selectCustom js-selectCustom" aria-hidden="true">';
                         echo '<div class="selectCustom-trigger" data-value="'.$label.'">'.$label.'</div>';
                             echo '<div class="selectCustom-options">';
-                            for ($x = $start; $x <= $end; $x++) {
-                                echo '<div class="selectCustom-option" data-value="'.$x.'">'.$x.'</div>'."\n";
+                            if (!$reverse) {
+                                for ($x = $start; $x <= $end; $x++) {
+                                    echo '<div class="selectCustom-option" data-value="'.$x.'">'.$x.'</div>'."\n";
+                                }
+                            } else {
+                                for ($x = $end; $x >= $start; $x--) {
+                                    echo '<div class="selectCustom-option" data-value="'.$x.'">'.$x.'</div>'."\n";
+                                }
                             }
+                            
         echo '</div></div></div></div></div>';
     }
 

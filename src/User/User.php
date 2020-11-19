@@ -177,25 +177,7 @@ class User
         return $this;
     }
 
-    //Deprecated
-    /*
-    public function writeToFile($filePath){
-        $data = "";
-        if (isset($this->name)){ ($data .= "Name: " . $this->name); };
-        if (isset($this->emailAddress)){ ($data .= PHP_EOL . "emailAddress: " . $this->emailAddress); };
-        if (isset($this->password)){ ($data .= PHP_EOL . "Password: " . $this->password); };
-        
-        if (isset($this->birthdayDay)){ ($data .= PHP_EOL . "Birthday: " . $this->birthdayDay); };
-        if (isset($this->birthdayMonth)){ ($data .= ", " . $this->birthdayMonth); };
-        if (isset($this->birthdayYear)){ ($data .= ", " . $this->birthdayYear); };
-
-        if (isset($this->country)){ ($data .= PHP_EOL . "Password: " . $this->country); };
-
-        $fp = fopen($filePath, 'w');
-        fwrite($fp, $data);
-        fclose($fp);
-    }*/
-
+    //ADD USER
     public function writeToDB(): string
 	{
 		$response = "";
@@ -203,8 +185,6 @@ class User
         // Set up MySQLi connection
         // 1. Create a database connection
         $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: ".mysqli_connect_error()." (".mysqli_connect_errno().")");}
 
         //Ensure user doesn't exist already
@@ -214,14 +194,6 @@ class User
             //User already exists
             return $response = "User already exists. Please sign in.";
         } else {
-            //User doesn't exist yet -> add entry
-            // 2. Write to DB
-            //TODO: Lock & Unlock tables (caused error message, only if performed thru PHP. Locking & Unlocking works fine if queries launched from PHPAdmin)
-            //Address
-            //$query = "LOCK TABLES `address` WRITE; ";
-            //$query = "insert into `address`(`country`,`province`,`city`,`postal_code`,`street_address`,`street_address_2`) values ";
-            //$query .= "('".$this->country."', 'testProvince', 'testCity', 'testPC', 'testAddress', 'testAddress2'); ";
-            //$query .= "UNLOCK TABLES;";
 
             if (mysqli_query($connection, $query)) {
                 //echo "New record created successfully<br>";
@@ -246,36 +218,14 @@ class User
         } else {
             $response = "Error with the query: <br>" . $query . "<br><br>Error Message:<br>" . mysqli_error($connection);
         }
-  
+        // 4. Release returned data
+        mysqli_free_result($result);
         // 5. Close database connection
         mysqli_close($connection);
-		
 		return $response;
     }
 
-    // Deprecated
-    /*
-    public static function buildFromFile($filePath) : self
-    {
-        // gobble full text file
-        $fullString = file_get_contents("data.txt");
-
-        // Error handling if it is empty
-        if ($fullString === FALSE){
-            // TODO: error handling
-        }
-
-        // find the required values within the file
-        $name = TextParser::get_string_between($fullString, "Name: ", PHP_EOL);
-        $emailAddress = TextParser::get_string_between($fullString, "emailAddress: ", PHP_EOL);
-        $password = TextParser::get_string_between($fullString, "Password: ", PHP_EOL);
-
-        // TODO: Birthday & Country.. but doesn't really matter right now.
-
-        // make new user
-        return (new self)->setName($name)->setPassword($password)->setEmailAddress($emailAddress);
-    }*/
-
+    //LOGIN USER
     public static function authenticateUser(string $formEmail, string $formPassword)
     {
         // 1. Set up MySQLi connection
@@ -351,7 +301,8 @@ class User
             $query .= "('testUsername', '".$this->password."', ".time().", 0123456789, ".$connection->insert_id.", '".$this->name."', '".$this->emailAddress."', 'testImage'); ";
             //$query .= "UNLOCK TABLES;";
         }
-        
+        // 4. Release returned data
+        mysqli_free_result($result);
         // 5. Close database connection
         mysqli_close($connection);
     }
@@ -372,7 +323,8 @@ class User
         $result = mysqli_query($connection, $query);
 
         //echo $query;
-
+        // 4. Release returned data
+        mysqli_free_result($result);
         // 5. Close database connection
         mysqli_close($connection);
     }
@@ -403,11 +355,54 @@ class User
             $omensCollection->addOmen(OmenCollection::getOmenById($row["omen_id"]));
         }
         
+        // 4. Release returned data
+        mysqli_free_result($result);
         // 5. Close database connection
         mysqli_close($connection);
-
-        //echo $query;
-
         return $omensCollection;
     }
+
+
+
+    //Deprecated
+    /*
+    public function writeToFile($filePath){
+        $data = "";
+        if (isset($this->name)){ ($data .= "Name: " . $this->name); };
+        if (isset($this->emailAddress)){ ($data .= PHP_EOL . "emailAddress: " . $this->emailAddress); };
+        if (isset($this->password)){ ($data .= PHP_EOL . "Password: " . $this->password); };
+        
+        if (isset($this->birthdayDay)){ ($data .= PHP_EOL . "Birthday: " . $this->birthdayDay); };
+        if (isset($this->birthdayMonth)){ ($data .= ", " . $this->birthdayMonth); };
+        if (isset($this->birthdayYear)){ ($data .= ", " . $this->birthdayYear); };
+
+        if (isset($this->country)){ ($data .= PHP_EOL . "Password: " . $this->country); };
+
+        $fp = fopen($filePath, 'w');
+        fwrite($fp, $data);
+        fclose($fp);
+    }*/
+
+    // Deprecated
+    /*
+    public static function buildFromFile($filePath) : self
+    {
+        // gobble full text file
+        $fullString = file_get_contents("data.txt");
+
+        // Error handling if it is empty
+        if ($fullString === FALSE){
+            // TODO: error handling
+        }
+
+        // find the required values within the file
+        $name = TextParser::get_string_between($fullString, "Name: ", PHP_EOL);
+        $emailAddress = TextParser::get_string_between($fullString, "emailAddress: ", PHP_EOL);
+        $password = TextParser::get_string_between($fullString, "Password: ", PHP_EOL);
+
+        // TODO: Birthday & Country.. but doesn't really matter right now.
+
+        // make new user
+        return (new self)->setName($name)->setPassword($password)->setEmailAddress($emailAddress);
+    }*/
 }

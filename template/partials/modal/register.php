@@ -47,9 +47,9 @@ use Util\HTML\SelectInputs;
                     <fieldset class="form__row">
                         <legend class="input__label--small">Date of Birth</legend>
                         <div class="birthdate">
-                            <?php SelectInputs::numberInput(1,31,"Day", "birthday__day"); ?>
+                            <?php SelectInputs::numberInput(1,31,"Day", "birthday__day", false); ?>
                             <?php SelectInputs::monthInput(); ?>
-                            <?php SelectInputs::numberInput(1920,2020,"Year", "birthday__year"); ?>
+                            <?php SelectInputs::numberInput(1920,2002,"Year", "birthday__year", true); ?>
                         </div>
                     </fieldset>
                     <div class="form__row">
