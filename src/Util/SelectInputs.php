@@ -17,8 +17,8 @@ class SelectInputs {
 
     //Create a dropdown with number values (specify start, end, label of the dropdown & ID for Aria)
     public static function numberInput($start, $end, $label, $id, $reverse){
-        echo '<div class="form__cell">';
-            echo '<label id="'.$id.'_Label" class="input__label input__label--small" for="'.$id.'">'.$label.'</label><br>';
+        echo '<div class="form__cell select">';
+            echo '<label id="'.$id.'_Label" class="input__label js-selectLabel" for="'.$id.'">'.$label.'</label><br>';
             echo '<div class="select">';
                 echo '<div class="selectWrapper">';
                     echo '<select id="'.$id.'" name="'.$id.'" class="selectNative js-selectNative" aria-labelledby="'.$id.'_Label" required>';
@@ -35,7 +35,7 @@ class SelectInputs {
                         
                     echo '</select>';
                     echo '<div class="selectCustom js-selectCustom" aria-hidden="true">';
-                        echo '<div class="selectCustom-trigger" data-value="'.$label.'">'.$label.'</div>';
+                        echo '<div class="selectCustom-trigger selectCustom-trigger--inactive" data-value="'.$label.'">'.$label.'</div>';
                             echo '<div class="selectCustom-options">';
                             if (!$reverse) {
                                 for ($x = $start; $x <= $end; $x++) {
@@ -57,8 +57,8 @@ class SelectInputs {
         $id = "birthday__month";
         $length = count($months);
 
-        echo '<div class="form__cell">';
-            echo '<label id="'.$id.'_Label" class="input__label input__label--small" for="'.$id.'">'.$label.'</label><br>';
+        echo '<div class="form__cell select">';
+            echo '<label id="'.$id.'_Label" class="input__label js-selectLabel" for="'.$id.'">'.$label.'</label><br>';
             echo '<div class="select">';
                 echo '<div class="selectWrapper">';
                     echo '<select id="'.$id.'" name="'.$id.'" class="selectNative js-selectNative" aria-labelledby="'.$id.'_Label" required>';
@@ -68,7 +68,7 @@ class SelectInputs {
                         }
                     echo '</select>';
                     echo '<div class="selectCustom js-selectCustom" aria-hidden="true">';
-                        echo '<div class="selectCustom-trigger"  data-value="'.$label.'">'.$label.'</div>';
+                        echo '<div class="selectCustom-trigger selectCustom-trigger--inactive"  data-value="'.$label.'">'.$label.'</div>';
                             echo '<div class="selectCustom-options">';
                             for ($x = 0; $x < $length; $x++) {
                                 echo '<div class="selectCustom-option" data-value="'.$months[$x].'">'.$months[$x].'</div>'."\n";

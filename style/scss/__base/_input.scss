@@ -109,5 +109,13 @@
       font-size: ms(-1);
       color: $white;
     }
+
+    &--dob {
+      position: relative !important;
+
+      &:not(.input__label--selected) {
+        top: 1rem;
+      }
+    }
   }
 }

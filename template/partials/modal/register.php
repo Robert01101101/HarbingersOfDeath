@@ -45,7 +45,7 @@ use Util\HTML\SelectInputs;
                         </div>
                     </div>
                     <fieldset class="form__row">
-                        <legend class="input__label--small">Date of Birth</legend>
+                        <legend class="input__label--small input__label--dob js-dob__label">Date of Birth</legend>
                         <div class="birthdate">
                             <?php SelectInputs::numberInput(1,31,"Day", "birthday__day", false); ?>
                             <?php SelectInputs::monthInput(); ?>
