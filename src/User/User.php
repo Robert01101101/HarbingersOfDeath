@@ -324,7 +324,7 @@ class User
 
         //echo $query;
         // 4. Release returned data
-        mysqli_free_result($result);
+        //mysqli_free_result($result);
         // 5. Close database connection
         mysqli_close($connection);
     }
