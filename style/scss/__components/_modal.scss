@@ -1,4 +1,4 @@
-.modal,  {
+.modal  {
   z-index: 100;
   display: none;
   height: 100vh;
@@ -21,23 +21,6 @@
   &__content {
     overflow-y: hidden;
     height: 100%;
-  }
-
-
-  .bgImages {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-
-    img {
-      max-width: 33%;
-      filter:brightness(60%);
-    }
   }
 }
 .js-modal--open {

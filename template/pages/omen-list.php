@@ -16,7 +16,7 @@ use View\Partial;
 <?= Partial::build('modal/login'); ?>
 
     <!--THE HOMEPAGE WINDOW-->
-<?= Partial::build('nav') ?>
+<?= Partial::build('nav', ["search" => TRUE]); ?>
 
 
 <?= Partial::build("hero", [

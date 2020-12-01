@@ -1,28 +1,24 @@
 //Loads & places images in the background of the login / register modals. Images are loaded randomly and placed semi-randomly.
 //There is an attempt to achieve an aesthetically pleasing composition, but at random, so that it has a unique look every time.
 
-//Define image array
+//Variables
 var random_images_array = new Array();
 var loadedImagesLogin = new Array();
 var loadedImagesRegister = new Array();
+var loadedImagesSearch = new Array();
 var totalDeathImgs = 6;
 var portraitCountLogin = 0;
 var portraitCountRegister = 0;
-
-for (let i = 0; i < totalDeathImgs; i++) {
-  random_images_array.push("death" + (i+1) + ".jpg");
-}
-
-//Pick 2-3 images
-var totalPicksLogin = Math.floor(Math.random() * 2)+2;
-var totalPicksRegister = Math.floor(Math.random() * 2)+2;
-getRandomImage(random_images_array, totalPicksLogin, document.getElementById("modal--login"), true);
-getRandomImage(random_images_array, totalPicksRegister, document.getElementById("modal--register"), false);
+var portraitCountSearch = 0;
 
 //Check for viewport size
-const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-console.log(vh);
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+var body = document.body,
+    html = document.documentElement;
+var dh = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+//console.log(vh);
 
 //Define Image class for easier access to certain properties, such as aspect ratio
 class LayoutImage {
@@ -51,18 +47,34 @@ class LayoutImage {
 	height(){
 		return this.height;
 	}
-  }
+}
+
+//Define strings of all possible images
+for (let i = 0; i < totalDeathImgs; i++) {
+  random_images_array.push("death" + (i+1) + ".jpg");
+}
+
+//Pick a number of images (more for search), load & analyze them
+var totalPicksLogin = Math.floor(Math.random() * 2)+2;
+var totalPicksRegister = Math.floor(Math.random() * 2)+2;
+var totalPicksSearch = 3;
+getRandomImage(random_images_array, totalPicksLogin, document.getElementById("modal--login"), 0);
+getRandomImage(random_images_array, totalPicksRegister, document.getElementById("modal--register"), 1);
+if (document.getElementById("searchPage") !== null) getRandomImage(random_images_array, totalPicksSearch, document.getElementById("searchPage"), 2);
 
 
 //Pick random images & add to page
-function getRandomImage(imgAr, count, doc, loginCall) {
+function getRandomImage(imgAr, count, doc, call) {
 	//Create wrapper div
 	const newDiv = document.createElement("div"); 
 	newDiv.classList.add("bgImages");
-	doc.insertBefore(newDiv, doc.firstChild)
+	doc.insertBefore(newDiv, doc.firstChild);
+	if (call === 2) newDiv.classList.add("bgImages--search");
 
 	//clone array
 	const imagesClone = [...imgAr];
+
+	//console.log("getRandomImage CALL " + call);
 
 	//pick random image
 	for (let i = 0; i < count; i++) {
@@ -91,7 +103,11 @@ function getRandomImage(imgAr, count, doc, loginCall) {
 				//portrait image
 				img.style.left = 0;
 				img.style.bottom = 0;
-				if (loginCall) portraitCountLogin++; else portraitCountRegister++;
+				switch (call) { 
+					case 0: portraitCountLogin++; break;
+					case 1: portraitCountRegister++; break;
+					case 2: portraitCountSearch++; break;
+				}
 
 				//deal with very tall images -> limit height to half of viewport
 				if (imgHeight > vh/2) {
@@ -107,13 +123,19 @@ function getRandomImage(imgAr, count, doc, loginCall) {
 				img.style.top = 0;
 			}
 			
-			
-			if (loginCall) {
-				loadedImagesLogin.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
-				if (loadedImagesLogin.length == totalPicksLogin) imageLayout(loginCall);
-			} else {
-				loadedImagesRegister.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
-				if (loadedImagesRegister.length == totalPicksRegister) imageLayout(loginCall);
+			switch (call) { 
+				case 0: 
+					loadedImagesLogin.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+					if (loadedImagesLogin.length == totalPicksLogin) imageLayout(call);
+					break;
+				case 1: 
+					loadedImagesRegister.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+					if (loadedImagesRegister.length == totalPicksRegister) imageLayout(call);
+					break;
+				case 2: 
+					loadedImagesSearch.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+					if (loadedImagesSearch.length == totalPicksSearch) imageLayout(call);
+					break;
 			}
 		}		
 	} 
@@ -125,65 +147,109 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 //Set layout of images once all have completed loading
-function imageLayout(loginCall){
-	if (loginCall){
-		portraitCount = portraitCountLogin;
-		totalPicks = totalPicksLogin;
-		loadedImages = loadedImagesLogin;
-	} else {
-		portraitCount = portraitCountRegister;
-		totalPicks = totalPicksRegister;
-		loadedImages = loadedImagesRegister;
+function imageLayout(call){
+	switch (call) {
+		case 0:
+			portraitCount = portraitCountLogin;
+			totalPicks = totalPicksLogin;
+			loadedImages = loadedImagesLogin;
+			break;
+		case 1:
+			portraitCount = portraitCountRegister;
+			totalPicks = totalPicksRegister;
+			loadedImages = loadedImagesRegister;
+			break;
+		case 2:
+			portraitCount = portraitCountSearch;
+			totalPicks = totalPicksSearch;
+			loadedImages = loadedImagesSearch;
+			break;
 	}
-	
+
+	console.log("_____________________________");
+	console.log("Image Layout CALL: " + call);
 	console.log("PortraitCount: " + portraitCount);
 	console.log("Total Images: " + totalPicks);
-	console.log(loginCall);
-
-	for (let i = 0; i < loadedImages.length; i++) {
-		let curImg = loadedImages[i];
-		console.log(curImg.info);
-		if (totalPicks === 2) {
-			///////2 images total -> one along top, between center & right corner. Another along left edge.
-			//console.log("2 Img Layout");
-
-			if (i === 0){
-				//Top
-				curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
-				curImg.image.style.top = 0;
-				if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
+	
+	//Place Login & Register Images
+	if (call < 2){
+		for (let i = 0; i < loadedImages.length; i++) {
+			let curImg = loadedImages[i];
+			console.log(curImg.info);
+			if (totalPicks === 2) {
+				///////2 images total -> one along top, between center & right corner. Another along left edge.
+				//console.log("2 Img Layout");
+	
+				if (i === 0){
+					//Top
+					curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
+					curImg.image.style.top = 0;
+					if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
+				} else {
+					//Left
+					curImg.image.style.top = randomIntFromInterval(0, vh-curImg.height) + "px";
+					curImg.image.style.bottom = "auto";
+				}
+	
+				
 			} else {
-				//Left
-				curImg.image.style.top = randomIntFromInterval(0, vh-curImg.height) + "px";
-				curImg.image.style.bottom = "auto";
+				///////3 images total -> one along top, between center & right corner. Another along left edge, up to 60% down. Another along the bottom edge, up to 40% right.
+				if (i === 0){
+					//Top
+					curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
+					curImg.image.style.top = 0;
+					if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
+				} else if (i === 1) {
+					//Left
+					var top = vh*.4-curImg.height;
+					if (top < 0) top = 0;
+					curImg.image.style.top = randomIntFromInterval(0, top) + "px";
+					curImg.image.style.bottom = "auto";
+				} else {
+					//Bottom
+					var left = vw*.4-curImg.width;
+					if (left < 0) left = 0;
+					curImg.image.style.left = randomIntFromInterval(0, left) + "px";
+					curImg.image.style.top = "auto";
+					curImg.image.style.bottom = 0;
+				}
 			}
-
-			
-		} else {
-			///////3 images total -> one along top, between center & right corner. Another along left edge, up to 60% down. Another along the bottom edge, up to 40% right.
-			if (i === 0){
-				//Top
-				curImg.image.style.left = randomIntFromInterval(vw*.5, vw-curImg.width) + "px";
-				curImg.image.style.top = 0;
-				if (curImg.aspect<1) verticalShrink(curImg.image); //prevent portraits along the top from being too tall
-			} else if (i === 1) {
-				//Left
-				var top = vh*.4-curImg.height;
-				if (top < 0) top = 0;
-				curImg.image.style.top = randomIntFromInterval(0, top) + "px";
-				curImg.image.style.bottom = "auto";
-			} else {
-				//Bottom
-				var left = vw*.4-curImg.width;
-				if (left < 0) left = 0;
-				curImg.image.style.left = randomIntFromInterval(0, left) + "px";
-				curImg.image.style.top = "auto";
-				curImg.image.style.bottom = 0;
+		} 
+	} else {
+		//SEPARATE LAYOUT FOR SEARCH, LESS RANDOM, FIXED TO SIDES & CORNERS
+		var altZigZag = false;
+		for (let i = 0; i < loadedImages.length; i++) {
+			let curImg = loadedImages[i];
+			console.log(curImg.info);
+			switch (i) {
+				case 0:
+					//place in either left or right top corner
+					curImg.image.style.bottom = "auto";
+					curImg.image.style.top = "0px";
+					if (Math.random() < 0.5) {
+						altZigZag = true;
+						curImg.image.style.left = "auto";
+						curImg.image.style.right = "0px";
+					}
+					break;
+				case 1:
+					curImg.image.style.bottom = "auto";
+					curImg.image.style.top = dh/2 - curImg.height/2 + "px";
+					if (!altZigZag){
+						curImg.image.style.left = "auto";
+						curImg.image.style.right = "0px";
+					}
+					break;
+				case 2:
+					curImg.image.style.bottom = "0px";
+					curImg.image.style.top = "auto";
+					if (altZigZag){
+						curImg.image.style.left = "auto";
+						curImg.image.style.right = "0px";
+					} 
+					break;
 			}
-		}
-		
-
-
+		} 
 	}
 }
 

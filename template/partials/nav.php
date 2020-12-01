@@ -6,12 +6,13 @@ if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
     $user = $_SESSION['user'];
     //echo "USER IS LOGGED IN BUT THE CODE DOES NOT WORK YET";
 };
+$search  = (isset($search)) ? TRUE : FALSE;
 
 $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
 
 ?>
 
-<div data-js="content" class="content">
+<div data-js="content" class="content" <?php if($search) echo 'id="searchPage"' ?> >
 <header>
     <nav class="nav layout g-flex">
         <ul data-js="breadcrumbs" class="nav__left">
