@@ -10,7 +10,7 @@ use View\Partial;
 // TODO: 404 error handling
 
 //Provide similar omens (same fault)
-$filter = array("fault"=>$omen->getFault()->getSlug());
+$filter = array("fault" => $omen->getFault()->getSlug());
 $omens = OmenCollection::findOmensByFilter($filter);
 
 ?>
@@ -28,19 +28,12 @@ $omens = OmenCollection::findOmensByFilter($filter);
 
 <img src="<?php echo $omen->getImage() ?>" class="omenImg" alt="<?php echo $omen->getImageAuthor() ?>" title="<?php echo $omen->getImageAuthor() ?>">
 
-<?= Partial::build("omenHero", [
-    "title" => $omen->getTitle(),
-    "statement" => $omen->getStatement(),
-    "death" => $omen->generateSemanticDeath(),
-    "slug" => $omen->getId()
-]); ?>
+<?= Partial::build("omenHero", ["omen" => $omen ]); ?>
 
 <article itemscope itemtype="http://schema.org/CreativeWork" class="poem g-margin4of9 g-span4of9">
 
   <p class="poem__body">
-    <?php
-      echo str_replace('/',"<br>", $omen->getPoem());
-    ?>
+    <?= str_replace('/',"<br>", $omen->getPoem()); ?>
   </p>
   <footer class="poem__author">
     &mdash;<cite itemprop="author"><?php echo $omen->getPoemAuthor() ?></cite>

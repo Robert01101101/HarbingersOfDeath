@@ -18,7 +18,7 @@ abstract class Taxonomy
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "";
+    const DBPASS = "root";
     const DBNAME = "robert_michels";
 
     //Table Names
@@ -35,25 +35,14 @@ abstract class Taxonomy
 
     public function __construct()
     {
-        // Not in use because I couldn't refer to the connection variable initialized here (due to lack of PHP wizardry)
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        /*
-        $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpass = "";
-        $dbname = "robert_michels";
-        $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        // Create a database connection
+        $this->connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
 
         // Test if connection succeeded
         if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }*/
+            // if connection failed, skip the rest of PHP code, and print an error
+            die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" );
+        }
     }
 
     /**
@@ -80,12 +69,17 @@ abstract class Taxonomy
         return $this;
     }
 
+
+
     /**
      * @return array
      * // work out how to use/workaround "(new self)" in abstract class
      */
-    public abstract static function getAllTerms(): array;
+    public abstract static function getAllTerms(): self;
 
-    public abstract function getTerms() : array;
+    public function getTerms(): array
+    {
+        return $this->terms;
+    }
 
 }

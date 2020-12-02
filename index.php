@@ -87,22 +87,20 @@ Route::get('/omen/ajax', function($query) {
         }
     }
 
+    $omenCollection = OmenCollection::findOmensByFilter($query);
 
-    //var_dump();
+    // if the user is logged in
+    if (isset($_SESSION['user'])){
+        //Get user omens so that we can set the title to statement on only those omens
+        $user = $_SESSION['user'];
 
-    /*
-    foreach ($taxonomies as $taxonomy){
-        foreach ($taxonomy->getTerms() as $key => $tag){
-            $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
-            $omensCollection = $tempOmensCollection;
-        }
+        // update the omen's that the user has selected
+        $omenCollection->setStatements($user->getUserOmens());
     }
-    */
-    
-    $omensCollection = OmenCollection::findOmensByFilter($query);
 
-    Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
+    Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection]);
 }, true);
+
 
 /*************************************************
  **  INDIVIDUAL OMEN ROUTE
@@ -110,18 +108,51 @@ Route::get('/omen/ajax', function($query) {
 // Add the individual omen route
 Route::get('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
+
     Page::build('omen', ["omen" => $omen]);
 });
 
 
 /*************************************************
+ **  SEARCH ROUTE [AJAX]
+ *************************************************/
+// Add search AJAX JSON result route
+Route::get('/search/ajax', function ($query) {
+        $omensCollection = OmenCollection::findOmensBySearch($query["query"]);
+
+        Page::build('js-omen-list', ["searchString" => $query, "omenCollection" => $omensCollection]);
+    });
+
+/*************************************************
+ **  SEARCH ROUTE
+ *************************************************/
+// Add the individual omen route
+Route::get('/search', function($query) {
+
+    if (empty($query)){
+        $searchString = "";
+        $omensCollection = OmenCollection::findAllOmens();
+    } else {
+        $searchString = $query["query"];
+        $omensCollection = OmenCollection::findOmensBySearch($searchString);
+    }
+
+    Page::build('search', ["searchString" => $searchString, "omenCollection" => $omensCollection]);
+});
+
+
+
+/*************************************************
  **  OMEN LIST ROUTE
  *************************************************/
+
 // Add omen list route
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen', function($query) {
+
     $taxonomies = [];
-    // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
+
+    // Breakdown the query and create Term objects
     foreach ($query as $taxonomy => $term){
         switch ($taxonomy){
             case "aspect":
@@ -140,44 +171,22 @@ Route::get('/omen', function($query) {
                 break;
         }
     }
-    /*
-    $omensCollection = new OmenCollection();
-    $debugCount = 0;
-    foreach ($taxonomies as $taxonomy){
-        $debugCount++;
-        echo $debugCount;
-        echo "<br>";
-        print_r($taxonomy->getTerms());
-        foreach ($taxonomy->getTerms() as $key => $tag){
-            $tempOmensCollection = $tag->filterOmensByTaxonomy($omensCollection);
-            $omensCollection = $tempOmensCollection;
-        }
+
+    // create a list of omens, using the query
+    $omenCollection = OmenCollection::findOmensByFilter($query);
+
+    // if the user is logged in
+    if (isset($_SESSION['user'])){
+            //Get user omens so that we can set the title to statement on only those omens
+            $user = $_SESSION['user'];
+
+            // update the omen's that the user has selected
+            $omenCollection->setStatements($user->getUserOmens());
     }
-    var_dump($taxonomies);
-    echo "<br>";
-    echo "<br>";
-    print_r($taxonomies);
-    echo "<br>";
-    echo "_____________________________________________________________________<br>";
-    */
 
-    $omensCollection = OmenCollection::findOmensByFilter($query);
 
-    Page::build('omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection]);
 }, true);
-
-
-/*************************************************
- **  ALL OMENS LIST ROUTE
- *************************************************/
-Route::post('/seeMore', function (){
-    ////////////////////////////////// SEE ALL
-    $taxonomies = [];
-    $omensCollection = OmenCollection::findAllOmens();
-
-    Page::build('omen-list', ["taxonomies" => $taxonomies, "omens" => $omensCollection]);
-    //echo "logout";
-});
 
 
 /*************************************************
@@ -189,8 +198,43 @@ Route::get('/', function ($query){
         unset($_SESSION);
         session_destroy();
     }
-    Page::build('home');
+
+    // if user us logged in disply their omens on the home page
+    if (isset($_SESSION['user'])){
+        //User omen collection
+        $user = $_SESSION['user'];
+        $omenCollection = $user->getUserOmens();
+
+        // if the user hasn't selected any omens
+        if(count($omenCollection->getOmens()) <= 0){
+            // display default
+            $omenCollection = OmenCollection::FindSomeOmens();
+        } else {
+            // update wording of ones they have selected
+            $omenCollection->setStatements($omenCollection);
+        }
+
+    } else {
+        $omenCollection = OmenCollection::FindSomeOmens();
+    }
+
+    Page::build('home', ["omenCollection" => $omenCollection]);
 });
+
+
+/*************************************************
+ **  LOGOUT ROUTE
+ *************************************************/
+Route::get('/logout', function ($query){
+
+    unset($_SESSION);
+    session_destroy();
+
+    $omenCollection = OmenCollection::FindSomeOmens();
+
+    Page::build('home', ["omenCollection" => $omenCollection]);
+});
+
 
 
 /*************************************************
@@ -213,7 +257,6 @@ Route::post('/register', function (){
     }
 	Page::build('home', ["response" => $user]);
 });
-
 	
 /*************************************************
  **  LOGIN FORM SUBMISSION ROUTE
@@ -221,8 +264,7 @@ Route::post('/register', function (){
 // Handles register and login form submissions
 Route::post('/login', function (){
 
-	
-	
+
     ////////////////////////////////// LOGIN
     // create new User object from the text file and
     // compare it against the post values
@@ -251,8 +293,6 @@ Route::post('/login', function (){
 			Page::build('home', ["response" => $responseMessage]);
         }
     }
-
-    
 });
 
 
@@ -263,6 +303,9 @@ Route::post('/login', function (){
 // Handles omen submissions
 Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
+
+    // TODO: FIX!
+    var_dump($_POST);
 
     ////////////////////////////////// OMEN
     if (isset($_POST['submit_user_omen'])){
@@ -277,11 +320,8 @@ Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
         $user->removeOmenFromUser($omen);
     }
 
-    
     Page::build('omen', ["omen" => $omen]);
 });
-
-
 
 
 

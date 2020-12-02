@@ -17,7 +17,7 @@ class User
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "";
+    const DBPASS = "root";
     const DBNAME = "robert_michels";
 
     //Table Names
@@ -209,7 +209,7 @@ class User
             $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
             
             $query = "insert  into `user`(`password`,`created_at`,`full_name`,`email_address`,`date_of_birth`,`image_path`) values ";
-            $query .= "('".$this->password."', ".time().", '".$this->name."', '".$this->emailAddress."', ".$date.", 'testImage'); ";
+            $query .= "('".$this->password."', '".date('Y-m-d H:i:s')."', '".$this->name."', '".$this->emailAddress."', '".$date."', 'testImage'); ";
             //$query .= "UNLOCK TABLES;";
         }
         
@@ -231,7 +231,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "";
+        $DBPASS = "root";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -267,7 +267,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "";
+        $DBPASS = "root";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -311,7 +311,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "";
+        $DBPASS = "root";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -334,7 +334,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "";
+        $DBPASS = "root";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded

@@ -31,6 +31,31 @@ class DeathTaxonomy extends Taxonomy
         return $this->terms;
     }
 
+    protected function processQuery($query) : self
+    {
+        $result = mysqli_query($this->connection, $query);
+
+        //Print rows
+        while($row = mysqli_fetch_array($result))
+        {
+            $item = (new Death())
+                ->setId($row[0])
+                ->setSlug($row[1])
+                ->setTitle($row[2]);
+
+            array_push($this->terms, $item);
+        }
+
+        // Release returned data
+        mysqli_free_result($result);
+
+        // Close database connection
+        mysqli_close($this->connection);
+
+        // Return self for chaining
+        return $this;
+    }
+
     /**
      * @param string $slug
      * @return Death
@@ -42,94 +67,21 @@ class DeathTaxonomy extends Taxonomy
      */
     public static function getTermBySlug(string $slug): Death
     {
-        /*
-        foreach ((new self)->loadArray()->terms as $taxonomy){
-            if ($taxonomy->getSlug() == $slug) return $taxonomy;
-        }*/
-
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
+        // Perform database query
         $query = "SELECT * ";
         $query .= 'FROM '.self::T_DEATH;
         //Filter result by slug
         $query .= " WHERE ".self::T_DEATH.".".self::C_SLUG." = '".$slug."';";
 
-        $result = mysqli_query($connection, $query);
-
-        // 3. Use returned data
-        $output;
-        while($row = mysqli_fetch_array($result))
-        {
-            //print_r($row);
-
-            $output = (new Death())
-            ->setId($row[0])
-            ->setSlug($row[1])
-            ->setTitle($row[2]);
-        }
-
-        // 4. Release returned data
-        mysqli_free_result($result);
-  
-        // 5. Close database connection
-        mysqli_close($connection);
-
-        return $output;
+        return (new self)->processQuery($query)->terms[0];
     }
 
-    public static function getAllTerms(): array
+    public static function getAllTerms(): self
     {
-        //SQL query
-        // should use "(new self)" which will call the constructor
-        // (which sets up the db connection)
-        // don't forget to close the database connection "$this->connection = null"
-        // return an array of Term objects
-        //TODO: MOVE TO CONSTRUCTOR
-        //new self();
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
+        //Perform database query
         $query = "SELECT * ";
         $query .= 'FROM '.self::T_DEATH;
-        $result = mysqli_query($connection, $query);
 
-        // 3. Use returned data
-        //Print querie
-        //echo $query;
-        //prepare array
-        $output = array();
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            //print_r($row);
-
-            $item = (new Fault())
-            ->setId($row[0])
-            ->setSlug($row[1])
-            ->setTitle($row[2]);
-
-            array_push($output, $item);
-        }
-
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $output;
-    }
-
-    public function getTerms(): array
-    {
-        //TODO: database query
-        //SQL query
-        // don't forget to close the database connection "$this->connection = null"
-        // return an array of Term objects
-
-        return self::getAllTerms();
+        return (new self)->processQuery($query);
     }
 }

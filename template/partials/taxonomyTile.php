@@ -19,8 +19,8 @@ $aspects = new AspectTaxonomy(TRUE);
 
 if(isset($taxonomies) && is_array($taxonomies)) {
     if (isset($taxonomies['fault'])) {
-        foreach ($faults->getTerms() as $fault) {
-            foreach ($taxonomies['fault']->getTerms() as $activeFault) {
+        foreach ($faults->getAllTerms()->getTerms() as $fault) {
+            foreach ($taxonomies['fault']->getAllTerms()->getTerms() as $activeFault) {
                 if ($fault->getSlug() == $activeFault->getSlug()) {
                     $fault->setActive(TRUE);
                 }
@@ -29,8 +29,8 @@ if(isset($taxonomies) && is_array($taxonomies)) {
     }
 
     if (isset($taxonomies['death'])) {
-        foreach ($deaths->getTerms() as $death) {
-            foreach ($taxonomies['death']->getTerms() as $activeDeath) {
+        foreach ($deaths->getAllTerms()->getTerms() as $death) {
+            foreach ($taxonomies['death']->getAllTerms()->getTerms() as $activeDeath) {
                 if ($death->getSlug() == $activeDeath->getSlug()) {
                     $death->setActive(TRUE);
                 }
@@ -39,8 +39,8 @@ if(isset($taxonomies) && is_array($taxonomies)) {
     }
 
     if (isset($taxonomies['aspect'])) {
-        foreach ($aspects->getTerms() as $aspect) {
-            foreach ($taxonomies['aspect']->getTerms() as $activeAspect) {
+        foreach ($aspects->getAllTerms()->getTerms() as $aspect) {
+            foreach ($taxonomies['aspect']->getAllTerms()->getTerms() as $activeAspect) {
                 if ($aspect->getSlug() == $activeAspect->getSlug()) {
                     $aspect->setActive(TRUE);
                 }
@@ -59,13 +59,13 @@ if(isset($taxonomies) && is_array($taxonomies)) {
             </div>
             <ul class="tile__row">
                 <li class="tile__listItem tile__listItem--title">Who’s at fault?</li>
-                <?php foreach ($faults->getTerms() as $term): ?>
+                <?php foreach ($faults->getAllTerms()->getTerms() as $term): ?>
                     <li data-js-term-fault="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a data-js="tag-link"  href=""><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
             <ul class="tile__row">
                 <li class="tile__listItem tile__listItem--title">Who is dying?</li>
-                <?php foreach ($deaths->getTerms() as $term): ?>
+                <?php foreach ($deaths->getAllTerms()->getTerms() as $term): ?>
                     <li data-js-term-death="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a data-js="tag-link"  href=""><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
@@ -73,7 +73,7 @@ if(isset($taxonomies) && is_array($taxonomies)) {
                 <li class="tile__listItem tile__listItem--title">Where is the dying
                     happening?
                 </li>
-                <?php foreach ($aspects->getTerms() as $term): ?>
+                <?php foreach ($aspects->getAllTerms()->getTerms() as $term): ?>
                     <li data-js-term-aspect="<?= $term->getSlug(); ?>" class="tile__listItem<?= ($term->isActive() == TRUE) ? " tile__listItem--active" : "" ?>"><a data-js="tag-link" href=""><?= $term->getTitle() ?></a></li>
                 <?php endforeach; ?>
             </ul>
