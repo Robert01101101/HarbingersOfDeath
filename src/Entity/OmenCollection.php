@@ -22,7 +22,7 @@ class OmenCollection
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "root";
+    const DBPASS = "";
     const DBNAME = "robert_michels";
 
     //Table Names

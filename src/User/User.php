@@ -17,7 +17,7 @@ class User
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "root";
+    const DBPASS = "";
     const DBNAME = "robert_michels";
 
     //Table Names
@@ -231,7 +231,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "root";
+        $DBPASS = "";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -267,7 +267,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "root";
+        $DBPASS = "";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -311,7 +311,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "root";
+        $DBPASS = "";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
@@ -334,7 +334,7 @@ class User
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
         $DBUSER = "root";
-        $DBPASS = "root";
+        $DBPASS = "";
         $DBNAME = "robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
