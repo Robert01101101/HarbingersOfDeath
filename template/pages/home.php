@@ -50,10 +50,13 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 
                 
 
-                <span class="callToAction"><form method="post" action="/seeMore/"><input type="submit" name="submit_seeMore" class="input__seeMore" value="See more"></form></span>
+                <span class="callToAction"><a href="/omen/" class="input__seeMore" >See more</a></span>
+                <br />
+                <span class="callToAction"><a href="/search/" class="input__seeMore" >Search</a></span>
+
             </div>
 
-            <?= Partial::build('omenGrid', ["home" => "true"]); ?>
+            <?= Partial::build('omenGrid', ["home" => "true", "omenCollection" => $omenCollection]); ?>
 
         </div>
     </section>

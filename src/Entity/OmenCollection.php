@@ -9,17 +9,20 @@ use Taxonomy\Death;
 use Taxonomy\DeathTaxonomy;
 use Taxonomy\Fault;
 use Taxonomy\FaultTaxonomy;
+use User\User;
+use View\JSON;
 
 class OmenCollection
 {
     private $omens = array();
 
     protected $connection;
+    protected $query;
 
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "";
+    const DBPASS = "root";
     const DBNAME = "robert_michels";
 
     //Table Names
@@ -43,21 +46,34 @@ class OmenCollection
 
     public function __construct()
     {
-        //Not in use because I couldn't refer to the connection variable initialized here (due to lack of PHP wizardry)
-        /*
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+        // Create a database connection
+        $this->connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
 
         // Test if connection succeeded
         if(mysqli_connect_errno()) {
-        // if connection failed, skip the rest of PHP code, and print an error
-        die("Database connection failed: " . 
-             mysqli_connect_error() . 
-             " (" . mysqli_connect_errno() . ")"
-        );
-        }*/
+            // if connection failed, skip the rest of PHP code, and print an error
+            die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" );
+        }
+    }
+
+
+    private function processQuery($query) : self
+    {
+        $result = mysqli_query($this->connection, $query);
+
+        //Print rows
+        while($row = mysqli_fetch_array($result)) {
+            array_push($this->omens, self::buildOmenFromData($row));
+        }
+
+        // Release returned data
+        mysqli_free_result($result);
+
+        // Close database connection
+        mysqli_close($this->connection);
+
+        // Return self for chaining
+        return $this;
     }
 
 
@@ -69,9 +85,10 @@ class OmenCollection
      * @param $fault
      * @param $aspect
      * @param $death
+     * @return \Entity\Omen\Omen
      */
-
-    private function createOmen(string $slug, sting $title, Fault $fault, Aspect $aspect, Death $death){
+    private function createOmen(string $slug, sting $title, Fault $fault, Aspect $aspect, Death $death) : Omen
+    {
         return (new Omen($slug, $title))
             ->setFault($fault)
             ->setAspect($aspect)
@@ -102,17 +119,19 @@ class OmenCollection
 
     public function setStatements(OmenCollection $userOmens) : self
     {
-        $theseOmens = $this->omens;
+        // get the array of Omens from the userOmens OmenCollection
         $userOmens = $userOmens->getOmens();
-        foreach ($userOmens as $uo) {
-            foreach ($theseOmens as $to) {
-                if ($to->getID() == $uo->getID()) $to->setUserExperience(TRUE);
+        // loop through the userOmen array
+        foreach ($userOmens as $userOmen) {
+            // loop through this omen array
+            foreach ($this->omens as $omen) {
+                // if the omens match, set the UserExperience to TRUE
+                if ($omen->getID() == $userOmen->getID()) $omen->setUserExperience(TRUE);
             }
         }
 
-        $output = new OmenCollection();
-        $output->setOmens($theseOmens);
-        return $output;
+        // return self
+        return $this;
     }
 
 
@@ -121,63 +140,29 @@ class OmenCollection
      */
     public static function findAllOmens()
     {
-        //SQL query
-        //TODO: use constructor
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
-        $query = "SELECT * FROM ";
+        $query = "SELECT * FROM";
         //Join omen with aspect
-        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
         //Join result with death
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
 
-        //DEBUG
-        //echo $query;
-
-        $result = mysqli_query($connection, $query);
-
-        // 3. Use returned data
-        //prepare output
-        $output = array();
-
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            array_push($output, self::buildOmenFromData($row));
-        }
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $output;
+        return (new self)->processQuery($query);
     }
+
 
     /**
      * @return array
      */
     public static function findSomeOmens() : OmenCollection
     {
-        //SQL query
-        //TODO: use constructor
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
-        $query = "SELECT * FROM ";
+        $query = "SELECT * FROM";
         //Join omen with aspect
-        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
         //Join result with death
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
@@ -185,24 +170,38 @@ class OmenCollection
         //Pick a number of random records ***
         $query .= " ORDER BY RAND() LIMIT 6;";
 
-        //DEBUG
-        //echo $query;
-        
-        $result = mysqli_query($connection, $query);
+        return (new self)->processQuery($query);
 
-        // 3. Use returned data
-        //prepare output
-        $omensCollection = new OmenCollection();
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            $omensCollection->addOmen(self::buildOmenFromData($row));
+    }
+
+    public function generateJSON() : string
+    {
+        $omenArray = [];
+        for ($i = 0; $i < count($this->omens); $i++){
+            $omen = $this->omens[$i];
+            $omenArray[$i]["slug"] = $omen->getTitle();
+            $omenArray[$i]["title"] = $omen->getTitle();
+            $omenArray[$i]["aspect"] = $omen->getAspect();
+            $omenArray[$i]["death"] = $omen->getDeath();
+            $omenArray[$i]["fault"] = $omen->getFault();
         }
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $omensCollection;
+
+        return json_encode($omenArray);
+    }
+
+
+    public static function findOmensBySearch(string $string){
+
+        //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
+        $query = "SELECT * FROM";
+        //Join omen with aspect
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        //Join result with death
+        $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
+        //Join result with fault
+        $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+
+        return (new self)->processQuery($query);
     }
 
     /**
@@ -210,19 +209,10 @@ class OmenCollection
      */
     public static function findOmensByFilter(array $search) : OmenCollection //(Fault $fault, Aspect $aspect, Death $death) : array
     {
-        //SQL query
-        //TODO: use constructor
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
-        $query = "SELECT * FROM ";
+        $query = "SELECT * FROM";
         //Join omen with aspect
-        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
         //Join result with death
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
@@ -258,45 +248,27 @@ class OmenCollection
         }
         $query .= ";";
 
-        //original if statement: if(isset($death) && !is_null($death)){  }
-
-        //echo $query;
-
-        $result = mysqli_query($connection, $query);
-        //prepare omensCollection
-        $omensCollection = new OmenCollection();
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            //echo print_r($row);
-            $omensCollection->addOmen(self::buildOmenFromData($row));
-        }
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $omensCollection;
-
+        return (new self)->processQuery($query);
     }
+
+    public static function isOmenUserSelected(Omen $omen, User $user) : bool
+    {
+        $query = "SELECT * FROM `user_omen` WHERE user_omen.user_id = '".$user->getID()."' AND user_omen.omen_id = '".$omen->getSlug()."';";
+
+        // return true if the query returns anything, false if it does not.
+        return ((new self)->processQuery($query)->getOmens()) <= 0;
+    }
+
 
     /**
      * @return Omen
      */
     public static function getOmenBySlug(string $slug) : Omen
     {
-        //SQL query
-        //TODO: use constructor
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
-        $query = "SELECT * FROM ";
+        $query = "SELECT * FROM";
         //Join omen with aspect
-        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
         //Join result with death
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
@@ -304,49 +276,19 @@ class OmenCollection
         //Filter result by omen slug
         $query .= " WHERE ".self::T_OMEN.".".self::C_SLUG." = '".$slug."';";
 
-        //DEBUG
-        //echo $query;
-
-        $result = mysqli_query($connection, $query);
-
-        // 3. Use returned data
-        //prepare output
-        $output;
-
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            //echo print_r($row);
-            $output = self::buildOmenFromData($row);
-        }
-
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $output;
+        return (new self)->processQuery($query)->getOmens()[0];
     }
+
 
     /**
      * @return Omen
      */
     public static function getOmenById(int $id) : Omen
     {
-        //SQL query
-        //TODO: use constructor
-        // Set up MySQLi connection
-        // Code for connection is from Lab.
-        // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-
-        // Test if connection succeeded
-        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
-
-        // 2. Perform database query
         //Select all from the table that is created by performing inner joins. Tables joined: omen, aspect, death & fault.
-        $query = "SELECT * FROM ";
+        $query = "SELECT * FROM";
         //Join omen with aspect
-        $query .= "(((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
+        $query .= " (((".self::T_OMEN." INNER JOIN ".self::T_ASPECT." ON ".self::T_OMEN.".".self::C_ASPECT." = ".self::T_ASPECT.".".self::C_TERM.")";
         //Join result with death
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
@@ -354,28 +296,9 @@ class OmenCollection
         //Filter result by omen slug
         $query .= " WHERE ".self::T_OMEN.".".self::C_ID." = '".$id."';";
 
-        //DEBUG
-        //echo $query;
-
-        $result = mysqli_query($connection, $query);
-
-        // 3. Use returned data
-        //prepare output
-        $output;
-
-        //Print rows
-        while($row = mysqli_fetch_array($result))
-        {
-            //echo print_r($row);
-            $output = self::buildOmenFromData($row);
-        }
-
-        // 4. Release returned data
-        mysqli_free_result($result);
-        // 5. Close database connection
-        mysqli_close($connection);
-        return $output;
+        return (new self)->processQuery($query)->getOmens()[0];
     }
+
 
     /**
      * Creates new Omen based on SQL data row

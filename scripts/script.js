@@ -348,7 +348,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     .map(k => esc(k) + '=' + esc(urlParams[k]))
                     .join('&');
 
-                console.log(query);
+                let urlPathAjax = "/omen/ajax/?" + query;
+                let urlPath = "/omen/?" + query;
+
 
                 if (omenList == null) {
                     window.location.href = "/omen/?" + query;
@@ -357,6 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     let xmlhttp = new XMLHttpRequest();
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
+
+                            window.history.replaceState({"query":query},"", urlPath);
 
                             omenList.innerHTML = this.responseText;
                             colcade.destroy()
@@ -368,12 +372,76 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     };
 
-                    xmlhttp.open("GET", "/omen/ajax/?" + query, true);
+                    console.log(xmlhttp);
+
+                    xmlhttp.open("GET", urlPathAjax, true);
                     xmlhttp.send();
+                    console.log(xmlhttp);
+
                 }
             })
         })
     }
+
+    /*************************************
+     *
+     *          SEARCH
+     *
+     *  references:
+     *  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+     *  https://stackoverflow.com/questions/316781/how-to-build-query-string-with-javascript
+     *************************************/
+
+    let searchForm = document.querySelector('[data-js-searchForm="searchForm"]');
+    let searchBar = document.querySelector('[data-js-searchForm="searchBar"]');
+    let queryDisplay = document.querySelector('[data-js-searchForm="queryDisplay"]');
+    let searchOmenList = document.querySelector('[data-js="grid"]');
+
+
+    const inputHandler = function(e) {
+        let queryString = e.target.value;
+        queryDisplay.innerHTML = queryString;
+
+        urlParams["query"] = queryString;
+        let esc = encodeURIComponent;
+        let query = Object.keys(urlParams)
+            .map(k => esc(k) + '=' + esc(urlParams[k]))
+            .join('&');
+
+        let urlPathAjax = "/search/ajax/?" + query;
+        let urlPath = "/search/?" + query;
+
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                window.history.replaceState({"query":queryString},"", urlPath);
+
+                searchOmenList.outerHTML = this.responseText;
+                colcade.destroy()
+                let grid = document.querySelector('[data-js="grid"]');
+                colcade = new Colcade(grid, {
+                    columns: '[data-js="column"]',
+                    items: '[data-js="tile"]'
+                });
+            }
+        };
+
+        xmlhttp.open("GET", urlPathAjax, true);
+        xmlhttp.send();
+    }
+
+    searchBar.addEventListener('input', inputHandler);
+    searchBar.addEventListener('propertychange', inputHandler);
+
+    searchForm.addEventListener('submit', function (e){
+        e.preventDefault();
+        return false;
+    });
+
+
+
+
 
 
 });

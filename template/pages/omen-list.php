@@ -27,7 +27,7 @@ use View\Partial;
 
 <section>
     <div data-js="filtered-omen-list" class="layout layout--distant g-flex">
-        <?= Partial::build('omenGrid', ["omenCollection" => $omens, "columns" => 4, "oilPaintings" => TRUE]); ?>
+        <?= Partial::build('omenGrid', ["omenCollection" => $omenCollection, "columns" => 4, "oilPaintings" => TRUE]); ?>
     </div>
 </section>
 

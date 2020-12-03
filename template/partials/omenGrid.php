@@ -5,31 +5,32 @@ use Entity\Omen\OmenCollection;
 
 //Get omens for members
 $userLoggedIn = isset($_SESSION['user']);
-$user; 
-$omenCollection;
+$user = null;
 $home = (isset($home)) ? TRUE : FALSE;
 
-if ($userLoggedIn && $home){
-    //User omen collection
-    $user = $_SESSION['user'];
-    $omenCollection = $user->getUserOmens();
-    $omenCollection->setStatements($omenCollection);
-
-    //echo print_r(get_object_vars($omenCollection));
-} else if (!$userLoggedIn && $home){
-    //Visitor omen collection
-    $omenCollection = OmenCollection::FindSomeOmens();
-} else if ($userLoggedIn && !$home){
-    if(isset($omenCollection)){
-        //Get user omens so that we can set the title to statement on only those omens
-        $user = $_SESSION['user'];
-        $tmp = new OmenCollection();
-        if (!is_array($omenCollection)) $omenCollection = $omenCollection->getOmens();
-        $tmp->setOmens($omenCollection);
-        $omenCollection = $tmp;
-        $omenCollection->setStatements($user->getUserOmens());
-    }
-}
+//if ($userLoggedIn && $home){
+//    $omenCollection = null;
+//
+//    //User omen collection
+//    $user = $_SESSION['user'];
+//    $omenCollection = $user->getUserOmens();
+//    $omenCollection->setStatements($omenCollection);
+//
+//    //echo print_r(get_object_vars($omenCollection));
+//} else if (!$userLoggedIn && $home){
+//    //Visitor omen collection
+//    $omenCollection = OmenCollection::FindSomeOmens();
+//} else if ($userLoggedIn && !$home){
+//    if(isset($omenCollection) && !is_null($omenCollection)){
+//        //Get user omens so that we can set the title to statement on only those omens
+//        $user = $_SESSION['user'];
+//        $tmp = new OmenCollection();
+//        if (!is_array($omenCollection)) $omenCollection = $omenCollection->getOmens();
+//        $tmp->setOmens($omenCollection);
+//        $omenCollection = $tmp;
+//        $omenCollection->setStatements($user->getUserOmens());
+//    }
+//}
 
 
 // do we spice this with oil paintings?
@@ -63,6 +64,7 @@ $columns  = (isset($columns) && !is_null($columns)) ? $columns : 3;
      //echo "OmenCollection is set"; ?>
 
     <?php else: ?>
+
 
     <?= Partial::build('omens', ["omenCollection" => OmenCollection::FindSomeOmens()]);  ?>
 
