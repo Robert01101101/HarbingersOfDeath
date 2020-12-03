@@ -53,6 +53,11 @@
     &--destructive {
       color: #FAA;
     }
+
+    &--logout {
+      display: block;
+      float: right;
+    }
   }
 
   &__logout {
@@ -118,4 +123,27 @@
       }
     }
   }
+}
+
+//Account Settings
+.accountSubmit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  float: right;
+
+  * {
+    flex-grow: 0;
+  }
+
+  a {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+}
+
+//Hide old password for extra security (so nobody can copy it off the screen)
+input[type="password-old"] {
+  -webkit-text-security: disc !important;
 }

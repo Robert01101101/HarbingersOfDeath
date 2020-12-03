@@ -301,6 +301,39 @@ Route::post('/login', function (){
 });
 
 
+/*************************************************
+ **  ACCOUNT FORM SUBMISSION ROUTE
+ *************************************************/
+// Handles account form submissions
+Route::post('/account', function (){
+    // TODO: move data processing to it's own place
+    ////////////////////////////////// REGISTER
+    if(isset($_POST['submit_account'])) {
+        $user = $_SESSION['user'];
+        $responseMessage = "You've successfully updated your account data.";
+        
+        if (isset($_POST['emailAddress'])) $user = $user->setEmailAddress($_POST['emailAddress']);
+        if (isset($_POST['name'])) $user = $user->setName($_POST['name']);
+        if (isset($_POST['password']) && isset($_POST['password-old']) && strcmp($_POST['password'], "") !== 0) {
+            if (strcmp($user->getPassword(), $_POST['password-old']) !== 0) {
+                $responseMessage = "Error: the old password wasn't correct, please repeat with the correct password, to prove your identity.";
+            } else {
+                if (strcmp($_POST['password'], $_POST['password-old']) === 0) {
+                    $responseMessage = "Error: New password may not match the old password.";
+                } else {
+                    //Success with password change
+                    $responseMessage = "Password has been successfully changed.";
+                    $user = $user->setPassword($_POST['password']);
+                }
+            }
+        }
+        $user->updateUserData();
+        $omenCollection = $user->getUserOmens();
+    }
+	Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
+});
+
+
 
 /*************************************************
  **  OMEN FORM SUBMISSION ROUTE

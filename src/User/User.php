@@ -297,8 +297,6 @@ class User
 
             //User
             //$query = "LOCK TABLES `user` WRITE; ";
-            $query = "insert  into `user`(`user_name`,`password`,`created_at`,`phone_number`,`address_id`,`full_name`,`email_address`,`image_path`) values ";
-            $query .= "('testUsername', '".$this->password."', ".time().", 0123456789, ".$connection->insert_id.", '".$this->name."', '".$this->emailAddress."', 'testImage'); ";
             //$query .= "UNLOCK TABLES;";
         }
         // 4. Release returned data
@@ -360,6 +358,24 @@ class User
         // 5. Close database connection
         mysqli_close($connection);
         return $omensCollection;
+    }
+
+    public function updateUserData() {
+        // 1. Set up MySQLi connection
+        $DBHOST = "localhost";
+        $DBUSER = "root";
+        $DBPASS = "";
+        $DBNAME = "robert_michels";
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        $query = "UPDATE `user` SET user.email_address = '".$this->emailAddress."', user.full_name = '".$this->name."', user.password = '".$this->password."' WHERE user.user_id = '".$this->id."';";
+
+        $result = mysqli_query($connection, $query);
+
+        // 5. Close database connection
+        mysqli_close($connection);
     }
 
 

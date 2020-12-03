@@ -5,10 +5,12 @@
 var random_images_array = new Array();
 var loadedImagesLogin = new Array();
 var loadedImagesRegister = new Array();
+var loadedImagesAccount = new Array();
 var loadedImagesSearch = new Array();
 var totalDeathImgs = 6;
 var portraitCountLogin = 0;
 var portraitCountRegister = 0;
+var portraitCountAccount = 0;
 var portraitCountSearch = 0;
 
 //Check for viewport size
@@ -57,10 +59,12 @@ for (let i = 0; i < totalDeathImgs; i++) {
 //Pick a number of images (more for search), load & analyze them
 var totalPicksLogin = Math.floor(Math.random() * 2)+2;
 var totalPicksRegister = Math.floor(Math.random() * 2)+2;
+var totalPicksAccount = Math.floor(Math.random() * 2)+2;
 var totalPicksSearch = 3;
 getRandomImage(random_images_array, totalPicksLogin, document.getElementById("modal--login"), 0);
 getRandomImage(random_images_array, totalPicksRegister, document.getElementById("modal--register"), 1);
-if (document.getElementById("searchPage") !== null) getRandomImage(random_images_array, totalPicksSearch, document.getElementById("searchPage"), 2);
+getRandomImage(random_images_array, totalPicksAccount, document.getElementById("modal--account"), 2);
+if (document.getElementById("searchPage") !== null) getRandomImage(random_images_array, totalPicksSearch, document.getElementById("searchPage"), 3);
 
 
 //Pick random images & add to page
@@ -69,7 +73,7 @@ function getRandomImage(imgAr, count, doc, call) {
 	const newDiv = document.createElement("div"); 
 	newDiv.classList.add("bgImages");
 	doc.insertBefore(newDiv, doc.firstChild);
-	if (call === 2) newDiv.classList.add("bgImages--search");
+	if (call === 3) newDiv.classList.add("bgImages--search");
 
 	//clone array
 	const imagesClone = [...imgAr];
@@ -106,7 +110,8 @@ function getRandomImage(imgAr, count, doc, call) {
 				switch (call) { 
 					case 0: portraitCountLogin++; break;
 					case 1: portraitCountRegister++; break;
-					case 2: portraitCountSearch++; break;
+					case 2: portraitCountAccount++; break;
+					case 3: portraitCountSearch++; break;
 				}
 
 				//deal with very tall images -> limit height to half of viewport
@@ -132,7 +137,11 @@ function getRandomImage(imgAr, count, doc, call) {
 					loadedImagesRegister.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
 					if (loadedImagesRegister.length == totalPicksRegister) imageLayout(call);
 					break;
-				case 2: 
+				case 2:
+					loadedImagesAccount.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
+					if (loadedImagesAccount.length == totalPicksAccount) imageLayout(call);
+					break;
+				case 3: 
 					loadedImagesSearch.push(new LayoutImage(img, aspectRatio, imgWidth, imgHeight));
 					if (loadedImagesSearch.length == totalPicksSearch) imageLayout(call);
 					break;
@@ -160,6 +169,11 @@ function imageLayout(call){
 			loadedImages = loadedImagesRegister;
 			break;
 		case 2:
+			portraitCount = portraitCountAccount;
+			totalPicks = totalPicksAccount;
+			loadedImages = loadedImagesAccount;
+			break;
+		case 3:
 			portraitCount = portraitCountSearch;
 			totalPicks = totalPicksSearch;
 			loadedImages = loadedImagesSearch;
@@ -176,7 +190,7 @@ function imageLayout(call){
 		for (let i = 0; i < loadedImages.length; i++) {
 			let curImg = loadedImages[i];
 			console.log(curImg.info);
-			if (totalPicks === 2) {
+			if (totalPicks === 3) {
 				///////2 images total -> one along top, between center & right corner. Another along left edge.
 				//console.log("2 Img Layout");
 	

@@ -15,6 +15,9 @@ use View\Partial;
     <!--THE LOGIN MODAL WINDOW-->
 <?= Partial::build('modal/login'); ?>
 
+<!--THE ACCOUNT MODAL WINDOW-->
+<?= Partial::build('modal/account'); ?>
+
     <!--THE HOMEPAGE WINDOW-->
 <?= Partial::build('nav', ["search" => TRUE]); ?>
 
