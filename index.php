@@ -282,9 +282,11 @@ Route::post('/login', function (){
             if(isset($user)){
                 //echo "Successful Login";
                 $_SESSION['user'] = $user;
+                $omenCollection = $user->getUserOmens();
 				
-				$responseMessage = "You've successfully signed in!";
-				Page::build('home', ["response" => $responseMessage]);
+                $responseMessage = "You've successfully signed in!";
+
+				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
 				$responseMessage = "Wrong password. Please try again.";

@@ -61,14 +61,16 @@ class OmenCollection
     {
         $result = mysqli_query($this->connection, $query);
 
-        //Print rows
-        while($row = mysqli_fetch_array($result)) {
-            array_push($this->omens, self::buildOmenFromData($row));
+        if ($result !== FALSE){
+            //Print rows
+            while($row = mysqli_fetch_array($result)) {
+                array_push($this->omens, self::buildOmenFromData($row));
+            }
+
+            // Release returned data
+            mysqli_free_result($result);
         }
-
-        // Release returned data
-        mysqli_free_result($result);
-
+        
         // Close database connection
         mysqli_close($this->connection);
 
@@ -212,7 +214,8 @@ class OmenCollection
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
         //Pick a number of random records ***
-        $query .= " ORDER BY RAND() LIMIT 6;";
+        //$query .= " ORDER BY RAND() LIMIT 6;";
+        $query .= " WHERE omen.title LIKE '%".$string."%'";
 
         return (new self)->processQuery($query);
     }

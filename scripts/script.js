@@ -446,8 +446,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     ).join('')}
                 `;
 
-                searchOmenList.innerHTML = markup;
                 colcade.destroy();
+
+                searchOmenList.innerHTML = markup;
 
                 colcade = new Colcade(searchOmenList, {
                     columns: '[data-js="column"]',
