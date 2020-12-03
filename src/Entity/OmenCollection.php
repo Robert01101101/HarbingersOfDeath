@@ -167,23 +167,34 @@ class OmenCollection
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
-        //Pick a number of random records ***
-        $query .= " ORDER BY RAND() LIMIT 6;";
+
 
         return (new self)->processQuery($query);
 
     }
+
 
     public function generateJSON() : string
     {
         $omenArray = [];
         for ($i = 0; $i < count($this->omens); $i++){
             $omen = $this->omens[$i];
-            $omenArray[$i]["slug"] = $omen->getTitle();
-            $omenArray[$i]["title"] = $omen->getTitle();
-            $omenArray[$i]["aspect"] = $omen->getAspect();
-            $omenArray[$i]["death"] = $omen->getDeath();
-            $omenArray[$i]["fault"] = $omen->getFault();
+            $omenArray[$i]["slug"] = $omen->getSlug();
+
+            // if user has experienced omen, use statement instead of title
+            if ($omen->isExperience()){
+                $omenArray[$i]["title"] = $omen->getStatement();
+            } else {
+                $omenArray[$i]["title"] = $omen->getTitle();
+            }
+            $omenArray[$i]["path"] = $omen->getPath();
+            $omenArray[$i]["semanticDeath"] = $omen->generateSemanticDeath();
+            $omenArray[$i]["aspectTitle"] = $omen->getAspect()->getTitle();
+            $omenArray[$i]["deathTitle"] = $omen->getDeath()->getTitle();
+            $omenArray[$i]["faultTitle"] = $omen->getFault()->getTitle();
+            $omenArray[$i]["aspectSlug"] = $omen->getAspect()->getSlug();
+            $omenArray[$i]["deathSlug"] = $omen->getDeath()->getSlug();
+            $omenArray[$i]["faultSlug"] = $omen->getFault()->getSlug();
         }
 
         return json_encode($omenArray);
@@ -200,6 +211,8 @@ class OmenCollection
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
+        //Pick a number of random records ***
+        $query .= " ORDER BY RAND() LIMIT 6;";
 
         return (new self)->processQuery($query);
     }

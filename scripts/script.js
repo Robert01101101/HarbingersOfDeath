@@ -4,11 +4,10 @@
 
 let grid = document.querySelector('[data-js="grid"]');
 
-let colcade = new Colcade(grid, {
+var colcade = new Colcade(grid, {
     columns: '[data-js="column"]',
     items: '[data-js="tile"]'
 });
-
 
 
 // source: https://stackoverflow.com/questions/346021/how-do-i-remove-objects-from-a-javascript-associative-array/9973592#9973592
@@ -22,11 +21,7 @@ Object.prototype.removeItem = function (key) {
 };
 
 
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     /*************************************
      *
@@ -36,224 +31,224 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Open modal on click
 
-		
+
     let body = document.body;
     let content = document.querySelector('.content');
-	
-	// modals
-	let modalLogin = document.querySelector('[data-js-modal="login"]');
-	let modalRegister = document.querySelector('[data-js-modal="register"]');
-	
-	// modal buttons 
+
+    // modals
+    let modalLogin = document.querySelector('[data-js-modal="login"]');
+    let modalRegister = document.querySelector('[data-js-modal="register"]');
+
+    // modal buttons
     let buttonRegister = document.querySelector('[data-js-modal="registerButton"]');
     let buttonLogin = document.querySelector('[data-js-modal="loginButton"]');
     let buttonLoginAlt = document.querySelector('[data-js-modal="buttonLoginAlt"]');
-	let buttonClose = document.querySelector('[data-js-modal="close"]');
-	let buttonCloseLogin = document.querySelector('[data-js-modal="closeLogin"]');
+    let buttonClose = document.querySelector('[data-js-modal="close"]');
+    let buttonCloseLogin = document.querySelector('[data-js-modal="closeLogin"]');
 
-	let formLogin = document.querySelector('[data-js-modal="loginForm"]');
-	
-	let submitLogin = document.querySelector('[data-js-modal="loginSubmitButton"]');
-	
-	let responseLogin = document.querySelector('[data-js-modal="loginResponse"]');
+    let formLogin = document.querySelector('[data-js-modal="loginForm"]');
+
+    let submitLogin = document.querySelector('[data-js-modal="loginSubmitButton"]');
+
+    let responseLogin = document.querySelector('[data-js-modal="loginResponse"]');
 
     // TODO: make closing modal more user friendly (i.e. esc key)
-	if (typeof(buttonRegister) != 'undefined' && buttonRegister != null){
-		buttonRegister.addEventListener('click', function (event){
-	        // adds "js-modal--open" class to model container to open model
-	        modalRegister.classList.add("js-modal--open");
-	
-	        // sets width of modal scroll bar to a CSS variable in the modal
-	        // CSS then removes visible scrollbar from modal (not good ux!)
-	        // although...... this doesn't work at all.
-	        // TODO: make this work
-	        // TODO: OR: custom scroll bars everywhere
-	        //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
-	        //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
-	
-	        // sets current scroll position in CSS variable in body element
-	        body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
-	
-	        // adds "js-fixed" class to body (this prevents scrolling)
-	        body.classList.add("js-fixed");
-	
-	        // adds "js-blurred" class to the body (this makes things blurry)
-	        content.classList.add("js-blur");
-	
-	        // stops click from doing anything
-	        event.preventDefault();
-	
-	        // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
-	    });
-	}
-	
-	if (typeof(buttonLogin) != 'undefined' && buttonLogin != null){
-		buttonLogin.addEventListener('click', function (event){
-	        // adds "js-modal--open" class to model container to open model
-	        modalLogin.classList.add("js-modal--open");
-	
-	        // sets width of modal scroll bar to a CSS variable in the modal
-	        // CSS then removes visible scrollbar from modal (not good ux!)
-	        // although...... this doesn't work at all.
-	        // TODO: make this work
-	        // TODO: OR: custom scroll bars everywhere
-	        //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
-	        //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
-	
-	        // sets current scroll position in CSS variable in body element
-	        body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
-	
-	        // adds "js-fixed" class to body (this prevents scrolling)
-	        body.classList.add("js-fixed");
-	
-	        // adds "js-blurred" class to the body (this makes things blurry)
-	        content.classList.add("js-blur");
-	
-	        // stops click from doing anything
-	        event.preventDefault();
-	
-	        // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
-	    });
+    if (typeof (buttonRegister) != 'undefined' && buttonRegister != null) {
+        buttonRegister.addEventListener('click', function (event) {
+            // adds "js-modal--open" class to model container to open model
+            modalRegister.classList.add("js-modal--open");
+
+            // sets width of modal scroll bar to a CSS variable in the modal
+            // CSS then removes visible scrollbar from modal (not good ux!)
+            // although...... this doesn't work at all.
+            // TODO: make this work
+            // TODO: OR: custom scroll bars everywhere
+            //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
+            //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
+
+            // sets current scroll position in CSS variable in body element
+            body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
+
+            // adds "js-fixed" class to body (this prevents scrolling)
+            body.classList.add("js-fixed");
+
+            // adds "js-blurred" class to the body (this makes things blurry)
+            content.classList.add("js-blur");
+
+            // stops click from doing anything
+            event.preventDefault();
+
+            // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
+        });
     }
-    
-    if (typeof(buttonLoginAlt) != 'undefined' && buttonLoginAlt != null){
-		buttonLoginAlt.addEventListener('click', function (event){
-	        // adds "js-modal--open" class to model container to open model
-	        modalLogin.classList.add("js-modal--open");
-	
-	        // sets width of modal scroll bar to a CSS variable in the modal
-	        // CSS then removes visible scrollbar from modal (not good ux!)
-	        // although...... this doesn't work at all.
-	        // TODO: make this work
-	        // TODO: OR: custom scroll bars everywhere
-	        //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
-	        //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
-	
-	        // sets current scroll position in CSS variable in body element
-	        body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
-	
-	        // adds "js-fixed" class to body (this prevents scrolling)
-	        body.classList.add("js-fixed");
-	
-	        // adds "js-blurred" class to the body (this makes things blurry)
-	        content.classList.add("js-blur");
-	
-	        // stops click from doing anything
-	        event.preventDefault();
-	
-	        // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
-	    });
-	}
 
-    
-	if (typeof(buttonClose) != 'undefined' && buttonClose != null){
-		buttonClose.addEventListener('click', function ( event){
-	        // gets current scroll position from CSS variable in body and parses it to an int and making it positive
-	        const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
-	
-	        // removes "js-modal--open" class from model container to close model
-			if(modalLogin.classList.contains("js-modal--open")){
-				modalLogin.classList.remove("js-modal--open");
-			}
-			if(modalRegister.classList.contains("js-modal--open")){
-				modalRegister.classList.remove("js-modal--open");
-			}
-	        
-	
-	        // removes "js-fixed" class from body (this prevents scrolling)
-	        body.classList.remove("js-fixed");
-	
-	        // removes "js-blurred" class from body (this makes things blurry)
-	        content.classList.remove("js-blur");
-	
-	        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-	
-	        event.preventDefault();
-	    });
-	}
+    if (typeof (buttonLogin) != 'undefined' && buttonLogin != null) {
+        buttonLogin.addEventListener('click', function (event) {
+            // adds "js-modal--open" class to model container to open model
+            modalLogin.classList.add("js-modal--open");
 
-	//quick bug fix where login close button would just refresh the page, causing lack of fade out
-	if (typeof(buttonCloseLogin) != 'undefined' && buttonCloseLogin != null){
-		buttonCloseLogin.addEventListener('click', function ( event){
-	        // gets current scroll position from CSS variable in body and parses it to an int and making it positive
-	        const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
-	
-	        // removes "js-modal--open" class from model container to close model
-			if(modalLogin.classList.contains("js-modal--open")){
-				modalLogin.classList.remove("js-modal--open");
-			}
-			if(modalRegister.classList.contains("js-modal--open")){
-				modalRegister.classList.remove("js-modal--open");
-			}
-	        
-	
-	        // removes "js-fixed" class from body (this prevents scrolling)
-	        body.classList.remove("js-fixed");
-	
-	        // removes "js-blurred" class from body (this makes things blurry)
-	        content.classList.remove("js-blur");
-	
-	        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-	
-	        event.preventDefault();
-	    });
-	}
-	
-	// var paramsLogin = null;
-	// var urlLogin = '';
-	// if (typeof(formLogin) != 'undefined' && formLogin != null){
-	// 	formLogin.addEventListener('submit', function (event){
-			
-	// 		event.preventDefault();
-			
-			
-	// 		let xmlhttp = new XMLHttpRequest();
-			
-	// 		urlLogin = '/login/ajax/';
-	// 		paramsLogin = new FormData(formLogin);
-			
-			
-	// 		xmlhttp.open("POST", urlLogin);
-			
-	// 		// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
-	// 		xmlhttp.send(paramsLogin);
-			
-			
-	// 		xhr.onloadend = function (response) {
-	// 			if (response.target.status === 0) {
-		
-	// 				// Failed XmlHttpRequest should be considered an undefined error.
-					
-	// 				console.log = form.dataset.formError;
-	// 				console.log("000");
-		
-	// 			} else if (response.target.status === 400) {
-		
-	// 				// Bad Request
-	// 				formStatus.className += ' alert-danger';
-	// 				console.log("400");
-		
-	// 			} else if (response.target.status === 200) {
-		
-	// 				console.log("200");
-		
-	// 			}
-	//         };
-			
-			
-	// 		// xmlhttp.onreadystatechange = function () {
+            // sets width of modal scroll bar to a CSS variable in the modal
+            // CSS then removes visible scrollbar from modal (not good ux!)
+            // although...... this doesn't work at all.
+            // TODO: make this work
+            // TODO: OR: custom scroll bars everywhere
+            //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
+            //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
+
+            // sets current scroll position in CSS variable in body element
+            body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
+
+            // adds "js-fixed" class to body (this prevents scrolling)
+            body.classList.add("js-fixed");
+
+            // adds "js-blurred" class to the body (this makes things blurry)
+            content.classList.add("js-blur");
+
+            // stops click from doing anything
+            event.preventDefault();
+
+            // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
+        });
+    }
+
+    if (typeof (buttonLoginAlt) != 'undefined' && buttonLoginAlt != null) {
+        buttonLoginAlt.addEventListener('click', function (event) {
+            // adds "js-modal--open" class to model container to open model
+            modalLogin.classList.add("js-modal--open");
+
+            // sets width of modal scroll bar to a CSS variable in the modal
+            // CSS then removes visible scrollbar from modal (not good ux!)
+            // although...... this doesn't work at all.
+            // TODO: make this work
+            // TODO: OR: custom scroll bars everywhere
+            //const scrollBarWidth = modal.offsetWidth - modal.clientWidth;
+            //modal.style.setProperty('--js-scrollBarWidth', `-${scrollBarWidth}px`);
+
+            // sets current scroll position in CSS variable in body element
+            body.style.setProperty('--js-scrollPosY', `-${window.scrollY}px`);
+
+            // adds "js-fixed" class to body (this prevents scrolling)
+            body.classList.add("js-fixed");
+
+            // adds "js-blurred" class to the body (this makes things blurry)
+            content.classList.add("js-blur");
+
+            // stops click from doing anything
+            event.preventDefault();
+
+            // child.style.paddingRight = child.offsetWidth - child.clientWidth + "px";
+        });
+    }
+
+
+    if (typeof (buttonClose) != 'undefined' && buttonClose != null) {
+        buttonClose.addEventListener('click', function (event) {
+            // gets current scroll position from CSS variable in body and parses it to an int and making it positive
+            const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
+
+            // removes "js-modal--open" class from model container to close model
+            if (modalLogin.classList.contains("js-modal--open")) {
+                modalLogin.classList.remove("js-modal--open");
+            }
+            if (modalRegister.classList.contains("js-modal--open")) {
+                modalRegister.classList.remove("js-modal--open");
+            }
+
+
+            // removes "js-fixed" class from body (this prevents scrolling)
+            body.classList.remove("js-fixed");
+
+            // removes "js-blurred" class from body (this makes things blurry)
+            content.classList.remove("js-blur");
+
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+            event.preventDefault();
+        });
+    }
+
+    //quick bug fix where login close button would just refresh the page, causing lack of fade out
+    if (typeof (buttonCloseLogin) != 'undefined' && buttonCloseLogin != null) {
+        buttonCloseLogin.addEventListener('click', function (event) {
+            // gets current scroll position from CSS variable in body and parses it to an int and making it positive
+            const scrollY = parseInt(document.body.style.getPropertyValue('--js-scrollPosY') || 0) * -1;
+
+            // removes "js-modal--open" class from model container to close model
+            if (modalLogin.classList.contains("js-modal--open")) {
+                modalLogin.classList.remove("js-modal--open");
+            }
+            if (modalRegister.classList.contains("js-modal--open")) {
+                modalRegister.classList.remove("js-modal--open");
+            }
+
+
+            // removes "js-fixed" class from body (this prevents scrolling)
+            body.classList.remove("js-fixed");
+
+            // removes "js-blurred" class from body (this makes things blurry)
+            content.classList.remove("js-blur");
+
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+            event.preventDefault();
+        });
+    }
+
+    // var paramsLogin = null;
+    // var urlLogin = '';
+    // if (typeof(formLogin) != 'undefined' && formLogin != null){
+    // 	formLogin.addEventListener('submit', function (event){
+
+    // 		event.preventDefault();
+
+
+    // 		let xmlhttp = new XMLHttpRequest();
+
+    // 		urlLogin = '/login/ajax/';
+    // 		paramsLogin = new FormData(formLogin);
+
+
+    // 		xmlhttp.open("POST", urlLogin);
+
+    // 		// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // 		xmlhttp.send(paramsLogin);
+
+
+    // 		xhr.onloadend = function (response) {
+    // 			if (response.target.status === 0) {
+
+    // 				// Failed XmlHttpRequest should be considered an undefined error.
+
+    // 				console.log = form.dataset.formError;
+    // 				console.log("000");
+
+    // 			} else if (response.target.status === 400) {
+
+    // 				// Bad Request
+    // 				formStatus.className += ' alert-danger';
+    // 				console.log("400");
+
+    // 			} else if (response.target.status === 200) {
+
+    // 				console.log("200");
+
+    // 			}
+    //         };
+
+
+    // 		// xmlhttp.onreadystatechange = function () {
     //         //     if (this.readyState === 4 && this.status === 200) {
 
     //         //         responseLogin.innerHTML = this.responseText;
-                    
+
     //         //     } else {
-	// 		// 		responseLogin.innerHTML = "ajax error";
+    // 		// 		responseLogin.innerHTML = "ajax error";
     //         //     }
     //         // };
-			
-	//     }, false);
-	// }
+
+    //     }, false);
+    // }
 
     /*************************************
      *
@@ -291,8 +286,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
 
 
-
-
     let omenList = document.querySelector('[data-js="filtered-omen-list"]')
 
     terms("aspect");
@@ -322,15 +315,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
 
-				// remove existing breadcrumbs
-				const removeElements = (elements) => elements.forEach(element => element.remove());
-				removeElements( document.querySelectorAll("[data-js-breadcrumb]") );
+                // remove existing breadcrumbs
+                const removeElements = (elements) => elements.forEach(element => element.remove());
+                removeElements(document.querySelectorAll("[data-js-breadcrumb]"));
 
-				// add new breadcrumbs
-                for (const [taxonomy, term] of Object.entries(urlParams)){			
+                // add new breadcrumbs
+                for (const [taxonomy, term] of Object.entries(urlParams)) {
                     let liLinkTaxonomy = document.createElement('li');
                     liLinkTaxonomy.setAttribute('class', 'nav__link');
-					liLinkTaxonomy.setAttribute('data-js-breadcrumb', 'taxonomy');
+                    liLinkTaxonomy.setAttribute('data-js-breadcrumb', 'taxonomy');
                     let textTaxonomy = document.createTextNode("[ " + taxonomy + " : " + term + " ]");
                     liLinkTaxonomy.appendChild(textTaxonomy);
 
@@ -338,9 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     navLeft.appendChild(liLinkTaxonomy);
 
                 }
-
-
-
 
 
                 let esc = encodeURIComponent;
@@ -360,24 +350,43 @@ document.addEventListener('DOMContentLoaded', function() {
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
 
-                            window.history.replaceState({"query":query},"", urlPath);
+                            window.history.replaceState({"query": query}, "", urlPath);
 
-                            omenList.innerHTML = this.responseText;
-                            colcade.destroy()
-                            let grid = document.querySelector('[data-js="grid"]');
-                            colcade = new Colcade(grid, {
+                            let omenCollection = JSON.parse(this.responseText);
+                            const markup = `
+                                <div data-js="column" class="tile__panel__column g-span2of8"></div>
+                                <div data-js="column" class="tile__panel__column g-span2of8"></div>
+                                <div data-js="column" class="tile__panel__column g-span2of8"></div>
+                                <div data-js="column" class="tile__panel__column g-span2of8 g-last"></div>
+
+                                ${omenCollection.map(omen =>
+                                `
+                                <div data-js="tile" class="tile">
+                                    <a href="${omen.path}">
+                                        <span class="tile__text  tile__text--title">${omen.title}</span>
+                                        <span class="tile__text">${omen.semanticDeath}</span>
+                                    </a>
+                                </div>
+                                `
+                                ).join('')}
+                            `;
+
+                            colcade.destroy();
+
+                            let test = document.querySelector('[data-js="grid"]');
+
+                            test.innerHTML = markup;
+
+
+                            colcade = new Colcade(test, {
                                 columns: '[data-js="column"]',
                                 items: '[data-js="tile"]'
                             });
                         }
                     };
 
-                    console.log(xmlhttp);
-
                     xmlhttp.open("GET", urlPathAjax, true);
                     xmlhttp.send();
-                    console.log(xmlhttp);
-
                 }
             })
         })
@@ -390,6 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
      *  references:
      *  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
      *  https://stackoverflow.com/questions/316781/how-to-build-query-string-with-javascript
+     *  https://stackoverflow.com/questions/13125817/how-to-remove-elements-that-were-fetched-using-queryselectorall
      *************************************/
 
     let searchForm = document.querySelector('[data-js-searchForm="searchForm"]');
@@ -398,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let searchOmenList = document.querySelector('[data-js="grid"]');
 
 
-    const inputHandler = function(e) {
+    const inputHandler = function (e) {
         let queryString = e.target.value;
         queryDisplay.innerHTML = queryString;
 
@@ -415,12 +425,31 @@ document.addEventListener('DOMContentLoaded', function() {
         xmlhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
 
-                window.history.replaceState({"query":queryString},"", urlPath);
 
-                searchOmenList.outerHTML = this.responseText;
-                colcade.destroy()
-                let grid = document.querySelector('[data-js="grid"]');
-                colcade = new Colcade(grid, {
+                window.history.replaceState({"query": queryString}, "", urlPath);
+
+                let omenCollection = JSON.parse(this.responseText);
+                const markup = `
+                    <div data-js="column" class="tile__panel__column g-span2of6"></div>
+                    <div data-js="column" class="tile__panel__column g-span2of6"></div>
+                    <div data-js="column" class="tile__panel__column g-span2of6 g-last"></div>
+
+                    ${omenCollection.map(omen =>
+                    `
+                        <div data-js="tile" class="tile">
+                            <a href="${omen.path}">
+                                <span class="tile__text  tile__text--title">${omen.title}</span>
+                                <span class="tile__text">${omen.semanticDeath}</span>
+                            </a>
+                        </div>
+                        `
+                    ).join('')}
+                `;
+
+                searchOmenList.innerHTML = markup;
+                colcade.destroy();
+
+                colcade = new Colcade(searchOmenList, {
                     columns: '[data-js="column"]',
                     items: '[data-js="tile"]'
                 });
@@ -434,14 +463,10 @@ document.addEventListener('DOMContentLoaded', function() {
     searchBar.addEventListener('input', inputHandler);
     searchBar.addEventListener('propertychange', inputHandler);
 
-    searchForm.addEventListener('submit', function (e){
+    searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
         return false;
     });
-
-
-
-
 
 
 });

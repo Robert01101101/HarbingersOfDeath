@@ -22,6 +22,7 @@ class Omen
     private string $imageAuthor;
     private bool $experience = false;
 
+
     public function __construct($slug, $title)
     {
         $this->$slug = $slug;
@@ -279,6 +280,25 @@ class Omen
         }
 
         return $semanticDeath;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isExperience(): bool
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param bool $experience
+     * @return Omen
+     */
+    public function setExperience(bool $experience): Omen
+    {
+        $this->experience = $experience;
+        return $this;
     }
 
 
