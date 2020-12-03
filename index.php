@@ -27,6 +27,7 @@ require "src/Route/Route.php";
 
 require "src/View/Page.php";
 require "src/View/Partial.php";
+require "src/View/JSON.php";
 
 use Entity\Omen\Omen;
 use Entity\Omen\OmenCollection;
@@ -43,6 +44,7 @@ use User\User;
 use Route\Route;
 use View\Page;
 use View\Partial;
+use View\JSON;
 
 //$faults = new FaultTaxonomy();
 //$deaths = new DeathTaxonomy();
@@ -87,7 +89,7 @@ Route::get('/omen/ajax', function($query) {
         }
     }
 
-    $omenCollection = OmenCollection::findOmensByFilter($query);
+    $omensCollection = OmenCollection::findOmensByFilter($query);
 
     // if the user is logged in
     if (isset($_SESSION['user'])){
@@ -95,10 +97,10 @@ Route::get('/omen/ajax', function($query) {
         $user = $_SESSION['user'];
 
         // update the omen's that the user has selected
-        $omenCollection->setStatements($user->getUserOmens());
+        $omensCollection->setStatements($user->getUserOmens());
     }
 
-    Page::build('js-omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection]);
+    JSON::generate('omen-list', ["omenCollection" => $omensCollection->generateJSON()]);
 }, true);
 
 
@@ -118,10 +120,11 @@ Route::get('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
  *************************************************/
 // Add search AJAX JSON result route
 Route::get('/search/ajax', function ($query) {
-        $omensCollection = OmenCollection::findOmensBySearch($query["query"]);
 
-        Page::build('js-omen-list', ["searchString" => $query, "omenCollection" => $omensCollection]);
-    });
+    $omensCollection = OmenCollection::findOmensBySearch($query["query"])->generateJSON();
+
+    JSON::generate('omen-list', ["omenCollection" => $omensCollection]);
+});
 
 /*************************************************
  **  SEARCH ROUTE

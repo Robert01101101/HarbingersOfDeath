@@ -50,17 +50,6 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/assets/images/bread.jpg": {
-		"ft": 16384,
-		"iS": 109359,
-		"jF": 0,
-		"oA": 0,
-		"oAP": "/assets/images/bread.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
 	"/assets/images/death1.jpg": {
 		"ft": 16384,
 		"iS": 197255,
@@ -160,6 +149,699 @@
 		"opt": 1,
 		"q": 100
 		},
+	"/assets/images/omens/bell-ringing.jpg": {
+		"ft": 16384,
+		"iS": 235072,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/bell-ringing.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/bonnet.jpg": {
+		"ft": 16384,
+		"iS": 834685,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/bonnet.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/breakfast-sneeze.jpg": {
+		"ft": 16384,
+		"iS": 464872,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/breakfast-sneeze.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/candle-coffin.jpg": {
+		"ft": 16384,
+		"iS": 266354,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/candle-coffin.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/cracked-bread.jpg": {
+		"ft": 16384,
+		"iS": 113367,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/cracked-bread.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/default.jpg": {
+		"ft": 16384,
+		"iS": 204022,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/default.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/dish-cloth.jpg": {
+		"ft": 16384,
+		"iS": 479967,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/dish-cloth.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/funeral-procession.jpg": {
+		"ft": 16384,
+		"iS": 510342,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/funeral-procession.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/gaping-scissors.jpg": {
+		"ft": 16384,
+		"iS": 215304,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/gaping-scissors.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/ground-dance.jpg": {
+		"ft": 16384,
+		"iS": 580487,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/ground-dance.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/hair-pin.jpg": {
+		"ft": 16384,
+		"iS": 356663,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/hair-pin.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/house-hoe.jpg": {
+		"ft": 16384,
+		"iS": 335668,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/house-hoe.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/lighted-carptenters-shop.jpg": {
+		"ft": 16384,
+		"iS": 273378,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/lighted-carptenters-shop.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/looking-glass-corpse.jpg": {
+		"ft": 16384,
+		"iS": 301152,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/looking-glass-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/looking-glass.jpg": {
+		"ft": 16384,
+		"iS": 214838,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/looking-glass.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/lying-on-table.jpg": {
+		"ft": 16384,
+		"iS": 386069,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/lying-on-table.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/motionless-clock.jpg": {
+		"ft": 16384,
+		"iS": 306116,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/motionless-clock.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/open-eyed-corpse.jpg": {
+		"ft": 16384,
+		"iS": 582423,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/open-eyed-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/_Compression_Settings_.png": {
+		"ft": 32768,
+		"iS": 15592,
+		"oA": 1,
+		"oAP": "/assets/images/omens/original/_Compression_Settings_.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/assets/images/omens/original/bell-ringing.jpg": {
+		"ft": 16384,
+		"iS": 231269,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/bell-ringing.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/bonnet.jpg": {
+		"ft": 16384,
+		"iS": 17441800,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/bonnet.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/breakfast-sneeze.jpg": {
+		"ft": 16384,
+		"iS": 2020732,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/breakfast-sneeze.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/candle-coffin.jpg": {
+		"ft": 16384,
+		"iS": 208099,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/candle-coffin.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/cracked-bread.jpg": {
+		"ft": 16384,
+		"iS": 109359,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/cracked-bread.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/default.jpg": {
+		"ft": 16384,
+		"iS": 1526669,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/default.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/dish-cloth.jpg": {
+		"ft": 16384,
+		"iS": 2374697,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/dish-cloth.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/funeral-procession.jpg": {
+		"ft": 16384,
+		"iS": 1142440,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/funeral-procession.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/gaping-scissors.jpg": {
+		"ft": 16384,
+		"iS": 222214,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/gaping-scissors.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/ground-dance.jpg": {
+		"ft": 16384,
+		"iS": 5106264,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/ground-dance.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/hair-pin.jpg": {
+		"ft": 16384,
+		"iS": 400225,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/hair-pin.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/house-hoe.jpg": {
+		"ft": 16384,
+		"iS": 2824641,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/house-hoe.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/lighted-carptenters-shop.jpg": {
+		"ft": 16384,
+		"iS": 519342,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/lighted-carptenters-shop.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/looking-glass-corpse.jpg": {
+		"ft": 16384,
+		"iS": 295912,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/looking-glass-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/looking-glass.jpg": {
+		"ft": 16384,
+		"iS": 1308970,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/looking-glass.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/lying-on-table.jpg": {
+		"ft": 16384,
+		"iS": 7682310,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/lying-on-table.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/motionless-clock.jpg": {
+		"ft": 16384,
+		"iS": 1514154,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/motionless-clock.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/open-eyed-corpse.JPG": {
+		"ft": 16384,
+		"iS": 916290,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/open-eyed-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/out-of-season-bloom.jpg": {
+		"ft": 16384,
+		"iS": 34702505,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/out-of-season-bloom.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/pass-through-funeral.jpg": {
+		"ft": 16384,
+		"iS": 5442326,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/pass-through-funeral.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/rain-open-grave.jpg": {
+		"ft": 16384,
+		"iS": 616791,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/rain-open-grave.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/ringing-ears.jpg": {
+		"ft": 16384,
+		"iS": 516818,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/ringing-ears.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/road-corpse.jpg": {
+		"ft": 16384,
+		"iS": 4015046,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/road-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/sick-person-dress.jpg": {
+		"ft": 16384,
+		"iS": 1415847,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/sick-person-dress.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/singing-and-eating.jpg": {
+		"ft": 16384,
+		"iS": 10077667,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/singing-and-eating.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/sparks-in-ashes.jpg": {
+		"ft": 16384,
+		"iS": 184428,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/sparks-in-ashes.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/stuck-shears.jpg": {
+		"ft": 16384,
+		"iS": 969618,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/stuck-shears.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/sunday-corpse.jpg": {
+		"ft": 16384,
+		"iS": 1146302,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/sunday-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/three-raps.jpg": {
+		"ft": 16384,
+		"iS": 698699,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/three-raps.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/umbrella.jpg": {
+		"ft": 16384,
+		"iS": 359571,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/umbrella.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/original/unmolested-window-shades.jpg": {
+		"ft": 16384,
+		"iS": 10852087,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/original/unmolested-window-shades.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/out-of-season-bloom.jpg": {
+		"ft": 16384,
+		"iS": 875874,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/out-of-season-bloom.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/pass-through-funeral.jpg": {
+		"ft": 16384,
+		"iS": 415058,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/pass-through-funeral.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/rain-open-grave.jpg": {
+		"ft": 16384,
+		"iS": 398829,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/rain-open-grave.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/ringing-ears.jpg": {
+		"ft": 16384,
+		"iS": 219637,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/ringing-ears.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/road-corpse.jpg": {
+		"ft": 16384,
+		"iS": 493745,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/road-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/sick-person-dress.jpg": {
+		"ft": 16384,
+		"iS": 712625,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/sick-person-dress.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/singing-and-eating.jpg": {
+		"ft": 16384,
+		"iS": 358455,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/singing-and-eating.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/sparks-in-ashes.jpg": {
+		"ft": 16384,
+		"iS": 191306,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/sparks-in-ashes.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/stuck-shears.jpg": {
+		"ft": 16384,
+		"iS": 190292,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/stuck-shears.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/sunday-corpse.jpg": {
+		"ft": 16384,
+		"iS": 204550,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/sunday-corpse.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/three-raps.jpg": {
+		"ft": 16384,
+		"iS": 438242,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/three-raps.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/umbrella.jpg": {
+		"ft": 16384,
+		"iS": 389124,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/umbrella.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/images/omens/unmolested-window-shades.jpg": {
+		"ft": 16384,
+		"iS": 412487,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/images/omens/unmolested-window-shades.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"/assets/images/st-jerome-meditating.jpg": {
 		"ft": 16384,
 		"iS": 4401474,
@@ -210,6 +892,30 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/data.txt",
+		"oF": 0
+		},
+	"/db/omens.csv": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/db/omens.csv",
+		"oF": 0
+		},
+	"/db/quickDB_v0": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/db/quickDB_v0",
+		"oF": 0
+		},
+	"/db/v0.sql": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/db/v0.sql",
 		"oF": 0
 		},
 	"/imgTest.jpg": {
@@ -269,17 +975,6 @@
 		"sC": 3,
 		"tS": 0
 		},
-	"/scripts/dropdown.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/scripts/dropdown-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
 	"/scripts/form.js": {
 		"bF": 0,
 		"ft": 64,
@@ -334,6 +1029,14 @@
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
+		},
+	"/src/Data/PageData.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/Data/PageData.php",
+		"oF": 0
 		},
 	"/src/Entity/Omen.php": {
 		"cB": 0,
@@ -453,6 +1156,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/src/Util/TextParser.php",
+		"oF": 0
+		},
+	"/src/View/JSON.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/src/View/JSON.php",
 		"oF": 0
 		},
 	"/src/View/Page.php": {
@@ -850,12 +1561,28 @@
 		"oS": 0,
 		"sct": 0
 		},
+	"/template/JSON/omen-list.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/JSON/omen-list.php",
+		"oF": 0
+		},
 	"/template/pages/home.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/pages/home.php",
+		"oF": 0
+		},
+	"/template/pages/js-formResponse.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/pages/js-formResponse.php",
 		"oF": 0
 		},
 	"/template/pages/js-omen-list.php": {
@@ -882,12 +1609,52 @@
 		"oAP": "/template/pages/omen.php",
 		"oF": 0
 		},
+	"/template/pages/search.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/pages/search.php",
+		"oF": 0
+		},
 	"/template/partials/footer.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/template/partials/footer.php",
+		"oF": 0
+		},
+	"/template/partials/forms/error.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/forms/error.php",
+		"oF": 0
+		},
+	"/template/partials/forms/login.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/forms/login.php",
+		"oF": 0
+		},
+	"/template/partials/forms/register.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/forms/register.php",
+		"oF": 0
+		},
+	"/template/partials/forms/success.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/template/partials/forms/success.php",
 		"oF": 0
 		},
 	"/template/partials/hero.php": {
