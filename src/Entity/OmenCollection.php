@@ -169,7 +169,7 @@ class OmenCollection
         $query .= " INNER JOIN ".self::T_DEATH." ON ".self::T_OMEN.".".self::C_DEATH." = ".self::T_DEATH.".".self::C_TERM.")";
         //Join result with fault
         $query .= " INNER JOIN ".self::T_FAULT." ON ".self::T_OMEN.".".self::C_FAULT." = ".self::T_FAULT.".".self::C_TERM.")";
-
+        $query .= " ORDER BY RAND() LIMIT 6;";
 
         return (new self)->processQuery($query);
 
@@ -267,12 +267,31 @@ class OmenCollection
         return (new self)->processQuery($query);
     }
 
-    public static function isOmenUserSelected(Omen $omen, User $user) : bool
+    public static function isOmenUserSelected (Omen $omen, User $user) : bool
     {
-        $query = "SELECT * FROM `user_omen` WHERE user_omen.user_id = '".$user->getID()."' AND user_omen.omen_id = '".$omen->getSlug()."';";
+        $output = FALSE;
 
-        // return true if the query returns anything, false if it does not.
-        return ((new self)->processQuery($query)->getOmens()) <= 0;
+        // 1. Set up MySQLi connection
+        $DBHOST = "localhost";
+        $DBUSER = "root";
+        $DBPASS = "";
+        $DBNAME = "robert_michels";
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        // Test if connection succeeded
+        if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
+
+        //Ensure association doesn't exist already (refer to user authentication)
+        //Ensure user doesn't exist already
+        $query = "SELECT * FROM `user_omen` WHERE user_omen.user_id = '".$user->getId()."' AND user_omen.omen_id = '".$omen->getId()."';";
+        $result = mysqli_query($connection, $query);
+
+        if (mysqli_num_rows($result)>0) $output = TRUE;
+        
+        // 4. Release returned data
+        mysqli_free_result($result);
+        // 5. Close database connection
+        mysqli_close($connection);
+        return $output;
     }
 
 

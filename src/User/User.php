@@ -370,13 +370,15 @@ class User
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
-        $query = "UPDATE `user` SET user.email_address = '".$this->emailAddress."', user.full_name = '".$this->name."', user.password = '".$this->password."' WHERE user.user_id = '".$this->id."';";
+        $query = "UPDATE `user` SET user.email_address = '".$this->emailAddress."', user.full_name = '".$this->name."', user.password = '".sha1($this->password)."' WHERE user.user_id = '".$this->id."';";
 
         $result = mysqli_query($connection, $query);
 
         // 5. Close database connection
         mysqli_close($connection);
     }
+
+    
 
 
 

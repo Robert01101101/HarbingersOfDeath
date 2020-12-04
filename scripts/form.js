@@ -134,55 +134,56 @@ login();
 //______________________________________________ DISABLE SUBMIT ON ACCOUNT UNTIL ALL FIELDS COMPLETE _______________________________________________
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function account(){
-  var inputs = document.forms["form_account"].getElementsByTagName("input");
-  var submitBtn = document.getElementById("submit_account");
+  if (document.forms["form_account"] !== undefined){
+    var inputs = document.forms["form_account"].getElementsByTagName("input");
+    var submitBtn = document.getElementById("submit_account");
 
-  var fieldsComplete = [];
-  var fields = 2;     
-  for (let i = 0; i < fields; i++) {
-    fieldsComplete.push(false);
-  }
-
-  var fieldsChanged = []; 
-  for (let i = 0; i < fields; i++) {
-    fieldsChanged.push(false);
-  }
-
-  //Use pattern to ensure both old and new password have been entered
-
-  let origEmail = inputs[0].value;
-  let origName = inputs[1].value;
-
-  inputs[0].addEventListener("input", (e) => { fieldsChanged[0] = (e.target.value !== origEmail); updateButton(); });
-  inputs[1].addEventListener("input", (e) => { fieldsChanged[1] = (e.target.value !== origName); updateButton(); });
-  inputs[2].addEventListener("input", (e) => { fieldsComplete[0] = !(e.target.value === ""); updateButton(); });
-  inputs[3].addEventListener("input", (e) => { fieldsComplete[1] = !(e.target.value === ""); updateButton(); });
-
-  function updateButton() {
-    //Update button, if EITHER name or email has been changed OR both the old and new password have been entered (or all of those)
-    let allFieldsComplete = true;
-    let nameOrEmailChanged = false;
+    var fieldsComplete = [];
+    var fields = 2;     
     for (let i = 0; i < fields; i++) {
-      if (!fieldsComplete[i]) allFieldsComplete = false;
+      fieldsComplete.push(false);
     }
+
+    var fieldsChanged = []; 
     for (let i = 0; i < fields; i++) {
-      if (fieldsChanged[i]) nameOrEmailChanged = true;
+      fieldsChanged.push(false);
     }
-    if (allFieldsComplete || nameOrEmailChanged){
-      if (submitBtn.classList.contains("input__submit--disabled")) {
-        submitBtn.classList.remove("input__submit--disabled");
-        submitBtn.removeAttribute("title");
-        submitBtn.disabled = false;
+
+    //Use pattern to ensure both old and new password have been entered
+
+    let origEmail = inputs[0].value;
+    let origName = inputs[1].value;
+
+    inputs[0].addEventListener("input", (e) => { fieldsChanged[0] = (e.target.value !== origEmail); updateButton(); });
+    inputs[1].addEventListener("input", (e) => { fieldsChanged[1] = (e.target.value !== origName); updateButton(); });
+    inputs[2].addEventListener("input", (e) => { fieldsComplete[0] = !(e.target.value === ""); updateButton(); });
+    inputs[3].addEventListener("input", (e) => { fieldsComplete[1] = !(e.target.value === ""); updateButton(); });
+
+    function updateButton() {
+      //Update button, if EITHER name or email has been changed OR both the old and new password have been entered (or all of those)
+      let allFieldsComplete = true;
+      let nameOrEmailChanged = false;
+      for (let i = 0; i < fields; i++) {
+        if (!fieldsComplete[i]) allFieldsComplete = false;
       }
-    } else {
-      if (!submitBtn.classList.contains("input__submit--disabled")) {
-        submitBtn.classList.add("input__submit--disabled");
-        submitBtn.setAttribute('title', "Complete all fields to sign in");
-        submitBtn.disabled = true;
+      for (let i = 0; i < fields; i++) {
+        if (fieldsChanged[i]) nameOrEmailChanged = true;
+      }
+      if (allFieldsComplete || nameOrEmailChanged){
+        if (submitBtn.classList.contains("input__submit--disabled")) {
+          submitBtn.classList.remove("input__submit--disabled");
+          submitBtn.removeAttribute("title");
+          submitBtn.disabled = false;
+        }
+      } else {
+        if (!submitBtn.classList.contains("input__submit--disabled")) {
+          submitBtn.classList.add("input__submit--disabled");
+          submitBtn.setAttribute('title', "Complete all fields to sign in");
+          submitBtn.disabled = true;
+        }
       }
     }
   }
-
 }
 account();
 

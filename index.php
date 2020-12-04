@@ -258,7 +258,9 @@ Route::post('/register', function (){
             ->setCountry($_POST['country'])
             ->writeToDB();
     }
-	Page::build('home', ["response" => $user]);
+
+    $omenCollection = OmenCollection::FindSomeOmens();
+	Page::build('home', ["response" => $user, "omenCollection" => $omenCollection]);
 });
 	
 /*************************************************
@@ -289,13 +291,16 @@ Route::post('/login', function (){
 				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
             } else {
                 //echo "Login Failed - try again with correct credentials";
-				$responseMessage = "Wrong password. Please try again.";
-				Page::build('home', ["response" => $responseMessage]);
+                $responseMessage = "Wrong password. Please try again.";
+                $omenCollection = OmenCollection::FindSomeOmens();
+
+				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
                 unset($_SERVER['user']);
             }
         } else {
             $responseMessage = "You're going to have to try harder.  Please fill in all the fields.";
-			Page::build('home', ["response" => $responseMessage]);
+            $omenCollection = OmenCollection::FindSomeOmens();
+			Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
         }
     }
 });
@@ -343,7 +348,7 @@ Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
 
     // TODO: FIX!
-    var_dump($_POST);
+    //var_dump($_POST);
 
     ////////////////////////////////// OMEN
     if (isset($_POST['submit_user_omen'])){

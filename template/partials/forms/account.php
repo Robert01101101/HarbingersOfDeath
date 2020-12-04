@@ -38,7 +38,7 @@ use Util\HTML\SelectInputs;
                 </div>
                 <div class="accountSubmit">
                     <input type="submit" name="submit_account" class="input__submit input__submit--disabled" data-js-modal="accountSubmitButton" value="Save &rarr;" id="submit_account"  title="Change values in order to save" disabled>
-                    <a href="/logout/" class="input__submit input__submit--logout">&larr; Logout</a>
+                    <a href="/logout/" class="input__submit input__submit--logout input__submit--destructive">&larr; Logout</a>
                 </div>
             </form>
         </div>
