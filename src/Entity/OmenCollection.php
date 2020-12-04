@@ -22,7 +22,7 @@ class OmenCollection
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "";
+    const DBPASS = "root";
     const DBNAME = "robert_michels";
 
     //Table Names
@@ -262,6 +262,12 @@ class OmenCollection
 
             $i++;
         }
+
+        // TODO: PAGINATION CODE
+        if (array_key_exists("page", $query)){
+
+        }
+
         $query .= ";";
 
         return (new self)->processQuery($query);

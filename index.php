@@ -68,6 +68,7 @@ Route::get('/omen/ajax', function($query) {
 
     $taxonomies = [];
 
+
     // TODO: REFACTOR & PUT ELSEWHERE https://gph.is/g/aN3YOMZ
     foreach ($query as $taxonomy => $term){
         switch ($taxonomy){
@@ -85,7 +86,6 @@ Route::get('/omen/ajax', function($query) {
                 if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
                 $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));
                 break;
-
         }
     }
 
@@ -153,10 +153,8 @@ Route::get('/search', function($query) {
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen', function($query) {
 
-    $breadcrumb = "[".key($query)." : ".$query[key($query)]."]";
 
     $taxonomies = [];
-
     // Breakdown the query and create Term objects
     foreach ($query as $taxonomy => $term){
         switch ($taxonomy){
@@ -177,8 +175,18 @@ Route::get('/omen', function($query) {
         }
     }
 
+    // TODO: some pagination stuff
+    // is pagination being used
+    if (array_key_exists("page", $query)){
+
+    }
+
+
     // create a list of omens, using the query
     $omenCollection = OmenCollection::findOmensByFilter($query);
+
+
+
 
     // if the user is logged in
     if (isset($_SESSION['user'])){
@@ -190,7 +198,7 @@ Route::get('/omen', function($query) {
     }
 
 
-    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection, "breadcrumb" => $breadcrumb]);
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection, "breadcrumb" => $query]);
 }, true);
 
 

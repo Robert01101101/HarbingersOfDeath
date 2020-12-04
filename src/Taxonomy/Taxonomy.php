@@ -18,7 +18,7 @@ abstract class Taxonomy
     //Connection Variables
     const DBHOST = "localhost";
     const DBUSER = "root";
-    const DBPASS = "";
+    const DBPASS = "root";
     const DBNAME = "robert_michels";
 
     //Table Names
