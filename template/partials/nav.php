@@ -22,20 +22,24 @@ $breadcrumb  = (isset($breadcrumb)) ? $breadcrumb : null;
             <li aria-hidden="true" class="nav__divider">//</li>
 
             <?php if(!is_null($breadcrumb)): ?>
-                <?php if (array_key_exists("aspect", $breadcrumb)): ?>
-                    <li class="nav__link" data-js-breadcrumb="taxonomy">
-                    [aspect : <?= $breadcrumb["aspect"] ?>]
-                    </li>
-                <?php endif ?>
-                <?php if (array_key_exists("death", $breadcrumb)): ?>
-                    <li class="nav__link" data-js-breadcrumb="taxonomy">
-                        [aspect : <?= $breadcrumb["death"] ?>]
-                    </li>
-                <?php endif ?>
-                <?php if (array_key_exists("fault", $breadcrumb)): ?>
-                    <li class="nav__link" data-js-breadcrumb="taxonomy">
-                        [aspect : <?= $breadcrumb["fault"] ?>]
-                    </li>
+                <?php if (is_array($breadcrumb)): ?>
+                    <?php if (array_key_exists("aspect", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                        [aspect : <?= $breadcrumb["aspect"] ?>]
+                        </li>
+                    <?php endif ?>
+                    <?php if (array_key_exists("death", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                            [aspect : <?= $breadcrumb["death"] ?>]
+                        </li>
+                    <?php endif ?>
+                    <?php if (array_key_exists("fault", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                            [aspect : <?= $breadcrumb["fault"] ?>]
+                        </li>
+                    <?php endif ?>
+                <?php elseif(is_string($breadcrumb)): ?>
+                    <li class="nav__link"><?= $breadcrumb ?></li>
                 <?php endif ?>
             <?php endif; ?>
         </ul>
