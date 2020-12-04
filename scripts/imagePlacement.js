@@ -63,7 +63,7 @@ var totalPicksAccount = Math.floor(Math.random() * 2)+2;
 var totalPicksSearch = 3;
 getRandomImage(random_images_array, totalPicksLogin, document.getElementById("modal--login"), 0);
 getRandomImage(random_images_array, totalPicksRegister, document.getElementById("modal--register"), 1);
-getRandomImage(random_images_array, totalPicksAccount, document.getElementById("modal--account"), 2);
+if (document.getElementById("modal--account") !== null) getRandomImage(random_images_array, totalPicksAccount, document.getElementById("modal--account"), 2);
 if (document.getElementById("searchPage") !== null) getRandomImage(random_images_array, totalPicksSearch, document.getElementById("searchPage"), 3);
 
 
@@ -192,11 +192,11 @@ function imageLayout(call){
 	console.log("Total Images: " + totalPicks);
 	
 	//Place Login & Register Images
-	if (call < 2){
+	if (call < 3){
 		for (let i = 0; i < loadedImages.length; i++) {
 			let curImg = loadedImages[i];
 			console.log(curImg.info);
-			if (totalPicks === 3) {
+			if (totalPicks === 2) {
 				///////2 images total -> one along top, between center & right corner. Another along left edge.
 				//console.log("2 Img Layout");
 	
