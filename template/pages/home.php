@@ -7,6 +7,8 @@ use View\Partial;
 
 $userLoggedIn = isset($_SESSION['user']);
 if ($userLoggedIn) $user = $_SESSION['user'];
+$heroText = (isset($heroText)) ? $heroText : "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?";
+$didEncounterOmens = (isset($didEncounterOmens)) ? $didEncounterOmens : FALSE;
 
 ?>
 
@@ -26,17 +28,10 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 
 <?php if(!$userLoggedIn) : ?>
     <?= Partial::build("hero", [
-            "heroText" => "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?",
+            "heroText" => $heroText,
             "callToActionText" => "Sign in to find out"
     ]); ?>
  <?php else : ?>
-
-    <?php 
-        $heroText = "Looks like you haven't encountered death yet. Lucky you! The gods must be on your side.";
-        if (count($omenCollection->getOmens()) > 0){
-            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
-        }
-    ?>
     
     <?= Partial::build("hero", [
             "heroText" => $heroText,
@@ -55,7 +50,7 @@ if ($userLoggedIn) $user = $_SESSION['user'];
         <div class="layout layout--distant g-flex">
             <div class="tile__panel tile__panel--primary g-span3of9">
 
-            <?php if($userLoggedIn) : ?>
+            <?php if($userLoggedIn && $didEncounterOmens) : ?>
                 <h2>Your encounters with death</h2>
             <?php else : ?>
                 <h2>Common indicators of imminent death</h2>

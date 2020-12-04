@@ -19,7 +19,7 @@ use View\Partial;
 <?= Partial::build('modal/account'); ?>
 
     <!--THE HOMEPAGE WINDOW-->
-<?= Partial::build('nav', ["search" => TRUE]); ?>
+<?= Partial::build('nav', ["search" => TRUE, "breadcrumb" => $breadcrumb]); ?>
 
 
 <?= Partial::build("hero", [

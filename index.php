@@ -153,6 +153,8 @@ Route::get('/search', function($query) {
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen', function($query) {
 
+    $breadcrumb = "[".key($query)." : ".$query[key($query)]."]";
+
     $taxonomies = [];
 
     // Breakdown the query and create Term objects
@@ -188,7 +190,7 @@ Route::get('/omen', function($query) {
     }
 
 
-    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection]);
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection, "breadcrumb" => $breadcrumb]);
 }, true);
 
 
@@ -202,6 +204,8 @@ Route::get('/', function ($query){
         session_destroy();
     }
 
+    $didEncounterOmens = FALSE;
+
     // if user us logged in disply their omens on the home page
     if (isset($_SESSION['user'])){
         //User omen collection
@@ -211,17 +215,20 @@ Route::get('/', function ($query){
         // if the user hasn't selected any omens
         if(count($omenCollection->getOmens()) <= 0){
             // display default
-            //$omenCollection = OmenCollection::FindSomeOmens(); <--------- show random omens to user (deactivated, might be confusing)
+            $omenCollection = OmenCollection::FindSomeOmens();
+            $heroText = "Looks like you haven't encountered death yet. Lucky you! The gods must be on your side.";
         } else {
             // update wording of ones they have selected
             $omenCollection->setStatements($omenCollection);
+            $didEncounterOmens = TRUE;
+            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
         }
 
     } else {
         $omenCollection = OmenCollection::FindSomeOmens();
     }
 
-    Page::build('home', ["omenCollection" => $omenCollection]);
+    Page::build('home', ["omenCollection" => $omenCollection, "heroText" => $heroText, "didEncounterOmens" => $didEncounterOmens]);
 });
 
 
@@ -246,16 +253,32 @@ Route::get('/logout', function ($query){
 // Handles register and login form submissions
 Route::get('/clear', function (){
 
-    // if user us logged in disply their omens on the home page
+    $didEncounterOmens = FALSE;
+
+    // clear omens & display appropriate text
     if (isset($_SESSION['user'])){
         //User omen collection
         $user = $_SESSION['user'];
         $user->clearUserOmens();
-
         $omenCollection = $user->getUserOmens();
+
+        // if the user hasn't selected any omens
+        if(count($omenCollection->getOmens()) <= 0){
+            // display default
+            $omenCollection = OmenCollection::FindSomeOmens();
+            $heroText = "Looks like you haven't encountered death yet. Lucky you! The gods must be on your side.";
+        } else {
+            // update wording of ones they have selected
+            $omenCollection->setStatements($omenCollection);
+            $didEncounterOmens = TRUE;
+            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+        }
+
+    } else {
+        $omenCollection = OmenCollection::FindSomeOmens();
     }
 
-    Page::build('home', ["omenCollection" => $omenCollection]);
+    Page::build('home', ["omenCollection" => $omenCollection, "heroText" => $heroText, "didEncounterOmens" => $didEncounterOmens]);
 });
 
 
