@@ -51,11 +51,14 @@ if ($userLoggedIn) $user = $_SESSION['user'];
                 <h2>Common indicators of imminent death</h2>
             <?php endif; ?>
 
-                
-
                 <span class="callToAction"><a href="/omen/" class="input__seeMore" >See more</a></span>
                 <br />
                 <span class="callToAction"><a href="/search/" class="input__seeMore" >Search</a></span>
+
+                <?php if($userLoggedIn) : ?>
+                    <br />
+                    <span class="callToAction"><a href="/clear/" class="input__seeMore" >Clear all omens</a></span>
+                <?php endif; ?>
 
             </div>
 

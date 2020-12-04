@@ -11,19 +11,18 @@
     &--search {
         height: 100%;
 
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
+        &--fg {
           width: 100vw;
           height: 100%;
           z-index: 1;
           background-image: url('../assets/images/gradient.png');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
           opacity: .4;
         }
+
+        
     }
   
     img {

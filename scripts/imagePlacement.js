@@ -148,6 +148,12 @@ function getRandomImage(imgAr, count, doc, call) {
 			}
 		}		
 	} 
+
+	if (call === 3) {
+		const stylingDiv = document.createElement("div"); 
+		stylingDiv.classList.add("bgImages--search--fg");
+		newDiv.appendChild(stylingDiv);
+	}
 }
 
 
