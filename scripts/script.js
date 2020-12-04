@@ -520,14 +520,17 @@ document.addEventListener('DOMContentLoaded', function () {
         xmlhttp.send();
     }
 
-    searchBar.addEventListener('input', inputHandler);
-    searchBar.addEventListener('propertychange', inputHandler);
+    if (searchBar !== null){
+        searchBar.addEventListener('input', inputHandler);
+        searchBar.addEventListener('propertychange', inputHandler);
+    }
 
-    searchForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        return false;
-    });
-
+    if (searchForm !== null){
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            return false;
+        });
+    }
 
 });
 

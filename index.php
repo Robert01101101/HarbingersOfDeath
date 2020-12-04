@@ -49,10 +49,6 @@ use View\Page;
 use View\Partial;
 use View\JSON;
 
-//$faults = new FaultTaxonomy();
-//$deaths = new DeathTaxonomy();
-//$aspects = new AspectTaxonomy();
-
 $omens = new OmenCollection();
 
 
@@ -280,11 +276,10 @@ Route::get('/clear', function (){
 
 
 
-
 /*************************************************
  **  REGISTER FORM SUBMISSION ROUTE
  *************************************************/
-// Handles register and login form submissions
+// Register user, add to database
 Route::post('/register', function (){
     // TODO: move data processing to it's own place
     ////////////////////////////////// REGISTER
@@ -303,7 +298,9 @@ Route::post('/register', function (){
     $omenCollection = OmenCollection::FindSomeOmens();
 	Page::build('home', ["response" => $user, "omenCollection" => $omenCollection]);
 });
-	
+    
+
+
 /*************************************************
  **  LOGIN FORM SUBMISSION ROUTE
  *************************************************/
@@ -364,7 +361,7 @@ Route::post('/login', function (){
 /*************************************************
  **  ACCOUNT FORM SUBMISSION ROUTE
  *************************************************/
-// Handles account form submissions
+// Handles account form submissions (update user info)
 Route::post('/account', function (){
     // TODO: move data processing to it's own place
     ////////////////////////////////// REGISTER
@@ -396,9 +393,9 @@ Route::post('/account', function (){
 
 
 /*************************************************
- **  OMEN FORM SUBMISSION ROUTE
+ **  OMEN MEMBER FORM SUBMISSION ROUTE
  *************************************************/
-// Handles omen submissions
+// Handles omen submissions: store whether the member added / removed the omen
 Route::post('/omen/([a-z0-9]+(?:-[a-z0-9]+)*)', function($slug) {
     $omen = OmenCollection::getOmenBySlug($slug);
 
