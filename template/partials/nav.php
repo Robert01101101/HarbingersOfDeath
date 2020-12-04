@@ -19,7 +19,7 @@ $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
             <li class="nav__link"><a href="/">Harbingers of Death</a></li>
             <?php if(!is_null($breadcrumb)): ?>
             <li aria-hidden="true" class="nav__divider">//</li>
-            <li class="nav__link"><?= $breadcrumb?></li>
+            <li class="nav__link hardcoded--delete"><?= $breadcrumb?></li>
             <?php endif; ?>
         </ul>
         <ul class="nav__right">

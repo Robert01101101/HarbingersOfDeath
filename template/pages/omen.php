@@ -49,7 +49,8 @@ $omens = OmenCollection::findOmensByFilter($filter);
       <div class="layout layout--distant g-flex">
           <div class="tile__panel tile__panel--primary g-span3of9">
               <h2>Other ways <?php echo strtolower($omen->getFault()->getTitle()) ?> can kill people</h2>
-              <span class="callToAction">See more</span>
+              <span class="callToAction"><a href="/omen/?aspect=domestic-life/" class="input__seeMore" >See more</a></span>
+              
           </div>
 
           <?= Partial::build('omenGrid', ["omenCollection" => $omens]); ?>

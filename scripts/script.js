@@ -375,6 +375,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // remove existing breadcrumbs
                 const removeElements = (elements) => elements.forEach(element => element.remove());
                 removeElements(document.querySelectorAll("[data-js-breadcrumb]"));
+                //remove breadcrumb added initially by php
+                document.querySelectorAll('.hardcoded--delete').forEach(e => e.remove());
 
                 // add new breadcrumbs
                 for (const [taxonomy, term] of Object.entries(urlParams)) {
