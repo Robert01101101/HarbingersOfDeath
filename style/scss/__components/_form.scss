@@ -159,9 +159,9 @@ div.birthdate {
 	  //TODO: Place above instead below when needed
 	  max-height: 11rem;
 	  overflow-y: scroll;
-	  border: 1px solid #6f6f6f;
+	  border: 1px solid #555;
 	  background-color: #2b2b2b;
-	  box-shadow: 0 0 4px #e9e1f8;
+	  box-shadow: 0 0 5px rgba(#555, .5);
 	  z-index: 110;
 	  padding: 0;
 	  display: none;
@@ -194,7 +194,7 @@ div.birthdate {
 	  bottom: 0;
 	  left: 0;
 	  width: 100%;
-	  border-bottom: 1px solid #d3d3d3;
+	  border-bottom: 1px solid #555;
 	}
 
 	.selectCustom-option.isActive::before {
