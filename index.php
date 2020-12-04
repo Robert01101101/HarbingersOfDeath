@@ -205,6 +205,7 @@ Route::get('/', function ($query){
     }
 
     $didEncounterOmens = FALSE;
+    $heroText = "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?";
 
     // if user us logged in disply their omens on the home page
     if (isset($_SESSION['user'])){
