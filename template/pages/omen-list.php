@@ -23,7 +23,7 @@ use View\Partial;
 
 
 <?= Partial::build("hero", [
-    "heroText" => "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?"
+    "heroText" => "How did you get so much blood on your hands?"
 ]); ?>
 
 <?= Partial::build('taxonomyTile', ["taxonomies" => $taxonomies]); ?>

@@ -211,7 +211,7 @@ Route::get('/', function ($query){
         // if the user hasn't selected any omens
         if(count($omenCollection->getOmens()) <= 0){
             // display default
-            $omenCollection = OmenCollection::FindSomeOmens();
+            //$omenCollection = OmenCollection::FindSomeOmens(); <--------- show random omens to user (deactivated, might be confusing)
         } else {
             // update wording of ones they have selected
             $omenCollection->setStatements($omenCollection);
@@ -237,6 +237,27 @@ Route::get('/logout', function ($query){
 
     Page::build('home', ["omenCollection" => $omenCollection]);
 });
+
+
+
+/*************************************************
+ **  CLEAR OMENS SUBMISSION ROUTE
+ *************************************************/
+// Handles register and login form submissions
+Route::get('/clear', function (){
+
+    // if user us logged in disply their omens on the home page
+    if (isset($_SESSION['user'])){
+        //User omen collection
+        $user = $_SESSION['user'];
+        $user->clearUserOmens();
+
+        $omenCollection = $user->getUserOmens();
+    }
+
+    Page::build('home', ["omenCollection" => $omenCollection]);
+});
+
 
 
 

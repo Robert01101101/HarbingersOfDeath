@@ -2,13 +2,13 @@
 
 // SANITIZE all page variables before using them
 $heroText  = (isset($heroText)) ? htmlspecialchars($heroText) : "Is it time to die?";
-$large  = (isset($large)) ? $large : FALSE;
+$large  = (isset($large)) ? $large : TRUE;
 $callToActionText = (isset($callToActionText)) ? htmlspecialchars($callToActionText) : null;
 ?>
 
 <section class="hero">
     <div class="layout layout--distant">
-        <h1><?= $heroText; ?></h1>
+        <h1 <?php if(!$large) echo "class='hero--small'"; ?>><?= $heroText; ?></h1>
 <!--        NO CTA IF NO VARIABLE IS PASSED             -->
 <!--        BIG CTA TEXT IF VARIABLE TRUE IS PASSED     -->
         <?php if(!is_null($callToActionText)): ?>

@@ -8,8 +8,6 @@ use View\Partial;
 $userLoggedIn = isset($_SESSION['user']);
 if ($userLoggedIn) $user = $_SESSION['user'];
 
-
-
 ?>
 
 <?= Partial::build('layout/header'); ?>
@@ -29,8 +27,20 @@ if ($userLoggedIn) $user = $_SESSION['user'];
 <?php if(!$userLoggedIn) : ?>
     <?= Partial::build("hero", [
             "heroText" => "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?",
-            "callToActionText" => "Sign in to find out",
-            "large" => "true"
+            "callToActionText" => "Sign in to find out"
+    ]); ?>
+ <?php else : ?>
+
+    <?php 
+        $heroText = "Looks like you haven't encountered death yet. Lucky you! The gods must be on your side.";
+        if (count($omenCollection->getOmens()) > 0){
+            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+        }
+    ?>
+    
+    <?= Partial::build("hero", [
+            "heroText" => $heroText,
+            "large" => true
     ]); ?>
  <?php endif; ?>
 

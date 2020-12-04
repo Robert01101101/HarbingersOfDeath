@@ -6,5 +6,9 @@
   		@include font("sans-serif", 400);
   	}
   }
+
+  &--small {
+    font-size: ms(3);
+  }
   	
 }

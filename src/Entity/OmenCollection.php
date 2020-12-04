@@ -397,6 +397,83 @@ class OmenCollection
         return $output;
     }
 
+    public function getDeathYou() : int
+    {
+        $omens = $this->omens;
+        $count = 0;
+
+        foreach ($omens as $omen) {
+            if (strcmp($omen->getDeath()->getSlug(), "you") === 0) $count++;
+        }
+
+        return $count;
+    }
+
+    public function getDeathFamily() : int
+    {
+        $omens = $this->omens;
+        $count = 0;
+
+        foreach ($omens as $omen) {
+            if (strcmp($omen->getDeath()->getSlug(), "family-member") === 0) $count++;
+        }
+
+        return $count;
+    }
+
+    public function getDeathFriend() : int
+    {
+        $omens = $this->omens;
+        $count = 0;
+
+        foreach ($omens as $omen) {
+            if (strcmp($omen->getDeath()->getSlug(), "close-friend") === 0) $count++;
+        }
+
+        return $count;
+    }
+
+    public function getDeathCommunity() : int
+    {
+        $omens = $this->omens;
+        $count = 0;
+
+        foreach ($omens as $omen) {
+            if (strcmp($omen->getDeath()->getSlug(), "community-member") === 0) $count++;
+        }
+
+        return $count;
+    }
+
+    public function getCommonFault() : string
+    {
+        $omens = $this->omens;
+        $countYou = 0;
+        $countGod = 0;
+        $countPublic = 0;
+
+        foreach ($omens as $omen) {
+            if (strcmp($omen->getFault()->getSlug(), "you") === 0) $countYou++;
+            else if (strcmp($omen->getFault()->getSlug(), "god") === 0) $countGod++;
+            else $countPublic++;
+        }
+
+        $fault = "";
+        if($countYou>$countGod && $countYou>$countPublic){
+            $fault = "your";
+        }
+        else{
+        if($countGod>$countYou && $countGod>$countPublic){
+            $fault = "god's";
+        }
+        else
+        $fault = "the public's";
+        }
+
+
+        return $fault;
+    }
+
 
 
 }
