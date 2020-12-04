@@ -85,7 +85,6 @@ Route::get('/omen/ajax', function($query) {
                 if(!isset($taxonomies["fault"]))  $taxonomies["fault"] = new FaultTaxonomy();
                 $taxonomies["fault"]->addTerm(FaultTaxonomy::getTermBySlug($term));
                 break;
-
         }
     }
 
@@ -152,11 +151,7 @@ Route::get('/search', function($query) {
 // Add omen list route
 // TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen', function($query) {
-
-    $breadcrumb = "[".key($query)." : ".$query[key($query)]."]";
-
     $taxonomies = [];
-
     // Breakdown the query and create Term objects
     foreach ($query as $taxonomy => $term){
         switch ($taxonomy){
@@ -176,7 +171,7 @@ Route::get('/omen', function($query) {
                 break;
         }
     }
-
+    // TODO: some pagination stuff // is pagination being used /* if (array_key_exists("page", $query)){ }*/
     // create a list of omens, using the query
     $omenCollection = OmenCollection::findOmensByFilter($query);
 
@@ -189,8 +184,7 @@ Route::get('/omen', function($query) {
             $omenCollection->setStatements($user->getUserOmens());
     }
 
-
-    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection, "breadcrumb" => $breadcrumb]);
+    Page::build('omen-list', ["taxonomies" => $taxonomies, "omenCollection" => $omenCollection, "breadcrumb" => $query]);
 }, true);
 
 
@@ -313,8 +307,6 @@ Route::post('/register', function (){
  *************************************************/
 // Handles register and login form submissions
 Route::post('/login', function (){
-
-
     ////////////////////////////////// LOGIN
     // create new User object from the text file and
     // compare it against the post values
@@ -323,29 +315,44 @@ Route::post('/login', function (){
         $formEmail = $_POST['emailAddress'];
         $formPassword = $_POST['password'];
 
+        // Hero Text
+        $didEncounterOmens = FALSE;
+        $heroText = "Are you going to die? Have you kicked your mother's bucket? Are your friends on the way out?";
+
+        //// Authenticate User, Print Response ////
         if (isset($formEmail) && isset($formPassword)){
             $user = User::authenticateUser($formEmail, $formPassword);
 
             if(isset($user)){
-                //echo "Successful Login";
                 $_SESSION['user'] = $user;
                 $omenCollection = $user->getUserOmens();
+
+                // if the user hasn't selected any omens
+                if(count($omenCollection->getOmens()) <= 0){
+                    // display default
+                    $omenCollection = OmenCollection::FindSomeOmens();
+                    $heroText = "Looks like you haven't encountered death yet. Lucky you! The gods must be on your side.";
+                } else {
+                    // update wording of ones they have selected
+                    $omenCollection->setStatements($omenCollection);
+                    $didEncounterOmens = TRUE;
+                    $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+                }
 				
                 $responseMessage = "You've successfully signed in!";
 
-				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
+				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection, "heroText" => $heroText, "didEncounterOmens" => $didEncounterOmens]);
             } else {
-                //echo "Login Failed - try again with correct credentials";
                 $responseMessage = "Wrong password. Please try again.";
                 $omenCollection = OmenCollection::FindSomeOmens();
 
-				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
+				Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection, "heroText" => $heroText, "didEncounterOmens" => $didEncounterOmens]);
                 unset($_SERVER['user']);
             }
         } else {
             $responseMessage = "You're going to have to try harder.  Please fill in all the fields.";
             $omenCollection = OmenCollection::FindSomeOmens();
-			Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection]);
+			Page::build('home', ["response" => $responseMessage, "omenCollection" => $omenCollection, "heroText" => $heroText, "didEncounterOmens" => $didEncounterOmens]);
         }
     }
 });

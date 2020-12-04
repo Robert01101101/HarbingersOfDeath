@@ -262,6 +262,13 @@ class OmenCollection
 
             $i++;
         }
+
+        // TODO: PAGINATION CODE
+        /*
+        if (array_key_exists("page", $query)){
+
+        }
+        */
         $query .= ";";
 
         return (new self)->processQuery($query);

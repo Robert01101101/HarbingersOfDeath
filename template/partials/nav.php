@@ -1,6 +1,8 @@
 <?php
 use User\User;
 use Util\HTML\Tags;
+use Taxonomy\Term;
+use Taxonomy\Taxonomy;
 
 if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
     $user = $_SESSION['user'];
@@ -8,7 +10,7 @@ if (isset($_SESSION['user']) && is_object($_SESSION['user'])){
 };
 $search  = (isset($search)) ? TRUE : FALSE;
 
-$breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
+$breadcrumb  = (isset($breadcrumb)) ? $breadcrumb : null;
 
 ?>
 
@@ -17,9 +19,28 @@ $breadcrumb  = (isset($breadcrumb)) ? htmlspecialchars($breadcrumb) : null;
     <nav class="nav layout g-flex">
         <ul data-js="breadcrumbs" class="nav__left">
             <li class="nav__link"><a href="/">Harbingers of Death</a></li>
-            <?php if(!is_null($breadcrumb)): ?>
             <li aria-hidden="true" class="nav__divider">//</li>
-            <li class="nav__link hardcoded--delete"><?= $breadcrumb?></li>
+
+            <?php if(!is_null($breadcrumb)): ?>
+                <?php if (is_array($breadcrumb)): ?>
+                    <?php if (array_key_exists("aspect", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                        [aspect : <?= $breadcrumb["aspect"] ?>]
+                        </li>
+                    <?php endif ?>
+                    <?php if (array_key_exists("death", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                            [aspect : <?= $breadcrumb["death"] ?>]
+                        </li>
+                    <?php endif ?>
+                    <?php if (array_key_exists("fault", $breadcrumb)): ?>
+                        <li class="nav__link" data-js-breadcrumb="taxonomy">
+                            [aspect : <?= $breadcrumb["fault"] ?>]
+                        </li>
+                    <?php endif ?>
+                <?php elseif(is_string($breadcrumb)): ?>
+                    <li class="nav__link"><?= $breadcrumb ?></li>
+                <?php endif ?>
             <?php endif; ?>
         </ul>
         <ul class="nav__right">
