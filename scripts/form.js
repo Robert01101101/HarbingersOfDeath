@@ -16,18 +16,20 @@ var Pair = function(label, input) {
 	//add floating modifier
 	if (!this.label.classList.contains(labelModFloating)) this.label.classList.add(labelModFloating);
 
-	this.input.addEventListener('input', (event) => {
-	  this.label.classList.add("input__label--selected");
-	  //console.log("Focus on: " + this.input.id + ", with label: " + this.label.innerHTML);
-	  //console.log("text:" + event.target.value);
+  if (this.input.value !== "") if (!this.label.classList.contains(labelMod)) this.label.classList.add(labelMod);
 
-	  //Change label style on input
-	  if (event.target.value === ""){
-	  	if (this.label.classList.contains(labelMod)) this.label.classList.remove(labelMod);
-	  } else {
-	  	if (!this.label.classList.contains(labelMod)) this.label.classList.add(labelMod);
-	  }
-	});
+  this.input.addEventListener('input', (event) => {
+    this.label.classList.add(labelMod);
+    //console.log("Focus on: " + this.input.id + ", with label: " + this.label.innerHTML);
+    //console.log("text:" + event.target.value);
+
+    //Change label style on input
+    if (event.target.value === ""){
+      if (this.label.classList.contains(labelMod)) this.label.classList.remove(labelMod);
+    } else {
+      if (!this.label.classList.contains(labelMod)) this.label.classList.add(labelMod);
+    }
+  });
 };
 
 //Find all cells

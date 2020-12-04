@@ -22,6 +22,7 @@ require "src/User/User.php";
 require "src/Util/Tags.php";
 require "src/Util/SelectInputs.php";
 require "src/Util/TextParser.php";
+require "src/Util/MemberHero.php";
 
 require "src/Route/Route.php";
 
@@ -40,6 +41,8 @@ use Taxonomy\Death;
 use Taxonomy\Aspect;
 
 use User\User;
+
+use Util\MemberHero;
 
 use Route\Route;
 use View\Page;
@@ -62,7 +65,6 @@ session_start();
  *
  *************************************************/
 // Add omen list route
-// TODO: confirm (it should be) that the routes are processed in order, so that this one shouldn't override the previous
 Route::get('/omen/ajax', function($query) {
     //print_r($query);
 
@@ -216,7 +218,7 @@ Route::get('/', function ($query){
             // update wording of ones they have selected
             $omenCollection->setStatements($omenCollection);
             $didEncounterOmens = TRUE;
-            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+            $heroText = MemberHero::createMemberHero($omenCollection);
         }
 
     } else {
@@ -266,7 +268,7 @@ Route::get('/clear', function (){
             // update wording of ones they have selected
             $omenCollection->setStatements($omenCollection);
             $didEncounterOmens = TRUE;
-            $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+            $heroText = MemberHero::createMemberHero($omenCollection);
         }
 
     } else {
@@ -336,7 +338,8 @@ Route::post('/login', function (){
                     // update wording of ones they have selected
                     $omenCollection->setStatements($omenCollection);
                     $didEncounterOmens = TRUE;
-                    $heroText = "Omens have killed you ".$omenCollection->getDeathYou()." times, and caused the death of ".$omenCollection->getDeathFamily()." family members, ".$omenCollection->getDeathFriend()." friends, and ".$omenCollection->getDeathCommunity()." community members. Ususally, it was ".$omenCollection->getCommonFault()." fault."; 
+
+                    $heroText = MemberHero::createMemberHero($omenCollection);
                 }
 				
                 $responseMessage = "You've successfully signed in!";

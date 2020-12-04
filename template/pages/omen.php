@@ -11,7 +11,16 @@ use View\Partial;
 
 //Provide similar omens (same fault)
 $filter = array("fault" => $omen->getFault()->getSlug());
-$omens = OmenCollection::findOmensByFilter($filter);
+$omensCollection = OmenCollection::findOmensByFilter($filter);
+
+// if the user is logged in
+if (isset($_SESSION['user'])){
+  //Get user omens so that we can set the title to statement on only those omens
+  $user = $_SESSION['user'];
+
+  // update the omen's that the user has selected
+  $omensCollection->setStatements($user->getUserOmens());
+}
 
 ?>
 
@@ -53,7 +62,7 @@ $omens = OmenCollection::findOmensByFilter($filter);
               
           </div>
 
-          <?= Partial::build('omenGrid', ["omenCollection" => $omens]); ?>
+          <?= Partial::build('omenGrid', ["omenCollection" => $omensCollection]); ?>
 
       </div>
   </section>
