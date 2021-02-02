@@ -11,6 +11,10 @@
 - result filtering (in progress)
 - omen page (in progress)
 
+## PHP Version
+
+7.4.10
+
 
 ## Citations
 - bread:

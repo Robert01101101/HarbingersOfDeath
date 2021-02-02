@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2020 at 11:44 AM
+-- Generation Time: Feb 02, 2021 at 01:24 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `robert_michels`
 --
-CREATE DATABASE IF NOT EXISTS `robert_michels` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `robert_michels`;
 
 -- --------------------------------------------------------
 
@@ -178,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `password`, `created_at`, `full_name`, `email_address`, `date_of_birth`, `image_path`) VALUES
-(4, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2020-12-04 10:29:44', 'Robert Michels', 'fxkingz@live.de', '1970-01-01', 'testImage'),
+(4, '51eac6b471a284d3341d8c0c63d0f1a286262a18', '2020-12-04 21:32:16', 'Robert Michels', 'fxkingz@live.com', '1970-01-01', 'testImage'),
 (5, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2020-12-04 08:42:03', 'Robert Michels', 'rmichels@sfu.ca', '1970-01-01', 'testImage'),
 (6, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2020-12-04 08:42:30', 'Robert Michels', 'rmichels@sfu.caa', '1970-01-01', 'testImage'),
 (7, '95cb0bfd2977c761298d9624e4b4d4c72a39974a', '2020-12-04 18:16:46', 'u7tyu', 'ty7', '1970-01-01', 'testImage'),
@@ -203,8 +201,9 @@ CREATE TABLE IF NOT EXISTS `user_omen` (
 --
 
 INSERT INTO `user_omen` (`user_id`, `omen_id`) VALUES
-(4, 11),
-(4, 19);
+(4, 17),
+(4, 26),
+(4, 13);
 
 --
 -- Constraints for dumped tables

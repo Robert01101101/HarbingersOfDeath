@@ -21,9 +21,9 @@ class OmenCollection
 
     //Connection Variables
     const DBHOST = "localhost";
-    const DBUSER = "root";
-    const DBPASS = "";
-    const DBNAME = "robert_michels";
+    const DBUSER = "u596735338_u596735338";
+    const DBPASS = "_6P_sgvxipYH,Sd";
+    const DBNAME = "u596735338_robert_michels";
 
     //Table Names
     const T_ADDRESS = "address";
@@ -280,9 +280,9 @@ class OmenCollection
 
         // 1. Set up MySQLi connection
         $DBHOST = "localhost";
-        $DBUSER = "root";
-        $DBPASS = "";
-        $DBNAME = "robert_michels";
+        $DBUSER = "u596735338_u596735338";
+        $DBPASS = "_6P_sgvxipYH,Sd";
+        $DBNAME = "u596735338_robert_michels";
         $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
