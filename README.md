@@ -8,7 +8,7 @@
 
 ‘Are you going to die?’ compiles historic superstitions about death. This project satirizes present-day conspiracy theories, by presenting now-defunct superstitions as if they are real.
 
-![Screenshot](https://rmichels.com/assets/img/harbingersofdeath/screen-member-home.jpg "Screenshot")
+[![Screenshot]([link to image on GH](https://rmichels.com/assets/img/harbingersofdeath/screen-member-home.jpg))]([link to your URL](http://harbingersofdeath.rmichels.com/))
 
 ## Contributors
 * Samuel Barnett
