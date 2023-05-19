@@ -1,20 +1,21 @@
-# 352
+# Harbingers Of Death
 
-## Todo List
-- Get register form to create file
-- javascript for random image placement
-- make modal sexy (or decide that model window is bad UI)
-- make form be good looking, [like this](https://gph.is/2fcY04D)
-  - Does it make the most sense to animate the labels animating with css transforms? 
-  - How do we style selects? Can we use CSS or do we have to use a JS workaround?
+[Harbingers Of Death](http://harbingersofdeath.rmichels.com/)
 
-- result filtering (in progress)
-- omen page (in progress)
+[Project Page](https://rmichels.com/harbingersOfDeath)
 
-## PHP Version
+## About
 
-7.4.10
+‘Are you going to die?’ compiles historic superstitions about death. This project satirizes present-day conspiracy theories, by presenting now-defunct superstitions as if they are real.
 
+[![Screenshot](https://rmichels.com/assets/img/harbingersofdeath/screen-member-home.jpg)](http://harbingersofdeath.rmichels.com/)
+
+## Contributors
+* Samuel Barnett
+* Robert Michels
+
+## References
+* Developed as part of the Internet Computing Technologies course IAT 352, at Simon Fraser University.
 
 ## Citations
 - bread:
@@ -46,4 +47,3 @@
 [Pieter Bruegel (1568)](https://en.wikipedia.org/wiki/Pieter_Bruegel_the_Elder#/media/File:%D0%9F%D1%80%D0%B8%D1%82%D1%87%D0%B0_%D0%BE_%D1%81%D0%BB%D0%B5%D0%BF%D1%8B%D1%85.jpeg)
 - _St Jerome Meditating_ 
 [Caravaggio (1605)](https://artsandculture.google.com/asset/st-jerome-meditating-michelangelo-merisi-da-caravaggio/jwFgPh4OaRn1VQ)
-- 
