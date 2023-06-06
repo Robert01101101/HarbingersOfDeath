@@ -178,7 +178,7 @@ class User
 		
         // Set up MySQLi connection
         // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+        $connection = mysqli_connect(self::DBHOST, self::DBUSER_HOD, self::DBPASS, self::DBNAME);
         if(mysqli_connect_errno()) { die("Database connection failed: ".mysqli_connect_error()." (".mysqli_connect_errno().")");}
 
         //Ensure user doesn't exist already
@@ -224,7 +224,7 @@ class User
     {
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -257,7 +257,7 @@ class User
     public function addOmenToUser(Omen $omen){
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -296,7 +296,7 @@ class User
     public function removeOmenFromUser(Omen $omen) {
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -316,7 +316,7 @@ class User
     {
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -345,7 +345,7 @@ class User
     public function updateUserData() {
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -361,7 +361,7 @@ class User
     public function clearUserOmens() {
         // 1. Set up MySQLi connection
         include('nopublicaccess/auth.php');
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
