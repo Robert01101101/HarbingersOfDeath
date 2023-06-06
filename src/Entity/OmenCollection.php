@@ -42,7 +42,7 @@ class OmenCollection
     {
         // Create a database connection
         include('nopublicaccess/auth.php');
-        $this->connection = mysqli_connect($DBHOST, $DBUSER_HOD_HOD, $DBPASS, $DBNAME_HOD);
+        $this->connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
 
         // Test if connection succeeded
         if(mysqli_connect_errno()) {
