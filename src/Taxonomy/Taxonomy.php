@@ -15,12 +15,6 @@ abstract class Taxonomy
 
     protected $connection;
 
-    //Connection Variables
-    const DBHOST = "localhost";
-    const DBUSER = "u596735338_u596735338";
-    const DBPASS = "_6P_sgvxipYH,Sd";
-    const DBNAME = "u596735338_robert_michels";
-
     //Table Names
     const T_ADDRESS = "address";
     const T_ASPECT = "aspect";
@@ -36,7 +30,8 @@ abstract class Taxonomy
     public function __construct()
     {
         // Create a database connection
-        $this->connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+        include('nopublicaccess/auth.php');
+        $this->connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
 
         // Test if connection succeeded
         if(mysqli_connect_errno()) {

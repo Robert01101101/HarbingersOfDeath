@@ -14,12 +14,6 @@ class User
 
     protected $connection;
 
-    //Connection Variables
-    const DBHOST = "localhost";
-    const DBUSER = "u596735338_u596735338";
-    const DBPASS = "_6P_sgvxipYH,Sd";
-    const DBNAME = "u596735338_robert_michels";
-
     //Table Names
     const T_ADDRESS = "address";
     const T_ASPECT = "aspect";
@@ -229,11 +223,8 @@ class User
     public static function authenticateUser(string $formEmail, string $formPassword)
     {
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -265,11 +256,8 @@ class User
 
     public function addOmenToUser(Omen $omen){
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -307,11 +295,8 @@ class User
 
     public function removeOmenFromUser(Omen $omen) {
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -330,11 +315,8 @@ class User
     public function getUserOmens() : OmenCollection
     {
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -362,11 +344,8 @@ class User
 
     public function updateUserData() {
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
@@ -381,11 +360,8 @@ class User
 
     public function clearUserOmens() {
         // 1. Set up MySQLi connection
-        $DBHOST = "localhost";
-        $DBUSER = "u596735338_u596735338";
-        $DBPASS = "_6P_sgvxipYH,Sd";
-        $DBNAME = "u596735338_robert_michels";
-        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         // Test if connection succeeded
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 

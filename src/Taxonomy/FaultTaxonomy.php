@@ -77,8 +77,8 @@ class FaultTaxonomy extends Taxonomy
         //TODO: MOVE TO CONSTRUCTOR
         //new self();
 
-
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME_HOD);
         if(mysqli_connect_errno()) { die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . ")" ); }
 
         // 2. Perform database query
