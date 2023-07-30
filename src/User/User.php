@@ -178,7 +178,8 @@ class User
 		
         // Set up MySQLi connection
         // 1. Create a database connection
-        $connection = mysqli_connect(self::DBHOST, self::DBUSER_HOD, self::DBPASS, self::DBNAME);
+        include('nopublicaccess/auth.php');
+        $connection = mysqli_connect($DBHOST, $DBUSER_HOD, $DBPASS, $DBNAME_HOD);
         if(mysqli_connect_errno()) { die("Database connection failed: ".mysqli_connect_error()." (".mysqli_connect_errno().")");}
 
         //Ensure user doesn't exist already
